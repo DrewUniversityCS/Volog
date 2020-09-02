@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class VologConfig(AppConfig):
+class CoreConfig(AppConfig):
     name = 'core'
