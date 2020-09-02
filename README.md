@@ -107,12 +107,8 @@ All version control is done with Git. If you are new, we recommend watching [thi
 
 ## Contributors
 David Nesterov-Rappoport : NullDefault</br>
-<<<<<<< HEAD
 Mahmoud Alminawi: Momo </br> 
-=======
 Deja Santana : d-daring</br>
-
->>>>>>> 6969f09426fd7082d654b0e7cfb3395f263be842
 
 ## Acknowledgments
 
