@@ -108,6 +108,7 @@ All version control is done with Git. If you are new, we recommend watching [thi
 ## Contributors
 
 David Nesterov-Rappoport : NullDefault</br>
+Mahmoud Alminawi: Momo </br> 
 
 ## Acknowledgments
 
