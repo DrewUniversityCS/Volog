@@ -31,8 +31,6 @@ A step by step series of examples that tell you how to get a development environ
  - Navigate to the docs folder inside of the project.
  - In order to install all the project dependencies run the following command in your terminal:
         "pip install -r requirements.txt"
- - To populate the database with initial values necessary for expected behavior run the following commands:
-        "manage.py populate_database"
  - Finally, run the server using the "manage.py runserver" command and explore the website on localhost.
 ```
 
