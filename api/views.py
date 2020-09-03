@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from api.serializers import StudentSerializer
+from api.models import Student
+
+
+class HeroViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all().order_by('name')
+    serializer_class = StudentSerializer
