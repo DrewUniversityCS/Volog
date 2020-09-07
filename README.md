@@ -16,7 +16,7 @@ A step by step series of examples that tell you how to get a development environ
  - First, ensure you have python installed as well as your preferred IDE.
  - Clone the repository onto your local machine.
  - Navigate to the docs folder inside of the project.
- - In order to install all the project dependencies, you need to set up a pipenv environment and use it as the interpreter for the project.
+ - In order to install all the project dependencies, you need to set up a pipenv environment and use it as the interpreter for the project. Do so by running *pip install pipenv* and *pipenv install*.
  - Finally, run the server using the "manage.py runserver" command and explore the website on localhost.
 ```
 
