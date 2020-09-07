@@ -1,4 +1,4 @@
-Deja Santana, David Nesterov-Rappoport, Mahmoud Almianwi, Perrfection M. K. SPeterkin
+Deja Santana, David Nesterov-Rappoport, Mahmoud Almianwi, Perrfection M. K. Peterkin
 
 Volog, hour logging and tracking software
 ## What will the project do? What problem is it solving? What is the core  functionality?
