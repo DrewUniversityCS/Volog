@@ -112,4 +112,4 @@ Deja Santana : d-daring</br>
 
 ## Acknowledgments
 
-- Hat tip and thanks to anyone whose code was used
+- Hat tip and thanks to anyone whose code was used!
