@@ -110,7 +110,7 @@ David Nesterov-Rappoport : NullDefault</br>
 
 Mahmoud A. Alminawi: malminawi </br> 
 
-Déja Santana : d-daring</br>
+Déj Santana : d-daring</br>
 
 Perrfection Peterkin : Perrfection</br>
 
