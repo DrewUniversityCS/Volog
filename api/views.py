@@ -1,9 +1,8 @@
-from rest_framework import viewsets
-
 from api.serializers import StudentSerializer
 from api.models import Student
+from rest_framework import generics
 
 
-class HeroViewSet(viewsets.ModelViewSet):
+class HeroViewSet(generics.ListCreateAPIView):
     queryset = Student.objects.all().order_by('name')
     serializer_class = StudentSerializer

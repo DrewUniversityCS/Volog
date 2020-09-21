@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # REST
     'rest_framework',
     # Volog Apps
-    'api'
+    'api',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'frontend', 'src', 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
