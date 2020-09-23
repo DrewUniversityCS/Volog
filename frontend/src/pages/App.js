@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import {render} from "react-dom";
-import DataTable from "./tables/DataTable";
-import ModalForm from "./modals/Modal";
+import DataTable from "../components/tables/DataTable";
+import ModalForm from "../components/modals/Modal";
 
 class App extends Component {
     state = {

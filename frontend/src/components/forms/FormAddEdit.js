@@ -13,8 +13,6 @@ class AddEditForm extends React.Component {
     }
 
     submitFormAdd = e => {
-        console.log("submission attempted")
-        console.log(this.state)
         e.preventDefault()
         fetch("api/lead/", {
             method: 'post',
