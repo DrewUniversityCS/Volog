@@ -31,9 +31,9 @@ class DataTable extends Component {
             return (
                 <tr key={item.id}>
                     <th scope="row">{item.id}</th>
-                    <td>{item.first}</td>
-                    <td>{item.last}</td>
+                    <td>{item.name}</td>
                     <td>{item.email}</td>
+                    <td>{item.student_id}</td>
                     <td>
                         <div style={{width: "110px"}}>
                             <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}/>
@@ -50,9 +50,9 @@ class DataTable extends Component {
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>First</th>
-                    <th>Last</th>
+                    <th>Name</th>
                     <th>Email</th>
+                    <th>Student ID</th>
                 </tr>
                 </thead>
                 <tbody>

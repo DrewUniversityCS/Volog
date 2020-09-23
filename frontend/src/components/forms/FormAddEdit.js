@@ -4,9 +4,9 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 class AddEditForm extends React.Component {
     state = {
         id: 0,
-        first: '',
-        last: '',
-        email: ''
+        name: '',
+        email: '',
+        student_id: ''
     }
 
     onChange = e => {
@@ -21,9 +21,10 @@ class AddEditForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                first: this.state.first,
-                last: this.state.last,
+                id: this.state.id,
+                name: this.state.name,
                 email: this.state.email,
+                student_id: this.state.student_id
             })
         })
             .then(response => response.json())
@@ -47,9 +48,9 @@ class AddEditForm extends React.Component {
             },
             body: JSON.stringify({
                 id: this.state.id,
-                first: this.state.first,
-                last: this.state.last,
+                name: this.state.name,
                 email: this.state.email,
+                student_id: this.state.student_id
             })
         })
             .then(response => response.json())
@@ -68,8 +69,8 @@ class AddEditForm extends React.Component {
     componentDidMount() {
         // if item exists, populate the state with proper data
         if (this.props.item) {
-            const {id, first, last, email} = this.props.item
-            this.setState({id, first, last, email})
+            const {id, name, email, student_id} = this.props.item
+            this.setState({id, name, email, student_id})
         }
     }
 
@@ -77,19 +78,19 @@ class AddEditForm extends React.Component {
         return (
             <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
                 <FormGroup>
-                    <Label for="first">First Name</Label>
-                    <Input type="text" name="first" id="first" onChange={this.onChange}
-                           value={this.state.first === null ? '' : this.state.first}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="last">Last Name</Label>
-                    <Input type="text" name="last" id="last" onChange={this.onChange}
-                           value={this.state.last === null ? '' : this.state.last}/>
+                    <Label for="name">Name</Label>
+                    <Input type="text" name="name" id="name" onChange={this.onChange}
+                           value={this.state.name === null ? '' : this.state.name}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="email">Email</Label>
                     <Input type="email" name="email" id="email" onChange={this.onChange}
                            value={this.state.email === null ? '' : this.state.email}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="student_id">Student ID</Label>
+                    <Input type="text" name="student_id" id="student_id" onChange={this.onChange}
+                           value={this.state.student_id === null ? '' : this.state.student_id}/>
                 </FormGroup>
                 <Button>Submit</Button>
             </Form>
