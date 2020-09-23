@@ -23,7 +23,7 @@ class App extends Component {
     }
 
     updateState = (item) => {
-        const itemIndex = this.state.items.findIndex(data => data.id === item.id)
+        const itemIndex = this.state.items.findIndex(data => data.student_id === item.student_id)
         const newArray = [
             // destructure all items from beginning to the indexed item
             ...this.state.items.slice(0, itemIndex),
