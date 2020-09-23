@@ -36,7 +36,7 @@ class App extends Component {
     }
 
     deleteItemFromState = (id) => {
-        const updatedItems = this.state.items.filter(item => item.id !== id)
+        const updatedItems = this.state.items.filter(item => item.student_id !== id)
         this.setState({items: updatedItems})
     }
 

@@ -3,7 +3,6 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 class AddEditForm extends React.Component {
     state = {
-        id: 0,
         name: '',
         email: '',
         student_id: ''
@@ -21,7 +20,6 @@ class AddEditForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: this.state.id,
                 name: this.state.name,
                 email: this.state.email,
                 student_id: this.state.student_id
@@ -39,7 +37,7 @@ class AddEditForm extends React.Component {
             .catch(err => console.log(err))
     }
 
-    submitFormEdit = e => {
+    submitFormEdit = e => { // This shouldn't work yet because we dont have any put requests endpoints
         e.preventDefault()
         fetch('http://localhost:3000/crud', {
             method: 'put',
@@ -47,7 +45,6 @@ class AddEditForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: this.state.id,
                 name: this.state.name,
                 email: this.state.email,
                 student_id: this.state.student_id
@@ -68,8 +65,8 @@ class AddEditForm extends React.Component {
     componentDidMount() {
         // if item exists, populate the state with proper data
         if (this.props.item) {
-            const {id, name, email, student_id} = this.props.item
-            this.setState({id, name, email, student_id})
+            const {name, email, student_id} = this.props.item
+            this.setState({name, email, student_id})
         }
     }
 
