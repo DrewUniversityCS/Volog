@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block body %}
+    Hello, {{ user }}
+    Role: {{ user.get_role_display }}
+    {% if user.is_admin %}
+        <a href="{% url 'sadmin:referral' %}">+ Create referral</a>
+    {% endif %}
+    <a href="{% url 'account_logout' %}">Logout</a>
+{% endblock %}
