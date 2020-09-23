@@ -13,8 +13,10 @@ class AddEditForm extends React.Component {
     }
 
     submitFormAdd = e => {
+        console.log("submission attempted")
+        console.log(this.state)
         e.preventDefault()
-        fetch('http://localhost:3000/crud', {
+        fetch("api/lead/", {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,6 +33,7 @@ class AddEditForm extends React.Component {
                     this.props.addItemToState(item[0])
                     this.props.toggle()
                 } else {
+                    console.log(item)
                     console.log('failure')
                 }
             })
@@ -72,7 +75,7 @@ class AddEditForm extends React.Component {
 
     render() {
         return (
-            <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
+            <Form onSubmit={this.submitFormAdd}>
                 <FormGroup>
                     <Label for="name">Name</Label>
                     <Input type="text" name="name" id="name" onChange={this.onChange}
