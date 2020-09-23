@@ -1,5 +1,5 @@
 from django import forms
-from apps.user.models import Referral
+from auth.user.models import Referral
 
 
 class ReferralCreateForm(forms.ModelForm):

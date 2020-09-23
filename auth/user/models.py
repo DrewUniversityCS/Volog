@@ -1,7 +1,7 @@
 from django.contrib.auth import models as auth_models
 from django.db import models
 
-from apps.common import (
+from auth.common import (
     constants as common_constants,
     models as common_models,
     utils as common_utils

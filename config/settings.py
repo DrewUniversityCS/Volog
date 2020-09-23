@@ -44,13 +44,13 @@ INSTALLED_APPS = [
     # Volog Apps
     'api',
     'frontend',
-     # projects apps
-    'apps.common',
-    'apps.user',
-    'apps.dashboard',
-    'apps.sadmin',
+     # projects auth
+    'auth.common',
+    'auth.user',
+    'auth.dashboard',
+    'auth.sadmin',
 
-    # allauth apps
+    # allauth auth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -69,7 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'apps.common.middleware.ProfileComplete', ##if anyuser does not have a completed user, he cant access the dashboard
+    'auth.common.middleware.ProfileComplete', ##if anyuser does not have a completed user, he cant access the dashboard
 ]
 
 ROOT_URLCONF = 'config.urls'

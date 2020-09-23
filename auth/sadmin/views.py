@@ -1,7 +1,7 @@
 from .forms import ReferralCreateForm
 from django.views.generic.edit import FormView
-from apps.user.models import Referral
-from apps.common.mixins import LoginRequiredMixin, AdminRequiredMixin
+from auth.user.models import Referral
+from auth.common.mixins import LoginRequiredMixin, AdminRequiredMixin
 
 
 class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
