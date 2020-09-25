@@ -15,9 +15,9 @@ A step by step series of examples that tell you how to get a development environ
 ```
  - First, ensure you have python installed as well as your preferred IDE.
  - Clone the repository onto your local machine.
- - Navigate to the docs folder inside of the project.
- - In order to install all the project dependencies, you need to set up a pipenv environment and use it as the interpreter for the project. Do so by running *pip install pipenv* and *pipenv install*.
- - Finally, run the server using the "manage.py runserver" command and explore the website on localhost.
+ - In order to install all the backend (python) project dependencies, you need to set up a pipenv environment and use it as the interpreter for the project. Do so by running *pip install pipenv* and *pipenv install*. For more specific instructions look up how to use pipenv with your IDE.
+ - In order to install the frontend (javascript) dependenices, you need to (1) ensure you have npm and webpack installed, (2) cd into frontend, (3) npm -i to install all the dependencies, (4) npm run dev to let webpack do its thing.
+ - Finally, cd into Volog and run the server using the "manage.py runserver" command.
 ```
 
 ## Running the tests
