@@ -14,7 +14,7 @@ class AddEditForm extends React.Component {
 
     submitFormAdd = e => {
         e.preventDefault()
-        fetch("api/lead/", {
+        fetch("api/students/", {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
