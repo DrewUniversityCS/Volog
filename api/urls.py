@@ -6,5 +6,5 @@ from api import views
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/lead/', views.HeroViewSet.as_view()),
+    path('api/students/', views.StudentListView.as_view()),
 ]
