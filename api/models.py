@@ -71,8 +71,8 @@ class Student(AbstractUser):
 
     student_id = models.IntegerField(primary_key=True, unique=True, blank=False)
     class_standing = models.CharField(max_length=2, choices=YEAR_IN_SCHOOL_CHOICES, blank=False)
-    DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, blank=True, related_name="mentor")
-    hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE)
+    DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, blank=True, null=True, related_name="mentor")
+    hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
