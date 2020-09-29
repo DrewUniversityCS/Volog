@@ -30,6 +30,7 @@ class TimeMaster(models.Model):
     This class is essentially a component for the Student object which holds all the data pertaining to their hours.
     Everything that has to do with time reporting, management and querying happens in this class.
     """
+
     class Meta:
         db_table = 'hours_data'
 
@@ -75,5 +76,3 @@ class Student(AbstractUser):
 
     def __str__(self):
         return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
-
-

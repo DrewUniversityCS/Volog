@@ -7,6 +7,7 @@ class ProfileComplete(MiddlewareMixin):
     """
     Middleware to force user to fill profile before Dashboard
     """
+
     def process_request(self, request):
         current_url = resolve(request.path_info).url_name
 

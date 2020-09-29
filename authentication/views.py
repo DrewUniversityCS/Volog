@@ -4,6 +4,7 @@ from django.views.generic.edit import FormView
 from .models import Referral
 from .mixins import LoginRequiredMixin, AdminRequiredMixin
 
+
 # TODO: This file just doesn't work. We need to figure out how to replace all of the templates with react somehow.
 
 

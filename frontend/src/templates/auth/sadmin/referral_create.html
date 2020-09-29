@@ -4,7 +4,7 @@
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
-    <table border="1" cellpadding="10" >
+    <table border="1" cellpadding="10">
         <tr>
             <td>Role</td>
             <td>Refferal Code</td>
@@ -12,7 +12,7 @@
         </tr>
         {% for referral in referrals %}
             <tr>
-                <td>{{referral.get_role_display}}</td>
+                <td>{{ referral.get_role_display }}</td>
                 <td>{{ referral.code }}</td>
                 <td>{{ referral.is_used }}</td>
             </tr>
