@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Container, Row, Col} from 'reactstrap';
-import {render} from "react-dom";
+import {Col, Container, Row} from 'reactstrap';
 import DataTable from "../components/tables/DataTable";
 import ModalForm from "../components/modals/Modal";
 
-class App extends Component {
+class PrototypeDashboard extends Component {
     state = {
         items: []
     }
@@ -47,12 +46,12 @@ class App extends Component {
 
     render() {
         return (
-            <Container className="App">
-                <Row>
-                    <Col>
-                        <h1 style={{margin: "20px 0"}}>Volog</h1>
-                    </Col>
-                </Row>
+            <Container className="App" style={{
+                backgroundColor: 'c0c6c6',
+                width: '100%',
+                height: '800px',
+                padding: '20px'
+            }}>
                 <Row>
                     <Col>
                         <DataTable items={this.state.items} updateState={this.updateState}
@@ -69,7 +68,5 @@ class App extends Component {
     }
 }
 
-const container = document.getElementById("app");
-render(<App/>, container);
 
-export default App;
+export default PrototypeDashboard;

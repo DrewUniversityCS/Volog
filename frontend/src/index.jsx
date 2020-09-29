@@ -1,4 +1,4 @@
-import App from "./pages/Entrypoint.js";
+import App from "./App";
 import ModalForm from "./components/modals/Modal.js";
 import DataTable from "./components/tables/DataTable.js";
 import AddEditForm from "./components/forms/FormAddEdit.js";

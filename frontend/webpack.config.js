@@ -15,7 +15,20 @@ module.exports = {
             {
                 test: /\.css$/,
                 loaders: ["style-loader", "css-loader"]
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/webpack_build/',
+                            publicPath: '/'
+                        }
+                    },
+                ],
+            },
         ]
     }
 };
