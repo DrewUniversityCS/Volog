@@ -137,3 +137,6 @@ frontend/node_modules/
 
 # Webpack build
 frontend/static/build/
+
+# IDE Settings
+.DS_Store
