@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from "react-dom";
 import PrototypeDashboard from "./pages/PrototypeDashboard";
 import NavBar from "./components/navbar/NavBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
 

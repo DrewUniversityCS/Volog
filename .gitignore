@@ -134,3 +134,6 @@ dmypy.json
 # Node Modules
 frontend/node_modules/
 /frontend/static/assets/webpack_build/
+
+# Webpack build
+frontend/static/build/
