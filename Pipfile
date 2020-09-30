@@ -10,6 +10,7 @@ requests = "*"
 djangorestframework = "*"
 django = "*"
 django-crispy-forms = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.8"

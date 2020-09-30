@@ -7,9 +7,11 @@ class DataTable extends Component {
         const items = this.props.items.map(item => {
             return (
                 <tr key={item.student_id}>
-                    <td>{item.name}</td>
+                    <td>{item.first_name}</td>
+                    <td>{item.last_name}</td>
                     <td>{item.email}</td>
                     <td>{item.student_id}</td>
+                    <td>{item.class_standing}</td>
                     <td>
                         <div style={{width: "110px"}}>
                             <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}/>
@@ -23,9 +25,11 @@ class DataTable extends Component {
             <Table responsive hover>
                 <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email</th>
                     <th>Student ID</th>
+                    <th>Class Standing</th>
                 </tr>
                 </thead>
                 <tbody>

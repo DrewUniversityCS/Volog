@@ -1,0 +1,21 @@
+{% extends 'auth_index.html' %}
+{% block body %}
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+    <table border="1" cellpadding="10">
+        <tr>
+            <td>Role</td>
+            <td>Refferal Code</td>
+            <td>Is Used</td>
+        </tr>
+        {% for referral in referrals %}
+            <tr>
+                <td>{{ referral.get_role_display }}</td>
+                <td>{{ referral.code }}</td>
+                <td>{{ referral.is_used }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

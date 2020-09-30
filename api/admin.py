@@ -1,5 +1,6 @@
 from django.contrib import admin
 from api.models import Student
+
 # Register your models here.
 
 models = [Student]

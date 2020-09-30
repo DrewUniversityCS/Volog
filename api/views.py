@@ -4,5 +4,8 @@ from rest_framework import generics
 
 
 class StudentListView(generics.ListCreateAPIView):
-    queryset = Student.objects.all().order_by('name')
+    """
+    API endpoint  allows students to be viewed or edited.
+    """
+    queryset = Student.objects.all().order_by('student_id')
     serializer_class = StudentSerializer
