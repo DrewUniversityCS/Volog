@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from 'reactstrap';
-import DataTable from "../components/tables/DataTable";
-import ModalForm from "../components/modals/Modal";
+import DataTable from "../components/elements/DataTable";
+import ModalForm from "../components/common/Modal";
 
 class PrototypeDashboard extends Component {
     state = {

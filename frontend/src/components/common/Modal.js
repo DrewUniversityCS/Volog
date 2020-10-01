@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
-import AddEditForm from '../forms/FormAddEdit';
+import AddEditForm from '../input/FormAddEdit';
 
 class ModalForm extends Component {
     constructor(props) {

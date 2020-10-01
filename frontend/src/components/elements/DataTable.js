@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Table} from 'reactstrap';
-import ModalForm from '../modals/Modal';
+import ModalForm from '../common/Modal';
 
 class DataTable extends Component {
     render() {
