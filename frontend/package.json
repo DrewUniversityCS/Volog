@@ -2,11 +2,11 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development src/index.jsx --output ./static/main.js",
-    "build": "webpack --mode production src/index.jsx --output ./static/main.js"
+    "dev": "webpack --mode development src/App.js --output ./static/build/main.js",
+    "build": "webpack --mode production src/App.js --output ./static/build/main.js"
   },
   "keywords": [],
   "author": "",

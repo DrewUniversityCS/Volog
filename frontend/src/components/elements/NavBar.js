@@ -5,7 +5,7 @@ import React from "react";
 class NavBar extends React.Component {
     render() {
         return (
-            <Navbar bg="dark" expand="sm" variant="dark">
+            <Navbar bg="light" expand="sm" variant="dark">
                 <Navbar.Brand>
                     <img
                         src={"../../../static/assets/volog_logo/green_on_gray.png"}

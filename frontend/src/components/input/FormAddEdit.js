@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Button, Form, FormGroup, Input, Label} from 'reactstrap';
+import {postNewStudent} from "../../functions/services/api/postNewStudent";
 
 class AddEditForm extends React.Component {
     state = {
@@ -16,30 +17,15 @@ class AddEditForm extends React.Component {
 
     submitFormAdd = e => {
         e.preventDefault()
-        fetch("api/students/", {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                first_name: this.state.first_name,
-                last_name: this.state.last_name,
-                email: this.state.email,
-                student_id: this.state.student_id,
-                class_standing: this.state.class_standing,
-            })
-        })
-            .then(response => response.json())
-            .then(item => {
-                if (Array.isArray(item)) {
-                    this.props.addItemToState(item[0])
-                    this.props.toggle()
-                } else {
-                    console.log(item)
-                    console.log('failure')
-                }
-            })
-            .catch(err => console.log(err))
+        postNewStudent(this).then(response_item => {
+            if (Array.isArray(response_item)) {
+                this.props.addItemToState(response_item[0])
+                this.props.toggle()
+            } else {
+                console.log(response_item)
+                console.log('failure')
+            }
+        }).catch(err => console.log(err));
     }
 
 

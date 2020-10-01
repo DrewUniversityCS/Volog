@@ -1,18 +1,12 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from 'reactstrap';
-import DataTable from "../components/tables/DataTable";
-import ModalForm from "../components/modals/Modal";
+import DataTable from "../components/elements/DataTable";
+import ModalForm from "../components/common/ModalForm";
+import {getFullStudentList} from "../functions/services/api/getFullStudentList";
 
 class PrototypeDashboard extends Component {
     state = {
         items: []
-    }
-
-    getItems() {
-        fetch("api/students/")
-            .then(response => response.json())
-            .then(items => this.setState({items}))
-            .catch(err => console.log(err))
     }
 
     addItemToState = (item) => {
@@ -35,23 +29,13 @@ class PrototypeDashboard extends Component {
         this.setState({items: newArray})
     }
 
-    deleteItemFromState = (id) => {
-        const updatedItems = this.state.items.filter(item => item.student_id !== id)
-        this.setState({items: updatedItems})
-    }
-
     componentDidMount() {
-        this.getItems()
+        getFullStudentList(this);
     }
 
     render() {
         return (
-            <Container className="App" style={{
-                backgroundColor: 'c0c6c6',
-                width: '100%',
-                height: '800px',
-                padding: '20px'
-            }}>
+            <Container className="App">
                 <Row>
                     <Col>
                         <DataTable items={this.state.items} updateState={this.updateState}

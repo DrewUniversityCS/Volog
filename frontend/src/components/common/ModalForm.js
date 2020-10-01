@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
-import AddEditForm from '../forms/FormAddEdit';
+import AddEditForm from '../input/FormAddEdit';
 
 class ModalForm extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class ModalForm extends Component {
             button = <Button
                 color="success"
                 onClick={this.toggle}
-                style={{float: "left", marginRight: "10px"}}>{label}
+                style={{float: "left", marginRight: "10px", backgroundColor: "#2d8e94"}}>{label}
             </Button>
             title = 'Add New Item'
         }
