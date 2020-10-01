@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import DataTable from "../components/elements/DataTable";
-import ModalForm from "../components/common/Modal";
+import ModalForm from "../components/common/ModalForm";
 import {getFullStudentList} from "../functions/services/api/getFullStudentList";
 
 class PrototypeDashboard extends Component {
@@ -35,12 +35,7 @@ class PrototypeDashboard extends Component {
 
     render() {
         return (
-            <Container className="App" style={{
-                backgroundColor: 'c0c6c6',
-                width: '100%',
-                height: '800px',
-                padding: '20px'
-            }}>
+            <Container className="App">
                 <Row>
                     <Col>
                         <DataTable items={this.state.items} updateState={this.updateState}

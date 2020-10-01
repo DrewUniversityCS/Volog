@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Table} from 'reactstrap';
-import ModalForm from '../common/Modal';
+import Table from 'react-bootstrap/Table';
+import ModalForm from '../common/ModalForm';
 
 class DataTable extends Component {
     render() {
@@ -22,7 +22,7 @@ class DataTable extends Component {
         })
 
         return (
-            <Table responsive hover>
+            <Table responsive hover bordered={true} className={"table"} color={"white"}>
                 <thead>
                 <tr>
                     <th>First Name</th>
@@ -30,12 +30,14 @@ class DataTable extends Component {
                     <th>Email</th>
                     <th>Student ID</th>
                     <th>Class Standing</th>
+                    <th/>
                 </tr>
                 </thead>
                 <tbody>
                 {items}
                 </tbody>
             </Table>
+
         )
     }
 }

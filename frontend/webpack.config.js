@@ -17,13 +17,13 @@ module.exports = {
                 loaders: ["style-loader", "css-loader"]
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|svg)$/i,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: 'assets/webpack_build/',
+                            outputPath: 'assets/',
                             publicPath: '/'
                         }
                     },
