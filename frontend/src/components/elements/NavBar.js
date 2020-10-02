@@ -1,6 +1,8 @@
 import Navbar from "react-bootstrap/Navbar";
-import {Nav} from "react-bootstrap";
+import {Nav, NavItem} from "react-bootstrap";
 import React from "react";
+import Link from "react-router-dom/Link";
+import "../../../static/css/components/navbar.css";
 
 class NavBar extends React.Component {
     render() {
@@ -15,6 +17,19 @@ class NavBar extends React.Component {
                         alt="volog logo"
                     />
                 </Navbar.Brand>
+
+                <NavItem eventkey={1} href="/login">
+                  <Nav.Link as={Link} to="/login" >Login</Nav.Link>
+                </NavItem>
+                <NavItem eventkey={1} href="/mentor">
+                  <Nav.Link as={Link} to="/mentor" >Mentor</Nav.Link>
+                </NavItem>
+                <NavItem eventkey={1} href="/dashboard">
+                  <Nav.Link as={Link} to="/dashboard" >PrototypeDashboard</Nav.Link>
+                </NavItem>
+                <NavItem eventkey={1} href="/student">
+                  <Nav.Link as={Link} to="/student" >Student</Nav.Link>
+                </NavItem>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 

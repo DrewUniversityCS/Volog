@@ -1,18 +1,37 @@
 import React from 'react';
 import {render} from "react-dom";
-import PrototypeDashboard from "./pages/PrototypeDashboard";
 import NavBar from "./components/elements/NavBar";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../static/css/index.css';
+import PrototypeDashboard from "./pages/PrototypeDashboard";
+import MentorDashboard from "./pages/MentorDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
+import LoginPage from "./pages/LoginPage";
+
 
 const App = () => {
 
     return (
-        <div className="box">
-            <NavBar/>
-
-            <PrototypeDashboard/>
-        </div>
+        <Router>
+            <div className="box">
+                <NavBar/>
+                <Switch>
+                    <Route path="/login">
+                        <LoginPage/>
+                    </Route>
+                    <Route path="/mentor">
+                        <MentorDashboard/>
+                    </Route>
+                    <Route path="/student">
+                        <StudentDashboard/>
+                    </Route>
+                    <Route path="/dashboard">
+                        <PrototypeDashboard/>
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     )
 };
 
