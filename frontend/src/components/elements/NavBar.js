@@ -30,6 +30,10 @@ class NavBar extends React.Component {
                 <NavItem eventkey={1} href="/student">
                   <Nav.Link as={Link} to="/student" >Student</Nav.Link>
                 </NavItem>
+                <Form inline>
+                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                  <Button variant="outline-primary">Search</Button>
+                </Form>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
