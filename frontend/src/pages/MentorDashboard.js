@@ -1,10 +1,14 @@
 import React from "react";
-import Card from 'react-bootstrap/Card'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import Card from 'react-bootstrap/Card';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
+
 
 class MentorDashboard extends React.Component {
     render(){
         return <div>
+            <Container>
             <Jumbotron>
               <h1>Hello, world!</h1>
               <p>
@@ -26,6 +30,7 @@ class MentorDashboard extends React.Component {
                 <Button variant="primary">Go somewhere</Button>
               </Card.Body>
             </Card>
+            </Container>
         </div>
     }
 }

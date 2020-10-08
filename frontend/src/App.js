@@ -8,7 +8,6 @@ import PrototypeDashboard from "./pages/PrototypeDashboard";
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import LoginPage from "./pages/LoginPage";
-import NotificationPage from "./pages/NotificationPage";
 
 
 
@@ -29,9 +28,6 @@ const App = () => {
                         <StudentDashboard/>
                     </Route>
                     <Route path="/dashboard">
-                        <PrototypeDashboard/>
-                    </Route>
-                    <Route path="/notification">
                         <PrototypeDashboard/>
                     </Route>
                 </Switch>
