@@ -6,5 +6,6 @@ table th, table td { white-space: nowrap; }
   display: flex;
   flex-flow: column;
   height: 100vh;
-  background-color: #72be72;
+  background: rgb(114,190,114);
+  background: linear-gradient(145deg, rgba(114,190,114,1) 50%, rgba(45,253,142,1) 100%);
 }
