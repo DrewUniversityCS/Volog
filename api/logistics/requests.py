@@ -24,7 +24,7 @@ def student_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def snippet_detail(request, pk):
+def student_detail(request, pk):
     """
     Retrieve, update or delete a student.
     """
