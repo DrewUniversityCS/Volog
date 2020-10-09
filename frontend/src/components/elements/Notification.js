@@ -5,17 +5,28 @@ class Notification extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            request: ""
+            notes: [
+                "note 1",
+                "note 2",
+                "note 3"
+            ]
         }
 
+    }
+
+    addNote(){
+        var Note = "";
+        var i;
+        for (i = 0; i < this.state.notes.length; i++) {
+          Note = this.state.notes[i];
+          return <ListGroup.Item> Note </ListGroup.Item>
+        }
     }
 
     render() {
         return<div>
             <ListGroup>
-              <ListGroup.Item>Note 1</ListGroup.Item>
-              <ListGroup.Item>Note 2</ListGroup.Item>
-              <ListGroup.Item>Note 3</ListGroup.Item>
+              <addNote/>
             </ListGroup>
         </div>
 
