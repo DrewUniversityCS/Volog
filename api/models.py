@@ -16,7 +16,7 @@ class TimeMaster(models.Model):
 
 
 class HourInstance(models.Model):
-    time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE)
+    time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE, related_name="Related Student")
     date_of_activity = models.DateField(validators=[no_future_dates],
                                         blank=False, null=False)
     number_of_hours = models.IntegerField(validators=[hour_instance_validator],
@@ -40,7 +40,7 @@ class AbstractUser(models.Model):
     last_name = models.CharField(max_length=60,
                                  blank=False)
     email = models.EmailField(max_length=60,
-                              validators=[EmailValidator(message="Enter a valid email address",)],
+                              validators=[EmailValidator(message="Enter a valid email address")],
                               blank=False)
 
     @property
