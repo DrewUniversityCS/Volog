@@ -1,28 +1,6 @@
 from django.db import models
 
-YEAR_IN_SCHOOL_CHOICES = [
-    ('FR', 'Freshman'),
-    ('SO', 'Sophomore'),
-    ('JR', 'Junior'),
-    ('SR', 'Senior'),
-    ('PG', 'Post Graduate'),
-    ('GR', 'Graduate')
-]
-
-EXPERIENTIAL_LEARNING_HOURS_TYPES = [
-    ('REQ', 'Required'),
-    ('ACT', 'Active (Not Requiring Preapproval)'),
-    ('PRE', 'Active (Preapproval)'),
-    ('REC', 'Receptive')
-]
-
-LEARNING_GOALS_CHOICES = [
-    ('CONFIDENCE', 'Gain confidence and skills to identify, '
-                   'define and tackle complex problems that impact communities and transcend borders.'),
-    ('EMPATHY', 'Value empathy, understanding and responsiveness to diverse others in their work and public roles.'),
-    ('EXPLORE', 'Explore and take action on solutions to real-world problems that fulfill the goals of social impact, '
-                'financial viability, and environmental sustainability.')
-]
+from api.logistics.choice_arrays import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES
 
 
 class TimeMaster(models.Model):
@@ -38,7 +16,8 @@ class TimeMaster(models.Model):
 class HourInstance(models.Model):
     time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE)
     date_of_activity = models.DateField()
-    number_of_hours = models.FloatField()
+    number_of_hours = models.IntegerField()
+    number_of_minutes = models.IntegerField()
     description_of_activity = models.TextField()
     type_of_hour = models.CharField(max_length=3, choices=YEAR_IN_SCHOOL_CHOICES, blank=False)
     learning_goal = models.CharField(max_length=10, choices=LEARNING_GOALS_CHOICES, blank=False)
