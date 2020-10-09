@@ -3,6 +3,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import ListGroup from "react-bootstrap/ListGroup";
 
 
 class GroupCard extends Component {
@@ -13,6 +14,15 @@ class GroupCard extends Component {
             StuNames: ['Perrfection', 'Mahmoud', 'David']
         }
 
+    }
+
+    addNote(){
+        var StuName = "";
+        var i;
+        for (i = 0; i < this.state.notes.length; i++) {
+          StuName = this.state.StuNames[i];
+          return <ListGroup.Item> StuName </ListGroup.Item>;
+        }
     }
 
     render(){

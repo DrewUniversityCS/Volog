@@ -15,18 +15,20 @@ class Notification extends Component {
     }
 
     addNote(){
+        var text = "";
         var Note = "";
         var i;
         for (i = 0; i < this.state.notes.length; i++) {
           Note = this.state.notes[i];
-          return <ListGroup.Item> Note </ListGroup.Item>
+          text += Notes[i] + "<br>";
         }
+        return <ListGroup.Item> text </ListGroup.Item>
     }
 
     render() {
         return<div>
             <ListGroup>
-              <addNote/>
+
             </ListGroup>
         </div>
 
