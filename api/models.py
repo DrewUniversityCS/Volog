@@ -16,7 +16,7 @@ class TimeMaster(models.Model):
 
 
 class HourInstance(models.Model):
-    time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE, related_name="Related Student")
+    time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE)
     date_of_activity = models.DateField(validators=[no_future_dates],
                                         blank=False, null=False)
     number_of_hours = models.IntegerField(validators=[hour_instance_validator],
@@ -63,7 +63,7 @@ class Student(AbstractUser):
     class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
-    hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE, related_name="hour sheet",
+    hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE,
                                       blank=True, null=True)
 
     def __str__(self):
