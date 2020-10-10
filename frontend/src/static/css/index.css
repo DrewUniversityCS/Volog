@@ -1,0 +1,10 @@
+table { background-color: whitesmoke; margin-top: 50px; }
+
+table th, table td { white-space: nowrap; }
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  background-color: #72be72;
+}

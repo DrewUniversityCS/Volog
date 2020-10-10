@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-class MentorDashboard extends Component {
-     constructor(props) {
+class Admin extends Component {
+    constructor(props) {
     super(props);
 
     this.state = {isLoading: true};
@@ -13,7 +13,7 @@ class MentorDashboard extends Component {
             if (this.readyState == 4 && this.status == 200) {
                console.log();
                let role = JSON.parse(xhttp.responseText).role
-                if (role == 0 || role ==2){
+                if (role === 0){
                     com.setState({
                       isLoading: false
                     });
@@ -31,10 +31,10 @@ class MentorDashboard extends Component {
         if (this.state.isLoading) return <h1>Loading...</h1>
         return (
             <div>
-                Hello Mentor
+                Hello Admin
             </div>
         );
     }
 }
 
-export default MentorDashboard;
+export default Admin;
