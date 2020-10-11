@@ -2,7 +2,7 @@ from django.core.validators import EmailValidator
 from django.db import models
 
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
-from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator
+from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 
 
 class TimeMaster(models.Model):
@@ -71,7 +71,7 @@ class Student(AbstractUser):
     class Meta:
         db_table = 'student_data'
 
-    student_id = models.IntegerField(primary_key=True, unique=True, blank=False)
+    student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
     class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
