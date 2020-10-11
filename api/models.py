@@ -16,6 +16,9 @@ class TimeMaster(models.Model):
 
 
 class HourInstance(models.Model):
+    """
+    An instance of a single hour submission. Connected to its related student through the time master foreign key.
+    """
     time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE)
     date_of_activity = models.DateField(validators=[no_future_dates],
                                         blank=False, null=False)
@@ -32,6 +35,9 @@ class HourInstance(models.Model):
 
 
 class AbstractUser(models.Model):
+    """
+    Abstract user type that shares information common to both Students and Mentors.
+    """
     class Meta:
         abstract = True
 
@@ -49,6 +55,9 @@ class AbstractUser(models.Model):
 
 
 class Mentor(AbstractUser):
+    """
+    Represents a DAS mentor.
+    """
     class Meta:
         db_table = 'mentor_data'
 
@@ -56,6 +65,9 @@ class Mentor(AbstractUser):
 
 
 class Student(AbstractUser):
+    """
+    Represents a Student user.
+    """
     class Meta:
         db_table = 'student_data'
 
@@ -64,7 +76,7 @@ class Student(AbstractUser):
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
     hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE,
-                                      blank=True, null=True)
+                                      blank=False, null=False)
 
     def __str__(self):
         return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)

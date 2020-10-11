@@ -32,7 +32,8 @@ class EXPERIENTIAL_LEARNING_HOURS_TYPES(ChoiceEnum):
 
 class LEARNING_GOALS_CHOICES(ChoiceEnum):
     confidence = ('CONFIDENCE',
-                  'Gain confidence and skills to identify, define and tackle complex problems that impact communities and transcend borders.')
+                  'Gain confidence and skills to identify, define and tackle complex problems that impact communities '
+                  'and transcend borders.')
     empathy =    ('EMPATHY',
                   'Value empathy, understanding and responsiveness to diverse others in their work and public roles.')
     explore =    ('EXPLORE',
