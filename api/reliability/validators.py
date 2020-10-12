@@ -45,3 +45,17 @@ def minutes_validator(minutes):
         raise ValidationError("Minutes cannot be negative.")
     elif minutes % 5 != 0:
         raise ValidationError("Please round your minutes to a multiple of 5.")
+
+
+def student_id_validator(sid):
+    """
+    This validator will ensure that the provided id number is
+    (1) 7 digits long
+    (2) Unique in the database
+    Otherwise it raises a validation error.
+    :param sid: student id being tested
+    :return: None
+    """
+    if len(str(sid)) != 7:
+        raise ValidationError("Student ID must be 7 digits long.")
+    # TODO: validate key value or, alternatively, establish that it isn't necessary
