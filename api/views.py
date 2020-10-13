@@ -1,11 +1,13 @@
-from api.logistics.serializers import StudentSerializer
-from api.models import Student
+from api.logistics.serializers import StudentSerializer, MentorSerializer
+from api.models import Student, Mentor
 from rest_framework import generics
 
 
 class StudentListView(generics.ListCreateAPIView):
-    """
-    API endpoint  allows students to be viewed or edited.
-    """
     queryset = Student.objects.all().order_by('student_id')
     serializer_class = StudentSerializer
+
+
+class MentorListView(generics.ListCreateAPIView):
+    queryset = Mentor.objects.all().order_by('first_name')
+    serializer_class = MentorSerializer

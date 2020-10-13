@@ -77,7 +77,7 @@ class Student(AbstractUser):
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
     hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE,
-                                      blank=False, null=False)
+                                      blank=True, null=True)
 
     def __str__(self):
         return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
