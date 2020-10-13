@@ -1,4 +1,5 @@
 export const postNewStudent = (obj) => {
+    console.log("attempting POST");
     fetch("api/students/", {
         method: 'post',
         headers: {
@@ -10,6 +11,7 @@ export const postNewStudent = (obj) => {
             email: obj.state.email,
             student_id: obj.state.student_id,
             class_standing: obj.state.class_standing,
+            mentor: obj.state.mentor
         })
     }).then(response => {return response.json()})
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Col, Container, Row} from 'reactstrap';
-import DataTable from "../components/elements/DataTable";
-import ModalForm from "../components/common/ModalForm";
+import {Col, Container, Row} from 'react-bootstrap';
+import StudentTable from "../components/display/StudentTable";
+import AddStudentForm from "../components/input/AddStudentForm";
 import {getFullStudentList} from "../functions/services/api/getFullStudentList";
 
 class PrototypeDashboard extends Component {
@@ -38,14 +38,11 @@ class PrototypeDashboard extends Component {
             <Container className="App">
                 <Row>
                     <Col>
-                        <DataTable items={this.state.items} updateState={this.updateState}
-                                   deleteItemFromState={this.deleteItemFromState}/>
+                        <StudentTable items={this.state.items} updateState={this.updateState}/>
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
-                    </Col>
+                    <AddStudentForm/>
                 </Row>
             </Container>
         )

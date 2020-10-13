@@ -1,14 +1,15 @@
 import React from 'react';
 import {render} from "react-dom";
-import NavBar from "./components/elements/NavBar";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../static/css/index.css';
+
 import PrototypeDashboard from "./pages/PrototypeDashboard";
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import LoginPage from "./pages/LoginPage";
-
+import NavBar from "./components/elements/NavBar";
 
 const App = () => {
 
