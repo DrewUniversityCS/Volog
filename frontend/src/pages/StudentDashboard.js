@@ -1,7 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
+import Button from 'react-bootstrap/Button';
+import ModalForm from ;
+
+
+
 
 class StudentDashboard extends React.Component {
     render(){
+        const [modalShow, setModalShow] = React.useState(false);
         return <div>
             <Container className="justify-content-lg-center">
             <Jumbotron>
@@ -12,11 +18,11 @@ class StudentDashboard extends React.Component {
                       <VProgressBar/>
                   </Container>
               </p>
-              <p>
-                <Notification/>
-              </p>
+               <Button active variant="secondary" href="#">Report Hours</Button>
+
+
             </Jumbotron>
-            <GroupCard/>
+
             </Container>
         </div>
     }
