@@ -11,7 +11,7 @@ export const postNewStudent = (obj) => {
             email: obj.state.email,
             student_id: obj.state.student_id,
             class_standing: obj.state.class_standing,
-            mentor: obj.state.mentor
+            DAS_mentor: obj.state.DAS_mentor
         })
     }).then(response => {return response.json()})
 }

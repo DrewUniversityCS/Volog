@@ -11,7 +11,7 @@ class StudentTable extends Component {
                     <td>{item.email}</td>
                     <td>{item.student_id}</td>
                     <td>{item.class_standing}</td>
-                    <td>{item.mentor}</td>
+                    <td>{item.DAS_mentor}</td>
                     <td>{item.hours_complete}</td>
                 </tr>
             )

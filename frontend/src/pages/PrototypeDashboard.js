@@ -31,6 +31,7 @@ class PrototypeDashboard extends Component {
 
     componentDidMount() {
         getFullStudentList(this);
+        console.log(this.state);
     }
 
     render() {
@@ -42,7 +43,7 @@ class PrototypeDashboard extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <AddStudentForm/>
+                    <AddStudentForm addItemToState={this.addItemToState}/>
                 </Row>
             </Container>
         )

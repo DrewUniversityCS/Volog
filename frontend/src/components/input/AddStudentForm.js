@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Col, Form, Row} from 'react-bootstrap';
 import {postNewStudent} from "../../functions/services/api/postNewStudent";
 import Paper from "@material-ui/core/Paper";
+import "../../../static/css/components/add-student-form.css";
 
 class AddStudentForm extends React.Component {
     state = {
@@ -41,7 +42,7 @@ class AddStudentForm extends React.Component {
 
     render() {
         return (
-            <Paper style={{padding: '10px'}}>
+            <Paper className={"add-student-form"}>
                 <Form onSubmit={this.submitFormAdd}>
                     <Row>
                         <Col>
@@ -92,7 +93,7 @@ class AddStudentForm extends React.Component {
                         <Col>
                             <Form.Group>
                                 <Form.Label>Class Standing</Form.Label>
-                                <Form.Control onChange={this.onChange} as="select" multiple>
+                                <Form.Control onChange={this.onChange} as="select">
                                     <option>FR</option>
                                     <option>SO</option>
                                     <option>JR</option>
@@ -111,13 +112,13 @@ class AddStudentForm extends React.Component {
                                 <Form.Control placeholder={"Mentor Name"} onChange={this.onChange}>
                                 </Form.Control>
                                 <Form.Text className="text-muted">
-                                    Your mentors name.
+                                    Your mentor's name.
                                 </Form.Text>
                             </Form.Group>
                         </Col>
                     </Row>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="outline-success" type="submit">
                         Submit
                     </Button>
                 </Form>

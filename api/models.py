@@ -1,6 +1,5 @@
 from django.core.validators import EmailValidator
 from django.db import models
-
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 
@@ -11,9 +10,6 @@ class TimeMaster(models.Model):
     Everything that has to do with time reporting, management and querying happens in this class.
     """
     percent_complete = models.FloatField(blank=False, null=False, default=0.0)
-
-    class Meta:
-        db_table = 'hours_data'
 
 
 class HourInstance(models.Model):
@@ -59,9 +55,6 @@ class Mentor(AbstractUser):
     """
     Represents a DAS mentor.
     """
-    class Meta:
-        db_table = 'mentor_data'
-
     pass
 
 
@@ -69,15 +62,11 @@ class Student(AbstractUser):
     """
     Represents a Student user.
     """
-    class Meta:
-        db_table = 'student_data'
-
     student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
     class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
-    hour_sheet = models.OneToOneField(TimeMaster, on_delete=models.CASCADE,
-                                      blank=True, null=True)
+    hour_sheet = models.ForeignKey(TimeMaster, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
