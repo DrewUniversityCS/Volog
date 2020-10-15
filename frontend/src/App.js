@@ -11,6 +11,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 import LoginPage from "./pages/LoginPage";
 import NavBar from "./components/elements/NavBar";
 
+
 const App = () => {
 
     return (
