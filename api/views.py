@@ -1,4 +1,4 @@
-from api.serializers import StudentSerializer
+from api.logistics.serializers import StudentSerializer
 from api.models import Student
 from rest_framework import generics
 
