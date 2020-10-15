@@ -1,5 +1,5 @@
 import Navbar from "react-bootstrap/Navbar";
-import {Nav, NavItem} from "react-bootstrap";
+import {Nav, NavItem, Form, FormControl, Button} from "react-bootstrap";
 import React from "react";
 import {Link} from "react-router-dom";
 import "../../../static/css/components/navbar.css";
@@ -30,6 +30,10 @@ class NavBar extends React.Component {
                 <NavItem eventkey={1} href="/student">
                   <Nav.Link as={Link} to="/student" >Student</Nav.Link>
                 </NavItem>
+                <Form inline>
+                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                  <Button variant="outline-primary">Search</Button>
+                </Form>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
