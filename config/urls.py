@@ -22,8 +22,8 @@ from django.urls import reverse
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('user/', include('authBackEnd.apps.user.urls', namespace='user')),
-    path('superAdmin/', include('authBackEnd.apps.superAdmin.urls', namespace='superAdmin')),
-    path('app/', include('authBackEnd.apps.dashboard.urls', namespace='app')),
+    path('user/', include('auth_backend.modules.user.urls', namespace='user')),
+    path('superAdmin/', include('auth_backend.modules.superAdmin.urls', namespace='superAdmin')),
+    path('app/', include('auth_backend.modules.dashboard.urls', namespace='app')),
     path('', RedirectView.as_view(url='/app')),
 ]

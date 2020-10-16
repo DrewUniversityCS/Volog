@@ -41,13 +41,13 @@ INSTALLED_APPS = [
     'rest_framework',
     # Volog Apps
     'api',
-    # authentication apps
-    'authBackEnd.apps.common',
-    'authBackEnd.apps.user',
-    'authBackEnd.apps.dashboard',
-    'authBackEnd.apps.superAdmin',
+    # authentication modules
+    'auth_backend.modules.common',
+    'auth_backend.modules.user',
+    'auth_backend.modules.dashboard',
+    'auth_backend.modules.superAdmin',
 
-    # allauth apps
+    # allauth modules
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'authBackEnd.apps.common.middleware.ProfileComplete',
+    'auth_backend.modules.common.middleware.ProfileComplete',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -73,7 +73,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'authBackEnd', 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'auth_backend', 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

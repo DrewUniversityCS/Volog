@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
 
-from authBackEnd.apps.common.mixins import LoginRequiredMixin
+from auth_backend.modules.common.mixins import LoginRequiredMixin
 
 from .forms import ProfileForm
 from .models import User
