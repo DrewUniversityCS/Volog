@@ -18,7 +18,7 @@ class ProfileForm(forms.ModelForm):
         referral = cleaned_data['referral_code']
         role = cleaned_data['role']
         if not self.validate_referral(referral, role):
-            self.add_error('referral_code', 'Referal code is not valid or is already used!')
+            self.add_error('referral_code', 'Referral code is not valid or is already used!')
         else:
             del cleaned_data['referral_code']
         print(cleaned_data)

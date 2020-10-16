@@ -65,7 +65,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_mo
 
 
 class Referral(common_models.TimeStamp):
-    """ Refferal model to store referals """
+    """ Referral model to store Referral """
     code = models.CharField('Referral Code', max_length=255, unique=True, default=common_utils.generate_referral_code)
     role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
     is_used = models.BooleanField('Is Used', help_text='Is referral code used', default=False)

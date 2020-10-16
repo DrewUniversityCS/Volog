@@ -19,7 +19,7 @@ class Admin extends Component {
                     });
                 }
                 else{
-                   window.location='/'
+                   window.location='/app'
                 }
             }
         };

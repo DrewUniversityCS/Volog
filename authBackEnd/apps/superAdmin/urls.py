@@ -5,4 +5,4 @@ urlpatterns = [
     path('referrals/', CreateReferralView.as_view(), name='referral')
 ]
 
-app_name = 'sadmin'
+app_name = 'superAdmin'

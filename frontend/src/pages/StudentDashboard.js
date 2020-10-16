@@ -19,7 +19,7 @@ class StudentDashboard extends Component {
                     });
                 }
                 else{
-                   window.location='/'
+                   window.location='/app'
                 }
             }
         };

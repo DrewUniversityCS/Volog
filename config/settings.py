@@ -42,13 +42,13 @@ INSTALLED_APPS = [
     # REST
     'rest_framework',
     # Volog Apps
-    'api',
+    ##'api',
     'frontend',
      # projects apps
     'authBackEnd.apps.common',
     'authBackEnd.apps.user',
     'authBackEnd.apps.dashboard',
-    'authBackEnd.apps.sadmin',
+    'authBackEnd.apps.superAdmin',
 
     # allauth apps
     'allauth',
@@ -154,7 +154,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = 'static/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
 STATICFILES_DIRS = (

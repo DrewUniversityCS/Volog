@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-
+// this will be changed,
 class MentorDashboard extends Component {
      constructor(props) {
     super(props);
 
+// it hits the api, if the user role is not valid, it will not get them to dashboard.
+//ex, if student is the user, it wont let them access the admin page
     this.state = {isLoading: true};
   }
     componentDidMount() {
@@ -19,7 +21,7 @@ class MentorDashboard extends Component {
                     });
                 }
                 else{
-                   window.location='/'
+                   window.location='/app'
                 }
             }
         };

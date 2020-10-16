@@ -5,9 +5,9 @@ from authBackEnd.apps.common.mixins import LoginRequiredMixin, AdminRequiredMixi
 
 
 class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
-    template_name = 'sadmin/referral_create.html'
+    template_name = 'superAdmin/referral_create.html'
     form_class = ReferralCreateForm
-    success_url = '/sadmin/referrals'
+    success_url = '/superAdmin/referrals'
 
     def form_valid(self, form):
         form.save()
