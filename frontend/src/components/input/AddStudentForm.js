@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col, Form, Row} from 'react-bootstrap';
 import {postNewStudent} from "../../functions/services/api/postNewStudent";
 import Paper from "@material-ui/core/Paper";
-import "../../../static/css/components/add-student-form.css";
+import "../../static/css/components/add-student-form.css";
 
 class AddStudentForm extends React.Component {
     state = {

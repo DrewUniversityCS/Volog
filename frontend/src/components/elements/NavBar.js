@@ -2,7 +2,8 @@ import Navbar from "react-bootstrap/Navbar";
 import {Nav, NavItem} from "react-bootstrap";
 import React from "react";
 import {Link} from "react-router-dom";
-import "../../../static/css/components/navbar.css";
+import "../../static/css/components/navbar.css";
+import logo from "../../static/assets/volog_logo/green_on_gray.png";
 
 class NavBar extends React.Component {
     render() {
