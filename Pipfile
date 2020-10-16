@@ -11,6 +11,7 @@ djangorestframework = "*"
 django = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
+django-annoying = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,0 +1,29 @@
+{% extends 'student_base.html' %}
+{% block body %}
+    <div class="h-screen">
+        <div class="flex justify-end text-xl">
+
+                <div class="p-6 rounded-bl-full " style="
+    background: #6aaef08a;
+">
+                    {% if user.is_admin %}
+                        <a class="font-medium hover:text-red-800 ml-8 text-white " href="{% url 'sadmin:referral' %}">+ Create referral</a>
+                    {% endif %}
+                    <a href="{% url 'account_logout' %}" class="font-medium  hover:text-red-800 ml-8 text-white ">Logout</a>
+                </div>
+
+
+        </div>
+
+        <div class=" mt-4 p-10 pr-12 rounded-r-full text-2xl"  style="
+    background: #6aaef08a;
+    width: fit-content;
+">
+            <p>
+              Hello, {{ user }}</p>
+            <p>Role: {{ user.get_role_display }}</p>
+        </div>
+
+    </div>
+
+{% endblock %}

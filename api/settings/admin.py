@@ -1,9 +1,9 @@
 from django.contrib import admin
-from api.models import Student, HourInstance
+from api.models import Student, Mentor, TimeMaster, HourInstance
 
 # Register all of the api models here.
 
-models = [Student]
+models = [Student, Mentor, TimeMaster, HourInstance]
 
 for model in models:
     admin.site.register(model)

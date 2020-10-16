@@ -19,8 +19,8 @@ class YEAR_IN_SCHOOL_CHOICES(ChoiceEnum):
     sophomore = ('SO', 'Sophomore')
     junior = ('JR', 'Junior')
     senior = ('SR', 'Senior')
-    post_graduate = ('PG', 'Post Graduate')
     graduate = ('GR', 'Graduate')
+    post_graduate = ('PG', 'Post Graduate')
 
 
 class EXPERIENTIAL_LEARNING_HOURS_TYPES(ChoiceEnum):

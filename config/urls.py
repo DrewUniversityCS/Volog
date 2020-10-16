@@ -16,12 +16,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import RedirectView
+from django.urls import reverse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-
-    path('', include('api.settings.urls')),
-    path('', include('frontend.urls')),
-    path('', include('authentication.urls')),
+    path('user/', include('auth_backend.modules.user.urls', namespace='user')),
+    path('superAdmin/', include('auth_backend.modules.superAdmin.urls', namespace='superAdmin')),
+    path('app/', include('auth_backend.modules.dashboard.urls', namespace='app')),
+    path('', RedirectView.as_view(url='/app')),
 ]
