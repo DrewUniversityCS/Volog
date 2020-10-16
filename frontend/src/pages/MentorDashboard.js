@@ -1,12 +1,10 @@
 import React from "react";
 import GroupCard from '../components/elements/Cards/groupCard';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import VProgressBar from '../components/elements/ProgressBar'
-import Container from 'react-bootstrap/Container';
 import Notification from "../components/elements/Notification";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
 import StudentCard from "../components/elements/Cards/studentCard";
+import Container from "@material-ui/core/Container";
+import {Jumbotron, Row, Col} from "react-bootstrap";
 
 class MentorDashboard extends React.Component {
     render() {

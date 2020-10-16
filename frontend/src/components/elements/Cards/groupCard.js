@@ -4,6 +4,7 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import ListGroup from "react-bootstrap/ListGroup";
+import Container from "@material-ui/core/Container";
 
 
 class GroupCard extends Component {

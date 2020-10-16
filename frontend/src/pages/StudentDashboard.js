@@ -1,14 +1,9 @@
 import React from "react";
-import GroupCard from '../components/elements/Cards/groupCard';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
 import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
 import Notification from "../components/elements/Notification";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
-import StudentCard from "../components/elements/Cards/studentCard";
-import ModalReportHours from "../components/common/modalReportHours";
+import ReportHours from "../components/input/ReportHours";
 
 
 class StudentDashboard extends React.Component {
@@ -21,7 +16,7 @@ class StudentDashboard extends React.Component {
                   <Container>
                       <VProgressBar/>
                   </Container>
-                  <ModalReportHours buttonLabel="Report Hours" addItemToState={this.addItemToState}/>
+                  <ReportHours buttonLabel="Report Hours" addItemToState={this.addItemToState}/>
               </p>
               <p>
                 <Notification/>
