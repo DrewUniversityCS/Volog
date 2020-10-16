@@ -1,9 +1,9 @@
-from django.urls import path, include
-from .views import DashboardView
+from django.urls import path, include, re_path
+from .views import DashboardView, AppView
 
 urlpatterns = [
-    path('', DashboardView.as_view(), name='dashboard')
+    re_path(r'^.*$', AppView.as_view(), name='app'),
 ]
-app_name = 'dashboard'
+app_name = 'app'
 
 
