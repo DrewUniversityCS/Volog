@@ -26,7 +26,7 @@ class GroupCard extends Component {
     }
 
     render(){
-    return<div>
+    return<Container>
       <Card style={{ width: '18rem' }}>
         <CardBody>
           <CardTitle>Mentor: Deja </CardTitle>
@@ -39,7 +39,7 @@ class GroupCard extends Component {
           <Button>Button</Button>
         </CardBody>
       </Card>
-    </div>
+    </Container>
   }
 }
 

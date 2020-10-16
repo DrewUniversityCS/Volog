@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup, Input, Label, Modal, ModalHeader, ModalBody} from 'reactstrap';
-import AddEditForm from '../input/FormAddEdit';
+import AddEditForm from '../input/AddStudentForm';
+import Container from "@material-ui/core/Container";
 
 class ModalReportHours extends Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class ModalReportHours extends Component {
 
 
         return (
-            <div>
+            <Container>
                 {button}
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle} close={closeBtn}>{title}</ModalHeader>
@@ -74,7 +75,7 @@ class ModalReportHours extends Component {
 
                     </ModalBody>
                 </Modal>
-            </div>
+            </Container>
         )
     }
 }

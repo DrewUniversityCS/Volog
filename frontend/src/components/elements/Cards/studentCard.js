@@ -4,6 +4,7 @@ import {
   Card, CardBody,
   CardTitle, Button
 } from 'reactstrap';
+import {Container} from "@material-ui/core";
 
 
 class StudentCard extends Component {
@@ -16,7 +17,7 @@ class StudentCard extends Component {
     }
 
     render(){
-    return<div>
+    return<Container>
       <Card style={{ width: '45rem' }}>
         <CardBody>
           <CardTitle> Perrfection </CardTitle>
@@ -24,7 +25,7 @@ class StudentCard extends Component {
           <Button>See More</Button>
         </CardBody>
       </Card>
-    </div>
+    </Container>
   }
 }
 

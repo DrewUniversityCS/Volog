@@ -13,8 +13,7 @@ import ModalReportHours from "../components/common/modalReportHours";
 
 class StudentDashboard extends React.Component {
     render(){
-        return <div>
-            <Container className="justify-content-lg-center">
+        return <Container className="justify-content-lg-center">
             <Jumbotron>
               <h1>Welcome Back!</h1>
               <p>
@@ -30,8 +29,6 @@ class StudentDashboard extends React.Component {
             </Jumbotron>
 
             </Container>
-
-        </div>
     }
 }
 

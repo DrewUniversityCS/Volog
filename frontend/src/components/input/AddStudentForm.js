@@ -94,12 +94,12 @@ class AddStudentForm extends React.Component {
                             <Form.Group>
                                 <Form.Label>Class Standing</Form.Label>
                                 <Form.Control onChange={this.onChange} as="select">
-                                    <option>FR</option>
-                                    <option>SO</option>
-                                    <option>JR</option>
-                                    <option>SR</option>
-                                    <option>PG</option>
-                                    <option>GR</option>
+                                    <option>Freshman</option>
+                                    <option>Sophomore</option>
+                                    <option>Junior</option>
+                                    <option>Senior</option>
+                                    <option>Graduate</option>
+                                    <option>Post Graduate</option>
                                 </Form.Control>
                                 <Form.Text className="text-muted">
                                     Your current class standing.
