@@ -1,15 +1,12 @@
 import React from 'react';
-import {render} from "react-dom";
-import {  BrowserRouter as Router, Route, Switch} from "react-router-dom";
-
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../static/css/index.css';
-
 import PrototypeDashboard from "./pages/PrototypeDashboard";
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import LoginPage from "./pages/LoginPage";
 import NavBar from "./components/elements/NavBar";
+import Admin from "./pages/admin";
 
 
 const App = () => {
@@ -19,16 +16,16 @@ const App = () => {
             <div className="box">
                 <NavBar/>
                 <Switch>
-                    <Route path="/login">
-                        <LoginPage/>
+                    <Route path="/app/admin/">
+                        <Admin/>
                     </Route>
-                    <Route path="/mentor">
+                    <Route path="/app/mentor/">
                         <MentorDashboard/>
                     </Route>
-                    <Route path="/student">
+                    <Route path="/app/student/">
                         <StudentDashboard/>
                     </Route>
-                    <Route path="/dashboard">
+                    <Route path="/app/dashboard">
                         <PrototypeDashboard/>
                     </Route>
                 </Switch>
@@ -37,6 +34,4 @@ const App = () => {
     )
 };
 
-
-const container = document.getElementById("app");
-render(<App/>, container);
+export default App;

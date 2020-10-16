@@ -41,17 +41,20 @@ INSTALLED_APPS = [
     'rest_framework',
     # Volog Apps
     'api',
-    'frontend',
-    # project authentication
-    'authentication',
-    # allauth authentication
+    # authentication apps
+    'authBackEnd.apps.common',
+    'authBackEnd.apps.user',
+    'authBackEnd.apps.dashboard',
+    'authBackEnd.apps.superAdmin',
+
+    # allauth apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
     # allauth google app
     'allauth.socialaccount.providers.google',
 ]
-
 SITE_ID = 1
 
 MIDDLEWARE = [
@@ -62,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'authentication.middleware.ProfileComplete',
+    'authBackEnd.apps.common.middleware.ProfileComplete',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -70,7 +73,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend', 'src', 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'authBackEnd', 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -101,23 +104,23 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'user.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 '''
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.authentication.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.authentication.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.authentication.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.authentication.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 '''
@@ -139,5 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = 'static/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend/build/static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/src/static/assets')

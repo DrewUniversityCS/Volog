@@ -1,5 +1,5 @@
 import Navbar from "react-bootstrap/Navbar";
-import {Nav, NavItem, Form, FormControl, Button} from "react-bootstrap";
+import {Nav, NavItem} from "react-bootstrap";
 import React from "react";
 import {Link} from "react-router-dom";
 import "../../../static/css/components/navbar.css";
@@ -10,7 +10,7 @@ class NavBar extends React.Component {
             <Navbar bg="light" expand="sm" variant="dark">
                 <Navbar.Brand>
                     <img
-                        src={"../../../static/assets/volog_logo/green_on_gray.png"}
+                        src={logo}
                         width={170}
                         height={50}
                         className="navbar-logo"
@@ -18,17 +18,20 @@ class NavBar extends React.Component {
                     />
                 </Navbar.Brand>
 
-                <NavItem eventkey={1} href="/login">
-                  <Nav.Link as={Link} to="/login" >Login</Nav.Link>
+                <NavItem eventkey={1} href="/accounts/login">
+                 <a href="/accounts/login"> Login</a>
                 </NavItem>
-                <NavItem eventkey={1} href="/mentor">
-                  <Nav.Link as={Link} to="/mentor" >Mentor</Nav.Link>
+                <NavItem eventkey={1} href="/app/mentor">
+                  <Nav.Link as={Link} to="/app/mentor" >Mentor</Nav.Link>
                 </NavItem>
-                <NavItem eventkey={1} href="/dashboard">
-                  <Nav.Link as={Link} to="/dashboard" >PrototypeDashboard</Nav.Link>
+                <NavItem eventkey={1} href="/app/dashboard">
+                  <Nav.Link as={Link} to="/app/dashboard" >PrototypeDashboard</Nav.Link>
                 </NavItem>
-                <NavItem eventkey={1} href="/student">
-                  <Nav.Link as={Link} to="/student" >Student</Nav.Link>
+                <NavItem eventkey={1} href="/app/student">
+                  <Nav.Link as={Link} to="/app/student" >Student</Nav.Link>
+                </NavItem>
+                <NavItem eventkey={1} href="/app/admin">
+                  <Nav.Link as={Link} to="/app/admin" >Admin</Nav.Link>
                 </NavItem>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 

@@ -3,6 +3,8 @@ from django.db import models
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 
+from authBackEnd.apps.common import models as common_models
+
 
 class TimeMaster(models.Model):
     """
@@ -12,7 +14,8 @@ class TimeMaster(models.Model):
     percent_complete = models.FloatField(blank=False, null=False, default=0.0)
 
 
-class HourInstance(models.Model):
+class HourInstance(common_models.TimeStamp):
+    ##enharited the timestamp from authBackEnd
     """
     An instance of a single hour submission. Connected to its related student through the time master foreign key.
     """
