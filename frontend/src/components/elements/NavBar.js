@@ -19,7 +19,7 @@ class NavBar extends React.Component {
                 </Navbar.Brand>
 
                 <NavItem eventkey={1} href="/accounts/login">
-                 <a href="/accounts/login"> Login</a>
+                 <Nav.Link href="/accounts/login">Login</Nav.Link>
                 </NavItem>
                 <NavItem eventkey={1} href="/app/mentor">
                   <Nav.Link as={Link} to="/app/mentor" >Mentor</Nav.Link>
