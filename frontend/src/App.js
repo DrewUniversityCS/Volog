@@ -7,7 +7,7 @@ import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import NavBar from "./components/elements/NavBar";
 import Admin from "./pages/admin";
-
+import ReactDOM from 'react-dom';
 
 const App = () => {
 
@@ -37,4 +37,4 @@ const App = () => {
 export default App;
 
 const container = document.getElementById("app");
-render(<App/>, container);
+ReactDOM.render(<App/>, container);

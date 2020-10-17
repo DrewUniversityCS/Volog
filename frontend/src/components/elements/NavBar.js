@@ -3,7 +3,6 @@ import {Nav, NavItem} from "react-bootstrap";
 import React from "react";
 import {Link} from "react-router-dom";
 import "../../static/css/components/navbar.css";
-import logo from "../../static/assets/volog_logo/green_on_gray.png";
 
 class NavBar extends React.Component {
     render() {
@@ -11,7 +10,7 @@ class NavBar extends React.Component {
             <Navbar bg="light" expand="sm" variant="dark">
                 <Navbar.Brand>
                     <img
-                        src={logo}
+                        src={"../../static/assets/volog_logo/green_on_gray.png"}
                         width={170}
                         height={50}
                         className="navbar-logo"
