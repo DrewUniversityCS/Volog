@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import VProgressBar from "../ProgressBar";
 import {
-  Card, CardBody,
-  CardTitle, Button
-} from 'reactstrap';
+  Card, Button
+} from 'react-bootstrap';
 import {Container} from "@material-ui/core";
 
 
@@ -19,11 +18,11 @@ class StudentCard extends Component {
     render(){
     return<Container>
       <Card style={{ width: '45rem' }}>
-        <CardBody>
-          <CardTitle> Perrfection </CardTitle>
+        <Card.Body>
+          <Card.Title> Perrfection </Card.Title>
           <VProgressBar/>
           <Button>See More</Button>
-        </CardBody>
+        </Card.Body>
       </Card>
     </Container>
   }

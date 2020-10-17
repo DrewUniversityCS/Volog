@@ -5,8 +5,8 @@
   "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development src/App.js --output ./public/build/main.js",
-    "build": "webpack --mode production src/App.js --output ./public/build/main.js"
+    "dev": "webpack --mode development src/App.js --output ./src/static/build/main.js",
+    "build": "webpack --mode production src/App.js --output ./src/static/build/main.js"
   },
   "keywords": [],
   "author": "",

@@ -13,8 +13,6 @@ class VProgressBar extends Component {
 
     }
 
-
-
     render() {
         return<Container>
             <ProgressBar>

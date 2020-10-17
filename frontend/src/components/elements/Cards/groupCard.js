@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+  Card, CardImg, Button
+} from 'react-bootstrap';
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "@material-ui/core/Container";
 
@@ -14,7 +13,6 @@ class GroupCard extends Component {
             Mentor: 'Deja',
             StuNames: ['Perrfection', 'Mahmoud', 'David']
         }
-
     }
 
     addNote(){
@@ -29,16 +27,16 @@ class GroupCard extends Component {
     render(){
     return<Container>
       <Card style={{ width: '18rem' }}>
-        <CardBody>
-          <CardTitle>Mentor: Deja </CardTitle>
-          <CardSubtitle>Students:  </CardSubtitle>
-          <CardText>
+        <Card.Body>
+          <Card.Title>Mentor: Deja </Card.Title>
+          <Card.Subtitle>Students:  </Card.Subtitle>
+          <Card.Text>
             Perrfection
             Mahmoud
             David
-          </CardText>
+          </Card.Text>
           <Button>Button</Button>
-        </CardBody>
+        </Card.Body>
       </Card>
     </Container>
   }

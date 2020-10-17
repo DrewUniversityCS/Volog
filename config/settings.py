@@ -73,7 +73,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'auth_backend', 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'auth_backend', 'templates'), os.path.join(BASE_DIR, 'frontend', 'public')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -141,12 +141,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'frontend/build/static'),
+    os.path.join(BASE_DIR, 'frontend/src/static/'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/src/static/assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/src/static/assets/')
