@@ -4,6 +4,7 @@ from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CH
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 
 from auth_backend.modules.common import models as common_models
+from auth_backend.modules.user import models as user_models
 
 
 class TimeMaster(models.Model):
@@ -33,37 +34,41 @@ class HourInstance(common_models.TimeStamp):
     activity_description = models.TextField(blank=True, null=True)
 
 
-class AbstractUser(models.Model):
-    """
-    Abstract user type that shares information common to both Students and Mentors.
-    """
-    class Meta:
-        abstract = True
+# class AbstractUser(models.Model):
+#     """
+#     Abstract user type that shares information common to both Students and Mentors.
+#     """
+#     class Meta:
+#         abstract = True
+#
+#     first_name = models.CharField(max_length=60,
+#                                   blank=False)
+#     last_name = models.CharField(max_length=60,
+#                                  blank=False)
+#     email = models.EmailField(max_length=60,
+#                               validators=[EmailValidator(message="Enter a valid email address")],
+#                               blank=False)
 
-    first_name = models.CharField(max_length=60,
-                                  blank=False)
-    last_name = models.CharField(max_length=60,
-                                 blank=False)
-    email = models.EmailField(max_length=60,
-                              validators=[EmailValidator(message="Enter a valid email address")],
-                              blank=False)
-
-    @property
-    def full_name(self):
-        return self.first_name + ' ' + self.last_name
+    #  @property
+    # def full_name(self):
+    #     return self.first_name + ' ' + self.last_name
 
 
-class Mentor(AbstractUser):
+class Mentor(models.Model):
     """
     Represents a DAS mentor.
     """
-    pass
+    user = models.ForeignKey(user_models.User, unique= True, on_delete=models.CASCADE),
+
+    ##pass
 
 
-class Student(AbstractUser):
+class Student(models.Model):
     """
     Represents a Student user.
     """
+    user = models.ForeignKey(user_models.User, unique= True,on_delete=models.CASCADE),
+
     student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
     class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
