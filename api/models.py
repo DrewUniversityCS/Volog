@@ -1,9 +1,9 @@
-from django.core.validators import EmailValidator
 from django.db import models
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 
 from auth_backend.modules.common import models as common_models
+from auth_backend.modules.user.models import BaseVologUser
 
 
 class TimeMaster(models.Model):
@@ -33,34 +33,14 @@ class HourInstance(common_models.TimeStamp):
     activity_description = models.TextField(blank=True, null=True)
 
 
-class AbstractUser(models.Model):
-    """
-    Abstract user type that shares information common to both Students and Mentors.
-    """
-    class Meta:
-        abstract = True
-
-    first_name = models.CharField(max_length=60,
-                                  blank=False)
-    last_name = models.CharField(max_length=60,
-                                 blank=False)
-    email = models.EmailField(max_length=60,
-                              validators=[EmailValidator(message="Enter a valid email address")],
-                              blank=False)
-
-    @property
-    def full_name(self):
-        return self.first_name + ' ' + self.last_name
-
-
-class Mentor(AbstractUser):
+class Mentor(BaseVologUser):
     """
     Represents a DAS mentor.
     """
     pass
 
 
-class Student(AbstractUser):
+class Student(BaseVologUser):
     """
     Represents a Student user.
     """
