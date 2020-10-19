@@ -1,0 +1,16 @@
+[
+  {
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+      "provider": "google",
+      "name": "VologTestGoogleAuth",
+      "client_id": "786237439109-181rnemsvm36f0gq4sk977er6f6dbadf.apps.googleusercontent.com",
+      "secret": "sHdnK4XnkFK8s2_vofUquvz-",
+      "key": "",
+      "sites": [
+        1
+      ]
+    }
+  }
+]

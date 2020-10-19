@@ -6,11 +6,32 @@ from auth_backend.modules.common import models as common_models
 from auth_backend.modules.user.models import BaseVologUser
 
 
+class Mentor(BaseVologUser):
+    """
+    Represents a DAS mentor.
+    """
+    pass
+
+
+class Student(BaseVologUser):
+    """
+    Represents a Student user.
+    """
+    student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
+    class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
+    DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
+                                   blank=True, null=True)
+
+    def __str__(self):
+        return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
+
+
 class TimeMaster(models.Model):
     """
     This class is essentially a component for the Student object which holds all the data pertaining to their hours.
     Everything that has to do with time reporting, management and querying happens in this class.
     """
+    student = models.OneToOneField(Student, on_delete=models.CASCADE, auto_created=True, null=True)
     percent_complete = models.FloatField(blank=False, null=False, default=0.0)
 
 
@@ -32,23 +53,3 @@ class HourInstance(common_models.TimeStamp):
                                      blank=False, null=False)
     activity_description = models.TextField(blank=True, null=True)
 
-
-class Mentor(BaseVologUser):
-    """
-    Represents a DAS mentor.
-    """
-    pass
-
-
-class Student(BaseVologUser):
-    """
-    Represents a Student user.
-    """
-    student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
-    class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
-    DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
-                                   blank=True, null=True)
-    hour_sheet = models.ForeignKey(TimeMaster, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
