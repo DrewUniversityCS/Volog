@@ -46,7 +46,7 @@ class UserView(rest_viewsets.ModelViewSet):
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter
     ]
-    search_fields = ('email', 'first_name',)
+    search_fields = ('email', 'first_name','school_id')
     pagination_class = rest_pagination.PageNumberPagination
     ordering = ('-created_at',)
 
