@@ -58,7 +58,7 @@ class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, 
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'school_id', 'role']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'role']
 
     objects = UserManager()
 
