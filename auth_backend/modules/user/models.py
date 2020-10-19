@@ -57,6 +57,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_mo
 
     objects = UserManager()
 
+    @property
     def is_admin(self):
         return self.role == common_constants.ROLE.ADMIN
 
@@ -66,6 +67,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_mo
 
 class Referral(common_models.TimeStamp):
     """ Referral model to store Referral """
+    email = models.EmailField('Email Address')
     code = models.CharField('Referral Code', max_length=255, unique=True, default=common_utils.generate_referral_code)
     role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
     is_used = models.BooleanField('Is Used', help_text='Is referral code used', default=False)

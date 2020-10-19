@@ -2,7 +2,10 @@ from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.views.generic import TemplateView
 
-from rest_framework.views import APIView
+from rest_framework import (
+    views as rest_views,
+    filters as rest_filters
+)
 from rest_framework import permissions
 from rest_framework.response import Response
 
@@ -36,9 +39,9 @@ class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
     template_name = "user/profile_create_success.html"
 
 
-class UserApiView(APIView):
+class UserApiView(rest_views.APIView):
     """
-    API endpoint to retrieve user info
+    API endpoint to retrieve current user info
     """
     permission_classes = (permissions.IsAuthenticated,)
 

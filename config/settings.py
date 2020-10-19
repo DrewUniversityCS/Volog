@@ -148,3 +148,16 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend', 'src', 'static'),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mahmoud@alminawi.org'
+EMAIL_HOST_PASSWORD = 'TestPass'
+EMAIL_PORT = 587
+

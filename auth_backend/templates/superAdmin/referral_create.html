@@ -20,6 +20,7 @@
         <table class="table-fixed bg-white text-center">
             <thead>
                 <tr>
+                    <th class="w-1/2 p-6 bg-gray-300 w-1/6">Email</th>
                     <th class="w-1/2 p-6 bg-gray-300 w-1/6">Role</th>
                     <th class="w-1/4 p-6 bg-gray-300 ">Refferal Code</th>
                     <th class="w-1/4 p-6 bg-gray-300 w-1/6 ">Is Used</th>
@@ -28,6 +29,7 @@
             <tbody>
                 {% for referral in referrals %}
                     <tr class="hover:bg-gray-300 ">
+                        <td class="border p-6">{{referral.email}}</td>
                         <td class="border p-6">{{referral.get_role_display}}</td>
                         <td class="border p-6">{{ referral.code }}</td>
                         <td class="border p-6">{% if referral.is_used %}Yes{% else %}No{% endif %}</td>
