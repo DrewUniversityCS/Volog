@@ -1,0 +1,35 @@
+.Jumbotron h1{
+    Background-color:#ffffff;
+    color: black;
+    Font-family: Roboto, sans-serif;
+    Font-size: 32px;
+    margin: 30px;
+    padding-top:10px;
+
+}
+
+.Jumbotron p{
+    Background-color:#ffffff;
+    color: black;
+    Font-family: Roboto, sans-serif;
+    Font-size: 19px;
+    margin-left: 50%;
+    padding-top:10px;
+}
+
+.GroupCard{
+    Background-color: #9ee4c3;
+    color: black;
+    Font-family: Roboto, sans-serif;
+
+}
+
+.StudentCard{
+    Background-color:#ffffff;
+    color: black;
+    Font-family: Roboto, sans-serif;
+    Font-size: 19px;
+    padding: 10% 30%;
+    margin-bottom: 20px;
+
+}
