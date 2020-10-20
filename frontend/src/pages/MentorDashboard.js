@@ -9,10 +9,10 @@ import "../../pageDesignspecs/mentorPg.css"
 
 class MentorDashboard extends React.Component {
     render() {
-        return <Container className="justify-content-lg-center">
+        return <Container >
             <Jumbotron>
 
-                <h1 className={stylesheet}> Welcome Back!</h1>
+                <h1> Welcome Back!</h1>
                 <p>
                     Group progress
                     <Container>
@@ -25,7 +25,7 @@ class MentorDashboard extends React.Component {
             </Jumbotron>
             <Row>
                 <Col>
-                    <GroupCard/>
+                    <GroupCard />
                 </Col>
                 <Col>
                     <Row>
