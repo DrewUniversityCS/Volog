@@ -4,7 +4,7 @@ import {
   Card, Button
 } from 'react-bootstrap';
 import {Container} from "@material-ui/core";
-
+import "../../../../pageDesignspecs/mentorPg.css"
 
 class StudentCard extends Component {
     constructor(props) {

@@ -8,7 +8,6 @@ table th, table td { white-space: nowrap; }
   height: 100vh;
   background-color: #72be72;
 }
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -23,4 +22,3 @@ code {
     monospace;
 }
 
-/* need to add styling for buttons but dont know how to refer to button/*

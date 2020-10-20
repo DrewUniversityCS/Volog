@@ -5,14 +5,16 @@ import Notification from "../components/elements/Notification";
 import StudentCard from "../components/elements/Cards/studentCard";
 import Container from "@material-ui/core/Container";
 import {Jumbotron, Row, Col} from "react-bootstrap";
+import "../../pageDesignspecs/mentorPg.css"
 
 class MentorDashboard extends React.Component {
     render() {
         return <Container className="justify-content-lg-center">
             <Jumbotron>
-                <h1>Welcome Back!</h1>
+
+                <h1 className={stylesheet}> Welcome Back!</h1>
                 <p>
-                    Group Cumulative progress
+                    Group progress
                     <Container>
                         <VProgressBar/>
                     </Container>

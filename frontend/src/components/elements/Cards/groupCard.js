@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "@material-ui/core/Container";
-
+import "../../../../pageDesignspecs/mentorPg.css"
 
 class GroupCard extends Component {
     constructor(props) {
@@ -15,14 +15,8 @@ class GroupCard extends Component {
         }
     }
 
-    addNote(){
-        var StuName = "";
-        var i;
-        for (i = 0; i < this.state.notes.length; i++) {
-          StuName = this.state.StuNames[i];
-          return <ListGroup.Item> StuName </ListGroup.Item>;
-        }
-    }
+
+
 
     render(){
     return<Container>

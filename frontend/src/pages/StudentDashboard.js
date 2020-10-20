@@ -4,7 +4,7 @@ import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
 import Notification from "../components/elements/Notification";
 import ReportHours from "../components/input/ReportHours";
-
+import "../../pageDesignspecs/studentPg.css"
 
 class StudentDashboard extends React.Component {
     render(){
