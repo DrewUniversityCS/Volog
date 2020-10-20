@@ -1,6 +1,7 @@
 from django.contrib.auth import models as auth_models
-from django.db import models
 from django.core.validators import EmailValidator
+from django.db import models
+
 from auth_backend.modules.common import (
     constants as common_constants,
     models as common_models,
