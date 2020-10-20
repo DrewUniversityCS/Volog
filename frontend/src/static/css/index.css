@@ -1,24 +1,30 @@
-table { background-color: whitesmoke; margin-top: 50px; }
+table {
+    background-color: whitesmoke;
+    margin-top: 50px;
+}
 
-table th, table td { white-space: nowrap; }
+table th, table td {
+    white-space: nowrap;
+}
 
 .box {
-  display: flex;
-  flex-flow: column;
-  height: 100vh;
-  background-color: #72be72;
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+    background-color: #72be72;
+    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #72be72 40px), repeating-linear-gradient(#68d17355, #68d173);
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }

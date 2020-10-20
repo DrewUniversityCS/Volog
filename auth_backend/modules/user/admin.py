@@ -1,7 +1,7 @@
 from django.contrib import admin
-from auth_backend.modules.user.models import User, Referral
+from auth_backend.modules.user.models import BaseVologUser, Referral
 
-models = [User, Referral]
+models = [BaseVologUser, Referral]
 
 for model in models:
     admin.site.register(model)
