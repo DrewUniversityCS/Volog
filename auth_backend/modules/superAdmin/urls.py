@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CreateReferralView, UserView
+from auth_backend.modules.superAdmin.views import CreateReferralView, UserView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()

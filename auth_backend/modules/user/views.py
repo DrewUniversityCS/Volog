@@ -4,7 +4,6 @@ from django.views.generic import TemplateView
 
 from rest_framework import (
     views as rest_views,
-    filters as rest_filters
 )
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -12,7 +11,6 @@ from rest_framework.response import Response
 from auth_backend.modules.common.mixins import LoginRequiredMixin
 
 from .forms import ProfileForm
-from .models import BaseVologUser
 from .serializers import UserSerializer
 
 

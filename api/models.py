@@ -6,18 +6,13 @@ from auth_backend.modules.common import models as common_models
 from auth_backend.modules.user.models import BaseVologUser
 
 
-class Mentor(models.Model):
-    #I added the foreign key as we have two users, student and mentor. Foreign key is used to distigush which user is which. 
+class Mentor(BaseVologUser):
     """
     Represents a DAS mentor.
     """
-    user = models.OneToOneField(BaseVologUser, on_delete=models.CASCADE)
-
-   # pass
 
 
-
-class Student(models.Model):
+class Student(BaseVologUser):
     """
     Represents a Student user.
     """
@@ -25,10 +20,9 @@ class Student(models.Model):
     class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
-    user = models.OneToOneField(BaseVologUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
+        return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
 
 
 class TimeMaster(models.Model):

@@ -2,7 +2,6 @@ from django.views.generic.edit import FormView
 
 from rest_framework import (
     viewsets as rest_viewsets,
-    views as rest_views,
     filters as rest_filters,
     permissions as rest_permissions,
     pagination as rest_pagination
@@ -36,7 +35,7 @@ class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
 
 class UserView(rest_viewsets.ModelViewSet):
     """
-    User list and detial view
+    User list and detail view
     """
     serializer_class = UserSerializer
     permission_classes = (

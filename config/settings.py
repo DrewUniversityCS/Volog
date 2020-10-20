@@ -149,8 +149,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend', 'src', 'static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
