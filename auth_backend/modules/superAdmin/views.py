@@ -10,7 +10,7 @@ from rest_framework import (
 
 from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.common.mixins import LoginRequiredMixin, AdminRequiredMixin
-from auth_backend.modules.user.models import Referral, User
+from auth_backend.modules.user.models import Referral, BaseVologUser
 from auth_backend.modules.user.serializers import UserSerializer
 
 from .forms import ReferralCreateForm
@@ -52,7 +52,7 @@ class UserView(rest_viewsets.ModelViewSet):
 
     def get_queryset(self):
         role = self.request.GET.get('role')
-        query = User.objects.filter(is_profile_complete=True)
+        query = BaseVologUser.objects.filter(is_profile_complete=True)
         if role == 'student':
             query = query.filter(role=common_constants.ROLE.STUDENT)
         elif role == 'Admin':

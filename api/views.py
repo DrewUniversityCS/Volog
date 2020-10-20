@@ -9,5 +9,5 @@ class StudentListView(generics.ListCreateAPIView):
 
 
 class MentorListView(generics.ListCreateAPIView):
-    queryset = Mentor.objects.all().order_by('first_name')
+    queryset = Mentor.objects.all().order_by('user__first_name')
     serializer_class = MentorSerializer

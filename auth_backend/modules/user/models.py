@@ -1,6 +1,6 @@
 from django.contrib.auth import models as auth_models
 from django.db import models
-
+from django.core.validators import EmailValidator
 from auth_backend.modules.common import (
     constants as common_constants,
     models as common_models,
@@ -38,26 +38,34 @@ class UserManager(auth_models.BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_models.TimeStamp):
+class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_models.TimeStamp):
+    """
+    Abstract user type that shares information common to all user groups.
+    """
 
-    """ User Model for auth and manage account """
+    first_name = models.CharField(max_length=60,
+                                  blank=False)
+    last_name = models.CharField(max_length=60,
+                                 blank=False)
+    email = models.EmailField(max_length=60,
+                              validators=[EmailValidator(message="Enter a valid email address")],
+                              blank=False,
+                              unique=True)
 
-    first_name = models.CharField('First Name', max_length=255)
-    last_name = models.CharField('Last Name', max_length=255)
-    school_id = models.CharField('Id', max_length=255)
-    graduation_class = models.DateField('Graduation Class', null=True)
-    email = models.EmailField('Email Address', unique=True)
     role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
     is_staff = models.BooleanField('Staff status', default=False, help_text='for django reference')
     is_profile_complete = models.BooleanField('Profile Status', default=False)
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'school_id', 'role']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'role']
 
     objects = UserManager()
 
     @property
+    def full_name(self):
+        return self.first_name + ' ' + self.last_name
+
     def is_admin(self):
         return self.role == common_constants.ROLE.ADMIN
 
@@ -66,7 +74,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_mo
 
 
 class Referral(common_models.TimeStamp):
-    """ Referral model to store Referral """
+    """ Referral model to store Referral codes """
     email = models.EmailField('Email Address')
     code = models.CharField('Referral Code', max_length=255, unique=True, default=common_utils.generate_referral_code)
     role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)

@@ -1,17 +1,17 @@
 from django import forms
-from .models import User, Referral
+from .models import BaseVologUser, Referral
 
 
 class ProfileForm(forms.ModelForm):
     referral_code = forms.CharField()
 
     class Meta:
-        model = User
+        model = BaseVologUser
         widgets = {
             'graduation_class': forms.DateInput(attrs={'class': 'datepicker'}),
         }
-        fields = ('first_name', 'last_name', 'school_id', 'graduation_class', 'role')
-        required = ('first_name', 'last_name', 'school_id', 'graduation_class', 'role')
+        fields = ('first_name', 'last_name', 'role')
+        required = ('first_name', 'last_name', 'role')
 
     def clean(self):
         cleaned_data = super().clean()
