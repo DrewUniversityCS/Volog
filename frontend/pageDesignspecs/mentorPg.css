@@ -37,6 +37,10 @@ h1{
     background-color: #9ee4c3;
     Font-family: Roboto, sans-serif;
 }
+.w95-percent{
+    width: 95%;
+}
+
 card.text{
     background-color: #9ee4c3;
 }

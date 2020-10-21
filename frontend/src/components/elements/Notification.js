@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ListGroup from 'react-bootstrap/ListGroup'
-import {Container} from "@material-ui/core";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 class Notification extends Component {
     constructor(props) {
@@ -15,23 +15,19 @@ class Notification extends Component {
 
     }
 
-    addNote(){
-        let text = "";
-        let Note = "";
-        let i;
-        for (i = 0; i < this.state.notes.length; i++) {
-          Note = this.state.notes[i];
-          text += Notes[i] + "<br>";
-        }
-        return <ListGroup.Item> text </ListGroup.Item>
-    }
+
 
     render() {
-        return<Container>
+        return<Card>
+            <Card.Header>Notifications </Card.Header>
             <ListGroup>
-
+                <ListGroup>
+                  <ListGroup.Item>Report Hours Approval</ListGroup.Item>
+                  <ListGroup.Item>Report Hours Approval</ListGroup.Item>
+                  <ListGroup.Item>Report Hours Approval</ListGroup.Item>
+                </ListGroup>
             </ListGroup>
-        </Container>
+        </Card>
 
     }
 }

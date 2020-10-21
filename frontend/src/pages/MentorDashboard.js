@@ -6,28 +6,39 @@ import StudentCard from "../components/elements/Cards/studentCard";
 import Container from "@material-ui/core/Container";
 import {Jumbotron, Row, Col} from "react-bootstrap";
 import "../../pageDesignspecs/mentorPg.css";
+import Notification from "../components/elements/Notification";
 
 class MentorDashboard extends React.Component {
     render() {
         return <Container>
             <Jumbotron className="jumbotron1">
-
-                <h1>Welcome Back!</h1>
                 <Row>
-                    <Col>
-                        <p1>
-                            <Container>
-                                <GroupCard/>
-                            </Container>
-                        </p1>
+                    <Col md={{span: 3}}>
+                        <Row>
+                            <h1>Welcome Back!</h1>
+                        </Row>
+
+                        <Row>
+
+
+                            <GroupCard/>
+
+                        </Row>
+                        <Row md={{offset: 1}}>
+                            <Notification/>
+                        </Row>
                     </Col>
+
                     <Col>
-                        <p className="progressBarr">
-                            Group cumulative progress
+                        <Row>
                             <Container>
+                                <p className="progressBarr">
+                                    Group cumulative progress
+                                </p>
+
                                 <VProgressBar className="VProgressBar"/>
                             </Container>
-                        </p>
+                        </Row>
                         <Col>
                             <Row>
                                 <StudentCard/>
@@ -40,11 +51,8 @@ class MentorDashboard extends React.Component {
                             </Row>
                         </Col>
                     </Col>
-
                 </Row>
-                {/*<p>*/}
-                {/*    <Notification/>*/}
-                {/*</p>*/}
+
             </Jumbotron>
         </Container>
     }
