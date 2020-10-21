@@ -15,7 +15,7 @@ class StudentDashboard extends React.Component {
             <Jumbotron className="jumbotron2">
                 <h1>Welcome Back!</h1>
                 <p>
-                    Your Cumulative progress
+                    Your progress
                     <Container>
                         <VProgressBar/>
                     </Container>
