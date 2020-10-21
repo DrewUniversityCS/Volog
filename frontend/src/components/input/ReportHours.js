@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../../static/css/components/add-student-form.css";
 import "../../static/css/index.css";
 
-function ReportHours(date, organizationInfo, hours, type) {
+function ReportHours(props) {
 
     const [show, setShow] = useState(false);
 
@@ -34,7 +34,7 @@ function ReportHours(date, organizationInfo, hours, type) {
                                     <Form.Label>Date of Activity</Form.Label>
                                 </Row>
                                 <Row>
-                                    <DatePicker/>
+                                    <DatePicker />
                                 </Row>
                             </Form.Group>
                         </Col>
