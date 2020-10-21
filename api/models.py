@@ -31,7 +31,7 @@ class TimeMaster(models.Model):
     This class is essentially a component for the Student object which holds all the data pertaining to their hours.
     Everything that has to do with time reporting, management and querying happens in this class.
     """
-    student = models.OneToOneField(Student, on_delete=models.CASCADE, auto_created=True, null=True)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE, auto_created=True, related_name='student')
     percent_complete = models.FloatField(blank=False, null=False, default=0.0)
 
 

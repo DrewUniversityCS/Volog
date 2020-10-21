@@ -36,7 +36,7 @@ class PrototypeDashboard extends Component {
 
     render() {
         return (
-            <Container className="App">
+            <Container className="prototype-dashboard">
                 <Row>
                     <Col>
                         <StudentTable items={this.state.items} updateState={this.updateState}/>
