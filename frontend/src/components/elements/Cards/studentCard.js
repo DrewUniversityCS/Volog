@@ -21,7 +21,7 @@ class StudentCard extends Component {
         <Card.Body>
           <Card.Title> Sam </Card.Title>
           <VProgressBar/>
-          <Button>See More</Button>
+          <Button variant="outline-success">See More</Button>
         </Card.Body>
       </Card>
     </Container>

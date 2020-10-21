@@ -17,7 +17,7 @@ function ReportHours() {
     return (
 
         <Container>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="outline-success" onClick={handleShow}>
                 Report Hours
             </Button>
 
