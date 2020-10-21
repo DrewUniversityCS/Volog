@@ -4,49 +4,50 @@ import SideNav from './Faculty/sideNav'
 
 class Admin extends Component {
     constructor(props) {
-    super(props);
+        super(props);
 
-    this.state = {
-        isLoading: true,
-        page: 0
-    };
-  }
+        this.state = {
+            isLoading: true,
+            page: 0
+        };
+    }
+
     componentDidMount() {
         let com = this
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-               console.log();
-               let role = JSON.parse(xhttp.responseText).role
-                if (role === 0){
+                console.log();
+                let role = JSON.parse(xhttp.responseText).role
+                if (role === 0) {
                     com.setState({
-                      isLoading: false,
-                        page:0
+                        isLoading: false,
+                        page: 0
                     });
-                }
-                else{
-                   window.location='/app'
+                } else {
+                    window.location = '/app'
                 }
             }
         };
         xhttp.open("GET", "/user/api/details/");
         xhttp.send();
     }
+
     openPage = (index) => {
         console.log(index);
-        this.setState({ page: index })
+        this.setState({page: index})
     };
 
     render() {
 
-    if (this.state.isLoading) return <h1>Loading...</h1>
+        if (this.state.isLoading) return <h1>Loading...</h1>
         return (
             <div>
-                <div className="w-screen flex" >
-                  <SideNav openPage={this.openPage} page={this.state.page} />
-                  {
-                    this.state.page === 0 ? <Student /> : "no page"
-                  }
+                <div className="w-screen flex">
+                    <SideNav openPage={this.openPage} page={this.state.page}/>
+                    {
+                        this.state.page === 0 ? <Student/> : "no page"
+                    }
                 </div>
             </div>
         );

@@ -1,5 +1,6 @@
+from django.shortcuts import redirect, reverse
 from django.views.generic.edit import FormView
-
+from pandas import read_csv
 from rest_framework import (
     viewsets as rest_viewsets,
     filters as rest_filters,
@@ -11,9 +12,8 @@ from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.common.mixins import LoginRequiredMixin, AdminRequiredMixin
 from auth_backend.modules.user.models import Referral, BaseVologUser
 from auth_backend.modules.user.serializers import UserSerializer
-
-from .forms import ReferralCreateForm
 from .admin_permissions import AdminRequired
+from .forms import ReferralCreateForm
 
 
 class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
@@ -37,6 +37,7 @@ class UserView(rest_viewsets.ModelViewSet):
     """
     User list and detail view
     """
+
     serializer_class = UserSerializer
     permission_classes = (
         rest_permissions.IsAuthenticated, AdminRequired,
@@ -45,7 +46,7 @@ class UserView(rest_viewsets.ModelViewSet):
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter
     ]
-    search_fields = ('email', 'first_name','school_id')
+    search_fields = ('email', 'first_name', 'school_id')
     pagination_class = rest_pagination.PageNumberPagination
     ordering = ('-created_at',)
 
@@ -60,3 +61,20 @@ class UserView(rest_viewsets.ModelViewSet):
             query = query.filter(role=common_constants.ROLE.TEACHER)
         return query
 
+
+def bulk_invite(request):
+    if request.method == 'POST':
+        file = request.FILES['invites']
+        reader = read_csv(file)
+        for ind, value in reader.iterrows():
+            email = value['email']
+            role = value['role']
+            if role == 'faculty':
+                user_role = common_constants.ROLE.FACULTY
+            elif role == 'student':
+                user_role = common_constants.ROLE.STUDENT
+            else:
+                user_role = common_constants.ROLE.MENTOR
+            Referral.objects.create(email=email, role=user_role)
+
+    return redirect(reverse('superAdmin:referral'))

@@ -25,20 +25,11 @@ class Student(BaseVologUser):
         return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
 
 
-class TimeMaster(models.Model):
-    """
-    This class is essentially a component for the Student object which holds all the data pertaining to their hours.
-    Everything that has to do with time reporting, management and querying happens in this class.
-    """
-    student = models.OneToOneField(Student, on_delete=models.CASCADE, auto_created=True, related_name='student')
-    percent_complete = models.FloatField(blank=False, null=False, default=0.0)
-
-
 class HourInstance(common_models.TimeStamp):
     """
     An instance of a single hour submission. Connected to its related student through the time master foreign key.
     """
-    time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE, related_name="hours")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date_of_activity = models.DateField(validators=[no_future_dates],
                                         blank=False, null=False)
     number_of_hours = models.IntegerField(validators=[hour_instance_validator],

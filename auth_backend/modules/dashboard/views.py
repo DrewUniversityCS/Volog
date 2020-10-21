@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+
 from auth_backend.modules.common.mixins import LoginRequiredMixin
 
 

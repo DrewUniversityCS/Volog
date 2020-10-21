@@ -1,0 +1,8 @@
+You are Invited as a {{ role }}
+Please use this referral code to complete sign in:
+{{ referral_code }}
+
+please go to: localhost:8000
+
+Thanks,
+Team Volog

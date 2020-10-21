@@ -1,133 +1,160 @@
-import React from 'react';
-import PopupModal from '../common/PopupModal';
-import Container from "@material-ui/core/Container";
-import {Button, Col, Form, Modal, Row} from "react-bootstrap";
+import React, {useState, useEffect} from 'react';
+import {Button, Col, Form, Modal, Row, Container} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../../static/css/components/add-student-form.css";
+import "../../static/css/index.css";
 
-class ReportHours extends PopupModal {
-    constructor(props) {
-        super(props)
-        this.state = {
-            organization: " ",
-            date: "",
-            hours: "",
-            type: "",
-            description: " "
-        }
-    }
+function ReportHours() {
 
-    render() {
-        const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>
+    const [show, setShow] = useState(false);
 
-        const label = this.props.buttonLabel
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-        let button = ''
-        let title = ''
 
-        if (label === 'Edit') {
-            button = <Button
-                color="warning"
-                onClick={this.toggle}
-                style={{float: "left", marginRight: "10px"}}>{label}
+
+    return (
+
+        <Container>
+            <Button variant="primary" onClick={handleShow}>
+                Report Hours
             </Button>
-            title = 'Edit Item'
-        } else {
-            button = <Button
-                color="success"
-                onClick={this.toggle}
-                style={{float: "left", marginRight: "10px", backgroundColor: "#2d8e94"}}>{label}
-            </Button>
-            title = 'Add New Item'
-        }
 
+            <Modal
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                show={show} onHide={handleClose} animation={false}>
 
-        return (
-            <Container>
-                {button}
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <Modal.Header toggle={this.toggle} close={closeBtn}>{title}</Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Row>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Label>Date of Activity</Form.Label>
-                                            <DatePicker selected={this.state.date} onChange=
-                                                {date => this.state.date=date} />
-                                        <Form.Text className="text-muted">
-                                            Date of Activity.
-                                        </Form.Text>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Label>Last Name</Form.Label>
-                                        <Form.Control placeholder={"Last Name"} onChange={this.onChange}>
-                                        </Form.Control>
-                                        <Form.Text className="text-muted">
-                                            Your last name as it appears on your student id.
-                                        </Form.Text>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+                <Form className={"add-student-form"}>
+                    <Row md={{ offset: 1}}>
+                        <Col>
+                            <Form.Group>
+                                <Row>
+                                    <Form.Label>Date of Activity</Form.Label>
+                                </Row>
+                                <Row>
+                                    <DatePicker /*selected={this.state.date} onChange=
+                                                {date => this.state.date=date}*//>
+                                </Row>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group>
+                                <Form.Label>Organization</Form.Label>
+                                <Form.Control/>
+                            </Form.Group>
+                        </Col>
+                    </Row>
 
-                            <Row>
+                    <Row>
+                        <Col>
+                            <Form.Label> Adviser Contacts </Form.Label>
+                            <Form.Text className="text-muted">
+                                How can we contact the organization for further information concerning your
+                                service or future opportunities.
+                            </Form.Text>
+                        </Col>
+                    </Row>
+                    <Col>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Adviser Name</Form.Label>
+                                    <Form.Control/>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Number</Form.Label>
+                                    <Form.Control placeholder="(xxx)xxx-xxxx"/>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control placeholder="example@volog.com"/>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Row>
+                        <Col>
+                            <Form.Group>
+                                <Form.Label>Hours Worked</Form.Label>
                                 <Col>
-                                    <Form.Group>
-                                        <Form.Label>Email</Form.Label>
-                                        <Form.Control placeholder={"user@domain.com"} onChange={this.onChange}>
-                                        </Form.Control>
-                                        <Form.Text className="text-muted">
-                                            Your Drew University email.
-                                        </Form.Text>
-                                    </Form.Group>
+                                    <Row>
+                                        <Col md={{span: 3}}>
+                                            <Form.Label>Hours </Form.Label>
+                                            <Form.Control as="select">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                            </Form.Control>
+                                        </Col>
+                                        <Col md={{span: 3}}>
+                                            <Form.Label>Min</Form.Label>
+                                            <Form.Control as="select">
+                                                <option>00</option>
+                                                <option>15</option>
+                                                <option>30</option>
+                                                <option>45</option>
+                                            </Form.Control>
+                                        </Col>
+                                    </Row>
                                 </Col>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Label>Student ID</Form.Label>
-                                        <Form.Control placeholder={"0000000"} onChange={this.onChange}>
-                                        </Form.Control>
-                                        <Form.Text className="text-muted">
-                                            Your Student ID.
-                                        </Form.Text>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Label>Class Standing</Form.Label>
-                                        <Form.Control onChange={this.onChange} as="select">
-                                            <option>Freshman</option>
-                                            <option>Sophomore</option>
-                                            <option>Junior</option>
-                                            <option>Senior</option>
-                                            <option>Graduate</option>
-                                            <option>Post Graduate</option>
-                                        </Form.Control>
-                                        <Form.Text className="text-muted">
-                                            Your current class standing.
-                                        </Form.Text>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Label>Mentor</Form.Label>
-                                        <Form.Control placeholder={"Mentor Name"} onChange={this.onChange}>
-                                        </Form.Control>
-                                        <Form.Text className="text-muted">
-                                            Your mentor's name.
-                                        </Form.Text>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                        </Form>
-                    </Modal.Body>
-                </Modal>
-            </Container>
-        )
-    }
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group>
+                                <Form.Label>Type</Form.Label>
+                                <Form.Control as="select">
+                                    <option>required</option>
+                                    <option>pre-approved</option>
+                                    <option>other</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col>
+                            <Form.Group>
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control placeholder="Describe responsibilities and activities" as="textarea"
+                                              rows="3">
+                                </Form.Control>
+
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Col md={{span: 2, offset: 5}}>
+                        <Button className="cushion" variant="outline-success" block
+                                onClick={handleClose}>Cancel</Button>
+                        <Button className="cushion" variant="outline-success" block
+                                onClick={handleClose}>Submit</Button>
+                    </Col>
+                </Form>
+            </Modal>
+
+        </Container>
+    )
 }
 
 export default ReportHours;

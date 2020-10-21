@@ -1,11 +1,11 @@
 import collections
 
 ROLE = collections.namedtuple(
-    'ROLE', ['ADMIN', 'STUDENT', 'TEACHER']
-)(ADMIN=0, STUDENT=1, TEACHER=2)
+    'ROLE', ['FACULTY', 'STUDENT', 'MENTOR']
+)(FACULTY=0, STUDENT=1, MENTOR=2)
 
 ROLE_CHOICES = (
-    (ROLE.ADMIN, 'Admin',),
+    (ROLE.FACULTY, 'Faculty',),
     (ROLE.STUDENT, 'Student',),
-    (ROLE.TEACHER, 'Teacher',)
+    (ROLE.MENTOR, 'Mentor',)
 )

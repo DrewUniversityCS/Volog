@@ -3,7 +3,6 @@ from django.utils.translation import gettext as _
 
 
 class TimeStamp(models.Model):
-
     """ TimeStamp Model """
 
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)

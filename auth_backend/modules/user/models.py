@@ -1,12 +1,14 @@
 from django.contrib.auth import models as auth_models
 from django.core.validators import EmailValidator
 from django.db import models
+from django.db.models.signals import post_save
 
 from auth_backend.modules.common import (
     constants as common_constants,
     models as common_models,
     utils as common_utils
 )
+from auth_backend.modules.user.listeners import send_invite_mail
 
 
 class UserManager(auth_models.BaseUserManager):
@@ -67,8 +69,9 @@ class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, 
     def full_name(self):
         return self.first_name + ' ' + self.last_name
 
+    @property
     def is_admin(self):
-        return self.role == common_constants.ROLE.ADMIN
+        return self.role == common_constants.ROLE.FACULTY
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} - {self.email}'
@@ -83,3 +86,6 @@ class Referral(common_models.TimeStamp):
 
     def __str__(self):
         return f'{self.code} - {self.get_role_display()}'
+
+
+post_save.connect(send_invite_mail, sender=Referral)

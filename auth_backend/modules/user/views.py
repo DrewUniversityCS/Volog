@@ -1,15 +1,13 @@
-from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.views.generic import TemplateView
-
+from django.views.generic.edit import FormView
+from rest_framework import permissions
 from rest_framework import (
     views as rest_views,
 )
-from rest_framework import permissions
 from rest_framework.response import Response
 
 from auth_backend.modules.common.mixins import LoginRequiredMixin
-
 from .forms import ProfileForm
 from .serializers import UserSerializer
 

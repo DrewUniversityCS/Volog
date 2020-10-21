@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import ProfileCreateView, ProfileCreateSuccessView, UserApiView
 
 urlpatterns = [
@@ -8,4 +9,3 @@ urlpatterns = [
 ]
 
 app_name = 'user'
-
