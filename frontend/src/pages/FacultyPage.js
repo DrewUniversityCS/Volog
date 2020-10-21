@@ -1,21 +1,27 @@
 import React, {Component} from 'react';
+import Student from './Faculty/student'
+import SideNav from './Faculty/sideNav'
 
 class Admin extends Component {
     constructor(props) {
     super(props);
 
-    this.state = {isLoading: true};
+    this.state = {
+        isLoading: true,
+        page: 0
+    };
   }
     componentDidMount() {
         let com = this
-        let xhttp = new XMLHttpRequest();
+        var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                console.log();
                let role = JSON.parse(xhttp.responseText).role
                 if (role === 0){
                     com.setState({
-                      isLoading: false
+                      isLoading: false,
+                        page:0
                     });
                 }
                 else{
@@ -26,12 +32,22 @@ class Admin extends Component {
         xhttp.open("GET", "/user/api/details/");
         xhttp.send();
     }
+    openPage = (index) => {
+        console.log(index);
+        this.setState({ page: index })
+    };
 
     render() {
-        if (this.state.isLoading) return <h1>Loading...</h1>
+
+    if (this.state.isLoading) return <h1>Loading...</h1>
         return (
             <div>
-                Hello Admin
+                <div className="w-screen flex" >
+                  <SideNav openPage={this.openPage} page={this.state.page} />
+                  {
+                    this.state.page === 0 ? <Student /> : "no page"
+                  }
+                </div>
             </div>
         );
     }
