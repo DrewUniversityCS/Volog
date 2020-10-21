@@ -4,7 +4,7 @@ import {
   Card, Button
 } from 'react-bootstrap';
 import {Container} from "@material-ui/core";
-
+import "../../../../pageDesignspecs/mentorPg.css"
 
 class StudentCard extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class StudentCard extends Component {
     return<Container>
       <Card style={{ width: '45rem' }}>
         <Card.Body>
-          <Card.Title> Perrfection </Card.Title>
+          <Card.Title> Sam </Card.Title>
           <VProgressBar/>
           <Button>See More</Button>
         </Card.Body>

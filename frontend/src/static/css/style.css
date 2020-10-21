@@ -1,0 +1,9 @@
+body{
+   background-color: #72be72;
+   /*background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #72be72 40px), repeating-linear-gradient(#68d17355, #68d173);*/
+}
+#createdUser input, select{
+    border: transparent;
+    outline: none;
+    width: 100%;
+}

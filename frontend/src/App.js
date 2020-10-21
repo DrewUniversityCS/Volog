@@ -6,7 +6,7 @@ import PrototypeDashboard from "./pages/PrototypeDashboard";
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import NavBar from "./components/elements/NavBar";
-import Admin from "./pages/admin";
+import Admin from "./pages/FacultyPage";
 import ReactDOM from 'react-dom';
 
 const App = () => {
