@@ -6,7 +6,7 @@ from django.template.loader import render_to_string as renderer
 
 
 def generate_referral_code():
-    # Generate user's referral code
+    # Generate users referral code
     return uuid.uuid1().__str__()
 
 

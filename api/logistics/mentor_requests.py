@@ -1,8 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from api.models import Mentor
+
 from api.logistics.serializers import MentorSerializer
+from api.models import Mentor
 
 
 @api_view(['GET', 'POST'])

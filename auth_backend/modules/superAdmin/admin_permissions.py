@@ -1,5 +1,4 @@
 from rest_framework import (
-    exceptions as rest_framework_exceptions,
     permissions as rest_framework_permissions,
 )
 

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {
-    Card, CardImg, Button
+    Card, Button
 } from 'react-bootstrap';
-import ListGroup from "react-bootstrap/ListGroup";
 import Container from "@material-ui/core/Container";
 import "../../../../pageDesignspecs/mentorPg.css";
 

@@ -12,6 +12,3 @@ def send_invite_mail(sender, instance, created, **kwargs):
         }
         to = instance.email
         common_utils.send_email(subject, template, context, [to])
-
-
-

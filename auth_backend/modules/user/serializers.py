@@ -1,5 +1,6 @@
-from .models import BaseVologUser
 from rest_framework import serializers
+
+from auth_backend.modules.user.models import BaseVologUser
 
 
 class UserSerializer(serializers.ModelSerializer):

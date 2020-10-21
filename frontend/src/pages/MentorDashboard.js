@@ -4,33 +4,33 @@ import VProgressBar from '../components/elements/ProgressBar'
 // import Notification from "../components/elements/Notification";
 import StudentCard from "../components/elements/Cards/studentCard";
 import Container from "@material-ui/core/Container";
-import {Jumbotron, Row, Col} from "react-bootstrap";
+import {Col, Jumbotron, Row} from "react-bootstrap";
 import "../../pageDesignspecs/mentorPg.css";
 import Notification from "../components/elements/Notification";
 
 class MentorDashboard extends React.Component {
 
     constructor(props) {
-    super(props);
+        super(props);
 
-    this.state = {
-        isLoading: true
-    };
-  }
+        this.state = {
+            isLoading: true
+        };
+    }
+
     componentDidMount() {
         let com = this
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-               console.log();
-               let role = JSON.parse(xhttp.responseText).role
-                if (role === 0 || role === 2){
+                console.log();
+                let role = JSON.parse(xhttp.responseText).role
+                if (role === 0 || role === 2) {
                     com.setState({
-                      isLoading: false
+                        isLoading: false
                     });
-                }
-                else{
-                   window.location='/app'
+                } else {
+                    window.location = '/app'
                 }
             }
         };
