@@ -8,6 +8,9 @@ table th, table td {
     white-space: nowrap;
 }
 
+.cushion{
+    padding: 5px;
+}
 
 
 .box {
