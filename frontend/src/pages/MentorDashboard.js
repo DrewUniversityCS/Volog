@@ -5,7 +5,7 @@ import VProgressBar from '../components/elements/ProgressBar'
 import StudentCard from "../components/elements/Cards/studentCard";
 import Container from "@material-ui/core/Container";
 import {Col, Jumbotron, Row} from "react-bootstrap";
-import "../../pageDesignspecs/mentorPg.css";
+import "../static/css/pages/mentorPg.css";
 import Notification from "../components/elements/Notification";
 
 class MentorDashboard extends React.Component {
