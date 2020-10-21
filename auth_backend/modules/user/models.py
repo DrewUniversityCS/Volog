@@ -55,7 +55,8 @@ class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, 
                               blank=False,
                               unique=True)
 
-    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, blank=False, null=False)
+    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, default=1,
+                                    blank=False, null=False)
     is_staff = models.BooleanField('Staff status', default=False, help_text='for django reference')
     is_profile_complete = models.BooleanField('Profile Status', default=False, blank=False, null=False)
 

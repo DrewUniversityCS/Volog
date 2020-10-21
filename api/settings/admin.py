@@ -7,7 +7,3 @@ models = [Student, Mentor, HourInstance]
 
 for model in models:
     admin.site.register(model)
-
-
-class HourInstanceInline(admin.TabularInline):
-    model = HourInstance

@@ -15,8 +15,8 @@ from auth_backend.modules.user.serializers import UserSerializer
 from .admin_permissions import AdminRequired
 from .forms import ReferralCreateForm
 
-
-class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
+# class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
+class CreateReferralView(FormView):
     template_name = 'superAdmin/referral_create.html'
     form_class = ReferralCreateForm
     success_url = '/superAdmin/referrals'
@@ -39,9 +39,11 @@ class UserView(rest_viewsets.ModelViewSet):
     """
 
     serializer_class = UserSerializer
+    """
     permission_classes = (
         rest_permissions.IsAuthenticated, AdminRequired,
     )
+    """
     filter_backends = [
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter

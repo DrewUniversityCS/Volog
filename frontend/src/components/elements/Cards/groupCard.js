@@ -3,7 +3,7 @@ import {
     Card, Button
 } from 'react-bootstrap';
 import Container from "@material-ui/core/Container";
-import "../../../../pageDesignspecs/mentorPg.css";
+import "../../../static/css/pages/mentorPg.css";
 
 class GroupCard extends Component {
     constructor(props) {

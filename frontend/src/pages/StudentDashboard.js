@@ -3,7 +3,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
 import UserPic from "../components/elements/Cards/userPic";
-import "../../pageDesignspecs/studentPg.css"
+import "../static/css/pages/studentPg.css"
 import ReportHours from "../components/input/ReportHours";
 import HoursTable from "../components/display/HoursTable";
 import {Col, Row} from "react-bootstrap";
