@@ -155,6 +155,9 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mahmoud@alminawi.org'
-EMAIL_HOST_PASSWORD = 'TestPass'
+EMAIL_HOST_USER = 'VologDrew@gmail.com'
+EMAIL_HOST_PASSWORD = 'Volog@Drew2020'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

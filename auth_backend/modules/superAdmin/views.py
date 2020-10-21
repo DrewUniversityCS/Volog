@@ -1,4 +1,7 @@
+import pandas as pd
+
 from django.views.generic.edit import FormView
+from django.shortcuts import redirect, reverse
 
 from rest_framework import (
     viewsets as rest_viewsets,
@@ -54,7 +57,25 @@ class UserView(rest_viewsets.ModelViewSet):
         if role == 'student':
             query = query.filter(role=common_constants.ROLE.STUDENT)
         elif role == 'Admin':
-            query = query.filter(role=common_constants.ROLE.ADMIN)
+            query = query.filter(role=common_constants.ROLE.FACULTY)
         elif role == 'mentor':
-            query = query.filter(role=common_constants.ROLE.TEACHER)
+            query = query.filter(role=common_constants.ROLE.MENTOR)
         return query
+
+
+def bulk_invite(request):
+    if request.method == 'POST':
+        file = request.FILES['invites']
+        reader = pd.read_csv(file)
+        for ind, value in reader.iterrows():
+            email = value['email']
+            role = value['role']
+            if role == 'faculty':
+                user_role = common_constants.ROLE.FACULTY
+            elif role == 'student':
+                user_role = common_constants.ROLE.STUDENT
+            else:
+                user_role = common_constants.ROLE.MENTOR
+            Referral.objects.create(email=email, role=user_role)
+
+    return redirect(reverse('superAdmin:referral'))
