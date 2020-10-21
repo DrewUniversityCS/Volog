@@ -16,7 +16,7 @@ class AdminRequiredMixin(object):
     Mixin to validate only Admin role is required
     """
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_admin():
+        if not request.user.is_admin:
             return redirect('/')
         return super().dispatch(request, *args, **kwargs)
 
