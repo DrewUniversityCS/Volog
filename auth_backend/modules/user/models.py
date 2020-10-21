@@ -55,9 +55,9 @@ class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, 
                               blank=False,
                               unique=True)
 
-    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
+    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, blank=False, null=False)
     is_staff = models.BooleanField('Staff status', default=False, help_text='for django reference')
-    is_profile_complete = models.BooleanField('Profile Status', default=False)
+    is_profile_complete = models.BooleanField('Profile Status', default=False, blank=False, null=False)
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
@@ -81,8 +81,8 @@ class Referral(common_models.TimeStamp):
     """ Referral model to store Referral codes """
     email = models.EmailField('Email Address')
     code = models.CharField('Referral Code', max_length=255, unique=True, default=common_utils.generate_referral_code)
-    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
-    is_used = models.BooleanField('Is Used', help_text='Is referral code used', default=False)
+    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=False)
+    is_used = models.BooleanField('Is Used', help_text='Is referral code used', default=False, blank=False, null=False)
 
     def __str__(self):
         return f'{self.code} - {self.get_role_display()}'

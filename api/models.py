@@ -27,7 +27,7 @@ class Student(BaseVologUser):
 
 class HourInstance(common_models.TimeStamp):
     """
-    An instance of a single hour submission. Connected to its related student through the time master foreign key.
+    An instance of a single hour submission. Connected to its related student with a foreign key.
     """
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date_of_activity = models.DateField(validators=[no_future_dates],
