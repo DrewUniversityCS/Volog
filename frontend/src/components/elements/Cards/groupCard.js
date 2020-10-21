@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {
-  Card, CardImg, Button
+    Card, CardImg, Button
 } from 'react-bootstrap';
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "@material-ui/core/Container";
-import "../../../../pageDesignspecs/mentorPg.css"
+import "../../../../pageDesignspecs/mentorPg.css";
 
 class GroupCard extends Component {
     constructor(props) {
@@ -16,24 +16,22 @@ class GroupCard extends Component {
     }
 
 
-
-
-    render(){
-    return<Container>
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Mentor: Deja </Card.Title>
-          <Card.Subtitle>Students:  </Card.Subtitle>
-          <Card.Text>
-            Perrfection
-            Mahmoud
-            David
-          </Card.Text>
-          <Button>Button</Button>
-        </Card.Body>
-      </Card>
-    </Container>
-  }
+    render() {
+        return <Container >
+            <Card className="groupCard" style={{width: '18rem'}}>
+                <Card.Body>
+                    <Card.Title>Mentor: Deja </Card.Title>
+                    <Card.Subtitle>Students: </Card.Subtitle>
+                    <Card.Text className="groupCard">
+                        Perrfection
+                        Mahmoud
+                        David
+                    </Card.Text>
+                    <Button>View all students </Button>
+                </Card.Body>
+            </Card>
+        </Container>
+    }
 }
 
 export default GroupCard;

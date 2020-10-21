@@ -1,7 +1,8 @@
-stylesheet{
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+.jumbotron1{
+    Background-color:#ffffff;
+    margin-top:15px;
+    padding: 20px;
 }
-
 h1{
     Background-color:#ffffff;
     color: black;
@@ -10,20 +11,35 @@ h1{
     margin: 30px;
     padding-top:10px;
 }
+.stuCard{
 
-p{
+}
+.progressBarr{
     Background-color:#ffffff;
     color: black;
     Font-family: Roboto, sans-serif;
     Font-size: 19px;
-    margin-left: 50%;
-    padding-top:10px;
+    margin:20px;
 }
+.vProgressBar{
+    padding-top: 10px;
+    margin-bottom: 30%;
 
-GroupCard{
-    Background-color: #9ee4c3;
-    color: black;
+  /*  font-size: 1.2em;*/
+  /*position: absolute;*/
+  /*right: 0;*/
+  /*line-height: 33px;*/
+  /*padding-right: 12px;*/
+  /*color: rgba(0,0,0,0.6);*/
+  /*text-shadow: rgba(255,255,255, 0.45) 0 1px 0px;*/
+  /*white-space: nowrap;*/
+}
+.groupCard{
+    background-color: #9ee4c3;
     Font-family: Roboto, sans-serif;
+}
+card.text{
+    background-color: #9ee4c3;
 }
 
 StudentCard{
