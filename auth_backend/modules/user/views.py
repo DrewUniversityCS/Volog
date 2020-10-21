@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from auth_backend.modules.common.mixins import LoginRequiredMixin
 
 from .forms import ProfileForm
-from .models import BaseVologUser
 from .serializers import UserSerializer
 
 

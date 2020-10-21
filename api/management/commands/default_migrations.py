@@ -13,3 +13,4 @@ class Command(BaseCommand):
     def _load_data(self):
         management.call_command('makemigrations', 'api')
         management.call_command('makemigrations', 'user')
+        management.call_command('migrate')
