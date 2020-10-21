@@ -1,7 +1,7 @@
 from django.db import models
+
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
-
 from auth_backend.modules.common import models as common_models
 from auth_backend.modules.user.models import BaseVologUser
 
@@ -16,8 +16,10 @@ class Student(BaseVologUser):
     """
     Represents a Student user.
     """
-    student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
-    class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
+    student_id = models.IntegerField(unique=True, validators=[student_id_validator],
+                                     blank=False, null=True)
+    class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES],
+                                      blank=False, null=True)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
 
@@ -42,4 +44,3 @@ class HourInstance(common_models.TimeStamp):
     learning_goal = models.CharField(max_length=10, choices=[x.value for x in LEARNING_GOALS_CHOICES],
                                      blank=False, null=False)
     activity_description = models.TextField(blank=True, null=True)
-

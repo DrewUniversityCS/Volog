@@ -30,8 +30,8 @@ class ProfileCreateView(FormView):
         form_kwargs['instance'] = self.request.user
         return form_kwargs
 
-
-class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
+#class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
+class ProfileCreateSuccessView(TemplateView):
     template_name = "user/profile_create_success.html"
 
 
@@ -39,7 +39,7 @@ class UserApiView(rest_views.APIView):
     """
     API endpoint to retrieve current user info
     """
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
         serializer = UserSerializer(request.user)
