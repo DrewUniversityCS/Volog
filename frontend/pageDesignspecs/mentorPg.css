@@ -1,0 +1,51 @@
+.jumbotron1{
+    Background-color:#ffffff;
+    margin-top:15px;
+    padding: 20px;
+}
+h1{
+    Background-color:#ffffff;
+    color: black;
+    Font-family: Roboto, sans-serif;
+    Font-size: 32px;
+    margin: 30px;
+    padding-top:10px;
+}
+.stuCard{
+
+}
+.progressBarr{
+    Background-color:#ffffff;
+    color: black;
+    Font-family: Roboto, sans-serif;
+    Font-size: 19px;
+    margin:20px;
+}
+.vProgressBar{
+    margin-bottom: 10%;
+
+  /*  font-size: 1.2em;*/
+  /*position: absolute;*/
+  /*right: 0;*/
+  /*line-height: 33px;*/
+  /*padding-right: 12px;*/
+  /*color: rgba(0,0,0,0.6);*/
+  /*text-shadow: rgba(255,255,255, 0.45) 0 1px 0px;*/
+  /*white-space: nowrap;*/
+}
+.groupCard{
+    background-color: #9ee4c3;
+    Font-family: Roboto, sans-serif;
+}
+card.text{
+    background-color: #9ee4c3;
+}
+
+StudentCard{
+    Background-color:#ffffff;
+    color: black;
+    Font-family: Roboto, sans-serif;
+    Font-size: 19px;
+    padding: 10% 30%;
+    margin-bottom: 20px;
+}

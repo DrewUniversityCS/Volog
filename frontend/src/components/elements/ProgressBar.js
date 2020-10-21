@@ -1,6 +1,7 @@
 import ProgressBar from "react-bootstrap/ProgressBar";
 import React,{Component} from 'react';
 import {Container} from "@material-ui/core";
+import "../elements/ProgressBar.js";
 
 class VProgressBar extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class VProgressBar extends Component {
 
     render() {
         return<Container>
-            <ProgressBar>
+            <ProgressBar className="vProgressBar">
               <ProgressBar striped variant="success" now={this.state.CompletedHours} key={1} />
               <ProgressBar variant="warning" now={this.state.PendingHours} key={2} />
               <ProgressBar striped variant="danger" now={this.state.RequiredHours} key={3} />
