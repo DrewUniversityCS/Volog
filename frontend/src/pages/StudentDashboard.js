@@ -8,6 +8,7 @@ import "../../pageDesignspecs/studentPg.css"
 import ReportHours from "../components/input/ReportHours";
 
 class StudentDashboard extends React.Component {
+
     render() {
 
         return <Container>
@@ -39,6 +40,7 @@ class StudentDashboard extends React.Component {
 
         </Container>
     }
+
 }
 
 

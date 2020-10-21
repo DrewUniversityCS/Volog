@@ -121,7 +121,7 @@ function ReportHours(date, organizationInfo, hours, type) {
                     <Row>
                         <Col>
                             <Form.Group>
-                                <Form.Label>type</Form.Label>
+                                <Form.Label>Type</Form.Label>
                                 <Form.Control as="select">
                                     <option>required</option>
                                     <option>pre-approved</option>
