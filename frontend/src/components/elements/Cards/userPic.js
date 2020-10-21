@@ -10,7 +10,7 @@ class UserPic extends React.Component {
             <Container>
                 <Row>
                     <Col>
-                        <Image width={50} src="https://www.insidemathematics.org/sites/default/files/2019-10/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" roundedCircle/>
+                        <Image width={200} padding={0} src="https://www.insidemathematics.org/sites/default/files/2019-10/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" roundedCircle/>
                     </Col>
                 </Row>
             </Container>
