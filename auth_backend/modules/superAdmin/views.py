@@ -7,16 +7,15 @@ from rest_framework import (
     permissions as rest_permissions,
     pagination as rest_pagination
 )
-
 from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.common.mixins import LoginRequiredMixin, AdminRequiredMixin
 from auth_backend.modules.user.models import Referral, BaseVologUser
 from auth_backend.modules.user.serializers import UserSerializer
-from .admin_permissions import AdminRequired
-from .forms import ReferralCreateForm
+from auth_backend.modules.superAdmin.admin_permissions import AdminRequired
+from auth_backend.modules.superAdmin.forms import ReferralCreateForm
 
-# class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
-class CreateReferralView(FormView):
+
+class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
     template_name = 'superAdmin/referral_create.html'
     form_class = ReferralCreateForm
     success_url = '/superAdmin/referrals'
@@ -39,11 +38,9 @@ class UserView(rest_viewsets.ModelViewSet):
     """
 
     serializer_class = UserSerializer
-    """
     permission_classes = (
         rest_permissions.IsAuthenticated, AdminRequired,
     )
-    """
     filter_backends = [
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter
