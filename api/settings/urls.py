@@ -1,3 +1,9 @@
+"""
+File Name: Urls
+Purpose: Url paths for the API app.
+Comments:
+"""
+
 from django.urls import include, path
 from api import views
 

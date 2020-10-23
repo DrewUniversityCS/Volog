@@ -1,3 +1,9 @@
+"""
+File Name: Views
+Purpose: Django views for rendering a variety of data.
+Comments:
+"""
+
 from api.logistics.serializers import StudentSerializer, MentorSerializer
 from api.models import Student, Mentor
 from rest_framework import generics, permissions

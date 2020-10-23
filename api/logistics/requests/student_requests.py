@@ -1,3 +1,9 @@
+"""
+File Name: Student Requests
+Purpose: API requests for interacting with and manipulating Student database data.
+Comments:
+"""
+
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response

@@ -1,3 +1,9 @@
+"""
+File Name: Load Mock Data
+Purpose: Custom command for loading a bunch of testing data (like fake users and mentors).
+Comments:
+"""
+
 from django.core.management.base import BaseCommand
 from django.core import management
 

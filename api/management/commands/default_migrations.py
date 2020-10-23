@@ -1,3 +1,9 @@
+"""
+File Name: Default Migrations
+Purpose: Custom command for making a bunch of migrations and running them.
+Comments:
+"""
+
 from django.core.management.base import BaseCommand
 from django.core import management
 

@@ -1,9 +1,14 @@
+"""
+File Name: Models
+Purpose: Contains the database level representations (models) of the objects the API interacts with and manages.
+Comments:
+"""
+
 from django.db import models
 
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 from auth_backend.modules.common import models as common_models
-
 
 
 class Mentor(models.Model):
