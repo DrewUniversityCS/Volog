@@ -1,3 +1,9 @@
+"""
+File Name: Admin Permissions
+Purpose: Functions for checking permissions.
+Comments:
+"""
+
 from rest_framework import (
     permissions as rest_framework_permissions,
 )

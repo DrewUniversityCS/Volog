@@ -1,3 +1,9 @@
+"""
+File Name: Mixins
+Purpose: Mixins go here. They are primarily used for auth and permissions.
+Comments:
+"""
+
 from django.shortcuts import redirect, reverse
 
 

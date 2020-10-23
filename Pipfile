@@ -12,6 +12,7 @@ django = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
 django-annoying = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"

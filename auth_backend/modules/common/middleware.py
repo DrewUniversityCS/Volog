@@ -1,3 +1,9 @@
+"""
+File Name: Middleware
+Purpose: Contains files that redirect and process requests.
+Comments:
+"""
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse, resolve
 from django.utils.deprecation import MiddlewareMixin

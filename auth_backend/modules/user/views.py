@@ -1,3 +1,9 @@
+"""
+File Name: Views
+Purpose: Django views for rendering a variety of data.
+Comments:
+"""
+
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView

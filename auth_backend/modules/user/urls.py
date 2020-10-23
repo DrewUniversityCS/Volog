@@ -1,3 +1,9 @@
+"""
+File Name: Urls
+Purpose: Url paths this application uses.
+Comments:
+"""
+
 from django.urls import path
 
 from .views import ProfileCreateView, ProfileCreateSuccessView

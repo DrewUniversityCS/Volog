@@ -1,3 +1,9 @@
+"""
+File Name: Models
+Purpose: Database models this application uses.
+Comments:
+"""
+
 from django.contrib.auth import models as auth_models
 from django.core.validators import EmailValidator
 from django.db import models
@@ -7,7 +13,7 @@ from api.models import Student, Mentor
 from auth_backend.modules.common import (
     constants as common_constants,
     models as common_models,
-    utils as common_utils
+    utilities as common_utils
 )
 from auth_backend.modules.user.listeners import send_invite_mail
 
@@ -24,6 +30,9 @@ class UserManager(auth_models.BaseUserManager):
         user.save(using=self._db)
 
         role = extra_fields.get('role')
+
+        # The if statements below check what the user's selected role is and creates
+        # a corresponding database entry if necessary.
         if role == 0:  # Faculty
             pass
         elif role == 1:  # Student
@@ -57,7 +66,7 @@ class UserManager(auth_models.BaseUserManager):
 
 class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_models.TimeStamp):
     """
-    Abstract user type that shares information common to all user groups.
+    Abstract user type that shares information common to all user types.
     """
 
     first_name = models.CharField(max_length=60,
