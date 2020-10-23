@@ -13,8 +13,7 @@ class Command(BaseCommand):
     This will register a bunch of mock models so the website behaves as it would normally.
     """
 
-    fixtures = ["test_mentors.json",
-                "test_students.json"]
+    fixtures = ["test_students.json", "test_mentors.json", "test_faculty.json"]
 
     def handle(self, *args, **options):
         self._load_data()

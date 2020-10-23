@@ -1,1 +1,54 @@
-[{}]
+[
+  {
+    "model": "user.basevologuser",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$Eb3OTHEp7cRA$RyHgXDviwhZUIEeeMbFd5DT0ExBV7/kkiXZSr89DHDE=",
+      "last_login": "2020-10-23T22:09:52.227Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T22:11:34.227Z",
+      "updated_at": "2020-10-23T22:11:34.227Z",
+      "first_name": "Marwa",
+      "last_name": "Elessawy",
+      "email": "melessawy@drew.edu",
+      "role": 2,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.basevologuser",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$Fpf5qBIkvVcC$+jW5jK1bUuFrgTzknByks0/8i1IpWKF1K0SM8EsTO2c=",
+      "last_login": "2020-10-23T22:09:52.227Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T22:12:24.861Z",
+      "updated_at": "2020-10-23T22:12:24.861Z",
+      "first_name": "Aaron",
+      "last_name": "Baxter",
+      "email": "abaxter@drew.edu",
+      "role": 2,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "api.mentor",
+    "pk": 1,
+    "fields": {
+      "user": 7
+    }
+  },
+  {
+    "model": "api.mentor",
+    "pk": 2,
+    "fields": {
+      "user": 8
+    }
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "model": "user.basevologuser",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$WzG7QQxOgn0c$0/Av4EKtU6HYw73/0mcvnKQJGilD54zEaBhx++cz3Dc=",
+      "last_login": "2020-10-23T22:09:52.227Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T22:15:33.725Z",
+      "updated_at": "2020-10-23T22:15:33.725Z",
+      "first_name": "Barry",
+      "last_name": "Burd",
+      "email": "bburd@drew.edu",
+      "role": 0,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.basevologuser",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$xa9i36tbFbTC$y6Z19TGHGh+vvBoOm/aHc+txNWH+hZW35wPyIVPbeS4=",
+      "last_login": "2020-10-23T22:09:52.227Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T22:15:45.405Z",
+      "updated_at": "2020-10-23T22:15:45.405Z",
+      "first_name": "Emily",
+      "last_name": "Hill",
+      "email": "ehill@drew.edu",
+      "role": 0,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.basevologuser",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$kgCMl0VUBjEO$fJYUgzONwEl/6iKoCK2wVXUO09PUcke+/dvTlJh4EPg=",
+      "last_login": "2020-10-23T22:09:52.227Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T22:16:00.573Z",
+      "updated_at": "2020-10-23T22:16:00.573Z",
+      "first_name": "Ziyuan",
+      "last_name": "Meng",
+      "email": "zmeng@drew.edu",
+      "role": 0,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
