@@ -3,6 +3,7 @@ from django.core.validators import EmailValidator
 from django.db import models
 from django.db.models.signals import post_save
 
+from api.models import Student, Mentor
 from auth_backend.modules.common import (
     constants as common_constants,
     models as common_models,
@@ -21,6 +22,19 @@ class UserManager(auth_models.BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
+        role = extra_fields.get('role')
+        if role == 0:  # Faculty
+            pass
+        elif role == 1:  # Student
+            sid = extra_fields.get('student_id')
+            cl_stand = extra_fields.get('class_standing')
+            mentor = extra_fields.get('mentor')
+            student = Student.objects.create(student_id=sid, class_standing=cl_stand, DAS_mentor=mentor, user=user)
+            student.save(using=self._db)
+        elif role == 2:  # Mentor
+            mentor = Mentor.objects.create(user=user)
+            mentor.save(using=self._db)
         return user
 
     def create(self, email=None, password=None, **extra_fields):

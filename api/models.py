@@ -3,19 +3,21 @@ from django.db import models
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 from auth_backend.modules.common import models as common_models
-from auth_backend.modules.user.models import BaseVologUser
 
 
-class Mentor(BaseVologUser):
+
+class Mentor(models.Model):
     """
     Represents a DAS mentor.
     """
+    user = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
 
 
-class Student(BaseVologUser):
+class Student(models.Model):
     """
     Represents a Student user.
     """
+    user = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
     student_id = models.IntegerField(unique=True, validators=[student_id_validator],
                                      blank=False, null=True)
     class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES],
@@ -24,7 +26,7 @@ class Student(BaseVologUser):
                                    blank=True, null=True)
 
     def __str__(self):
-        return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
+        return self.user.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
 
 
 class HourInstance(common_models.TimeStamp):
