@@ -13,7 +13,7 @@ class ProfileComplete(MiddlewareMixin):
 
         # Checking if authenticated user has force_pass_change as True
         if request.user.is_authenticated and not request.user.is_profile_complete and current_url != 'profile_create' \
-                and not request.user.is_superuser:
+                and not request.user.is_superuser and current_url != 'account_logout':
             if request.user.email == 'vologdrew@gmail.com':
                 request.user.is_profile_complete = True
                 request.user.role = 0
