@@ -1,15 +1,14 @@
+"""
+File Name: Views
+Purpose: Django views for rendering a variety of data.
+Comments:
+"""
+
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from rest_framework import permissions
-from rest_framework import (
-    views as rest_views,
-)
-from rest_framework.response import Response
-
 from auth_backend.modules.common.mixins import LoginRequiredMixin
-from .forms import ProfileForm
-from .serializers import UserSerializer
+from auth_backend.modules.user.forms import ProfileForm
 
 
 class ProfileCreateView(FormView):
@@ -30,17 +29,6 @@ class ProfileCreateView(FormView):
         form_kwargs['instance'] = self.request.user
         return form_kwargs
 
-#class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
-class ProfileCreateSuccessView(TemplateView):
+
+class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
     template_name = "user/profile_create_success.html"
-
-
-class UserApiView(rest_views.APIView):
-    """
-    API endpoint to retrieve current user info
-    """
-    # permission_classes = (permissions.IsAuthenticated,)
-
-    def get(self, request):
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data)

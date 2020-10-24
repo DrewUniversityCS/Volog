@@ -1,3 +1,9 @@
+"""
+File Name: Urls
+Purpose: Url paths this application uses.
+Comments:
+"""
+
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 

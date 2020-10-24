@@ -1,4 +1,10 @@
-from auth_backend.modules.common import utils as common_utils
+"""
+File Name: Listeners
+Purpose: Stuff that listen for changes in the backend to respond to it.
+Comments:
+"""
+
+from auth_backend.modules.common import utilities as common_utils
 
 
 def send_invite_mail(sender, instance, created, **kwargs):

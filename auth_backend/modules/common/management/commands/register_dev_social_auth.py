@@ -1,3 +1,9 @@
+"""
+File Name: Register Dev Social Auth
+Purpose: Custom command for registering the development google auth application
+Comments:
+"""
+
 from django.core.management.base import BaseCommand
 from django.core import management
 
