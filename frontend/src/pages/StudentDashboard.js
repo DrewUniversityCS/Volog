@@ -1,49 +1,49 @@
 import React from "react";
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
 import UserPic from "../components/elements/Cards/userPic";
 import "../static/css/pages/studentPg.css"
-import ReportHours from "../components/input/ReportHours";
 import HoursTable from "../components/display/HoursTable";
-import {Col, Row} from "react-bootstrap";
-import Notification from "../components/elements/Notification";
-
-// import Notification from "../components/elements/Notification";
-
+import {Button, ButtonGroup, Col, Row} from "react-bootstrap";
+import Paper from "@material-ui/core/Paper";
 
 class StudentDashboard extends React.Component {
 
     render() {
 
-        return <Container>
-            <Jumbotron className="jumbotron2">
-                <h1>Welcome Back!</h1>
-                <p>
-                    Your progress
-                    <Container>
-                        <VProgressBar/>
-                    </Container>
-                </p>
+        return <Container className="student-page">
+            <Row area-label="top spacer">
+
+            </Row>
+            <Paper className="student-progress-profile">
                 <Row>
-                    <Col md={{span: 3}}>
-                        <Row>
-                            <UserPic/>
-                        </Row>
-                        <Row md={{offset: 1}}>
-                            <Notification/>
-                        </Row>
+                    <Col>
+                        <UserPic>
+
+                        </UserPic>
                     </Col>
-                    <Col md={{span: 8}}>
-                        <HoursTable/>
-                        <ReportHours/>
+                    <Col>
+                        Welcome Back, User!
                     </Col>
                 </Row>
+                <Container className="progress-bar" >
+                    <VProgressBar>
 
+                    </VProgressBar>
+                </Container>
+                <Row>
+                    <ButtonGroup class-name="student-buttons">
+                        <Button variant="secondary">Report Hours</Button>
+                        <Button variant="secondary">View Pending</Button>
+                        <Button variant="secondary">Notifications</Button>
+                    </ButtonGroup>
+                </Row>
+            </Paper>
+            <Row>
+                <HoursTable>
 
-            </Jumbotron>
-
-
+                </HoursTable>
+            </Row>
         </Container>
     }
 
