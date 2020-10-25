@@ -30,7 +30,7 @@ class UserManager(auth_models.BaseUserManager):
         user.save(using=self._db)
 
         role = extra_fields.get('role')
-
+        print('got here ' + str(role))
         # The if statements below check what the user's selected role is and creates
         # a corresponding database entry if necessary.
         if role == 0:  # Faculty

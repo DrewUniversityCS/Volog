@@ -14,6 +14,8 @@ from api.views import UserListView
 urlpatterns = [
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/students/', views.StudentListView.as_view()),
+    path('api/students/current/', views.CurrentUserView.as_view()),
+    path('api/students/current/hours/', views.CurrentUserHoursView.as_view()),
     path('api/mentors/', views.MentorListView.as_view()),
     path('api/users/', UserListView.as_view(), name='user_details')
 ]

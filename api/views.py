@@ -3,21 +3,22 @@ File Name: Views
 Purpose: Django views for rendering a variety of data.
 Comments:
 """
-
-from api.logistics.serializers import StudentSerializer, MentorSerializer
-from api.models import Student, Mentor
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from api.logistics.serializers import StudentSerializer, MentorSerializer, HourSerializer
+from api.models import Student, Mentor, HourInstance
 from rest_framework import generics, permissions
 
 from auth_backend.modules.user.models import BaseVologUser
 from auth_backend.modules.user.serializers import UserSerializer
 
 
-class StudentListView(generics.ListCreateAPIView):
+class StudentListView(generics.ListAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
 
-class MentorListView(generics.ListCreateAPIView):
+class MentorListView(generics.ListAPIView):
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer
 
@@ -29,3 +30,18 @@ class UserListView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = BaseVologUser.objects.all()
     serializer_class = UserSerializer
+
+
+class CurrentUserView(APIView):
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+
+class CurrentUserHoursView(generics.ListAPIView):
+    serializer_class = HourSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        student = Student.objects.filter(user=user)
+        return HourInstance.objects.filter(student=student)

@@ -6,19 +6,21 @@ import "../static/css/pages/studentPg.css"
 import HoursTable from "../components/display/HoursTable";
 import {Button, ButtonGroup, Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
-import {getHoursForStudent} from "../functions/services/api/getHoursForStudent";
+import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
+import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
 
 class StudentDashboard extends React.Component {
 
     state = {
+        userData: {},
         hours: [],
         complete: 0,
         pending: 0,
         notifications: [],
-        userData: [],
     }
 
     componentDidMount() {
+        getUserDataForStudent(this);
         getHoursForStudent(this);
     }
 
@@ -35,7 +37,7 @@ class StudentDashboard extends React.Component {
                         </UserPic>
                     </Col>
                     <Col>
-                        Welcome Back, User!
+                        Welcome Back, {this.state.userData.first_name} {this.state.userData.last_name} - {this.state.userData.student_id}!
                     </Col>
                 </Row>
                 <Container className="progress-bar">

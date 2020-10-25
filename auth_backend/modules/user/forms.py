@@ -27,7 +27,6 @@ class ProfileForm(forms.ModelForm):
             self.add_error('referral_code', 'Referral code is not valid or is already used!')
         else:
             del cleaned_data['referral_code']
-        print(cleaned_data)
         return self.cleaned_data
 
     @staticmethod
