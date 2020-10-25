@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './static/css/index.css';
-import PrototypeDashboard from "./pages/PrototypeDashboard";
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import NavBar from "./components/elements/NavBar";
@@ -24,9 +23,6 @@ const App = () => {
                     </Route>
                     <Route path="/app/student/">
                         <StudentDashboard/>
-                    </Route>
-                    <Route path="/app/dashboard">
-                        <PrototypeDashboard/>
                     </Route>
                 </Switch>
             </div>

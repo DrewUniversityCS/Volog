@@ -24,9 +24,6 @@ class NavBar extends React.Component {
                 <NavItem eventkey={1} href="/app/mentor">
                   <Nav.Link as={Link} to="/app/mentor" >Mentor</Nav.Link>
                 </NavItem>
-                <NavItem eventkey={1} href="/app/dashboard">
-                  <Nav.Link as={Link} to="/app/dashboard" >PrototypeDashboard</Nav.Link>
-                </NavItem>
                 <NavItem eventkey={1} href="/app/student">
                   <Nav.Link as={Link} to="/app/student" >Student</Nav.Link>
                 </NavItem>
