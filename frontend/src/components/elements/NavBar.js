@@ -19,16 +19,16 @@ class NavBar extends React.Component {
                 </Navbar.Brand>
 
                 <NavItem eventkey={1} href="/accounts/logout">
-                 <Nav.Link href="/accounts/logout">Logout</Nav.Link>
+                    <Nav.Link href="/accounts/logout">Logout</Nav.Link>
                 </NavItem>
                 <NavItem eventkey={1} href="/app/mentor">
-                  <Nav.Link as={Link} to="/app/mentor" >Mentor</Nav.Link>
+                    <Nav.Link as={Link} to="/app/mentor">Mentor</Nav.Link>
                 </NavItem>
                 <NavItem eventkey={1} href="/app/student">
-                  <Nav.Link as={Link} to="/app/student" >Student</Nav.Link>
+                    <Nav.Link as={Link} to="/app/student">Student</Nav.Link>
                 </NavItem>
                 <NavItem eventkey={1} href="/app/admin">
-                  <Nav.Link as={Link} to="/app/admin" >Faculty</Nav.Link>
+                    <Nav.Link as={Link} to="/app/admin">Faculty</Nav.Link>
                 </NavItem>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 

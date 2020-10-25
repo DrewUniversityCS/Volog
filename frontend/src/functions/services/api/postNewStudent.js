@@ -13,5 +13,7 @@ export const postNewStudent = (obj) => {
             class_standing: obj.state.class_standing,
             DAS_mentor: obj.state.DAS_mentor
         })
-    }).then(response => {return response.json()})
+    }).then(response => {
+        return response.json()
+    })
 }

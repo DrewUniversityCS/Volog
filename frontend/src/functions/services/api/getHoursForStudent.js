@@ -1,5 +1,5 @@
-export const getFullStudentList = (obj) => {
-    fetch("api/students/")
+export const getHoursForStudent = (obj) => {
+    fetch("api/students/details/")
         .then(response => response.json())
         .then(items => {
             obj.setState({items})

@@ -1,29 +1,35 @@
 import React, {Component} from 'react';
 import Table from 'react-bootstrap/Table';
-import Button from "react-bootstrap/Button";
 
 class HoursTable extends Component {
     render() {
+        const items = this.props.items.map(item => {
+            return (
+                <tr key={item.pk}>
+                    <td>{item.date_of_activity}</td>
+                    <td>{item.number_of_hours}</td>
+                    <td>{item.number_of_minutes}</td>
+                    <td>{item.type_of_hour}</td>
+                    <td>{item.learning_goal}</td>
+                    <td>{item.pending_status}</td>
+                </tr>
+            )
+        })
 
         return (
             <Table striped bordered hover>
                 <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Hours</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Organization Info</th>
-                    </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Hours</th>
+                    <th>Minutes</th>
+                    <th>Type</th>
+                    <th>Learning Goal</th>
+                    <th>Status</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>10/11/20</th>
-                        <th>5 hours 15 min</th>
-                        <th>Required</th>
-                        <th>Pending</th>
-                        <th>YMCA <Button>More Info</Button></th>
-                    </tr>
+                {items}
                 </tbody>
             </Table>
 

@@ -6,11 +6,23 @@ import "../static/css/pages/studentPg.css"
 import HoursTable from "../components/display/HoursTable";
 import {Button, ButtonGroup, Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
+import {getHoursForStudent} from "../functions/services/api/getHoursForStudent";
 
 class StudentDashboard extends React.Component {
 
-    render() {
+    state = {
+        hours: [],
+        complete: 0,
+        pending: 0,
+        notifications: [],
+        userData: [],
+    }
 
+    componentDidMount() {
+        getHoursForStudent(this);
+    }
+
+    render() {
         return <Container className="student-page">
             <Row area-label="top spacer">
 
@@ -26,7 +38,7 @@ class StudentDashboard extends React.Component {
                         Welcome Back, User!
                     </Col>
                 </Row>
-                <Container className="progress-bar" >
+                <Container className="progress-bar">
                     <VProgressBar>
 
                     </VProgressBar>
@@ -40,7 +52,7 @@ class StudentDashboard extends React.Component {
                 </Row>
             </Paper>
             <Row>
-                <HoursTable>
+                <HoursTable items={this.state.hours} updateState={this.updateState}>
 
                 </HoursTable>
             </Row>

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Button, Col, Form, Modal, Row, Container} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Button, Col, Container, Form, Modal, Row} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../static/css/components/add-student-form.css";
@@ -11,7 +11,6 @@ function ReportHours() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
 
 
     return (
@@ -28,7 +27,7 @@ function ReportHours() {
                 show={show} onHide={handleClose} animation={false}>
 
                 <Form className={"add-student-form"}>
-                    <Row md={{ offset: 1}}>
+                    <Row md={{offset: 1}}>
                         <Col>
                             <Form.Group>
                                 <Row>

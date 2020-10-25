@@ -16,15 +16,14 @@ class Notification extends Component {
     }
 
 
-
     render() {
-        return<Card>
+        return <Card>
             <Card.Header>Notifications </Card.Header>
             <ListGroup>
                 <ListGroup>
-                  <ListGroup.Item>Report Hours Approval</ListGroup.Item>
-                  <ListGroup.Item>Report Hours Approval</ListGroup.Item>
-                  <ListGroup.Item>Report Hours Approval</ListGroup.Item>
+                    <ListGroup.Item>Report Hours Approval</ListGroup.Item>
+                    <ListGroup.Item>Report Hours Approval</ListGroup.Item>
+                    <ListGroup.Item>Report Hours Approval</ListGroup.Item>
                 </ListGroup>
             </ListGroup>
         </Card>
