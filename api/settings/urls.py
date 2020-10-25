@@ -5,8 +5,8 @@ Comments:
 """
 
 from django.urls import include, path
-from api import views
 
+from api import views
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 from api.views import UserListView
