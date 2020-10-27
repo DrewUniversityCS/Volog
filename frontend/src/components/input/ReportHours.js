@@ -8,15 +8,12 @@ import "../../static/css/index.css";
 function ReportHours() {
 
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     return (
-
-        <Container>
-            <Button variant="primary" onClick={handleShow}>
+        <div>
+            <Button variant="secondary" onClick={handleShow}>
                 Report Hours
             </Button>
 
@@ -27,61 +24,16 @@ function ReportHours() {
                 show={show} onHide={handleClose} animation={false}>
 
                 <Form className={"add-student-form"}>
-                    <Row md={{offset: 1}}>
+                    <Row>
                         <Col>
                             <Form.Group>
+                                <Form.Label>Date of Activity</Form.Label>
                                 <Row>
-                                    <Form.Label>Date of Activity</Form.Label>
-                                </Row>
-                                <Row>
-                                    <DatePicker /*selected={this.state.date} onChange=
-                                                {date => this.state.date=date}*//>
+                                    <DatePicker/>
                                 </Row>
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group>
-                                <Form.Label>Organization</Form.Label>
-                                <Form.Control/>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <Col>
-                            <Form.Label> Adviser Contacts </Form.Label>
-                            <Form.Text className="text-muted">
-                                How can we contact the organization for further information concerning your
-                                service or future opportunities.
-                            </Form.Text>
-                        </Col>
-                    </Row>
-                    <Col>
-                        <Row>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Adviser Name</Form.Label>
-                                    <Form.Control/>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Number</Form.Label>
-                                    <Form.Control placeholder="(xxx)xxx-xxxx"/>
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control placeholder="example@volog.com"/>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                    </Col>
                     <Row>
                         <Col>
                             <Form.Group>
@@ -106,7 +58,7 @@ function ReportHours() {
                                             </Form.Control>
                                         </Col>
                                         <Col md={{span: 3}}>
-                                            <Form.Label>Min</Form.Label>
+                                            <Form.Label>Minutes</Form.Label>
                                             <Form.Control as="select">
                                                 <option>00</option>
                                                 <option>15</option>
@@ -124,14 +76,25 @@ function ReportHours() {
                             <Form.Group>
                                 <Form.Label>Type</Form.Label>
                                 <Form.Control as="select">
-                                    <option>required</option>
-                                    <option>pre-approved</option>
-                                    <option>other</option>
+                                    <option>Required</option>
+                                    <option>Pre-Approved</option>
+                                    <option>Other</option>
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                     </Row>
-
+                    <Row>
+                        <Col>
+                            <Form.Group>
+                                <Form.Label>Learning Goal</Form.Label>
+                                <Form.Control as="select">
+                                    <option>Confidence</option>
+                                    <option>Empathy</option>
+                                    <option>Explore</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col>
                             <Form.Group>
@@ -139,7 +102,6 @@ function ReportHours() {
                                 <Form.Control placeholder="Describe responsibilities and activities" as="textarea"
                                               rows="3">
                                 </Form.Control>
-
                             </Form.Group>
                         </Col>
                     </Row>
@@ -151,8 +113,7 @@ function ReportHours() {
                     </Col>
                 </Form>
             </Modal>
-
-        </Container>
+        </div>
     )
 }
 

@@ -4,10 +4,11 @@ import Container from 'react-bootstrap/Container';
 import UserPic from "../components/elements/Cards/userPic";
 import "../static/css/pages/studentPg.css"
 import HoursTable from "../components/display/HoursTable";
-import {Button, ButtonGroup, Col, Row} from "react-bootstrap";
+import {Button, Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
+import ReportHours from "../components/input/ReportHours";
 
 class StudentDashboard extends React.Component {
 
@@ -37,7 +38,8 @@ class StudentDashboard extends React.Component {
                         </UserPic>
                     </Col>
                     <Col>
-                        Welcome Back, {this.state.userData.first_name} {this.state.userData.last_name} - {this.state.userData.student_id}!
+                        Welcome
+                        Back, {this.state.userData.first_name} {this.state.userData.last_name} - {this.state.userData.student_id}!
                     </Col>
                 </Row>
                 <Container className="progress-bar">
@@ -46,11 +48,15 @@ class StudentDashboard extends React.Component {
                     </VProgressBar>
                 </Container>
                 <Row>
-                    <ButtonGroup class-name="student-buttons">
-                        <Button variant="secondary">Report Hours</Button>
+                    <Col align="center">
+                        <ReportHours/>
+                    </Col>
+                    <Col align="center">
                         <Button variant="secondary">View Pending</Button>
+                    </Col>
+                    <Col align="center">
                         <Button variant="secondary">Notifications</Button>
-                    </ButtonGroup>
+                    </Col>
                 </Row>
             </Paper>
             <Row>
