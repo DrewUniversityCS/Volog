@@ -47,3 +47,14 @@ class CurrentStudentHoursView(generics.ListAPIView):
         user = self.request.user
         student = Student.objects.filter(user=user)
         return HourInstance.objects.filter(student=student)
+
+
+class UserApiView(APIView):
+    """
+    API endpoint to retrieve user info
+    """
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)

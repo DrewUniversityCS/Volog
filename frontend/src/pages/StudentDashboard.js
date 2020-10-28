@@ -37,7 +37,7 @@ class StudentDashboard extends React.Component {
             <Paper className="student-progress-profile">
                 <Row>
                     <Col>
-                        <UserPic>
+                        <UserPic imgSrc={this.state.userData.user.profile_picture}>
 
                         </UserPic>
                     </Col>
