@@ -8,7 +8,7 @@ class UserPic extends React.Component {
         return (
             <Container>
                 <Image width={275} padding={0}
-                       src={imgSrc ? imgSrc : "https://www.insidemathematics.org/sites/default/files/2019-10/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"}
+                       src={imgSrc ? imgSrc : "http://winkeyecare.com/wp-content/uploads/2013/03/Empty-Profile-Picture-450x450.jpg"}
                        roundedCircle/>
             </Container>
         )

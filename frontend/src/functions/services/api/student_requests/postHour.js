@@ -1,4 +1,4 @@
-export const postNewStudent = (obj) => {
+export const postHour = (obj) => {
     fetch("api/students/", {
         method: 'post',
         headers: {

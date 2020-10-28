@@ -64,7 +64,9 @@ class StudentDashboard extends React.Component {
                 </Row>
             </Paper>
             <Row>
+                <HoursTable items={this.state.hours}>
 
+                </HoursTable>
             </Row>
         </Container>
     }

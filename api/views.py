@@ -45,8 +45,9 @@ class CurrentStudentHoursView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        student = Student.objects.filter(user=user)
-        return HourInstance.objects.filter(student=student)
+        student = Student.objects.filter(user=user)[0]
+        hours = HourInstance.objects.filter(student=student)
+        return hours.all()
 
 
 class UserApiView(APIView):

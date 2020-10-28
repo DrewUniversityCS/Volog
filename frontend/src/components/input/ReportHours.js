@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Col, Container, Form, Modal, Row} from "react-bootstrap";
+import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../static/css/components/add-student-form.css";

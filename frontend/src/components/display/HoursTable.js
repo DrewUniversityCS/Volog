@@ -3,18 +3,24 @@ import Table from 'react-bootstrap/Table';
 
 class HoursTable extends Component {
     render() {
-        const items = this.props.items.map(item => {
-            return (
-                <tr key={item.pk}>
-                    <td>{item.date_of_activity}</td>
-                    <td>{item.number_of_hours}</td>
-                    <td>{item.number_of_minutes}</td>
-                    <td>{item.type_of_hour}</td>
-                    <td>{item.learning_goal}</td>
-                    <td>{item.pending_status}</td>
-                </tr>
-            )
-        })
+        let items;
+        if (this.props.items && !!this.props.items.length) {
+            items = this.props.items.map(item => {
+                return (
+                    <tr key={item.pk}>
+                        <td>{item.date_of_activity}</td>
+                        <td>{item.number_of_hours}</td>
+                        <td>{item.number_of_minutes}</td>
+                        <td>{item.type_of_hour}</td>
+                        <td>{item.learning_goal}</td>
+                        <td>{item.pending_status}</td>
+                    </tr>
+                )
+            })
+        }else{
+            items = []
+        }
+
 
         return (
             <Table striped bordered hover>
