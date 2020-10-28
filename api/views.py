@@ -32,13 +32,15 @@ class UserListView(generics.ListCreateAPIView):
     serializer_class = UserSerializer
 
 
-class CurrentUserView(APIView):
+class CurrentStudentView(APIView):
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        student = Student.objects.filter(user=self.request.user)[0]
+        print(student)
+        serializer = StudentSerializer(student)
         return Response(serializer.data)
 
 
-class CurrentUserHoursView(generics.ListAPIView):
+class CurrentStudentHoursView(generics.ListAPIView):
     serializer_class = HourSerializer
 
     def get_queryset(self):

@@ -13,8 +13,12 @@ import ReportHours from "../components/input/ReportHours";
 class StudentDashboard extends React.Component {
 
     state = {
-        userData: {},
-        hours: [],
+        userData: {
+            user: {},
+            student_id: '',
+            class_standing: ''
+        },
+        hours: {},
         complete: 0,
         pending: 0,
         notifications: [],
@@ -39,7 +43,7 @@ class StudentDashboard extends React.Component {
                     </Col>
                     <Col>
                         Welcome
-                        Back, {this.state.userData.first_name} {this.state.userData.last_name} - {this.state.userData.student_id}!
+                        Back, {this.state.userData.user.first_name} {this.state.userData.user.last_name} - {this.state.userData.student_id}!
                     </Col>
                 </Row>
                 <Container className="progress-bar">
@@ -60,9 +64,7 @@ class StudentDashboard extends React.Component {
                 </Row>
             </Paper>
             <Row>
-                <HoursTable items={this.state.hours} updateState={this.updateState}>
 
-                </HoursTable>
             </Row>
         </Container>
     }
