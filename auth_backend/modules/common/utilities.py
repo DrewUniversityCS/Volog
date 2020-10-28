@@ -1,3 +1,9 @@
+"""
+File Name: Utilities
+Purpose: Various utilities and functions not classified otherwise
+Comments:
+"""
+
 import uuid
 
 from django.conf import settings
@@ -12,7 +18,7 @@ def generate_referral_code():
 
 def send_email(subject, template, context, to):
     """
-    method to fill details of the email and user to whom email will be send and send it
+    Function to fill details of the email and user to whom email will be send and send it
     """
     msg = EmailMultiAlternatives(
         subject=subject, body=renderer('{template}.txt'.format(template=template), context),

@@ -1,49 +1,73 @@
 import React from "react";
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
 import UserPic from "../components/elements/Cards/userPic";
 import "../static/css/pages/studentPg.css"
-import ReportHours from "../components/input/ReportHours";
 import HoursTable from "../components/display/HoursTable";
-import {Col, Row} from "react-bootstrap";
-import Notification from "../components/elements/Notification";
-
-// import Notification from "../components/elements/Notification";
-
+import {Button, Col, Row} from "react-bootstrap";
+import Paper from "@material-ui/core/Paper";
+import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
+import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
+import ReportHours from "../components/input/ReportHours";
 
 class StudentDashboard extends React.Component {
 
-    render() {
+    state = {
+        userData: {
+            user: {},
+            student_id: '',
+            class_standing: ''
+        },
+        hours: {},
+        complete: 0,
+        pending: 0,
+        notifications: [],
+    }
 
-        return <Container>
-            <Jumbotron className="jumbotron2">
-                <h1>Welcome Back!</h1>
-                <p>
-                    Your progress
-                    <Container>
-                        <VProgressBar/>
-                    </Container>
-                </p>
+    componentDidMount() {
+        getUserDataForStudent(this);
+        getHoursForStudent(this);
+    }
+
+    render() {
+        return <Container className="student-page">
+            <Row area-label="top spacer">
+
+            </Row>
+            <Paper className="student-progress-profile">
                 <Row>
-                    <Col md={{span: 3}}>
-                        <Row>
-                            <UserPic/>
-                        </Row>
-                        <Row md={{offset: 1}}>
-                            <Notification/>
-                        </Row>
+                    <Col>
+                        <UserPic imgSrc={this.state.userData.user.profile_picture}>
+
+                        </UserPic>
                     </Col>
-                    <Col md={{span: 8}}>
-                        <HoursTable/>
-                        <ReportHours/>
+                    <Col>
+                        Welcome
+                        Back, {this.state.userData.user.first_name} {this.state.userData.user.last_name} - {this.state.userData.student_id}!
                     </Col>
                 </Row>
+                <Container className="progress-bar">
+                    <VProgressBar>
 
+                    </VProgressBar>
+                </Container>
+                <Row>
+                    <Col align="center">
+                        <ReportHours/>
+                    </Col>
+                    <Col align="center">
+                        <Button variant="secondary">View Pending</Button>
+                    </Col>
+                    <Col align="center">
+                        <Button variant="secondary">Notifications</Button>
+                    </Col>
+                </Row>
+            </Paper>
+            <Row>
+                <HoursTable items={this.state.hours}>
 
-            </Jumbotron>
-
-
+                </HoursTable>
+            </Row>
         </Container>
     }
 

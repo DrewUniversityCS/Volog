@@ -1,3 +1,9 @@
+"""
+File Name: Forms
+Purpose: Classes for creating django input forms.
+Comments:
+"""
+
 from django import forms
 from auth_backend.modules.user.models import BaseVologUser, Referral
 from django import forms
@@ -56,3 +62,17 @@ class ProfileForm(forms.ModelForm):
             return False
 
         return False
+
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('student_id', 'class_standing', 'DAS_mentor')
+        required = ('student_id', 'class_standing', 'DAS_mentor')
+
+
+class MentorForm(forms.ModelForm):
+    class Meta:
+        model = Mentor
+        fields = ()
+        required = ()

@@ -1,3 +1,9 @@
+"""
+File Name: Choice Enums
+Purpose: Essentially a collection of constants, they are further improved by inheriting from an Enum class.
+Comments:
+"""
+
 from enum import Enum
 
 

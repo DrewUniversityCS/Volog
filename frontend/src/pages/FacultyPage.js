@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Student from './Faculty/student'
-import SideNav from './Faculty/sideNav'
+import Student from './Faculty/student/studentsIndex';
+import SideNav from './Faculty/sideNav';
 
 class Admin extends Component {
     constructor(props) {

@@ -1,1 +1,118 @@
-[{}]
+[
+  {
+    "model": "user.basevologuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$ffEPckKIHDtA$SYM/4U1MbgWHRExAh2+b5USk1nL2XnAR3+HQGXizqt4=",
+      "last_login": "2020-10-23T20:56:46.174Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T20:57:49.282Z",
+      "updated_at": "2020-10-23T20:57:49.282Z",
+      "first_name": "David",
+      "last_name": "Nesterov-Rappoport",
+      "email": "dnesterovrappopTEST@drew.edu",
+      "role": 1,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.basevologuser",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$bgzSwUgoKhJl$SVrlpD/5+YArdcqHt7bnH3ekC+CR8Cfd73S6n+C3VZw=",
+      "last_login": "2020-10-23T20:56:46.174Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T21:00:17.072Z",
+      "updated_at": "2020-10-23T21:00:17.072Z",
+      "first_name": "Mahmoud",
+      "last_name": "Alminawi",
+      "email": "malminawiTEST@drew.edu",
+      "role": 1,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.basevologuser",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$hgz1PZMkBQ9u$3l/SZSe/W9PuSdom15Y+RCz+k39CQr8vNNYwWh1QcV4=",
+      "last_login": "2020-10-23T20:56:46.174Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T21:01:07.191Z",
+      "updated_at": "2020-10-23T21:01:07.191Z",
+      "first_name": "Deja",
+      "last_name": "Santana",
+      "email": "dsantanaTEST@drew.edu",
+      "role": 1,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.basevologuser",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$xdGZtX7mRPjY$5P51q6tFmfiITRP5MXvmIM7U2ugkD+djBcn29BVYF1A=",
+      "last_login": "2020-10-23T20:56:46.174Z",
+      "is_superuser": false,
+      "created_at": "2020-10-23T21:02:10.656Z",
+      "updated_at": "2020-10-23T21:02:10.656Z",
+      "first_name": "Perrfection",
+      "last_name": "Peterkin",
+      "email": "ppeterkinTEST@drew.edu",
+      "role": 1,
+      "is_staff": false,
+      "is_profile_complete": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "student_id": 1000001,
+      "class_standing": "Junior",
+      "DAS_mentor": null
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "student_id": 1000002,
+      "class_standing": "Senior",
+      "DAS_mentor": null
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "student_id": 1000003,
+      "class_standing": "Freshman",
+      "DAS_mentor": null
+    }
+  },
+  {
+    "model": "api.student",
+    "pk": 4,
+    "fields": {
+      "user": 5,
+      "student_id": 1000004,
+      "class_standing": "Sophomore",
+      "DAS_mentor": null
+    }
+  }
+]

@@ -1,3 +1,9 @@
+"""
+File Name: Urls
+Purpose: Url paths this application uses.
+Comments:
+"""
+
 from django.urls import re_path
 
 from .views import AppView

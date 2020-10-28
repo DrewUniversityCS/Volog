@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Col, Form, Row} from 'react-bootstrap';
-import {postNewStudent} from "../../functions/services/api/postNewStudent";
+import {postNewStudent} from "../../functions/services/api/student_requests/postNewStudent";
 import Paper from "@material-ui/core/Paper";
 import "../../static/css/components/add-student-form.css";
 
