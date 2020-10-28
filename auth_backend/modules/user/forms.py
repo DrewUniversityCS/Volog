@@ -5,7 +5,9 @@ Comments:
 """
 
 from django import forms
-from auth_backend.modules.user.models import BaseVologUser, Referral
+
+from api.models import Student, Mentor
+from auth_backend.modules.user.models import Referral, BaseVologUser
 
 
 class ProfileForm(forms.ModelForm):
@@ -13,9 +15,6 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = BaseVologUser
-        widgets = {
-            'graduation_class': forms.DateInput(attrs={'class': 'datepicker'}),
-        }
         fields = ('first_name', 'last_name', 'role')
         required = ('first_name', 'last_name', 'role')
 
@@ -42,3 +41,17 @@ class ProfileForm(forms.ModelForm):
             return False
 
         return False
+
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('student_id', 'class_standing', 'DAS_mentor')
+        required = ('student_id', 'class_standing', 'DAS_mentor')
+
+
+class MentorForm(forms.ModelForm):
+    class Meta:
+        model = Mentor
+        fields = ()
+        required = ()

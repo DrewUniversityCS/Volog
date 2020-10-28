@@ -19,22 +19,5 @@
                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
             </div>
         </form>
-        <div class="flex items-center justify-between">
-            <a href="{% url 'account_logout' %}"
-               class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">Logout
-                and complete later</a>
-        </div>
-
     </div>
-{% endblock %}
-{% block js %}
-    <script>
-        $(function () {
-            $(".datepicker").datepicker({
-                changeMonth: true, changeYear: true, yearRange: "2018:2030",
-                // You can put more options here.
-
-            });
-        });
-    </script>
 {% endblock %}
