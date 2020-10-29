@@ -36,6 +36,7 @@ class ProfileCreateView(FormView):
 class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
     template_name = "user/profile_create_success.html"
 
+
 class UserApiView(APIView):
     """
     API endpoint to retrieve user info

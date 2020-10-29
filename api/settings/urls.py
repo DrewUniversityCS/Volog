@@ -18,5 +18,6 @@ urlpatterns = [
     path('api/students/current/hours/', views.CurrentStudentHoursView.as_view()),
     path('api/mentors/', views.MentorListView.as_view()),
     path('api/users/', UserListView.as_view()),
+    path('api/users/current', UserApiView.as_view()),
     path('api/details/', UserApiView.as_view())
 ]
