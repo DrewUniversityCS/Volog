@@ -1,13 +1,22 @@
-.jumbotron2 {
-    Background-color: #ffffff;
-    margin-top: 15px;
-    padding: 20px;
+.student-progress-profile{
+    padding: 25px 50px 25px;
+    margin-top: 25px;
 }
-p {
-    Background-color: #ffffff;
-    color: black;
-    Font-family: Roboto, sans-serif;
-    Font-size: 19px;
-    margin: 50px;
-    padding-top: 20px;
+
+.progress-bar{
+    align-items: center;
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+div.btn-group {
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+}
+
+a {
+    float: left;
 }

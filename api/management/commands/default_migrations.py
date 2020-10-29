@@ -13,7 +13,7 @@ class Command(BaseCommand):
     This will make a bunch of migrations at once. Makes ya type less - good stuff.
     """
 
-    apps_to_migrate = ['api', 'user']
+    apps_to_migrate = ['api', 'user', 'superAdmin']
 
     def handle(self, *args, **options):
         self._load_data()

@@ -2,54 +2,57 @@
 {% block body %}
 
     <div class="flex flex-col p-16 ">
-        <form method="post" class="bg-green-700 flex p-8 justify-center">{% csrf_token %}
-            <div class="font-medium flex text-2xl">
-                {% for field in form %}
-                    <div class="fieldWrapper text-white flex ml-2">
-                        {{ field.errors }}
-                        {{ field.label_tag }}
+    <form method="post" class="bg-green-700 flex p-8 justify-center">{% csrf_token %}
+        <div class="font-medium flex text-2xl">
+            {% for field in form %}
+                <div class="fieldWrapper text-white flex ml-2">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
 
-                        <span class="text-black ml-2">
+                    <span class="text-black ml-2">
                             {{ field }}</span>
-                    </div>
+                </div>
 
-                {% endfor %}
-            </div>
-            <input type="submit" value="Save" class=" ml-10 bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        </form>
-        <hr/>
-        <form method="POST" action="{% url 'superAdmin:bulk_invite' %}" enctype="multipart/form-data" class="bg-green-700 flex p-8 justify-center">
-            {% csrf_token %}
-           <div class="flex items-center justify-center bg-grey-lighter">
-                <label class="w-30 flex flex-col items-center px-2 py-2 bg-white text-green rounded-lg shadow-lg tracking-wide uppercase border border-green cursor-pointer hover:bg-green hover:text-green-500">
-                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                    </svg>
-                    <span class="mt-2 text-base leading-normal">Bulk Invite</span>
-                    <input type='file'  name="invites"/>
-                </label>
-            </div>
-            <input type="submit" value="Save" class=" ml-10 bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        </form>
-        <table class="table-fixed bg-white text-center">
-            <thead>
-                <tr>
-                    <th class="w-1/2 p-6 bg-gray-300 w-1/6">Email</th>
-                    <th class="w-1/2 p-6 bg-gray-300 w-1/6">Role</th>
-                    <th class="w-1/4 p-6 bg-gray-300 ">Refferal Code</th>
-                    <th class="w-1/4 p-6 bg-gray-300 w-1/6 ">Is Used</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for referral in referrals %}
-                    <tr class="hover:bg-gray-300 ">
-                        <td class="border p-6">{{referral.email}}</td>
-                        <td class="border p-6">{{referral.get_role_display}}</td>
-                        <td class="border p-6">{{ referral.code }}</td>
-                        <td class="border p-6">{% if referral.is_used %}Yes{% else %}No{% endif %}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endblock %}
+            {% endfor %}
+        </div>
+        <input type="submit" value="Save"
+               class=" ml-10 bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+    </form>
+    <hr/>
+    <form method="POST" action="{% url 'superAdmin:bulk_invite' %}" enctype="multipart/form-data"
+          class="bg-green-700 flex p-8 justify-center">
+        {% csrf_token %}
+        <div class="flex items-center justify-center bg-grey-lighter">
+            <label class="w-30 flex flex-col items-center px-2 py-2 bg-white text-green rounded-lg shadow-lg tracking-wide uppercase border border-green cursor-pointer hover:bg-green hover:text-green-500">
+                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/>
+                </svg>
+                <span class="mt-2 text-base leading-normal">Bulk Invite</span>
+                <input type='file' name="invites"/>
+            </label>
+        </div>
+        <input type="submit" value="Save"
+               class=" ml-10 bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+    </form>
+    <table class="table-fixed bg-white text-center">
+        <thead>
+        <tr>
+            <th class="w-1/2 p-6 bg-gray-300 w-1/6">Email</th>
+            <th class="w-1/2 p-6 bg-gray-300 w-1/6">Role</th>
+            <th class="w-1/4 p-6 bg-gray-300 ">Refferal Code</th>
+            <th class="w-1/4 p-6 bg-gray-300 w-1/6 ">Is Used</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for referral in referrals %}
+            <tr class="hover:bg-gray-300 ">
+                <td class="border p-6">{{ referral.email }}</td>
+                <td class="border p-6">{{ referral.get_role_display }}</td>
+                <td class="border p-6">{{ referral.code }}</td>
+                <td class="border p-6">{% if referral.is_used %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
 </div>

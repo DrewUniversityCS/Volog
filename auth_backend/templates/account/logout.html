@@ -5,21 +5,22 @@
 
 {% block content %}
 
-<!-- same as login -->
+    <!-- same as login -->
 
 
-  <div class="h-screen p-10 text-center w-full">
-    <div class="mt-48">
-      <h1 class="text-6xl font-bold text-4xl text-red-700 uppercase">{% trans "Sign Out" %}</h1>
-      <p class="text-2xl">{% trans 'Are you sure you want to sign out?' %}</p>
-      <form method="post" action="{% url 'account_logout' %}">
-        {% csrf_token %}
-        {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-        {% endif %}
-        <button type="submit" class="mt-4 bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{% trans 'Sign Out' %}</button>
-      </form>
+    <div class="h-screen p-10 text-center w-full">
+        <div class="mt-48">
+            <h1 class="text-6xl font-bold text-4xl text-red-700 uppercase">{% trans "Sign Out" %}</h1>
+            <p class="text-2xl">{% trans 'Are you sure you want to sign out?' %}</p>
+            <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button type="submit"
+                        class="mt-4 bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{% trans 'Sign Out' %}</button>
+            </form>
 
+        </div>
     </div>
-  </div>
 {% endblock %}
