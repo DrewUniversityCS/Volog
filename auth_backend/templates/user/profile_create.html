@@ -1,36 +1,62 @@
+
 {% extends 'student_base.html' %}
 {% block body %}
-  <div class="max-w-xs mt-10 mx-auto w-full h-screen">
+<div class="max-w-xs mt-10 mx-auto w-full h-screen">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="post" id="createdUser">
-      {% csrf_token %}
-      {% for field in form %}
+        {% csrf_token %}
+        {% for field in form %}
         {{ field.errors }}
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-            {{ field.label_tag }}
-          </label>
-          <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            {{ field }}
-          </div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                {{ field.label_tag }}
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                {{ field }}
+            </div>
         </div>
-      {% endfor %}
+        {% endfor %}
 
-      <div class="flex items-center justify-between">
-        <input type="submit" value="Save" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
-      </div>
-
+        <div class="flex items-center justify-between">
+            <input type="submit" value="Save"
+                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
+        </div>
     </form>
+    <div class="flex items-center justify-between">
+        <a href="{% url 'account_logout' %}"
+           class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">Logout
+            and complete later, all entries wont be saved</a>
+    </div>
 
-  </div>
+</div>
 {% endblock %}
 {% block js %}
-  <script>
-    $(function () {
-      $(".datepicker").datepicker({
-        changeMonth: true, changeYear: true, yearRange: "2018:2030",
-        // You can put more options here.
+<script>
+    role = document.getElementsByClassName('user_role')[0];
+    student_fields = document.getElementsByClassName('student_form');
+    if (role.value == 1) {
+        for (var i = 0; i < student_fields.length; i++) {
+            student_fields.item(i).parentElement.parentElement.hidden = false
+            student_fields.item(i).required = false
+        }
+    } else {
+        for (var i = 0; i < student_fields.length; i++) {
+            student_fields.item(i).parentElement.parentElement.hidden = true
+            student_fields.item(i).required = false
+        }
+    }
+    role.addEventListener('change', function check_field_value() {
+        if (role.value == 1) {
+            for (var i = 0; i < student_fields.length; i++) {
+                student_fields.item(i).parentElement.parentElement.hidden = false
+                student_fields.item(i).required = false
+            }
+        } else {
+            for (var i = 0; i < student_fields.length; i++) {
+                student_fields.item(i).parentElement.parentElement.hidden = true
+                student_fields.item(i).required = false
+            }
+        }
 
-      });
-    });
-  </script>
+    })
+</script>
 {% endblock %}

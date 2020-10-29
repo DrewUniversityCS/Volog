@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {
-    Card, Button
-} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import Container from "@material-ui/core/Container";
 import "../../../static/css/pages/mentorPg.css";
 
@@ -16,7 +14,7 @@ class GroupCard extends Component {
 
 
     render() {
-        return <Container >
+        return <Container>
             <Card className="groupCard" style={{width: '18rem'}}>
                 <Card.Body>
                     <Card.Title>Mentor: Deja </Card.Title>

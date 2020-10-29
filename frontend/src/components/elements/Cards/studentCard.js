@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import VProgressBar from "../ProgressBar";
-import {
-  Card, Button
-} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import {Container} from "@material-ui/core";
 import "../../../static/css/pages/mentorPg.css"
 
@@ -15,17 +13,17 @@ class StudentCard extends Component {
 
     }
 
-    render(){
-    return<Container>
-      <Card style={{ width: '45rem' }}>
-        <Card.Body>
-          <Card.Title> Sam </Card.Title>
-          <VProgressBar/>
-          <Button>See More</Button>
-        </Card.Body>
-      </Card>
-    </Container>
-  }
+    render() {
+        return <Container>
+            <Card style={{width: '45rem'}}>
+                <Card.Body>
+                    <Card.Title> Mahmoud </Card.Title>
+                    <VProgressBar/>
+                    <Button>See More</Button>
+                </Card.Body>
+            </Card>
+        </Container>
+    }
 }
 
 export default StudentCard;
