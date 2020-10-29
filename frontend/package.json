@@ -27,16 +27,17 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "bootstrap": "^4.5.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
+    "react-csv": "^2.0.3",
+    "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",
     "react-loader": "^2.4.7",
-    "react-datepicker": "^3.3.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "@material-ui/core": "^4.11.0",
-    "bootstrap": "^4.5.3",
-    "react-csv": "^2.0.3"
+    "react-scripts": "3.4.3"
   },
   "eslintConfig": {
     "extends": "react-app"

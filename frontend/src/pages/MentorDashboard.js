@@ -1,12 +1,11 @@
 import React from "react";
-import GroupCard from '../components/elements/Cards/groupCard';
-import VProgressBar from '../components/elements/ProgressBar'
-// import Notification from "../components/elements/Notification";
-import StudentCard from "../components/elements/Cards/studentCard";
+
+import Notification from "../components/elements/Notification";
 import Container from "@material-ui/core/Container";
 import {Col, Jumbotron, Row} from "react-bootstrap";
 import "../static/css/pages/mentorPg.css";
-import Notification from "../components/elements/Notification";
+
+import Mentor from './Mentor'
 
 class MentorDashboard extends React.Component {
 
@@ -41,48 +40,13 @@ class MentorDashboard extends React.Component {
 
     render() {
         if (this.state.isLoading) return <h1>Loading...</h1>;
-        return <Container>
-            <Jumbotron className="jumbotron1">
-                <Row>
-                    <Col md={{span: 3}}>
-                        <Row>
-                            <h1>Welcome Back!</h1>
-                        </Row>
-                        <Row>
-                            <GroupCard/>
-                        </Row>
-                        <Row md={{offset: 1}}>
-                            <Notification/>
-                        </Row>
-                    </Col>
-
-                    <Col>
-                        <Row>
-                            <Container>
-                                <p className="progressBarr">
-                                    Group cumulative progress
-                                </p>
-
-                                <VProgressBar className="VProgressBar"/>
-                            </Container>
-                        </Row>
-                        <Col>
-                            <Row>
-                                <StudentCard/>
-                            </Row>
-                            <Row>
-                                <StudentCard/>
-                            </Row>
-                            <Row>
-                                <StudentCard/>
-                            </Row>
-                        </Col>
-                    </Col>
-
-                </Row>
-
-            </Jumbotron>
-        </Container>
+        return <div style={{background: "#72be72"}} className={"my-auto overflow-hidden pt-3"}>
+            <Container >
+                <Jumbotron className="jumbotron1 shadow-md">
+                    <Mentor/>
+                </Jumbotron>
+            </Container>
+        </div>
     }
 }
 

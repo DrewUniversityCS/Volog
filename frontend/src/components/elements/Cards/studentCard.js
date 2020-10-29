@@ -17,7 +17,7 @@ class StudentCard extends Component {
         return <Container>
             <Card style={{width: '45rem'}}>
                 <Card.Body>
-                    <Card.Title> Sam </Card.Title>
+                    <Card.Title> Mahmoud </Card.Title>
                     <VProgressBar/>
                     <Button>See More</Button>
                 </Card.Body>
