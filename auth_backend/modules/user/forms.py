@@ -5,8 +5,6 @@ Comments:
 """
 
 from django import forms
-from auth_backend.modules.user.models import BaseVologUser, Referral
-from django import forms
 
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES
 from api.models import Student, Mentor
@@ -35,18 +33,17 @@ class ProfileForm(forms.ModelForm):
             self.add_error('referral_code', 'Referral code is not valid or is already used!')
         else:
             del cleaned_data['referral_code']
-
-        if role == 0:  # Faculty
-            pass
-        elif role == 1:  # Student
-            sid = cleaned_data['student_id']
-            cl_stand = cleaned_data['class_standing']
-            mentor = cleaned_data['mentor']
-            student = Student.objects.create(student_id=sid, class_standing=cl_stand, DAS_mentor=mentor, user=self.instance)
-            student.save()
-        elif role == 2:  # Mentor
-            mentor = Mentor.objects.create(user=self.instance)
-            mentor.save()
+            if role == 0:  # Faculty
+                pass
+            elif role == 1:  # Student
+                sid = cleaned_data['student_id']
+                cl_stand = cleaned_data['class_standing']
+                mentor = cleaned_data['mentor']
+                student = Student.objects.create(student_id=sid, class_standing=cl_stand, DAS_mentor=mentor, user=self.instance)
+                student.save()
+            elif role == 2:  # Mentor
+                mentor = Mentor.objects.create(user=self.instance)
+                mentor.save()
         return self.cleaned_data
 
     @staticmethod
@@ -54,7 +51,7 @@ class ProfileForm(forms.ModelForm):
         """ Validate and update referral code status """
         try:
             code = Referral.objects.get(code=referral_code)
-            if code.email == email and code.role == role and not code.is_used:
+            if code.email.lower() == email.lower() and code.role == role and not code.is_used:
                 code.is_used = True
                 code.save()
                 return True
@@ -62,17 +59,3 @@ class ProfileForm(forms.ModelForm):
             return False
 
         return False
-
-
-class StudentForm(forms.ModelForm):
-    class Meta:
-        model = Student
-        fields = ('student_id', 'class_standing', 'DAS_mentor')
-        required = ('student_id', 'class_standing', 'DAS_mentor')
-
-
-class MentorForm(forms.ModelForm):
-    class Meta:
-        model = Mentor
-        fields = ()
-        required = ()
