@@ -1,23 +1,25 @@
-from rest_framework import serializers
+"""
+File Name: Serializers
+Purpose: Serializers for translating database data before sending it over the API.
+Comments:
+"""
 
-from api.models import Student, Mentor, TimeMaster
+from rest_framework import serializers
+from auth_backend.modules.user.serializers import UserSerializer
+from api.models import Student, Mentor
 
 
 class MentorSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Mentor
-        fields = ('first_name', 'last_name', 'email')
-
-
-class TimeMasterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TimeMaster
-        fields = ['percent_complete', 'student']
+        fields = ['user']
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    hour_sheet = TimeMasterSerializer(read_only=True)
+    user = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name', 'student_id', 'email', 'class_standing', 'DAS_mentor', 'hour_sheet']
+        fields = ['user', 'student_id', 'class_standing']

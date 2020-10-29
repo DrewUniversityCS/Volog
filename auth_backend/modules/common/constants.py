@@ -1,3 +1,9 @@
+"""
+File Name: Constants
+Purpose: Constants this application uses
+Comments:
+"""
+
 import collections
 
 ROLE = collections.namedtuple(

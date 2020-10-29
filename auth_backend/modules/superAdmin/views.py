@@ -1,11 +1,14 @@
-import pandas as pd
+"""
+File Name: Views
+Purpose: Django views for rendering a variety of data.
+Comments:
+"""
 
-from django.views.generic.edit import FormView
 from django.shortcuts import redirect, reverse
-
+from django.views.generic.edit import FormView
+from pandas import read_csv
 from rest_framework import (
     viewsets as rest_viewsets,
-    views as rest_views,
     filters as rest_filters,
     permissions as rest_permissions,
     pagination as rest_pagination
@@ -13,11 +16,11 @@ from rest_framework import (
 
 from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.common.mixins import LoginRequiredMixin, AdminRequiredMixin
+from auth_backend.modules.superAdmin.admin_permissions import AdminRequired
+from auth_backend.modules.superAdmin.forms import ReferralCreateForm
 from auth_backend.modules.user.models import Referral, BaseVologUser
 from auth_backend.modules.user.serializers import UserSerializer
 
-from .forms import ReferralCreateForm
-from .admin_permissions import AdminRequired
 
 class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
     template_name = 'superAdmin/referral_create.html'
@@ -35,10 +38,12 @@ class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
         })
         return context
 
+
 class UserView(rest_viewsets.ModelViewSet):
     """
-    User list and detial view
+    User list and detail view
     """
+
     serializer_class = UserSerializer
     permission_classes = (
         rest_permissions.IsAuthenticated, AdminRequired,
@@ -47,7 +52,7 @@ class UserView(rest_viewsets.ModelViewSet):
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter
     ]
-    search_fields = ('email', 'first_name','school_id')
+    search_fields = ('email', 'first_name')
     pagination_class = rest_pagination.PageNumberPagination
     ordering = ('-created_at',)
 
@@ -57,16 +62,16 @@ class UserView(rest_viewsets.ModelViewSet):
         if role == 'student':
             query = query.filter(role=common_constants.ROLE.STUDENT)
         elif role == 'Admin':
-            query = query.filter(role=common_constants.ROLE.FACULTY)
+            query = query.filter(role=common_constants.ROLE.ADMIN)
         elif role == 'mentor':
-            query = query.filter(role=common_constants.ROLE.MENTOR)
+            query = query.filter(role=common_constants.ROLE.TEACHER)
         return query
 
 
 def bulk_invite(request):
     if request.method == 'POST':
         file = request.FILES['invites']
-        reader = pd.read_csv(file)
+        reader = read_csv(file)
         for ind, value in reader.iterrows():
             email = value['email']
             role = value['role']

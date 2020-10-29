@@ -1,5 +1,11 @@
+"""
+File Name: Forms
+Purpose: Classes for creating django input forms.
+Comments:
+"""
+
 from django import forms
-from .models import BaseVologUser, Referral
+from auth_backend.modules.user.models import BaseVologUser, Referral
 
 
 class ProfileForm(forms.ModelForm):

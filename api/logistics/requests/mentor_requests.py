@@ -1,22 +1,29 @@
+"""
+File Name: Mentor Requests
+Purpose: API requests for interacting with and manipulating Mentor database data.
+Comments:
+"""
+
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from api.models import Student
-from api.logistics.serializers import StudentSerializer
+
+from api.logistics.serializers import MentorSerializer
+from api.models import Mentor
 
 
 @api_view(['GET', 'POST'])
-def student_list(request):
+def mentor_list(request):
     """
-    List all students, or create a new student.
+    List all mentors, or create a new mentor.
     """
     if request.method == 'GET':
-        students = Student.objects.all()
-        serializer = StudentSerializer(students, many=True)
+        mentors = Mentor.objects.all()
+        serializer = MentorSerializer(mentors, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = StudentSerializer(data=request.data)
+        serializer = MentorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -24,26 +31,26 @@ def student_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def student_detail(request, pk):
+def mentor_detail(request, pk):
     """
-    Retrieve, update or delete a student.
+    Retrieve, update or delete a mentor.
     """
     try:
-        student = Student.objects.get(pk=pk)
-    except Student.DoesNotExist:
+        mentor = Mentor.objects.get(pk=pk)
+    except Mentor.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = StudentSerializer(student)
+        serializer = MentorSerializer(mentor)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = StudentSerializer(student, data=request.data)
+        serializer = MentorSerializer(mentor, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        student.delete()
+        mentor.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

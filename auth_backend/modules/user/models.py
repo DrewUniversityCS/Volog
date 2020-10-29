@@ -1,15 +1,21 @@
+"""
+File Name: Models
+Purpose: Database models this application uses.
+Comments:
+"""
+
 from django.contrib.auth import models as auth_models
+from django.core.validators import EmailValidator
 from django.db import models
 from django.db.models.signals import post_save
 
-from django.core.validators import EmailValidator
+from api.models import Student, Mentor
 from auth_backend.modules.common import (
     constants as common_constants,
     models as common_models,
-    utils as common_utils
+    utilities as common_utils
 )
 from auth_backend.modules.user.listeners import send_invite_mail
-
 
 
 class UserManager(auth_models.BaseUserManager):
@@ -22,6 +28,22 @@ class UserManager(auth_models.BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
+        role = extra_fields.get('role')
+
+        # The if statements below check what the user's selected role is and creates
+        # a corresponding database entry if necessary.
+        if role == 0:  # Faculty
+            pass
+        elif role == 1:  # Student
+            sid = extra_fields.get('student_id')
+            cl_stand = extra_fields.get('class_standing')
+            mentor = extra_fields.get('mentor')
+            student = Student.objects.create(student_id=sid, class_standing=cl_stand, DAS_mentor=mentor, user=user)
+            student.save(using=self._db)
+        elif role == 2:  # Mentor
+            mentor = Mentor.objects.create(user=user)
+            mentor.save(using=self._db)
         return user
 
     def create(self, email=None, password=None, **extra_fields):
@@ -44,7 +66,7 @@ class UserManager(auth_models.BaseUserManager):
 
 class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, common_models.TimeStamp):
     """
-    Abstract user type that shares information common to all user groups.
+    Abstract user type that shares information common to all user types.
     """
 
     first_name = models.CharField(max_length=60,
@@ -56,9 +78,10 @@ class BaseVologUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin, 
                               blank=False,
                               unique=True)
 
-    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
+    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, default=1,
+                                    blank=False, null=False)
     is_staff = models.BooleanField('Staff status', default=False, help_text='for django reference')
-    is_profile_complete = models.BooleanField('Profile Status', default=False)
+    is_profile_complete = models.BooleanField('Profile Status', default=False, blank=False, null=False)
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
@@ -82,8 +105,8 @@ class Referral(common_models.TimeStamp):
     """ Referral model to store Referral codes """
     email = models.EmailField('Email Address')
     code = models.CharField('Referral Code', max_length=255, unique=True, default=common_utils.generate_referral_code)
-    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=True)
-    is_used = models.BooleanField('Is Used', help_text='Is referral code used', default=False)
+    role = models.SmallIntegerField('Role', choices=common_constants.ROLE_CHOICES, null=False)
+    is_used = models.BooleanField('Is Used', help_text='Is referral code used', default=False, blank=False, null=False)
 
     def __str__(self):
         return f'{self.code} - {self.get_role_display()}'

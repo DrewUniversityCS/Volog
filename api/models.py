@@ -1,45 +1,44 @@
+"""
+File Name: Models
+Purpose: Contains the database level representations (models) of the objects the API interacts with and manages.
+Comments:
+"""
+
 from django.db import models
+
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
-
 from auth_backend.modules.common import models as common_models
-from auth_backend.modules.user.models import BaseVologUser
 
 
-class Mentor(BaseVologUser):
+class Mentor(models.Model):
     """
     Represents a DAS mentor.
     """
-    pass
+    user = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
 
 
-class Student(BaseVologUser):
+class Student(models.Model):
     """
     Represents a Student user.
     """
-    student_id = models.IntegerField(primary_key=True, unique=True, validators=[student_id_validator], blank=False)
-    class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], blank=False)
+    user = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
+    student_id = models.IntegerField(unique=True, validators=[student_id_validator],
+                                     blank=False, null=True)
+    class_standing = models.CharField(max_length=2, choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES],
+                                      blank=False, null=True)
     DAS_mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="mentor",
                                    blank=True, null=True)
 
     def __str__(self):
-        return self.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
-
-
-class TimeMaster(models.Model):
-    """
-    This class is essentially a component for the Student object which holds all the data pertaining to their hours.
-    Everything that has to do with time reporting, management and querying happens in this class.
-    """
-    student = models.OneToOneField(Student, on_delete=models.CASCADE, auto_created=True, related_name='student')
-    percent_complete = models.FloatField(blank=False, null=False, default=0.0)
+        return self.user.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
 
 
 class HourInstance(common_models.TimeStamp):
     """
-    An instance of a single hour submission. Connected to its related student through the time master foreign key.
+    An instance of a single hour submission. Connected to its related student with a foreign key.
     """
-    time_master = models.ForeignKey(TimeMaster, on_delete=models.CASCADE, related_name="hours")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date_of_activity = models.DateField(validators=[no_future_dates],
                                         blank=False, null=False)
     number_of_hours = models.IntegerField(validators=[hour_instance_validator],
@@ -52,4 +51,3 @@ class HourInstance(common_models.TimeStamp):
     learning_goal = models.CharField(max_length=10, choices=[x.value for x in LEARNING_GOALS_CHOICES],
                                      blank=False, null=False)
     activity_description = models.TextField(blank=True, null=True)
-
