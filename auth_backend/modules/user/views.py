@@ -6,15 +6,19 @@ Comments:
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from auth_backend.modules.common.mixins import LoginRequiredMixin
-from auth_backend.modules.user.forms import ProfileForm
-from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
-from .serializers import UserSerializer
+from rest_framework.views import APIView
+
+from auth_backend.modules.common.mixins import LoginRequiredMixin
+from auth_backend.modules.user.forms import ProfileForm
+from auth_backend.modules.user.serializers import UserSerializer
 
 
-class ProfileCreateView(FormView):
+class ProfileCreationView(FormView):
+    """
+    Django View for users to create profiles
+    """
     template_name = 'user/profile_create.html'
     form_class = ProfileForm
 
@@ -33,12 +37,16 @@ class ProfileCreateView(FormView):
         return form_kwargs
 
 
-class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
+class ProfileSuccessfullyCreatedView(LoginRequiredMixin, TemplateView):
+    """
+    Django view to redirect users to after they have successfully created their profile.
+    """
     template_name = "user/profile_create_success.html"
 
-class UserApiView(APIView):
+
+class GetRequestUserData(APIView):
     """
-    API endpoint to retrieve user info
+    API view to get a JSON representation of the current (session) user
     """
     permission_classes = (permissions.IsAuthenticated,)
 

@@ -10,7 +10,7 @@ export default class MentorList extends Component {
             <div>
                 <div>
                     <div className="flex justify-center p-3 w-full" >
-                        <input type="search" placeholder="search" className="border-2 border-green-400 p-1 w-1/2 w-10/12" />
+                        <input type="search" placeholder="search" className="border-2 border-green-400 p-1 w-1/2 w-10/12" onChange={this.props.searchmentor} />
                     </div>
                     <div>
                         {
@@ -18,7 +18,7 @@ export default class MentorList extends Component {
                                 <ul>
                                     {
                                         mentor.map((data, index) => {
-                                            return <li key={index} className={`flex justify-between px-6 py-2 hover:bg-green-200 ${index === this.props.mentorNo && 'bg-green-300 hover:bg-green-300'}`} onClick={() => { this.props.selectedmentor(index) }}><span>{data.name}</span><span>{data.id}</span></li>
+                                            return <li key={index} className={`flex justify-between px-6 py-2 hover:bg-green-200 ${index === this.props.mentorNo && 'bg-green-300 hover:bg-green-300'}`} onClick={() => { this.props.selectedmentor(index) }}><span>{data.first_name} {data.last_name}</span><span>{data.school_id}</span></li>
                                         })
                                     }
                                 </ul> : "Users not found"

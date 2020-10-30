@@ -1,9 +1,11 @@
 import React from "react";
+
+import Notification from "../components/elements/Notification";
 import Container from "@material-ui/core/Container";
-import {Jumbotron} from "react-bootstrap";
+import {Col, Jumbotron, Row} from "react-bootstrap";
 import "../static/css/pages/mentorPg.css";
 
-import Mentor from './Mentor/mentorsIndex';
+import Mentor from './Mentor/mentorsIndex'
 
 class MentorDashboard extends React.Component {
 
@@ -11,7 +13,8 @@ class MentorDashboard extends React.Component {
         super(props);
 
         this.state = {
-            isLoading: true
+            isLoading: true,
+            user:{}
         };
     }
 
@@ -24,24 +27,33 @@ class MentorDashboard extends React.Component {
                 let role = JSON.parse(xhttp.responseText).role
                 if (role === 0 || role === 2) {
                     com.setState({
-                        isLoading: false
+                        isLoading: false,
+                        user:JSON.parse(xhttp.responseText)
                     });
                 } else {
-                    window.location = '/app'
+                    if (role === 1) {
+                        window.location = '/app/student'
+                    }
+                    else if(role === 2){
+                        window.location = '/app/mentor'
+                    }
+                    else{
+                        window.location = '/app/'
+                    }
                 }
             }
         };
         //I added these 4 lines to prevent the student from accessing his page.
-        xhttp.open("GET", "/user/api/details/");
+        xhttp.open("GET", "/api/details/");
         xhttp.send();
     }
 
     render() {
         if (this.state.isLoading) return <h1>Loading...</h1>;
         return <div style={{background: "#72be72"}} className={"my-auto overflow-hidden pt-3"}>
-            <Container>
+            <Container >
                 <Jumbotron className="jumbotron1 shadow-md">
-                    <Mentor/>
+                    <Mentor user={this.state.user}/>
                 </Jumbotron>
             </Container>
         </div>
@@ -49,3 +61,4 @@ class MentorDashboard extends React.Component {
 }
 
 export default MentorDashboard;
+

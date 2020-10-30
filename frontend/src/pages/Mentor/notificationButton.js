@@ -1,6 +1,7 @@
 import Fab from '@material-ui/core/Fab';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import React, { useState, useEffect } from 'react';
+import Badge from '@material-ui/core/Badge';
 import { Button, Col, Form, Modal, Row, Container } from "react-bootstrap";
 
 function FloatingActionButtons() {
@@ -12,8 +13,11 @@ function FloatingActionButtons() {
 
     return (
         <>
-            <button onClick={handleShow} className="absolute bg-green-900 bottom-0 focus:outline-none h-12 m-4 outline-none right-0 rounded-full w-12">
-                <NotificationsIcon style={{fill: "white"}}/>
+            <button onClick={handleShow} className="-translate-y-40 absolute bg-green-900 focus:outline-none h-12 m-4 outline-none right-0 rounded-full transform w-12">
+                <Badge badgeContent={4} color="secondary">
+                 <NotificationsIcon style={{fill: "white"}}/>
+                </Badge>
+
             </button>
 
             <Modal
