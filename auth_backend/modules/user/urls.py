@@ -6,11 +6,11 @@ Comments:
 
 from django.urls import path
 
-from .views import ProfileCreateView, ProfileCreateSuccessView
+from .views import ProfileCreationView, ProfileSuccessfullyCreatedView
 
 urlpatterns = [
-    path('profile_create/', ProfileCreateView.as_view(), name='profile_create'),
-    path('profile_create_success/', ProfileCreateSuccessView.as_view(), name='profile_create_success')
+    path('profile_create/', ProfileCreationView.as_view(), name='profile_create'),
+    path('profile_create_success/', ProfileSuccessfullyCreatedView.as_view(), name='profile_create_success')
 ]
 
 app_name = 'user'

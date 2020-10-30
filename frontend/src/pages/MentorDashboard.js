@@ -20,7 +20,6 @@ class MentorDashboard extends React.Component {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log();
                 let role = JSON.parse(xhttp.responseText).role
                 if (role === 0 || role === 2) {
                     com.setState({

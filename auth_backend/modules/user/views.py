@@ -14,7 +14,10 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 
 
-class ProfileCreateView(FormView):
+class ProfileCreationView(FormView):
+    """
+    Django View for users to create profiles
+    """
     template_name = 'user/profile_create.html'
     form_class = ProfileForm
 
@@ -33,7 +36,7 @@ class ProfileCreateView(FormView):
         return form_kwargs
 
 
-class ProfileCreateSuccessView(LoginRequiredMixin, TemplateView):
+class ProfileSuccessfullyCreatedView(LoginRequiredMixin, TemplateView):
     template_name = "user/profile_create_success.html"
 
 
