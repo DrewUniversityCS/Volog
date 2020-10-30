@@ -25,8 +25,15 @@ class Admin extends Component {
                         page: 0
                     });
                 } else {
-                    window.location = '/app'
-                }
+                    if (role === 1) {
+                        window.location = '/app/student'
+                    }
+                    else if(role === 2){
+                        window.location = '/app/mentor'
+                    }
+                    else{
+                        window.location = '/app/'
+                    }                }
             }
         };
         xhttp.open("GET", "/api/details/");

@@ -15,7 +15,7 @@ const App = () => {
             <div className="box">
                 <NavBar/>
                 <Switch>
-                    <Route path="/app/">
+                    <Route path="/app/" exact>
                         <Admin/>
                     </Route>
                     <Route path="/app/mentor/">

@@ -16,3 +16,5 @@ class AdminRequired(rest_framework_permissions.BasePermission):
         Return `True` if permission is granted(if user is Admin), `False` otherwise.
         """
         return request.user.is_admin
+
+        ##or request.user.role == 2
