@@ -31,7 +31,7 @@ class MentorDashboard extends React.Component {
             }
         };
         //I added these 4 lines to prevent the student from accessing his page.
-        xhttp.open("GET", "/user/api/details/");
+        xhttp.open("GET", "/api/details/");
         xhttp.send();
     }
 

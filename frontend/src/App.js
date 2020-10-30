@@ -15,7 +15,7 @@ const App = () => {
             <div className="box">
                 <NavBar/>
                 <Switch>
-                    <Route path="/app/admin/">
+                    <Route path="/app/">
                         <Admin/>
                     </Route>
                     <Route path="/app/mentor/">

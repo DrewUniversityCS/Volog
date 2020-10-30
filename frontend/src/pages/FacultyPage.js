@@ -29,7 +29,7 @@ class Admin extends Component {
                 }
             }
         };
-        xhttp.open("GET", "/user/api/details/");
+        xhttp.open("GET", "/api/details/");
         xhttp.send();
     }
 
