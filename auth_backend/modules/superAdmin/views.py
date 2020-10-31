@@ -1,6 +1,9 @@
-from django.shortcuts import redirect, reverse
+"""
+File Name: Views
+Purpose: Django views for rendering a variety of data.
+Comments:
+"""
 from django.views.generic.edit import FormView
-from pandas import read_csv
 from rest_framework import (
     viewsets as rest_viewsets,
     filters as rest_filters,
@@ -16,6 +19,9 @@ from auth_backend.modules.superAdmin.forms import ReferralCreateForm
 
 
 class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):
+    """
+    Django view for creating platform referral codes.
+    """
     template_name = 'superAdmin/referral_create.html'
     form_class = ReferralCreateForm
     success_url = '/superAdmin/referrals'
@@ -59,21 +65,3 @@ class UserView(rest_viewsets.ModelViewSet):
         elif role == 'mentor':
             query = query.filter(role=common_constants.ROLE.MENTOR)
         return query
-
-
-def bulk_invite(request):
-    if request.method == 'POST':
-        file = request.FILES['invites']
-        reader = read_csv(file)
-        for ind, value in reader.iterrows():
-            email = value['email']
-            role = value['role']
-            if role == 'faculty':
-                user_role = common_constants.ROLE.FACULTY
-            elif role == 'student':
-                user_role = common_constants.ROLE.STUDENT
-            else:
-                user_role = common_constants.ROLE.MENTOR
-            Referral.objects.create(email=email, role=user_role)
-
-    return redirect(reverse('superAdmin:referral'))
