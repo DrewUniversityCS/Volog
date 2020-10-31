@@ -19,6 +19,7 @@ urlpatterns = [
     path('api/students/', api.views.student_views.StudentListView.as_view()),
     path('api/students/current/', api.views.student_views.CurrentStudentView.as_view()),
     path('api/students/current/hours/', api.views.hour_views.CurrentStudentHoursView.as_view()),
+    path('api/students/current/hourReport/', api.views.hour_views.PostHourSubmissionView.as_view()),
     path('api/mentors/', api.views.mentor_views.MentorListView.as_view()),
     path('api/users/', UserListView.as_view()),
     path('api/users/current', GetRequestUserData.as_view()),
