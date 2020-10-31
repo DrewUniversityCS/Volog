@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "../../static/css/components/add-student-form.css";
 import "../../static/css/index.css";
 
@@ -26,11 +24,9 @@ function ReportHours() {
                 <Form className={"add-student-form"}>
                     <Row>
                         <Col>
-                            <Form.Group>
+                            <Form.Group controlId="dob">
                                 <Form.Label>Date of Activity</Form.Label>
-                                <Row>
-                                    <DatePicker/>
-                                </Row>
+                                <Form.Control type="date" name="dob" placeholder="Date of Activity"/>
                             </Form.Group>
                         </Col>
                     </Row>

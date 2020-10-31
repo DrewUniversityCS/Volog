@@ -19,6 +19,12 @@ class Admin extends Component {
             if (this.readyState == 4 && this.status == 200) {
                 console.log();
                 let role = JSON.parse(xhttp.responseText).role
+                if (role === 1) {
+                        window.location = '/app/student'
+                    }
+                    else if(role === 2){
+                        window.location = '/app/mentor'
+                    }
                 if (role === 0) {
                     com.setState({
                         isLoading: false,
