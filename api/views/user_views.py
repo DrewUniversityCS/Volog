@@ -1,5 +1,7 @@
 from rest_framework import generics, permissions, viewsets as rest_viewsets, permissions as rest_permissions, \
     filters as rest_filters, pagination as rest_pagination
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.superAdmin.admin_permissions import AdminRequired
@@ -43,3 +45,14 @@ class UserSearchView(rest_viewsets.ModelViewSet):
         elif role == 'mentor':
             query = query.filter(role=common_constants.ROLE.TEACHER)
         return query
+
+
+class GetRequestUserData(APIView):
+    """
+    API view to get a JSON representation of the current (session) user
+    """
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)

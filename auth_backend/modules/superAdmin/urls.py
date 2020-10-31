@@ -7,7 +7,7 @@ Comments:
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from api.views import UserSearchView
+from api.views.user_views import UserSearchView
 from auth_backend.modules.superAdmin.utilities import bulk_invite
 from auth_backend.modules.superAdmin.views import CreateReferralView
 

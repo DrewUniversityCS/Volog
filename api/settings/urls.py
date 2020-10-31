@@ -9,11 +9,10 @@ from django.urls import include, path
 import api.views.hour_views
 import api.views.mentor_views
 import api.views.student_views
-from api import views
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
-from api.views import UserListView
-from auth_backend.modules.user.views import GetRequestUserData
+from api.views.user_views import UserListView, GetRequestUserData
 
 urlpatterns = [
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
