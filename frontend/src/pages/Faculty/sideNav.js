@@ -10,11 +10,14 @@ export default class SideNav extends Component {
                        onClick={() => {
                            this.props.openPage(0)
                        }}>Students</a>
-                    <a href='/superAdmin/referrals'
-                       className={`bg-green-700 capitalize p-2  mt-12 text-white  ${page === 1 && "bg-green-900"}`}
+                    <a className={`bg-green-700 capitalize p-2  mt-12 text-white  ${page === 1 && "bg-green-900"}`}
                        onClick={() => {
                            this.props.openPage(1)
                        }}>Referrals</a>
+                    <a className={`bg-green-700 capitalize p-2  mt-12 text-white  ${page === 2 && "bg-green-900"}`}
+                       onClick={() => {
+                           this.props.openPage(2)
+                       }}>Mentors</a>
                 </div>
             </div>
         )

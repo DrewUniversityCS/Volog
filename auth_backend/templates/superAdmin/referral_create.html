@@ -1,17 +1,18 @@
 {% extends 'student_base.html' %}
 {% block body %}
 
-    <div class="flex flex-col p-16 ">
-    <form method="post" class="bg-green-700 flex p-8 justify-center">{% csrf_token %}
+<div class="flex flex-col ">
+    <form method="post" action="{% url 'superAdmin:referral' %}" class="bg-green-700 flex p-8 justify-center">
+        {% csrf_token %}
         <div class="font-medium flex text-2xl">
             {% for field in form %}
-                <div class="fieldWrapper text-white flex ml-2">
-                    {{ field.errors }}
-                    {{ field.label_tag }}
+            <div class="fieldWrapper text-white flex ml-2">
+                {{ field.errors }}
+                {{ field.label_tag }}
 
-                    <span class="text-black ml-2">
+                <span class="text-black ml-2">
                             {{ field }}</span>
-                </div>
+            </div>
 
             {% endfor %}
         </div>
@@ -45,14 +46,14 @@
         </thead>
         <tbody>
         {% for referral in referrals %}
-            <tr class="hover:bg-gray-300 ">
-                <td class="border p-6">{{ referral.email }}</td>
-                <td class="border p-6">{{ referral.get_role_display }}</td>
-                <td class="border p-6">{{ referral.code }}</td>
-                <td class="border p-6">{% if referral.is_used %}Yes{% else %}No{% endif %}</td>
-            </tr>
+        <tr class="hover:bg-gray-300 ">
+            <td class="border p-6">{{ referral.email }}</td>
+            <td class="border p-6">{{ referral.get_role_display }}</td>
+            <td class="border p-6">{{ referral.code }}</td>
+            <td class="border p-6">{% if referral.is_used %}Yes{% else %}No{% endif %}</td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>
-{% endblock %}
 </div>
+{% endblock %}

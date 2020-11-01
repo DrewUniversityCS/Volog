@@ -1,16 +1,17 @@
 export const postHour = (obj) => {
-    fetch("api/students/", {
+    fetch("api/students/current/hourReport/", {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            first_name: obj.state.first_name,
-            last_name: obj.state.last_name,
-            email: obj.state.email,
-            student_id: obj.state.student_id,
-            class_standing: obj.state.class_standing,
-            DAS_mentor: obj.state.DAS_mentor
+            student: obj.state.student,
+            date_of_activity: obj.state.date_of_activity,
+            number_of_hours: obj.state.number_of_hours,
+            number_of_minutes: obj.state.number_of_minutes,
+            type_of_hour: obj.state.type_of_hour,
+            learning_goal: obj.state.learning_goal,
+            activity_description: obj.state.activity_description
         })
     }).then(response => {
         return response.json()
