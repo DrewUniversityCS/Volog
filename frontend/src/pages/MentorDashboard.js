@@ -1,9 +1,8 @@
 import React from "react";
-import Notification from "../components/elements/Notification";
 import Container from "@material-ui/core/Container";
-import {Col, Jumbotron, Row} from "react-bootstrap";
+import {Jumbotron} from "react-bootstrap";
 import "../static/css/pages/mentorPg.css";
-import Redirect from "react-router-dom/es/Redirect";
+import {Redirect} from "react-router-dom";
 import Mentor from './Mentor/mentorsIndex'
 
 class MentorDashboard extends React.Component {
@@ -17,12 +16,11 @@ class MentorDashboard extends React.Component {
 
 
     render() {
-        let role = this.props.userData.role;
-        console.log(role);
+        let role = this.state.user.role;
         if (role === 1) {
-            return <Redirect to="/app/student" push />
+            return <Redirect to="/app/student" push/>
         } else if (role === 0) {
-            return <Redirect to="/app/" push />
+            return <Redirect to="/app/" push/>
         }
         return <div style={{background: "#72be72"}} className={"my-auto overflow-hidden pt-3"}>
             <Container>

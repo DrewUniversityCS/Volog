@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import Student from './Faculty/student/studentsIndex';
 import SideNav from './Faculty/sideNav';
-import Redirect from "react-router-dom/es/Redirect";
+import {Redirect} from "react-router-dom";
 import Referral from "./Faculty/referral";
 import Mentor from "./Faculty/mentor/mentorIndex";
 
 class Admin extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             page: 0
         };
