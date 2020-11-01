@@ -3,7 +3,6 @@ import MentorList from './mentorList'
 import MentorOpen from './mentorOpen'
 import FloatingActionButtons from './notificationButton'
 
-import VProgressBar from '../../components/elements/ProgressBar'
 export default class Mentor extends Component {
     state = {
         mentors: null,
@@ -15,92 +14,79 @@ export default class Mentor extends Component {
     };
 
     componentDidMount() {
-        this.getmentorData();
+        this.getMentorData();
     }
 
-    getmentorData = () => {
+    getMentorData = () => {
         const {page, searchQuery} = this.state;
-        const data = {
-            results: [
-                {
-                    id: 1,
-                    name: 'Mahmoud'
-                }, {
-                    id: 2,
-                    name: 'moda'
-                }, {
-                    id: 3,
-                    name: 'uda'
-                },
-            ],
-            count: 3,
-        }
 
-        this.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count});
-        // //api call here
-        // let com = this;
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.onreadystatechange = function () {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         let data = JSON.parse(xhttp.responseText);
-        //         com.setState({ mentors: data.results, selectedMentorData: data.results[0], countData: data.count });
-        //     }
-        // };
-        // xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=mentor&search=${searchQuery}`);
-        // xhttp.send();
+        //api call here
+        let com = this;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let data = JSON.parse(xhttp.responseText);
+                com.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count});
+            }
+        };
+        xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=student&search=${searchQuery}`);
+        xhttp.send();
 
     };
 
     pagination = (pageno) => {
         this.setState({page: pageno}, () => {
-            this.getmentorData();
+            this.getMentorData();
         });
 
     };
 
-    selectedmentor = (index) => {
+    selectedMentor = (index) => {
         const mentor = this.state.mentors[index];
         this.setState({selectedMentorData: mentor, mentorNo: index})
     };
 
-    searchmentor = (event) => {
+    searchMentor = (event) => {
         let mentorQuery = event.target.value.toLowerCase();
         this.setState({searchQuery: mentorQuery, page: 1}, () => {
-            this.getmentorData()
+            this.getMentorData()
         });
-
     };
 
     render() {
         const {mentors, selectedMentorData, page, countData, mentorNo} = this.state;
+        const {user} = this.props;
         return (
             <>
-                 <div className="-mb-10 -mt-16 flex justify-between">
-                    <p className="m-0 my-auto p-0 text-3xl w-1/2">Welcome Back Mentor,</p>
-                    <div className="mt-10 w-full">
+                <div className="-mb-10 -mt-16 flex justify-between">
+                    <p className="m-0 my-auto p-0 text-2xl w-1/2 font-medium">Welcome
+                        Back, {user.first_name} {user.last_name},</p>
+                    <div className="mt-12 w-full">
                         <p className="m-3 ml-4 p-0 text-2xl">
                             Group cumulative progress
                         </p>
-                        <VProgressBar className="VProgressBar"/>
+                        <div className="h-20">
+
+                        </div>
                     </div>
                 </div>
-            <div className="flex shadow-md" style={{height: "66.5vh"}}>
+                <div className="flex shadow-md" style={{height: "66.5vh"}}>
 
-                <div className="relative h-full w-1/2 bg-green-100 ">
-                    <MentorList
-                        pagination={this.pagination}
-                        mentorData={mentors}
-                        selectedmentor={this.selectedmentor}
-                        page={page}
-                        searchmentor={this.searchmentor}
-                        countData={countData}
-                        mentorNo={mentorNo}
-                    />
+                    <div className="relative h-full w-1/2 bg-green-100 ">
+                        <MentorList
+                            pagination={this.pagination}
+                            mentorData={mentors}
+                            selectedmentor={this.selectedMentor}
+                            page={page}
+                            searchmentor={this.searchMentor}
+                            countData={countData}
+                            mentorNo={mentorNo}
+                        />
+                    </div>
+                    <MentorOpen data={selectedMentorData}/>
+                    <FloatingActionButtons/>
                 </div>
-                <MentorOpen data={selectedMentorData}/>
-                <FloatingActionButtons/>
-            </div>
-                </>
+            </>
 
         )
     }

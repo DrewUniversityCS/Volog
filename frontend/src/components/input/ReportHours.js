@@ -1,19 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "../../static/css/components/add-student-form.css";
 import "../../static/css/index.css";
 
-function ReportHours() {
+class ReportHours extends React.Component {
+    state = {
+        show: false,
+        student: '',
+        date_of_activity: '',
+        number_of_hours: '',
+        number_of_minutes: '',
+        type_of_hour: '',
+        learning_goal: '',
+        activity_description: '',
+        approved: ''
+    }
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
-    return (
-        <div>
-            <Button variant="secondary" onClick={handleShow}>
+    handleClose = () => {
+        this.setState({show: false})
+    };
+    handleShow = () => {
+        this.setState({show: true})
+    };
+    handleSubmit = () => {
+        this.handleClose()
+    };
+
+    render() {
+        return <div>
+            <Button variant="secondary" onClick={this.handleShow}>
                 Report Hours
             </Button>
 
@@ -21,16 +37,14 @@ function ReportHours() {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                show={show} onHide={handleClose} animation={false}>
+                show={this.state.show} onHide={this.handleClose} animation={true}>
 
                 <Form className={"add-student-form"}>
                     <Row>
                         <Col>
-                            <Form.Group>
+                            <Form.Group controlId="dob">
                                 <Form.Label>Date of Activity</Form.Label>
-                                <Row>
-                                    <DatePicker/>
-                                </Row>
+                                <Form.Control type="date" name="dob" placeholder="Date of Activity"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -107,14 +121,14 @@ function ReportHours() {
                     </Row>
                     <Col md={{span: 2, offset: 5}}>
                         <Button className="cushion" variant="outline-success" block
-                                onClick={handleClose}>Cancel</Button>
+                                onClick={this.handleSubmit}>Cancel</Button>
                         <Button className="cushion" variant="outline-success" block
-                                onClick={handleClose}>Submit</Button>
+                                onClick={this.handleClose}>Submit</Button>
                     </Col>
                 </Form>
             </Modal>
         </div>
-    )
+    }
 }
 
 export default ReportHours;

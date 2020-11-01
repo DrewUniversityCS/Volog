@@ -28,5 +28,5 @@ class StudentSerializer(serializers.ModelSerializer):
 class HourSerializer(serializers.ModelSerializer):
     class Meta:
         model = HourInstance
-        fields = ['date_of_activity', 'number_of_hours', 'number_of_minutes', 'description_of_activity',
-                  'type_of_hour', 'learning_goal']
+        fields = ['student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description',
+                  'type_of_hour', 'learning_goal', 'approved']
