@@ -55,9 +55,6 @@ class StudentDashboard extends React.Component {
                         <ReportHours/>
                     </Col>
                     <Col align="center">
-                        <Button variant="secondary">View Pending</Button>
-                    </Col>
-                    <Col align="center">
                         <Button variant="secondary">Notifications</Button>
                     </Col>
                 </Row>
