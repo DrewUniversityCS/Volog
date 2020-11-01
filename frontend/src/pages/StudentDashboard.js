@@ -19,8 +19,6 @@ class StudentDashboard extends React.Component {
             class_standing: ''
         },
         hours: [],
-        complete: 0,
-        pending: 0,
         notifications: [],
     }
 
@@ -48,7 +46,7 @@ class StudentDashboard extends React.Component {
                     </Col>
                 </Row>
                 <Container className="progress-bar">
-                    <VProgressBar>
+                    <VProgressBar hours={this.state.hours}>
 
                     </VProgressBar>
                 </Container>
