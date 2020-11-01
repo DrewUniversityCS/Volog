@@ -8,6 +8,10 @@
     overflow: auto;
 }
 
+.hours-table table{
+    background-color: whitesmoke;
+}
+
 .welcome-text{
     font-size: 30px;
 }
@@ -25,8 +29,8 @@
 .progress-bar{
     align-items: center;
     background-color: white;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 div.btn-group {

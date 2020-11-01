@@ -1,6 +1,9 @@
 import React from 'react';
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import {postHour} from "../../functions/services/api/student_requests/postHour";
+import "../../static/css/components/report-hours.css";
+import CancelIcon from '@material-ui/icons/Cancel';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 class ReportHours extends React.Component {
     state = {
@@ -38,7 +41,7 @@ class ReportHours extends React.Component {
                 centered
                 show={this.state.show} onHide={this.handleClose} animation={true}>
 
-                <Form>
+                <Form className={"report-hours"}>
                     <Row>
                         <Col>
                             <Form.Group controlId="dob">
@@ -159,12 +162,20 @@ class ReportHours extends React.Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Col md={{span: 2, offset: 5}}>
-                        <Button className="cushion" variant="outline-success"
-                                onClick={this.handleClose}>Cancel</Button>
-                        <Button className="cushion" variant="outline-success"
-                                onClick={this.handleSubmit}>Submit</Button>
-                    </Col>
+                    <Row md={{span: 2, offset: 5}}>
+                        <Col align="center">
+                            <Button className="submit-button" variant="outline-success"
+                                    onClick={this.handleSubmit}>
+                                <CheckCircleIcon/>
+                            </Button>
+                        </Col>
+                        <Col align="center">
+                            <Button className="cancel-button" variant="outline-danger"
+                                    onClick={this.handleClose}>
+                                <CancelIcon/>
+                            </Button>
+                        </Col>
+                    </Row>
                 </Form>
             </Modal>
         </div>
