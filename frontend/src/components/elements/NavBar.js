@@ -62,11 +62,11 @@ class NavBar extends React.Component {
                         alt="volog logo"
                     />
                 </Navbar.Brand>
-                {this.getDashboardLink(this.state.userData.role)}
+                {this.getDashboardLink(this.props.userData.role)}
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                        Signed in as: {this.state.userData.first_name} {this.state.userData.last_name} | {this.roleDict(this.state.userData.role)}
+                        Signed in as: {this.props.userData.first_name} {this.props.userData.last_name} | {this.roleDict(this.props.userData.role)}
                     </Navbar.Text>
 
                     <NavItem eventkey={1} href="/accounts/logout">

@@ -2,7 +2,7 @@
 {% block body %}
 
     <div class="flex flex-col p-16 ">
-    <form method="post" class="bg-green-700 flex p-8 justify-center">{% csrf_token %}
+    <form onsubmit="submitForm()" action="{% url 'superAdmin:referral' %}" method="post" class="bg-green-700 flex p-8 justify-center">{% csrf_token %}
         <div class="font-medium flex text-2xl">
             {% for field in form %}
                 <div class="fieldWrapper text-white flex ml-2">
@@ -19,7 +19,7 @@
                class=" ml-10 bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
     </form>
     <hr/>
-    <form method="POST" action="{% url 'superAdmin:bulk_invite' %}" enctype="multipart/form-data"
+    <form onsubmit="submitForm()" method="POST" action="{% url 'superAdmin:bulk_invite' %}" enctype="multipart/form-data"
           class="bg-green-700 flex p-8 justify-center">
         {% csrf_token %}
         <div class="flex items-center justify-center bg-grey-lighter">
@@ -39,7 +39,7 @@
         <tr>
             <th class="w-1/2 p-6 bg-gray-300 w-1/6">Email</th>
             <th class="w-1/2 p-6 bg-gray-300 w-1/6">Role</th>
-            <th class="w-1/4 p-6 bg-gray-300 ">Refferal Code</th>
+            <th class="w-1/4 p-6 bg-gray-300 ">Referral Code</th>
             <th class="w-1/4 p-6 bg-gray-300 w-1/6 ">Is Used</th>
         </tr>
         </thead>
@@ -54,5 +54,14 @@
         {% endfor %}
         </tbody>
     </table>
-{% endblock %}
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+  function submitForm() {
+      console.log('Submitting the form')
+    window.parent.postMessage('submitted form', '*')
+  }
+</script>
+{% endblock %}
