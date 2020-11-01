@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
 import ReportHours from "../components/input/ReportHours";
+import Chart from "../components/display/Chart";
 
 class StudentDashboard extends React.Component {
 
