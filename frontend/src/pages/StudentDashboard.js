@@ -18,11 +18,12 @@ class StudentDashboard extends React.Component {
             student_id: '',
             class_standing: ''
         },
-        hours: {},
+        hours: [],
         complete: 0,
         pending: 0,
         notifications: [],
     }
+
 
     componentDidMount() {
         getUserDataForStudent(this);
