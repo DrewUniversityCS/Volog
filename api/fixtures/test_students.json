@@ -81,7 +81,7 @@
     "fields": {
       "user": 2,
       "student_id": 1000001,
-      "class_standing": "Junior",
+      "class_standing": "JR",
       "DAS_mentor": null
     }
   },
@@ -91,7 +91,7 @@
     "fields": {
       "user": 3,
       "student_id": 1000002,
-      "class_standing": "Senior",
+      "class_standing": "SR",
       "DAS_mentor": null
     }
   },
@@ -101,7 +101,7 @@
     "fields": {
       "user": 4,
       "student_id": 1000003,
-      "class_standing": "Freshman",
+      "class_standing": "FR",
       "DAS_mentor": null
     }
   },
@@ -111,7 +111,7 @@
     "fields": {
       "user": 5,
       "student_id": 1000004,
-      "class_standing": "Sophomore",
+      "class_standing": "SO",
       "DAS_mentor": null
     }
   }

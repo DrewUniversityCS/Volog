@@ -46,7 +46,6 @@ class HourInstance(common_models.TimeStamp):
                                           blank=False, null=False)
     number_of_minutes = models.IntegerField(validators=[minutes_validator],
                                             blank=True, null=True)
-    description_of_activity = models.TextField(blank=True, null=True)
     type_of_hour = models.CharField(max_length=3, choices=[x.value for x in EXPERIENTIAL_LEARNING_HOURS_TYPES],
                                     blank=False, null=False)
     learning_goal = models.CharField(max_length=10, choices=[x.value for x in LEARNING_GOALS_CHOICES],
