@@ -8,5 +8,4 @@ class Referral extends Component {
     }
 }
 
-
 export default Referral;

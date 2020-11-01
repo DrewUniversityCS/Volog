@@ -3,6 +3,7 @@ import Student from './Faculty/student/studentsIndex';
 import SideNav from './Faculty/sideNav';
 import Redirect from "react-router-dom/es/Redirect";
 import Referral from "./Faculty/referral";
+import Mentor from "./Faculty/mentor/mentorIndex";
 
 class Admin extends Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class Admin extends Component {
                 return <Student/>
             case 1:
                 return <Referral/>
+            case 2:
+                return <Mentor/>
             default:
                 return "No Page"
         }
