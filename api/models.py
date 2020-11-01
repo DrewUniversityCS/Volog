@@ -51,3 +51,4 @@ class HourInstance(common_models.TimeStamp):
     learning_goal = models.CharField(max_length=10, choices=[x.value for x in LEARNING_GOALS_CHOICES],
                                      blank=False, null=False)
     activity_description = models.TextField(blank=True, null=True)
+    approved = models.BooleanField(default=False, null=False)

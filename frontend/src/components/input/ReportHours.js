@@ -12,7 +12,8 @@ class ReportHours extends React.Component {
         number_of_minutes: '',
         type_of_hour: '',
         learning_goal: '',
-        activity_description: ''
+        activity_description: '',
+        approved: ''
     }
 
 
