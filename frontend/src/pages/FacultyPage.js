@@ -4,6 +4,8 @@ import SideNav from './Faculty/sideNav';
 import {Redirect} from "react-router-dom";
 import Referral from "./Faculty/referral";
 import Mentor from "./Faculty/mentor/mentorIndex";
+import Stats from "./Faculty/Stats/Stats";
+
 
 class Admin extends Component {
     constructor(props) {
@@ -25,6 +27,8 @@ class Admin extends Component {
                 return <Referral/>
             case 2:
                 return <Mentor/>
+            case 3:
+                return <Stats/>
             default:
                 return "No Page"
         }
