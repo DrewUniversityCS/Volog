@@ -1,8 +1,6 @@
 import React from 'react';
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import {postHour} from "../../functions/services/api/student_requests/postHour";
-import "../../static/css/components/add-student-form.css";
-import "../../static/css/index.css";
 
 class ReportHours extends React.Component {
     state = {
@@ -24,6 +22,7 @@ class ReportHours extends React.Component {
     };
     handleSubmit = () => {
         postHour(this)
+        this.props.handleChange()
         this.handleClose()
     };
 
@@ -39,7 +38,7 @@ class ReportHours extends React.Component {
                 centered
                 show={this.state.show} onHide={this.handleClose} animation={true}>
 
-                <Form className={"add-student-form"}>
+                <Form>
                     <Row>
                         <Col>
                             <Form.Group controlId="dob">

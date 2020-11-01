@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Table from 'react-bootstrap/Table';
+import {Container} from "react-bootstrap";
 
 class HoursTable extends Component {
     render() {
@@ -13,7 +14,7 @@ class HoursTable extends Component {
 
                 time_logged = item.number_of_hours + ":" + item.number_of_minutes;
 
-                switch(item.type_of_hour){
+                switch (item.type_of_hour) {
                     case "REQ":
                         hour_type = "Required";
                         break;
@@ -31,9 +32,9 @@ class HoursTable extends Component {
                 learning_goal = item.learning_goal.toLowerCase();
                 learning_goal = learning_goal.charAt(0).toUpperCase() + learning_goal.slice(1);
 
-                if(item.approved === true){
+                if (item.approved === true) {
                     approval = "Approved";
-                }else{
+                } else {
                     approval = "Pending";
                 }
                 return (
@@ -46,26 +47,29 @@ class HoursTable extends Component {
                     </tr>
                 )
             })
-        }else{
+        } else {
             items = []
         }
 
 
         return (
-            <Table striped bordered hover>
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Hours Recorded</th>
-                    <th>Type</th>
-                    <th>Learning Goal</th>
-                    <th>Approval Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {items}
-                </tbody>
-            </Table>
+            <Container>
+                <Table responsive triped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Hours Recorded</th>
+                        <th>Type</th>
+                        <th>Learning Goal</th>
+                        <th>Approval Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {items}
+                    </tbody>
+                </Table>
+            </Container>
+
 
         )
     }

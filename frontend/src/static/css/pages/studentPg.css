@@ -3,6 +3,25 @@
     margin-top: 25px;
 }
 
+.hours-table{
+    height: 400px;
+    overflow: auto;
+}
+
+.welcome-text{
+    font-size: 30px;
+}
+
+.approved-hours{
+    font-size: 28px;
+    color: green;
+}
+
+.pending-hours{
+    font-size: 28px;
+    color: orange;
+}
+
 .progress-bar{
     align-items: center;
     background-color: white;

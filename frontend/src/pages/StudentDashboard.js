@@ -19,9 +19,10 @@ class StudentDashboard extends React.Component {
             class_standing: ''
         },
         hours: [],
+        approved_hours: '',
+        pending_hours: '',
         notifications: [],
     }
-
 
     componentDidMount() {
         getUserDataForStudent(this);
@@ -41,29 +42,40 @@ class StudentDashboard extends React.Component {
                         </UserPic>
                     </Col>
                     <Col>
-                        Welcome
-                        Back, {this.state.userData.user.first_name} {this.state.userData.user.last_name} - {this.state.userData.student_id}!
+                        <Row className="welcome-text">
+                            Welcome
+                            Back, {this.state.userData.user.first_name}!
+                        </Row>
+                        <Row className="approved-hours">
+                            You have {Math.round(this.state.approved_hours*100)/100} approved hours.
+                        </Row>
+                        <Row className="pending-hours">
+                            You have {Math.round(this.state.pending_hours*100)/100} pending hours.
+                        </Row>
                     </Col>
                 </Row>
                 <Container className="progress-bar">
-                    <VProgressBar hours={this.state.hours}>
+                    <VProgressBar completeCount={this.state.approved_hours} pendingCount={this.state.pending_hours}>
 
                     </VProgressBar>
                 </Container>
                 <Row>
                     <Col align="center">
-                        <ReportHours/>
+                        <ReportHours handleChange={() => {
+                            getHoursForStudent(this)
+                        }}/>
                     </Col>
                     <Col align="center">
                         <Button variant="secondary">Notifications</Button>
                     </Col>
                 </Row>
             </Paper>
-            <Row>
-                <HoursTable items={this.state.hours}>
+            <Col>
+                <Container className="hours-table">
+                    <HoursTable items={this.state.hours}/>
+                </Container>
+            </Col>
 
-                </HoursTable>
-            </Row>
         </Container>
     }
 

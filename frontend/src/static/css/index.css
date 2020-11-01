@@ -1,13 +1,3 @@
-table {
-    background-color: whitesmoke;
-    margin-top: 50px;
-
-}
-
-table th, table td {
-    white-space: nowrap;
-}
-
 .cushion{
     padding: 5px;
 }
