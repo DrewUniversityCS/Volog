@@ -40,10 +40,10 @@ class UserSearchView(rest_viewsets.ModelViewSet):
         query = BaseVologUser.objects.filter(is_profile_complete=True)
         if role == 'student':
             query = query.filter(role=common_constants.ROLE.STUDENT)
-        elif role == 'Admin':
-            query = query.filter(role=common_constants.ROLE.ADMIN)
+        elif role == 'faculty':
+            query = query.filter(role=common_constants.ROLE.FACULTY)
         elif role == 'mentor':
-            query = query.filter(role=common_constants.ROLE.TEACHER)
+            query = query.filter(role=common_constants.ROLE.MENTOR)
         return query
 
 

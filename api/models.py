@@ -16,7 +16,8 @@ class Mentor(models.Model):
     Represents a DAS mentor.
     """
     user = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
-
+    def __str__(self):
+        return self.user.full_name
 
 class Student(models.Model):
     """
