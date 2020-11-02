@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Student from './Faculty/student/studentsIndex';
-import SideNav from './Faculty/sideNav';
+import Student from '../components/Faculty/student/studentsIndex';
+import SideNav from '../components/Faculty/sideNav';
 import {Redirect} from "react-router-dom";
-import Referral from "./Faculty/referral";
-import Mentor from "./Faculty/mentor/mentorIndex";
+import Referral from "../components/Faculty/referral";
+import Mentor from "../components/Faculty/mentor/mentorIndex";
 
 class Admin extends Component {
     constructor(props) {
