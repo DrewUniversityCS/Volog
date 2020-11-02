@@ -4,6 +4,7 @@
 }
 
 .hours-table{
+    margin-top: 40px;
     height: 400px;
     overflow: auto;
 }
@@ -12,11 +13,19 @@
     background-color: whitesmoke;
 }
 
+.user-pic{
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
 .welcome-text{
-    font-size: 30px;
+    margin-right: 20px;
+    padding-top: 25px;
+    font-size: 34px;
 }
 
 .approved-hours{
+    padding-top: 28px;
     font-size: 28px;
     color: green;
 }

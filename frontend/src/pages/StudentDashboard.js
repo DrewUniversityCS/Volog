@@ -1,7 +1,7 @@
 import React from "react";
 import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
-import UserPic from "../components/elements/Cards/userPic";
+import UserPic from "../components/display/cards/userPic";
 import "../static/css/pages/studentPg.css"
 import HoursTable from "../components/display/HoursTable";
 import {Button, Col, Row} from "react-bootstrap";
@@ -37,9 +37,9 @@ class StudentDashboard extends React.Component {
             <Paper className="student-progress-profile">
                 <Row>
                     <Col>
-                        <UserPic imgSrc={this.state.userData.user.profile_picture}>
-
-                        </UserPic>
+                        <Container className="user-pic">
+                            <UserPic imgSrc={this.state.userData.user.profile_picture}/>
+                        </Container>
                     </Col>
                     <Col>
                         <Row className="welcome-text">

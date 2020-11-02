@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import VProgressBar from '../../components/elements/ProgressBar'
-import StudentCard from "../../components/elements/Cards/studentCard";
+import StudentCard from "../display/cards/studentCard";
 
 
 export default class MentorOpen extends Component {

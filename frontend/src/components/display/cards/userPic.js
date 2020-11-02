@@ -7,7 +7,7 @@ class UserPic extends React.Component {
         const imgSrc = this.props.imgSrc
         return (
             <Container>
-                <Image width={275} padding={0}
+                <Image width={256}
                        src={imgSrc ? imgSrc : "http://winkeyecare.com/wp-content/uploads/2013/03/Empty-Profile-Picture-450x450.jpg"}
                        roundedCircle/>
             </Container>
