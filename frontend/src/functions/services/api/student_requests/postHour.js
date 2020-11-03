@@ -1,11 +1,17 @@
+import Cookies from 'js-cookie';
+
 export const postHour = (obj) => {
-    fetch("api/students/current/hourReport/", {
+
+    const csrftoken = Cookies.get('csrftoken');
+
+    fetch("../api/students/current/hourReport/", {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
         },
+        credentials: 'include',
         body: JSON.stringify({
-            student: obj.state.student,
             date_of_activity: obj.state.date_of_activity,
             number_of_hours: obj.state.number_of_hours,
             number_of_minutes: obj.state.number_of_minutes,
@@ -14,6 +20,7 @@ export const postHour = (obj) => {
             activity_description: obj.state.activity_description
         })
     }).then(response => {
+    obj.props.onChange()
         return response.json()
     })
 }
