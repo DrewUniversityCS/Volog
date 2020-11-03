@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {MDBCard, MDBCardBody, MDBCardHeader, MDBDataTable} from 'mdbreact';
+import {
+    MDBBtn,
+    MDBCard,
+    MDBCardBody,
+    MDBCardHeader,
+    MDBDataTable,
+    MDBPopover,
+    MDBPopoverBody,
+    MDBPopoverHeader
+} from 'mdbreact';
 
 class HoursTable extends Component {
     render() {
@@ -40,12 +49,31 @@ class HoursTable extends Component {
                 } else {
                     approval = "No";
                 }
+
+
+                let description_popup;
+                description_popup = <MDBPopover
+                                        placement="left"
+                                        popover
+                                        clickable
+                                        id="popper4"
+                                    >
+                    <MDBBtn color="primary">Details</MDBBtn>
+                    <div>
+                        <MDBPopoverHeader>Activity Description</MDBPopoverHeader>
+                        <MDBPopoverBody>
+                            {item.activity_description}
+                        </MDBPopoverBody>
+                    </div>
+                </MDBPopover>
+
                 return (
                     {
                         date_of_activity: item.date_of_activity,
                         time_logged: time_logged,
                         hour_type: hour_type,
                         learning_goal: learning_goal,
+                        description: description_popup,
                         approval: approval
                     }
                 )
@@ -81,6 +109,12 @@ class HoursTable extends Component {
                 width: 150
             },
             {
+                label: 'Description',
+                field: 'description',
+                sort: 'asc',
+                width: 150
+            },
+            {
                 label: 'Approved',
                 field: 'approval',
                 sort: 'asc',
@@ -100,7 +134,7 @@ class HoursTable extends Component {
                         entries={5}
                         materialSearch
                         scrollY
-                        maxHeight="200px"
+                        maxHeight="400px"
                         striped
                         bordered
                         data={data}
