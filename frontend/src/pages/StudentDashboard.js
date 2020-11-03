@@ -60,7 +60,7 @@ class StudentDashboard extends React.Component {
 
                 <Row>
                     <Col align="center">
-                        <ReportHours onChange={getHoursForStudent(this)}/>
+                        <ReportHours onChange={()=>getHoursForStudent(this)}/>
                     </Col>
                     <Col align="center">
                         <Button variant="primary">Notifications</Button>
