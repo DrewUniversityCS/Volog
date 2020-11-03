@@ -1,15 +1,13 @@
 .student-progress-profile{
     padding: 25px 50px 25px;
-    margin-top: 25px;
+    margin-top: 60px;
 }
 
 .user-pic{
-    padding-top: 25px;
-    padding-left: 25px;
+
 }
 
 .welcome-text{
-    margin-right: 20px;
     padding-top: 25px;
     font-size: 34px;
 }
@@ -23,6 +21,7 @@
 .pending-hours{
     font-size: 28px;
     color: orange;
+    padding-bottom: 28px;
 }
 
 .progress-container{

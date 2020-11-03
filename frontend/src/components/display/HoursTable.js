@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {MDBCard, MDBCardBody, MDBCardHeader, MDBDataTable} from 'mdbreact';
-import '../../static/css/components/hour-table.css';
 
 class HoursTable extends Component {
     render() {
@@ -92,8 +91,8 @@ class HoursTable extends Component {
 
         return (
             <MDBCard>
-                <MDBCardHeader className="gradient" color="primary-color">
-                    <div className="text-center">Hours Table </div>
+                <MDBCardHeader className="blue-gradient">
+                    <div className="text-center white-text">Hours Table</div>
                 </MDBCardHeader>
                 <MDBCardBody>
                     <MDBDataTable

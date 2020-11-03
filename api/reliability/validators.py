@@ -24,7 +24,7 @@ def no_future_dates(date):
     :param date: Date Object being validated
     :return: None
     """
-    if date >= now().date():
+    if date > now().date():
         raise ValidationError("Date cannot be in the future")
 
 
