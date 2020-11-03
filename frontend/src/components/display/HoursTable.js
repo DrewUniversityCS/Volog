@@ -92,7 +92,7 @@ class HoursTable extends Component {
         return (
             <MDBCard>
                 <MDBCardHeader className="blue-gradient">
-                    <div className="text-center white-text">Hours Table</div>
+                    <div className="text-center white-text">Your Hours</div>
                 </MDBCardHeader>
                 <MDBCardBody>
                     <MDBDataTable
@@ -103,7 +103,6 @@ class HoursTable extends Component {
                         maxHeight="200px"
                         striped
                         bordered
-                        small
                         data={data}
                     />
                 </MDBCardBody>
