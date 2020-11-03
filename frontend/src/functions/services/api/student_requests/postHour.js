@@ -20,6 +20,7 @@ export const postHour = (obj) => {
             activity_description: obj.state.activity_description
         })
     }).then(response => {
+    obj.props.onChange()
         return response.json()
     })
 }
