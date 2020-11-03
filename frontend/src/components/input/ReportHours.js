@@ -32,7 +32,7 @@ class ReportHours extends React.Component {
 
     render() {
         return <div>
-            <Button variant="secondary" onClick={this.handleShow}>
+            <Button variant="primary" onClick={this.handleShow}>
                 Report Hours
             </Button>
 

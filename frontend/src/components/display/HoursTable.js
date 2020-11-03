@@ -90,11 +90,14 @@ class HoursTable extends Component {
 
         return (
             <MDBDataTable
-              scrollY
-              maxHeight="400px"
-              striped
-              small
+              entriesOptions={[5, 10, 25]}
+              entries={5}
               materialSearch
+              scrollY
+              maxHeight="200px"
+              striped
+              bordered
+              small
               data={data}
             />
         )
