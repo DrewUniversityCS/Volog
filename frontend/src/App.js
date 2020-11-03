@@ -1,16 +1,21 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import './static/css/index.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+
+
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import NavBar from "./components/elements/NavBar";
 import Admin from "./pages/FacultyPage";
-import ReactDOM from 'react-dom';
+
 import {getSessionUser} from "./functions/services/api/getSessionUser";
 
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
-import './static/css/index.css';
+
 
 
 class App extends React.Component {

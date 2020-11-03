@@ -36,9 +36,9 @@ class HoursTable extends Component {
                 learning_goal = learning_goal.charAt(0).toUpperCase() + learning_goal.slice(1);
 
                 if (item.approved === true) {
-                    approval = "Approved";
+                    approval = "Yes";
                 } else {
-                    approval = "Pending";
+                    approval = "No";
                 }
                 return (
                     {
