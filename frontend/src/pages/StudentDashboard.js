@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
 import ReportHours from "../components/input/ReportHours";
-
+import { Redirect } from "react-router-dom";
 class StudentDashboard extends React.Component {
 
     state = {
@@ -30,6 +30,13 @@ class StudentDashboard extends React.Component {
     }
 
     render() {
+    //This will prevent the faculty or mentor from accessing the student page
+    let role = this.props.userData.role;
+        if (role === 2) {
+            return <Redirect to="/app/mentor" push/>
+        } else if (role === 0) {
+            return <Redirect to="/app/" push/>
+        }
         return <Container className="student-page">
             <Row area-label="top spacer">
 
