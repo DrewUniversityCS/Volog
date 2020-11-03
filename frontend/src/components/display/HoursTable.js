@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { MDBDataTable } from 'mdbreact';
+import {MDBCard, MDBCardBody, MDBCardHeader, MDBDataTable} from 'mdbreact';
+import '../../static/css/components/hour-table.css';
 
 class HoursTable extends Component {
     render() {
@@ -13,7 +14,7 @@ class HoursTable extends Component {
                 let approval;
 
                 time_logged = item.number_of_hours + ":" + item.number_of_minutes;
-                if(item.number_of_minutes === 0){ // we add an extra 0 so it doesn't look like 3:0 and is instead 3:00
+                if (item.number_of_minutes === 0) { // we add an extra 0 so it doesn't look like 3:0 and is instead 3:00
                     time_logged = time_logged + "0";
                 }
                 index++;
@@ -48,7 +49,8 @@ class HoursTable extends Component {
                         learning_goal: learning_goal,
                         approval: approval
                     }
-                )})
+                )
+            })
         } else {
             items = []
         }
@@ -89,17 +91,25 @@ class HoursTable extends Component {
         data.rows = items
 
         return (
-            <MDBDataTable
-              entriesOptions={[5, 10, 25]}
-              entries={5}
-              materialSearch
-              scrollY
-              maxHeight="200px"
-              striped
-              bordered
-              small
-              data={data}
-            />
+            <MDBCard>
+                <MDBCardHeader className="gradient" color="primary-color">
+                    <div className="text-center">Hours Table </div>
+                </MDBCardHeader>
+                <MDBCardBody>
+                    <MDBDataTable
+                        entriesOptions={[5, 10, 25]}
+                        entries={5}
+                        materialSearch
+                        scrollY
+                        maxHeight="200px"
+                        striped
+                        bordered
+                        small
+                        data={data}
+                    />
+                </MDBCardBody>
+            </MDBCard>
+
         )
     }
 }
