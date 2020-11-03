@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Table from 'react-bootstrap/Table';
-import {Container} from "react-bootstrap";
+import { MDBDataTable } from 'mdbreact';
 
 class HoursTable extends Component {
     render() {
         let items;
+        let index = 0;
         if (this.props.items && !!this.props.items.length) {
             items = this.props.items.map(item => {
                 let time_logged;
@@ -13,7 +13,10 @@ class HoursTable extends Component {
                 let approval;
 
                 time_logged = item.number_of_hours + ":" + item.number_of_minutes;
-
+                if(item.number_of_minutes === 0){ // we add an extra 0 so it doesn't look like 3:0 and is instead 3:00
+                    time_logged = time_logged + "0";
+                }
+                index++;
                 switch (item.type_of_hour) {
                     case "REQ":
                         hour_type = "Required";
@@ -38,39 +41,62 @@ class HoursTable extends Component {
                     approval = "Pending";
                 }
                 return (
-                    <tr>
-                        <td>{item.date_of_activity}</td>
-                        <td>{time_logged}</td>
-                        <td>{hour_type}</td>
-                        <td>{learning_goal}</td>
-                        <td>{approval}</td>
-                    </tr>
-                )
-            })
+                    {
+                        date_of_activity: item.date_of_activity,
+                        time_logged: time_logged,
+                        hour_type: hour_type,
+                        learning_goal: learning_goal,
+                        approval: approval
+                    }
+                )})
         } else {
             items = []
         }
 
+        let data = {};
+        data.columns = [
+            {
+                label: 'Date of Activity',
+                field: 'date_of_activity',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Time Logged',
+                field: 'time_logged',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Type',
+                field: 'hour_type',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Learning Goal',
+                field: 'learning_goal',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Approved',
+                field: 'approval',
+                sort: 'asc',
+                width: 150
+            },
+        ]
+        data.rows = items
 
         return (
-            <Container>
-                <Table responsive triped bordered hover>
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Hours Recorded</th>
-                        <th>Type</th>
-                        <th>Learning Goal</th>
-                        <th>Approval Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {items}
-                    </tbody>
-                </Table>
-            </Container>
-
-
+            <MDBDataTable
+              scrollY
+              maxHeight="400px"
+              striped
+              small
+              materialSearch
+              data={data}
+            />
         )
     }
 }

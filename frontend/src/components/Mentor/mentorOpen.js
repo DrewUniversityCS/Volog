@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import VProgressBar from '../../components/elements/ProgressBar'
 import StudentCard from "../display/cards/studentCard";
 
 

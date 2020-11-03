@@ -24,8 +24,9 @@ class ReportHours extends React.Component {
         this.setState({show: true})
     };
     handleSubmit = () => {
-        postHour(this)
-        this.props.handleChange()
+        postHour(this).then(
+            this.props.onChange()
+        );
         this.handleClose()
     };
 

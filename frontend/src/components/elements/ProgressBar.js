@@ -1,7 +1,5 @@
-import ProgressBar from "react-bootstrap/ProgressBar";
+import {ProgressBar, Container} from "react-bootstrap";
 import React, {Component} from 'react';
-import {Container} from "@material-ui/core";
-import "../elements/ProgressBar.js";
 
 class VProgressBar extends Component {
     render() {

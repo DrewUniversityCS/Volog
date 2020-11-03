@@ -1,11 +1,11 @@
 import Navbar from "react-bootstrap/Navbar";
+import React, {Component} from "react";
 import {Nav, NavItem} from "react-bootstrap";
-import React from "react";
 import "../../static/css/components/navbar.css";
 import {getSessionUser} from "../../functions/services/api/getSessionUser";
 import {Link} from "react-router-dom";
 
-class NavBar extends React.Component {
+class NavBar extends Component {
 
     state = {
         userData: {

@@ -54,16 +54,13 @@ class StudentDashboard extends React.Component {
                         </Row>
                     </Col>
                 </Row>
-                <Container className="progress-bar">
-                    <VProgressBar completeCount={this.state.approved_hours} pendingCount={this.state.pending_hours}>
+                    <Container className="progress-container">
+                        <VProgressBar completeCount={this.state.approved_hours} pendingCount={this.state.pending_hours} className="progress-bar"/>
+                    </Container>
 
-                    </VProgressBar>
-                </Container>
                 <Row>
                     <Col align="center">
-                        <ReportHours handleChange={() => {
-                            getHoursForStudent(this)
-                        }}/>
+                        <ReportHours onChange={getHoursForStudent(this)}/>
                     </Col>
                     <Col align="center">
                         <Button variant="secondary">Notifications</Button>

@@ -1,13 +1,16 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './static/css/index.css';
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import NavBar from "./components/elements/NavBar";
 import Admin from "./pages/FacultyPage";
 import ReactDOM from 'react-dom';
 import {getSessionUser} from "./functions/services/api/getSessionUser";
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './static/css/index.css';
+
 
 class App extends React.Component {
     state = {
