@@ -58,38 +58,13 @@ class HoursTable extends Component {
                         break;
                 }
 
-                let approval_popup;
-
+                let approval_status;
                 if (item.approved === true) {
-                    approval_popup = <MDBPopover
-                                        placement="right"
-                                        popover
-                                        clickable
-                                        id="popper-approval"
-                                    >
-                    <MDBBtn color="success"><MDBIcon icon="check-circle" className="mr-1" /> </MDBBtn>
-                    <div>
-                        <MDBPopoverHeader>Approval Details</MDBPopoverHeader>
-                        <MDBPopoverBody>
-                            Approved by [YOUR MENTOR]
-                        </MDBPopoverBody>
-                    </div>
-                </MDBPopover>
+                    approval = <CheckCircleIcon className="text-success" style={{align: "center"}}/>;
+                    approval_status = "Approved by your mentor."
                 } else {
-                    approval_popup = <MDBPopover
-                                        placement="right"
-                                        popover
-                                        clickable
-                                        id="popper-approval"
-                                    >
-                    <MDBBtn color="info"><MDBIcon icon="times-circle" className="mr-1" /> </MDBBtn>
-                    <div>
-                        <MDBPopoverHeader>Approval Details</MDBPopoverHeader>
-                        <MDBPopoverBody>
-                            Currently awaiting approval by [YOUR MENTOR]
-                        </MDBPopoverBody>
-                    </div>
-                </MDBPopover>;
+                    approval = <CancelIcon style={{align: "center"}}/>;
+                    approval_status = "Awaiting approval by your mentor."
                 }
 
 
@@ -98,12 +73,16 @@ class HoursTable extends Component {
                                         placement="left"
                                         popover
                                         clickable
-                                        id="popper-details"
+                                        id="popper4"
                                     >
-                    <MDBBtn color="primary">Details</MDBBtn>
+                    <MDBBtn color="primary">View</MDBBtn>
                     <div>
                         <MDBPopoverHeader>Submission Details</MDBPopoverHeader>
                         <MDBPopoverBody>
+                            Approval Status:
+                            <p>
+                                {approval_status}
+                            </p>
                             Activity Description:
                             <p>
                                 {item.activity_description}
@@ -122,7 +101,7 @@ class HoursTable extends Component {
                         time_logged: time_logged,
                         learning_goal: learning_goal,
                         description: description_popup,
-                        approval: approval_popup
+                        approval: approval
                     }
                 )
             })
@@ -142,7 +121,7 @@ class HoursTable extends Component {
                 label: 'Time Logged',
                 field: 'time_logged',
                 sort: 'asc',
-                width: 100
+                width: 150
             },
             {
                 label: 'Learning Goal',
@@ -151,17 +130,17 @@ class HoursTable extends Component {
                 width: 150
             },
             {
-                label: 'Description',
-                field: 'description',
-                sort: 'disabled',
-                width: 150
-            },
-            {
                 label: 'Approved?',
                 field: 'approval',
                 sort: 'asc',
                 width: 150
             },
+            {
+                label: 'Details',
+                field: 'description',
+                sort: 'disabled',
+                width: 150
+            }
         ]
         data.rows = items
 

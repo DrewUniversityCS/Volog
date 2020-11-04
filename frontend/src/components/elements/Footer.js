@@ -8,7 +8,7 @@ class Footer extends Component {
     render() {
         return (
             <MDBFooter color="elegant-color" className="font-small pt-4 mt-4">
-                <MDBContainer fluid className="text-center">
+                <MDBContainer fluid className="text-center mb-2">
                     <MDBCol>
                         <MDBRow>
                             <NavItem eventkey={1} href="/app/contact_us">
