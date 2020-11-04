@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 class Footer extends Component {
     render() {
         return (
-            <MDBFooter color="stylish-color" className="font-small pt-4 mt-4">
+            <MDBFooter color="elegant-color" className="font-small pt-4 mt-4">
                 <MDBContainer fluid className="text-center">
                     <MDBCol>
                         <MDBRow>
