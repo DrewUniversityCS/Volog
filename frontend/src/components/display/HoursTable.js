@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {
-    MDBCard,
     MDBBtn,
-    MDBIcon,
+    MDBCard,
     MDBCardBody,
     MDBCardHeader,
     MDBDataTable,
+    MDBIcon,
     MDBPopover,
     MDBPopoverBody,
     MDBPopoverHeader
@@ -14,6 +14,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 class HoursTable extends Component {
+
     render() {
         let items;
         let index = 0;
@@ -46,7 +47,7 @@ class HoursTable extends Component {
 
                 learning_goal = item.learning_goal.toLowerCase();
                 learning_goal = learning_goal.charAt(0).toUpperCase() + learning_goal.slice(1);
-                switch (learning_goal){
+                switch (learning_goal) {
                     case "Confidence":
                         learning_goal = <p className="text-danger"> {learning_goal} </p>
                         break;
@@ -69,12 +70,23 @@ class HoursTable extends Component {
 
 
                 let description_popup;
+
+                let activity_index = item.activity_category;
+                let activity_category;
+                if(this.props.activity_categories[activity_index] !== undefined){
+                    activity_category = this.props.activity_categories[activity_index].title;
+                }else{
+                    activity_category = "undefined";
+                }
+
+
+
                 description_popup = <MDBPopover
-                                        placement="left"
-                                        popover
-                                        clickable
-                                        id="popper4"
-                                    >
+                    placement="left"
+                    popover
+                    clickable
+                    id="popper4"
+                >
                     <MDBBtn color="primary">View</MDBBtn>
                     <div>
                         <MDBPopoverHeader>Submission Details</MDBPopoverHeader>
@@ -82,6 +94,10 @@ class HoursTable extends Component {
                             Approval Status:
                             <p>
                                 {approval_status}
+                            </p>
+                            Category:
+                            <p>
+                                {activity_category}
                             </p>
                             Activity Description:
                             <p>
@@ -101,7 +117,7 @@ class HoursTable extends Component {
                         time_logged: time_logged,
                         learning_goal: learning_goal,
                         description: description_popup,
-                        approval: approval
+                        approval: approval,
                     }
                 )
             })

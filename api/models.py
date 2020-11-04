@@ -37,6 +37,16 @@ class Student(models.Model):
         return self.user.full_name + ', ' + self.class_standing + ' : ' + str(self.student_id)
 
 
+class ActivityCategory(models.Model):
+    """
+    A model to keep track of the various organizations the volunteers work for.
+    """
+    title = models.CharField(max_length=100, unique=True, blank=False, null=False)
+
+    def __str__(self):
+        return self.title
+
+
 class HourInstance(common_models.TimeStamp):
     """
     An instance of a single hour submission. Connected to its related student with a foreign key.
@@ -52,5 +62,6 @@ class HourInstance(common_models.TimeStamp):
                                     blank=False, null=False)
     learning_goal = models.CharField(max_length=10, choices=[x.value for x in LEARNING_GOALS_CHOICES],
                                      blank=False, null=False)
+    activity_category = models.ForeignKey(ActivityCategory, on_delete=models.CASCADE)
     activity_description = models.TextField(blank=True, null=True)
     approved = models.BooleanField(default=False, null=False)

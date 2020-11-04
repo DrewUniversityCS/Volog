@@ -10,6 +10,7 @@ import {getUserDataForStudent} from "../functions/services/api/student_requests/
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
 import ReportHours from "../components/input/ReportHours";
 import {Redirect} from "react-router-dom";
+import {getActivityCategories} from "../functions/services/api/getActivityCategories";
 
 
 class StudentDashboard extends React.Component {
@@ -23,12 +24,14 @@ class StudentDashboard extends React.Component {
         hours: [],
         approved_hours: '',
         pending_hours: '',
+        activity_categories: [],
         notifications: [],
     }
 
     componentDidMount() {
         getUserDataForStudent(this);
         getHoursForStudent(this);
+        getActivityCategories(this);
     }
 
     render() {
@@ -48,13 +51,6 @@ class StudentDashboard extends React.Component {
                                 <UserPic imgSrc={this.state.userData.user.profile_picture}/>
                             </Col>
                         </Row>
-                        <Row>
-                            <Container className="progress-container">
-                                <VProgressBar completeCount={this.state.approved_hours}
-                                              pendingCount={this.state.pending_hours}
-                                              className="progress-bar"/>
-                            </Container>
-                        </Row>
                     </Col>
                     <Col align="center">
                         <Row className="welcome-text">
@@ -68,9 +64,16 @@ class StudentDashboard extends React.Component {
                             You have {Math.round(this.state.pending_hours * 100) / 100} pending hours.
                         </Row>
                         <Row>
-                            <ReportHours onChange={() => getHoursForStudent(this)}/>
+                            <ReportHours onChange={() => getHoursForStudent(this)} activity_categories={this.state.activity_categories}/>
                         </Row>
                     </Col>
+                </Row>
+                <Row>
+                    <Container className="progress-container">
+                        <VProgressBar completeCount={this.state.approved_hours}
+                                      pendingCount={this.state.pending_hours}
+                                      className="progress-bar"/>
+                    </Container>
                 </Row>
 
 
@@ -79,7 +82,7 @@ class StudentDashboard extends React.Component {
             <div className={'pb-20'}>
                 <Col>
                     <div style={{height: "20px"}}/>
-                    <HoursTable items={this.state.hours}/>
+                    <HoursTable items={this.state.hours} activity_categories={this.state.activity_categories}/>
                 </Col>
             </div>
 

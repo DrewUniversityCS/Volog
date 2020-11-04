@@ -15,6 +15,7 @@ class ReportHours extends React.Component {
         type_of_hour: 'Required',
         learning_goal: 'Confidence',
         activity_description: '',
+        activity_category: 'Participation in Student Government'
     }
 
 
@@ -30,9 +31,19 @@ class ReportHours extends React.Component {
     };
 
     render() {
+        let category_options;
+
+        if(this.props.activity_categories && !!this.props.activity_categories.length){
+            category_options = this.props.activity_categories.map(category => {
+                    return <option>{category.title}</option>
+                }
+            )
+        }
+
+
         return <div>
             <MDBBtn color="primary" onClick={this.handleShow}>
-                <MDBIcon icon="clock" className="mr-1" /> Report Hours
+                <MDBIcon icon="clock" className="mr-1"/> Report Hours
             </MDBBtn>
             <Modal
                 size="lg"
@@ -140,6 +151,23 @@ class ReportHours extends React.Component {
                                     <option>Confidence</option>
                                     <option>Empathy</option>
                                     <option>Explore</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group>
+                                <Form.Label>Category</Form.Label>
+                                <Form.Control as="select" name="category"
+                                              value={this.state.activity_category}
+                                              onChange={event => {
+                                                  this.setState({
+                                                      activity_category: event.target.value
+                                                  });
+                                              }
+                                              }>
+                                    {category_options}
                                 </Form.Control>
                             </Form.Group>
                         </Col>
