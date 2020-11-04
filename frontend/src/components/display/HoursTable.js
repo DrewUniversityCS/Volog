@@ -31,7 +31,7 @@ class HoursTable extends Component {
                         hour_type = "Required";
                         break;
                     case "ACT":
-                        hour_type = "Active (Not Requiring Preapproval)";
+                        hour_type = "Active";
                         break;
                     case "PRE":
                         hour_type = "Active (Preapproval)";
