@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
-    MDBBtn,
     MDBCard,
+    MDBBtn,
+    MDBIcon,
     MDBCardBody,
     MDBCardHeader,
     MDBDataTable,
@@ -9,6 +10,8 @@ import {
     MDBPopoverBody,
     MDBPopoverHeader
 } from 'mdbreact';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 class HoursTable extends Component {
     render() {
@@ -43,11 +46,50 @@ class HoursTable extends Component {
 
                 learning_goal = item.learning_goal.toLowerCase();
                 learning_goal = learning_goal.charAt(0).toUpperCase() + learning_goal.slice(1);
+                switch (learning_goal){
+                    case "Confidence":
+                        learning_goal = <p className="text-danger"> {learning_goal} </p>
+                        break;
+                    case "Empathy":
+                        learning_goal = <p className="text-default"> {learning_goal} </p>
+                        break;
+                    case "Explore":
+                        learning_goal = <p className="text-primary"> {learning_goal} </p>
+                        break;
+                }
+
+                let approval_popup;
 
                 if (item.approved === true) {
-                    approval = "Yes";
+                    approval_popup = <MDBPopover
+                                        placement="right"
+                                        popover
+                                        clickable
+                                        id="popper-approval"
+                                    >
+                    <MDBBtn color="success"><MDBIcon icon="check-circle" className="mr-1" /> </MDBBtn>
+                    <div>
+                        <MDBPopoverHeader>Approval Details</MDBPopoverHeader>
+                        <MDBPopoverBody>
+                            Approved by [YOUR MENTOR]
+                        </MDBPopoverBody>
+                    </div>
+                </MDBPopover>
                 } else {
-                    approval = "No";
+                    approval_popup = <MDBPopover
+                                        placement="right"
+                                        popover
+                                        clickable
+                                        id="popper-approval"
+                                    >
+                    <MDBBtn color="info"><MDBIcon icon="times-circle" className="mr-1" /> </MDBBtn>
+                    <div>
+                        <MDBPopoverHeader>Approval Details</MDBPopoverHeader>
+                        <MDBPopoverBody>
+                            Currently awaiting approval by [YOUR MENTOR]
+                        </MDBPopoverBody>
+                    </div>
+                </MDBPopover>;
                 }
 
 
@@ -56,13 +98,20 @@ class HoursTable extends Component {
                                         placement="left"
                                         popover
                                         clickable
-                                        id="popper4"
+                                        id="popper-details"
                                     >
                     <MDBBtn color="primary">Details</MDBBtn>
                     <div>
-                        <MDBPopoverHeader>Activity Description</MDBPopoverHeader>
+                        <MDBPopoverHeader>Submission Details</MDBPopoverHeader>
                         <MDBPopoverBody>
-                            {item.activity_description}
+                            Activity Description:
+                            <p>
+                                {item.activity_description}
+                            </p>
+                            Hour Type:
+                            <p>
+                                {hour_type}
+                            </p>
                         </MDBPopoverBody>
                     </div>
                 </MDBPopover>
@@ -71,10 +120,9 @@ class HoursTable extends Component {
                     {
                         date_of_activity: item.date_of_activity,
                         time_logged: time_logged,
-                        hour_type: hour_type,
                         learning_goal: learning_goal,
                         description: description_popup,
-                        approval: approval
+                        approval: approval_popup
                     }
                 )
             })
@@ -94,13 +142,7 @@ class HoursTable extends Component {
                 label: 'Time Logged',
                 field: 'time_logged',
                 sort: 'asc',
-                width: 150
-            },
-            {
-                label: 'Type',
-                field: 'hour_type',
-                sort: 'asc',
-                width: 150
+                width: 100
             },
             {
                 label: 'Learning Goal',
@@ -111,11 +153,11 @@ class HoursTable extends Component {
             {
                 label: 'Description',
                 field: 'description',
-                sort: 'asc',
+                sort: 'disabled',
                 width: 150
             },
             {
-                label: 'Approved',
+                label: 'Approved?',
                 field: 'approval',
                 sort: 'asc',
                 width: 150
@@ -126,7 +168,7 @@ class HoursTable extends Component {
         return (
             <MDBCard>
                 <MDBCardHeader className="blue-gradient">
-                    <div className="text-center white-text">Your Hours</div>
+                    <div className="text-center white-text"><MDBIcon far icon="calendar-check"/> Your Hours</div>
                 </MDBCardHeader>
                 <MDBCardBody>
                     <MDBDataTable
@@ -136,7 +178,6 @@ class HoursTable extends Component {
                         scrollY
                         maxHeight="400px"
                         striped
-                        bordered
                         data={data}
                     />
                 </MDBCardBody>

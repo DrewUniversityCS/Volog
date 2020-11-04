@@ -4,6 +4,7 @@ import {postHour} from "../../functions/services/api/student_requests/postHour";
 import "../../static/css/components/report-hours.css";
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import {MDBBtn, MDBIcon} from "mdbreact";
 
 class ReportHours extends React.Component {
     state = {
@@ -30,10 +31,9 @@ class ReportHours extends React.Component {
 
     render() {
         return <div>
-            <Button variant="primary" onClick={this.handleShow}>
-                Report Hours
-            </Button>
-
+            <MDBBtn color="primary" onClick={this.handleShow}>
+                <MDBIcon icon="clock" className="mr-1" /> Report Hours
+            </MDBBtn>
             <Modal
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
@@ -163,13 +163,13 @@ class ReportHours extends React.Component {
                     </Row>
                     <Row md={{span: 2, offset: 5}}>
                         <Col align="center">
-                            <Button className="submit-button" variant="outline-success"
+                            <Button className="submit-button" variant="success"
                                     onClick={this.handleSubmit}>
                                 <CheckCircleIcon/>
                             </Button>
                         </Col>
                         <Col align="center">
-                            <Button className="cancel-button" variant="outline-danger"
+                            <Button className="cancel-button" variant="danger"
                                     onClick={this.handleClose}>
                                 <CancelIcon/>
                             </Button>
