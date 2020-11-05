@@ -7,7 +7,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {MDBBtn, MDBIcon} from "mdbreact";
 
 class ReportHours extends React.Component {
-    state = {
+    default_state = {
         show: false,
         date_of_activity: '',
         number_of_hours: '1',
@@ -17,23 +17,24 @@ class ReportHours extends React.Component {
         activity_description: '',
         activity_category: 'Participation in Student Government'
     }
+    state = this.default_state
 
 
     handleClose = () => {
-        this.setState({show: false})
-    };
+        this.setState(this.default_state);
+    }
     handleShow = () => {
-        this.setState({show: true})
+        this.setState({show: true});
     };
     handleSubmit = () => {
-        postHour(this)
-        this.handleClose()
+        postHour(this);
+        this.handleClose();
     };
 
     render() {
         let category_options;
 
-        if(this.props.activity_categories && !!this.props.activity_categories.length){
+        if (this.props.activity_categories && !!this.props.activity_categories.length) {
             category_options = this.props.activity_categories.map(category => {
                     return <option>{category.title}</option>
                 }
