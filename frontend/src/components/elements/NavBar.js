@@ -31,11 +31,7 @@ class NavBar extends Component {
     }
 
     getDashboardLink(roleID){
-        if (roleID === 0) {
-            return <NavItem eventkey={1} href="/app/admin">
-                    <Nav.Link as={Link} to="/app/admin">Dashboard</Nav.Link>
-                </NavItem>
-        } else if (roleID === 1) {
+        if (roleID === 1) {
             return <NavItem eventkey={1} href="/app/student">
                     <Nav.Link as={Link} to="/app/student">Dashboard</Nav.Link>
                 </NavItem>
@@ -52,7 +48,7 @@ class NavBar extends Component {
 
     render() {
         return (
-            <Navbar bg="light" expand="sm">
+            <Navbar bg="white" expand="sm">
                 <Navbar.Brand>
                     <img
                         src={"../../static/assets/volog_logo/green_on_gray.png"}
