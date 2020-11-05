@@ -3,11 +3,37 @@
     margin-top: 25px;
 }
 
-.progress-bar{
-    align-items: center;
-    background-color: white;
-    padding-top: 50px;
-    padding-bottom: 20px;
+.user-pic{
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+.welcome-text{
+    margin-right: 20px;
+    padding-top: 25px;
+    font-size: 34px;
+}
+
+.hours-table{
+    background-color: whitesmoke;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.approved-hours{
+    padding-top: 28px;
+    font-size: 28px;
+    color: green;
+}
+
+.pending-hours{
+    font-size: 28px;
+    color: orange;
+}
+
+.progress-container{
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 div.btn-group {

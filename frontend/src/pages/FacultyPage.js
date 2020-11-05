@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import Student from './Faculty/student/studentsIndex';
-import SideNav from './Faculty/sideNav';
-import {Redirect} from "react-router-dom";
-import Referral from "./Faculty/referral";
-import Mentor from "./Faculty/mentor/mentorIndex";
+import React, { Component } from 'react';
+import Student from '../components/Faculty/student/studentsIndex';
+import SideNav from '../components/Faculty/sideNav';
+import { Redirect } from "react-router-dom";
+import Referral from "../components/Faculty/referral";
+import GroupsDashboard from "../components/Faculty/groups/groupIndex";
+import Mentor from "../components/Faculty/mentor/mentorIndex";
 import Stats from "./Faculty/Stats/Stats";
-
 
 class Admin extends Component {
     constructor(props) {
@@ -16,18 +16,20 @@ class Admin extends Component {
     }
 
     openPage = (index) => {
-        this.setState({page: index})
+        this.setState({ page: index })
     };
 
-    getPage = ()=> {
+    getPage = () => {
         switch (this.state.page) {
             case 0:
-                return <Student/>
+                return <Student />
             case 1:
-                return <Referral/>
+                return <Referral />
             case 2:
-                return <Mentor/>
+                return <Mentor />
             case 3:
+                return <GroupsDashboard />
+            case 4:
                 return <Stats/>
             default:
                 return "No Page"
@@ -41,10 +43,16 @@ class Admin extends Component {
         } else if (role === 2) {
             return <Redirect to="/app/mentor" push />
         }
+        else if (role === 3) {
+            return <Redirect to="/app/groups" push />
+        }
+        else if (role === 4) {
+            return <Redirect to="/app/groups" push />
+        }
         return (
             <div>
                 <div className="w-screen flex">
-                    <SideNav openPage={this.openPage} page={this.state.page}/>
+                    <SideNav openPage={this.openPage} page={this.state.page} />
                     {
 
                         this.getPage(this.state.page)

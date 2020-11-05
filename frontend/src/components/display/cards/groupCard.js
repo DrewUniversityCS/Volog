@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Card} from 'react-bootstrap';
-import Container from "@material-ui/core/Container";
+import {Button, Card, Container} from 'react-bootstrap';
 import "../../../static/css/pages/mentorPg.css";
 
 class GroupCard extends Component {

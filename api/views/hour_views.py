@@ -26,7 +26,25 @@ class PostHourSubmissionView(generics.CreateAPIView):
     serializer_class = HourSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = HourSerializer(data=request.data)
+        def parse_hour_type(oval):
+            if oval == "Required":
+                return 'REQ'
+            elif oval == "Pre-Approved":
+                return 'PRE'
+            elif oval == "Active":
+                return 'ACT'
+            elif oval == "Receptive":
+                return 'REC'
+
+        data = request.data
+        if 'student' not in data:
+            user = self.request.user
+            student = Student.objects.filter(user=user)[0].pk
+            data['student'] = student
+            data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
+            data['learning_goal'] = data['learning_goal'].upper()
+
+        serializer = HourSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
