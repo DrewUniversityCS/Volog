@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GroupList from './groupList'
 import ProfileOpen from './profileOpen'
+import {getGroupList} from "../../../functions/services/api/group_requests/group_list";
 
 
 export default class GroupsDashboard extends Component {
@@ -20,20 +21,7 @@ export default class GroupsDashboard extends Component {
 
     getGroupData = () => {
         const { page, searchQuery } = this.state;
-
-        //api call here
-        // let com = this;
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.onreadystatechange = function () {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         let data = JSON.parse(xhttp.responseText);
-        //         com.setState({ Groups: data.results, selectedGroupData: data.results[0], countData: data.count });
-        //     }
-        // };
-        // xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=mentor&search=${searchQuery}`);
-        // xhttp.send();
-        const data = { "count": 1, "next": null, "previous": null, "results": [{ "groupName": "groupnamedynamic", "first_name": "Joe", "last_name": "Adam", "email": "malminawi7@gmail.com", "role": 1, "is_profile_complete": true, "groups": [] }] }
-        this.setState({ Groups: data.results, selectedGroupData: data.results[0], countData: data.count });
+        getGroupList(this, searchQuery, page);
     };
 
 
@@ -59,7 +47,6 @@ export default class GroupsDashboard extends Component {
     };
     render() {
         const { Groups, selectedGroupData, page, countData, GroupNo } = this.state;
-
         return (
             <>
                 {
@@ -71,13 +58,13 @@ export default class GroupsDashboard extends Component {
                                 GroupsData={Groups}
                                 selectedGroup={this.selectedGroup}
                                 page={page}
-                                searchGroups={this.searchGroups}
+                                searchGroup={this.searchGroup}
                                 countData={countData}
                                 GroupNo={GroupNo}
                             />
                         </div>
                         <div className="bg-green-200  w-full" id="rightSide" style={{ height: '90vh' }}>
-                            <ProfileOpen GroupData={selectedGroupData} />
+                            {selectedGroupData && <ProfileOpen GroupData={selectedGroupData} />}
                         </div>
                     </>
                 }

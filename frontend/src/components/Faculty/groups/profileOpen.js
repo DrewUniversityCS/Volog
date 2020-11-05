@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VProgressBar from '../../elements/ProgressBar';
 import CreateGroups from './createGroups'
 import EditGroup from './editGroup'
+import {getGroupStudentList} from "../../../functions/services/api/group_requests/group_student_list";
 
 
 export default class ProfileOpen extends Component {
@@ -16,23 +17,19 @@ export default class ProfileOpen extends Component {
         this.StudentsList()
     }
 
-    createGroupModal = (v) => {
-        this.setState({ showcreateGroupModal: v })
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.GroupData != this.props.GroupData){
+            this.StudentsList()
+        }
     }
+
     createEditModal = (v) => {
         this.setState({ showEditeModal: v })
     }
 
     StudentsList = () => {
-        const apiData = [
-            { first_name: "Mahmoud", last_name: "mina", id: '6587', email: 'kaskn@g.com' },
-            { first_name: "David;kp;e", last_name: "Davidd", id: '23', email: 'iui@g.com' },
-            { first_name: "Perr", last_name: "TEst", id: '98', email: 'opop@g.com' },
-            { first_name: "Deja", last_name: "khaskjkas", id: '12', email: 'ijoko@g.com' },
-
-        ]
-
-        this.setState({ Students: apiData })
+        if (this.props.GroupData.id)
+            getGroupStudentList(this, this.props.GroupData.id);
     }
 
     render() {
@@ -48,17 +45,17 @@ export default class ProfileOpen extends Component {
                                     <div className="flex flex-col sm:flex-row" style={{ flexFlow: "wrap" }}>
                                         <p className="text-3xl font-medium">
                                             <span className="mx-2">
-                                                {GroupData.groupName}
+                                                {GroupData.name}
                                             </span>
                                             |
                                             <span className="mx-2 text-2xl">
-                                                {GroupData.first_name + ' '}{GroupData.last_name}
+                                                {GroupData.mentor_detail.user.first_name + ' '}{GroupData.mentor_detail.user.last_name}
                                             </span>
                                         </p>
 
                                         <div className="my-auto ml-10">
-                                            <CreateGroups createGroupModal={this.createGroupModal} show={showcreateGroupModal} />
-                                            {(Students.length && GroupData) && <EditGroup selectedStudents={Students} groupAdmin={GroupData} createEditModal={this.createEditModal} show={showEditeModal} />}
+
+                                            {/*{(Students.length && GroupData) && <EditGroup selectedStudents={Students} groupAdmin={GroupData} createEditModal={this.createEditModal} show={showEditeModal} />}*/}
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +68,7 @@ export default class ProfileOpen extends Component {
                                         <ul className="overflow-auto w-full" style={{ height: "50vh" }}>
                                             {
                                                 Students && Students.map((data, index) => (
-                                                    <li className="border-b-2 flex justify-between p-2" key={index}><span>{data.email}</span><span>{data.name}</span> </li>
+                                                    <li className="border-b-2 flex justify-between p-2" key={index}><span>{data.student.user.email}</span><span>{data.student.user.first_name} {data.student.user.last_name}</span> </li>
                                                 ))
                                             }
                                         </ul>

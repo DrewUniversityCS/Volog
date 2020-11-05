@@ -25,23 +25,23 @@ export default class CreateGroups extends Component {
             { first_name: "Joubuhe", last_name: "khaskjkas", id: '23', email: 'iui@g.com' },
             { first_name: "Jojije", last_name: "khaskjkas", id: '98', email: 'opop@g.com' },
             { first_name: "Jqerqoe", last_name: "khaskjkas", id: '12', email: 'ijoko@g.com' },
-        ]
+        ];
         this.setState({ MentorsLists: apiData })
-    }
+    };
 
     StudentsList = () => {
         const apiData = [
             { first_name: "ajksnlk", last_name: "khaskjkas", id: '6587', email: 'kaskn@g.com' },
-            { first_name: "Joaks;kp;e", last_name: "sjhbu", id: '23', email: 'iui@g.com' },
-            { first_name: "Jyuyuoe", last_name: "sjbx", id: '98', email: 'opop@g.com' },
-            { first_name: "Jmnnnoe", last_name: "sjhx", id: '12', email: 'ijoko@g.com' },
-        ]
+            { first_name: "Joaks;kp;e", last_name: "khaskjkas", id: '23', email: 'iui@g.com' },
+            { first_name: "Jyuyuoe", last_name: "khaskjkas", id: '98', email: 'opop@g.com' },
+            { first_name: "Jmnnnoe", last_name: "khaskjkas", id: '12', email: 'ijoko@g.com' },
+        ];
         this.setState({ Students: apiData })
-    }
+    };
 
     handleselectedMentor = (value) => {
         this.setState({ selectedMentor: value })
-    }
+    };
 
     handleStudentList = (event, value) => {
         const verify = event.currentTarget.checked;
@@ -62,9 +62,24 @@ export default class CreateGroups extends Component {
         // selectedMentor, studentLists
     }
 
-    AllfetchMentorsList = () => {
-        // api call
-        // this.setState({ Mentors: apiData })
+    AllfetchMentorsList = (which) => {
+        if (which === 'student') {
+            // this.setState({ Students: apiData })
+        }
+        else {
+            // this.setState({ MentorsLists: apiData })
+        }
+
+    }
+    selectWithnoGroupList = (which) => {
+        if (which === 'student') {
+            // this.setState({ Students: apiData })
+        }
+        else {
+            // this.setState({ MentorsLists: apiData })
+
+        }
+
     }
 
     AllStudentsList = () => {
@@ -92,8 +107,8 @@ export default class CreateGroups extends Component {
                                 <div>
                                     <p className="text-center text text-lg">Mentor</p>
                                     <select className="my-1 w-full">
-                                        <option>Mentor with no group</option>
-                                        <option>View All</option>
+                                        <option onClick={() => { this.selectWithnoGroupList('mentor') }}>Mentor with no group</option>
+                                        <option onClick={() => { this.AllfetchMentorsList('mentor') }}>View All</option>
                                     </select>
                                     <input type="search" placeholder="search" />
                                     <ul className="overflow-auto" style={{ maxHeight: "130px" }}>
@@ -111,8 +126,8 @@ export default class CreateGroups extends Component {
                                 <div>
                                     <p className="text-center text-lg">Student</p>
                                     <select className="my-1 w-full">
-                                        <option>Student with no group</option>
-                                        <option>View All</option>
+                                        <option onClick={() => { this.selectWithnoGroupList('student') }}>Student with no group</option>
+                                        <option onClick={() => { this.AllfetchMentorsList('student') }}>View All</option>
                                     </select>
                                     <input type="search" placeholder="search" />
                                     <ul className="overflow-auto" style={{ maxHeight: "130px" }}>

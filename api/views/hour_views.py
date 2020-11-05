@@ -1,7 +1,6 @@
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
-
 from api.logistics.serializers import HourSerializer
 from api.models import Student, HourInstance
 

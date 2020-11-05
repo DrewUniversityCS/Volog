@@ -6,7 +6,7 @@ Comments:
 
 from rest_framework import serializers
 from auth_backend.modules.user.serializers import UserSerializer
-from api.models import Student, Mentor, HourInstance
+from api.models import Student, Mentor, HourInstance,Group, StudentGroup
 
 
 class MentorSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class MentorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mentor
-        fields = ['user']
+        fields = ['id', 'user']
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ['user', 'student_id', 'class_standing']
+        fields = ['id', 'user', 'student_id', 'class_standing']
 
 
 class HourSerializer(serializers.ModelSerializer):
@@ -30,3 +30,54 @@ class HourSerializer(serializers.ModelSerializer):
         model = HourInstance
         fields = ['student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description',
                   'type_of_hour', 'learning_goal', 'approved']
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    """Group Serializer"""
+
+    students = serializers.PrimaryKeyRelatedField(
+        queryset=Student.objects.all(), many=True
+    )
+    mentor_detail = MentorSerializer(source='mentor', read_only=True)
+
+    class Meta:
+        model = Group
+        fields = ('id', 'name', 'mentor', 'students', 'created_at', 'mentor_detail', )
+
+    def create(self, validated_data):
+        students = validated_data.pop('students', [])
+        print(students)
+        group = Group.objects.create(**validated_data)
+        student_list = [
+            StudentGroup(
+                student=student,
+                group=group
+            ) for student in students
+        ]
+        StudentGroup.objects.bulk_create(student_list)
+        return group
+
+
+class StudentGroupSerializer(serializers.ModelSerializer):
+    student_id = serializers.PrimaryKeyRelatedField(
+        queryset=Student.objects.all(), source='student', write_only=True
+    )
+    group_id = serializers.PrimaryKeyRelatedField(
+        queryset=Group.objects.all(), source='group', write_only=True
+    )
+    student = StudentSerializer(read_only=True)
+
+    class Meta:
+        model = StudentGroup
+        fields = ('student', 'group', 'student_id', 'group_id',)
+        read_only_fields = ('group',)
+
+    def create(self, validated_data):
+        instance = super().create(validated_data)
+        return instance
+
+    def update(self, instance, validated_data):
+        user_group_instance = super(StudentGroupSerializer, self).update(
+            instance, validated_data
+        )
+        return user_group_instance
