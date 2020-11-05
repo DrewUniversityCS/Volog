@@ -22,7 +22,7 @@ export default class GroupList extends Component {
 
                     <div className="flex justify-center p-3 w-full">
                         <div className={'flex justify-between my-auto'}>
-                            <input type="search" placeholder="search" onChange={this.props.searchGroup}
+                            <input type="search" placeholder="search" onChange={}
                                    className="border-2 border-green-400 p-1 w-1/2 w-10/12"/>
                             <CreateGroups createGroupModal={this.createGroupModal} show={showcreateGroupModal}/>
                         </div>

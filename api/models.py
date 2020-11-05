@@ -52,3 +52,28 @@ class HourInstance(common_models.TimeStamp):
                                      blank=False, null=False)
     activity_description = models.TextField(blank=True, null=True)
     approved = models.BooleanField(default=False, null=False)
+
+
+class Group(common_models.TimeStamp):
+
+    """ Group Model """
+
+    name = models.CharField('Group name', max_length=256)
+    mentor = models.OneToOneField(Mentor, on_delete=models.CASCADE)
+    students = models.ManyToManyField(Student, through='StudentGroup')
+
+    def __str__(self):
+        return f'{self.name} - {self.mentor}'
+
+
+class StudentGroup(common_models.TimeStamp):
+
+    """ StudentGroup Model to store Students and group """
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('group', 'student',)
+
+    def __str__(self):
+        return f'{self.group} {self.student}'
