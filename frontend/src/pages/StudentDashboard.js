@@ -8,10 +8,10 @@ import {Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
-import ReportHours from "../components/input/ReportHours";
+import ReportHours from "../components/modals/ReportHours";
 import {Redirect} from "react-router-dom";
 import {getActivityCategories} from "../functions/services/api/getActivityCategories";
-import {MDBBadge, MDBBtn} from "mdbreact";
+import StudentNotifications from "../components/modals/studentNotifications";
 
 
 class StudentDashboard extends React.Component {
@@ -67,9 +67,7 @@ class StudentDashboard extends React.Component {
                         <Row>
                             <ReportHours onChange={() => getHoursForStudent(this)}
                                          activity_categories={this.state.activity_categories}/>
-                            <MDBBtn className="ml-3" color="primary">
-                                Notifications <MDBBadge color="danger" className="ml-2">2</MDBBadge>
-                            </MDBBtn>
+                            <StudentNotifications/>
                         </Row>
                     </Col>
                 </Row>
