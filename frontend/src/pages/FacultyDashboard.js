@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Student from '../components/Faculty/student/studentsIndex';
-import SideNav from '../components/Faculty/sideNav';
+import Student from '../components/pages/faculty/student/studentsIndex';
+import SideNav from '../components/pages/faculty/sideNav';
 import { Redirect } from "react-router-dom";
-import Referral from "../components/Faculty/referral";
-import GroupsDashboard from "../components/Faculty/groups/groupIndex";
-import Mentor from "../components/Faculty/mentor/mentorIndex";
-import Stats from "../components/Faculty/stats/Stats";
+import Referral from "../components/pages/faculty/referral";
+import GroupsDashboard from "../components/pages/faculty/groups/groupIndex";
+import Mentor from "../components/pages/faculty/mentor/mentorIndex";
+import Stats from "../components/pages/faculty/stats/Stats";
 
 class Admin extends Component {
     constructor(props) {

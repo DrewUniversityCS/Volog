@@ -1,9 +1,9 @@
 import React from "react";
-import VProgressBar from '../components/elements/ProgressBar'
+import VProgressBar from '../components/display/ProgressBar'
 import Container from 'react-bootstrap/Container';
-import UserPic from "../components/display/cards/userPic";
+import UserPic from "../components/display/userPic";
 import "../static/css/pages/studentPg.css"
-import HoursDataView from "../components/display/HoursDataView";
+import HoursDataView from "../components/display/hours/HoursDataView";
 import {Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";

@@ -1,8 +1,8 @@
 import React from "react";
 import {MDBContainer} from "mdbreact";
 import {Col, Row, Tab, Tabs} from "react-bootstrap";
-import {makeGoalsSummaryGraph} from "./graphs/goalsSummaryGraph";
-import {makeCategorySummaryGraph} from "./graphs/categorySummaryGraph";
+import {makeGoalsSummaryGraph} from "../graphs/goalsSummaryGraph";
+import {makeCategorySummaryGraph} from "../graphs/categorySummaryGraph";
 
 
 
