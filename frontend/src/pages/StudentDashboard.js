@@ -3,7 +3,7 @@ import VProgressBar from '../components/elements/ProgressBar'
 import Container from 'react-bootstrap/Container';
 import UserPic from "../components/display/cards/userPic";
 import "../static/css/pages/studentPg.css"
-import HoursTable from "../components/display/HoursTable";
+import HoursDataView from "../components/display/HoursDataView";
 import {Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
@@ -82,7 +82,7 @@ class StudentDashboard extends React.Component {
             <div className={'pb-20'}>
                 <Col>
                     <div style={{height: "20px"}}/>
-                    <HoursTable items={this.state.hours} activity_categories={this.state.activity_categories}/>
+                    <HoursDataView items={this.state.hours} activity_categories={this.state.activity_categories}/>
                 </Col>
             </div>
 

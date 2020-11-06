@@ -1,20 +1,9 @@
-import React, {Component} from 'react';
-import {
-    MDBBtn,
-    MDBCard,
-    MDBCardBody,
-    MDBCardHeader,
-    MDBDataTable,
-    MDBIcon,
-    MDBPopover,
-    MDBPopoverBody,
-    MDBPopoverHeader
-} from 'mdbreact';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelIcon from '@material-ui/icons/Cancel';
+import {MDBBtn, MDBDataTable, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from "mdbreact";
+import React from "react";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CancelIcon from "@material-ui/icons/Cancel";
 
-class HoursTable extends Component {
-
+class HoursTable extends React.Component {
     render() {
         let items;
         let index = 0;
@@ -73,12 +62,11 @@ class HoursTable extends Component {
 
                 let activity_index = item.activity_category;
                 let activity_category;
-                if(this.props.activity_categories[activity_index] !== undefined){
+                if (this.props.activity_categories[activity_index] !== undefined) {
                     activity_category = this.props.activity_categories[activity_index].title;
-                }else{
+                } else {
                     activity_category = "undefined";
                 }
-
 
 
                 description_popup = <MDBPopover
@@ -159,25 +147,16 @@ class HoursTable extends Component {
             }
         ]
         data.rows = items
-
         return (
-            <MDBCard>
-                <MDBCardHeader className="blue-gradient">
-                    <div className="text-center white-text"><MDBIcon far icon="calendar-check"/> Your Hours</div>
-                </MDBCardHeader>
-                <MDBCardBody>
-                    <MDBDataTable
-                        entriesOptions={[5, 10, 25]}
-                        entries={5}
-                        materialSearch
-                        scrollY
-                        maxHeight="400px"
-                        striped
-                        data={data}
-                    />
-                </MDBCardBody>
-            </MDBCard>
-
+            <MDBDataTable
+                entriesOptions={[5, 10, 25]}
+                entries={5}
+                materialSearch
+                scrollY
+                maxHeight="400px"
+                striped
+                data={data}
+            />
         )
     }
 }
