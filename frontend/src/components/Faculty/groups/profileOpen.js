@@ -1,51 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import VProgressBar from '../../elements/ProgressBar';
+import CreateGroups from './createGroups'
+import EditGroup from './editGroup'
+import {getGroupStudentList} from "../../../functions/services/api/group_requests/group_student_list";
+
+
 export default class ProfileOpen extends Component {
-
     state = {
-        Mentors: [],
-        Students: []
+        Students: [],
+        showcreateGroupModal: false,
+        showEditeModal: false,
     }
+
+
     componentDidMount() {
-        this.fetchMentorsList()
-        this.StudentsMentorsList()
+        this.StudentsList()
     }
 
-    fetchMentorsList = () => {
-        const apiData = [
-            { name: 'Mahmoud', id: '6587', email: 'mahmoud@gmail.com' },
-            { name: 'Deja', id: '23', email: 'deja@gmail.com' },
-            { name: 'Perrfection', id: '98', email: 'perrfection@gmail.com' },
-            { name: 'David', id: '12', email: 'david@gmail.com' },
-        ]
-        this.setState({ Mentors: apiData })
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.GroupData != this.props.GroupData){
+            this.StudentsList()
+        }
     }
 
-    StudentsMentorsList = () => {
-        const apiData = [
-            { name: 'Mahmoud', id: '6587', email: 'mahmoud@gmail.com' },
-            { name: 'Deja', id: '23', email: 'deja@gmail.com' },
-            { name: 'Perrfection', id: '98', email: 'perrfection@gmail.com' },
-            { name: 'David', id: '12', email: 'david@gmail.com' },
-        ]
-        this.setState({ Students: apiData })
+    createEditModal = (v) => {
+        this.setState({ showEditeModal: v })
     }
 
-    AllfetchMentorsList = () => {
-        // api call
-        // this.setState({ Mentors: apiData })
-
+    StudentsList = () => {
+        if (this.props.GroupData.id)
+            getGroupStudentList(this, this.props.GroupData.id);
     }
 
-    AllStudentsMentorsList = () => {
-        // api call
-        // this.setState({ Mentors: apiData })
-
-    }
     render() {
         const GroupData = this.props.GroupData;
-        const { Mentors, Students } = this.state;
+        const { Students, showEditeModal, showcreateGroupModal } = this.state;
         return (
             <div>
                 {
@@ -53,60 +42,45 @@ export default class ProfileOpen extends Component {
                         <>
                             <div>
                                 <div className="p-4">
-                                    <p className="flex justify-between flex-col sm:flex-row">
-                                        <span className="text-4xl font-medium">
-                                            {GroupData.groupName}
-                                        </span>
-                                        <span className="text-2xl my-auto">
-                                            {GroupData.first_name + ' '}{GroupData.last_name}
-                                        </span>
+                                    <div className="flex flex-col sm:flex-row" style={{ flexFlow: "wrap" }}>
+                                        <p className="text-3xl font-medium">
+                                            <span className="mx-2">
+                                                {GroupData.name}
+                                            </span>
+                                            |
+                                            <span className="mx-2 text-2xl">
+                                                {GroupData.mentor_detail.user.first_name + ' '}{GroupData.mentor_detail.user.last_name}
+                                            </span>
+                                        </p>
 
-                                        <span className="my-auto">
+                                        <div className="my-auto ml-10">
 
-                                            <button><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/add-icon.png" className="h-6" alt="add" onClick={() => { }} /></button>
-                                            <button className="mx-2"><img src="https://webstockreview.net/images/how-to-edit-png-images-3.png" className="h-6" alt="add" onClick={() => { }} /></button>
-                                        </span>
-                                    </p>
+                                            {/*{(Students.length && GroupData) && <EditGroup selectedStudents={Students} groupAdmin={GroupData} createEditModal={this.createEditModal} show={showEditeModal} />}*/}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="flex">
-                                    <div className="w-1/2 flex bg-green-300 p-2 shadow-md">
-                                        <div className="w-1/2 flex flex-col p-2">
-                                            <p className="-mb-2 flex justify-center"> <a onClick={() => this.AllfetchMentorsList()}>View All</a></p>
-                                            <hr />
-                                            <div>
-                                                <ul className="overflow-auto" style={{ maxHeight: "60vh" }}>
 
-                                                    {
-                                                        Mentors && Mentors.map((data, index) => (
-                                                            <li><input type="radio" className="my-1" name="mentorSelect" value={data.id} key={index} />{data.name} </li>
-                                                        ))
-                                                    }
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="w-1/2 flex flex-col p-2">
-                                            <p className="-mb-2 flex justify-center"><a onClick={() => this.AllStudentsMentorsList()}>View All</a></p>
-                                            <hr />
-
-
-                                            <div>
-                                                <ul className="overflow-auto" style={{ height: "60vh" }}>
-                                                    {
-                                                        Students && Students.map((data, index) => (
-                                                            <li><input className="my-1" type="radio" value={data.id} key={index} />{data.name} </li>
-                                                        ))
-                                                    }
-                                                </ul>
-                                            </div>
-                                        </div>
+                                <div className="w-full pb-4 px-2">
+                                    <VProgressBar completeCount={0} pendingCount={20}></VProgressBar>
+                                </div>
+                                <div className="flex justify-center">
+                                    <div className="bg-green-300 flex p-2 shadow-md w-11/12">
+                                        <ul className="overflow-auto w-full" style={{ height: "50vh" }}>
+                                            {
+                                                Students && Students.map((data, index) => (
+                                                    <li className="border-b-2 flex justify-between p-2" key={index}><span>{data.student.user.email}</span><span>{data.student.user.first_name} {data.student.user.last_name}</span> </li>
+                                                ))
+                                            }
+                                        </ul>
                                     </div>
-                                    <div className="w-1/2">
-                                        <VProgressBar completeCount={0} pendingCount={20}></VProgressBar>
-                                    </div>
+
                                 </div>
                             </div>
                         </> : <p className="text-2xl text-red-400 p-10">No User Data</p>
                 }
+
+
+
             </div>
         )
     }
