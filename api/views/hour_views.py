@@ -54,7 +54,9 @@ class PostHourSubmissionView(generics.CreateAPIView):
             data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
             data['learning_goal'] = data['learning_goal'].upper()
 
-        data['activity_category'] = ActivityCategory.objects.filter(title=data['activity_category'])[0].id
+        act_cat = data['activity_category']
+        if not act_cat.isdigit():
+            data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
 
         serializer = HourSerializer(data=data)
 

@@ -36,7 +36,7 @@ def hour_instance_validator(hour):
     """
     if hour < 0:
         raise ValidationError("Hour submission cannot be negative")
-    elif hour > 10:
+    elif hour > 12:
         raise ValidationError("Your hour submission is too high. Please submit activities separately.")
 
 

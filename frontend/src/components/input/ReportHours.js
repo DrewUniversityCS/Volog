@@ -4,7 +4,7 @@ import {postHour} from "../../functions/services/api/student_requests/postHour";
 import "../../static/css/components/report-hours.css";
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import {MDBBtn, MDBIcon} from "mdbreact";
+import {MDBBtn, MDBCardHeader, MDBIcon, MDBTooltip} from "mdbreact";
 
 class ReportHours extends React.Component {
     default_state = {
@@ -51,6 +51,9 @@ class ReportHours extends React.Component {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 show={this.state.show} onHide={this.handleClose} animation={true}>
+                <MDBCardHeader className="aqua-gradient">
+                    <div className="text-center white-text"><MDBIcon far icon="paper-plane"/> Hour Report</div>
+                </MDBCardHeader>
 
                 <Form className={"report-hours"}>
                     <Row>
@@ -192,22 +195,34 @@ class ReportHours extends React.Component {
                     </Row>
                     <Row md={{span: 2, offset: 5}}>
                         <Col align="center">
-                            <Button className="submit-button" variant="success"
-                                    onClick={this.handleSubmit}>
-                                <CheckCircleIcon/>
-                            </Button>
+                            <MDBTooltip
+                                domElement
+                                tag="span"
+                                placement="bottom">
+                                <Button className="submit-button" variant="success"
+                                        onClick={this.handleSubmit}>
+                                    <CheckCircleIcon/>
+                                </Button>
+                                <span>Submit</span>
+                            </MDBTooltip>
                         </Col>
                         <Col align="center">
-                            <Button className="cancel-button" variant="danger"
+                            <MDBTooltip
+                                domElement
+                                tag="span"
+                                placement="bottom">
+                                <Button className="cancel-button" variant="danger"
                                     onClick={this.handleClose}>
-                                <CancelIcon/>
-                            </Button>
+                                    <CancelIcon/>
+                                </Button>
+                                <span>Cancel</span>
+                            </MDBTooltip>
                         </Col>
                     </Row>
                 </Form>
             </Modal>
         </div>
     }
-}
+    }
 
-export default ReportHours;
+    export default ReportHours;

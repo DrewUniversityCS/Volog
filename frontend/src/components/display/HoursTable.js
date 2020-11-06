@@ -87,7 +87,7 @@ class HoursTable extends Component {
                     clickable
                     id="popper4"
                 >
-                    <MDBBtn color="primary">View</MDBBtn>
+                    <MDBBtn color="primary" outline>View</MDBBtn>
                     <div>
                         <MDBPopoverHeader>Submission Details</MDBPopoverHeader>
                         <MDBPopoverBody>
