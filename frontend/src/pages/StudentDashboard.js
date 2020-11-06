@@ -11,6 +11,7 @@ import {getHoursForStudent} from "../functions/services/api/student_requests/get
 import ReportHours from "../components/input/ReportHours";
 import {Redirect} from "react-router-dom";
 import {getActivityCategories} from "../functions/services/api/getActivityCategories";
+import {MDBBadge, MDBBtn} from "mdbreact";
 
 
 class StudentDashboard extends React.Component {
@@ -64,7 +65,11 @@ class StudentDashboard extends React.Component {
                             You have {Math.round(this.state.pending_hours * 100) / 100} pending hours.
                         </Row>
                         <Row>
-                            <ReportHours onChange={() => getHoursForStudent(this)} activity_categories={this.state.activity_categories}/>
+                            <ReportHours onChange={() => getHoursForStudent(this)}
+                                         activity_categories={this.state.activity_categories}/>
+                            <MDBBtn className="ml-3" color="primary">
+                                Notifications <MDBBadge color="danger" className="ml-2">2</MDBBadge>
+                            </MDBBtn>
                         </Row>
                     </Col>
                 </Row>
