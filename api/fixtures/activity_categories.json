@@ -1,0 +1,107 @@
+[
+  {
+    "model": "api.activitycategory",
+    "pk": 0,
+    "fields": {
+      "title": "Participation in Student Government"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 1,
+    "fields": {
+      "title": "Drew Honduras Project (DHP)"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 2,
+    "fields": {
+      "title": "Drew Student Voter Project (DSVP)"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 3,
+    "fields": {
+      "title": "Changebuilder Program"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 4,
+    "fields": {
+      "title": "Project Pericles Debating For Democracy Team"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 5,
+    "fields": {
+      "title": "UPitch Business Development Team"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 6,
+    "fields": {
+      "title": "Federal Community Work Study"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 7,
+    "fields": {
+      "title": "Community-Based Learning Project or Placement"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 8,
+    "fields": {
+      "title": "Community Service Placement (Center for Civic Engagement)"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 9,
+    "fields": {
+      "title": "Alternative Break Trip"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 10,
+    "fields": {
+      "title": "Lecture, Panel Discussion, Webinar, Screening, Performance"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 11,
+    "fields": {
+      "title": "Political Advocacy or Engagement"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 12,
+    "fields": {
+      "title": "Diversity, Inclusion or Anti-Racism Facilitated Dialogues and Workshops"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 13,
+    "fields": {
+      "title": "Interfaith Training and Workshops (Center for Religion, Culture and Conflict)"
+    }
+  },
+  {
+    "model": "api.activitycategory",
+    "pk": 15,
+    "fields": {
+      "title": "Other"
+    }
+  }
+]

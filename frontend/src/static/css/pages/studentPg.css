@@ -1,23 +1,15 @@
 .student-progress-profile{
     padding: 25px 50px 25px;
-    margin-top: 25px;
+    margin-top: 60px;
 }
 
 .user-pic{
-    padding-top: 25px;
-    padding-left: 25px;
+
 }
 
 .welcome-text{
-    margin-right: 20px;
     padding-top: 25px;
     font-size: 34px;
-}
-
-.hours-table{
-    background-color: whitesmoke;
-    padding: 20px;
-    margin-top: 25px;
 }
 
 .approved-hours{
@@ -29,6 +21,7 @@
 .pending-hours{
     font-size: 28px;
     color: orange;
+    padding-bottom: 28px;
 }
 
 .progress-container{
@@ -36,11 +29,8 @@
     margin-bottom: 25px;
 }
 
-div.btn-group {
-    margin: 0 auto;
-    text-align: center;
-    width: inherit;
-    display: inline-block;
+.btn{
+    margin: 0;
 }
 
 a {

@@ -1,8 +1,9 @@
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
-from api.logistics.serializers import HourSerializer
-from api.models import Student, HourInstance
+
+from api.logistics.serializers import HourSerializer, ActivityCategorySerializer
+from api.models import Student, HourInstance, ActivityCategory
 
 
 class CurrentStudentHoursView(generics.ListAPIView):
@@ -16,6 +17,16 @@ class CurrentStudentHoursView(generics.ListAPIView):
         student = Student.objects.filter(user=user)[0]
         hours = HourInstance.objects.filter(student=student)
         return hours.all()
+
+
+class ActivityCategoriesView(generics.ListAPIView):
+    """
+    API endpoint to get the currently possible hour activity categories.
+    """
+    serializer_class = ActivityCategorySerializer
+
+    def get_queryset(self):
+        return ActivityCategory.objects.all()
 
 
 class PostHourSubmissionView(generics.CreateAPIView):
@@ -43,7 +54,12 @@ class PostHourSubmissionView(generics.CreateAPIView):
             data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
             data['learning_goal'] = data['learning_goal'].upper()
 
+        act_cat = data['activity_category']
+        if not act_cat.isdigit():
+            data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
+
         serializer = HourSerializer(data=data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

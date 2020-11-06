@@ -4,9 +4,10 @@ import {postHour} from "../../functions/services/api/student_requests/postHour";
 import "../../static/css/components/report-hours.css";
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import {MDBBtn, MDBCardHeader, MDBIcon, MDBTooltip} from "mdbreact";
 
 class ReportHours extends React.Component {
-    state = {
+    default_state = {
         show: false,
         date_of_activity: '',
         number_of_hours: '1',
@@ -14,31 +15,45 @@ class ReportHours extends React.Component {
         type_of_hour: 'Required',
         learning_goal: 'Confidence',
         activity_description: '',
+        activity_category: 'Participation in Student Government'
     }
+    state = this.default_state
 
 
     handleClose = () => {
-        this.setState({show: false})
-    };
+        this.setState(this.default_state);
+    }
     handleShow = () => {
-        this.setState({show: true})
+        this.setState({show: true});
     };
     handleSubmit = () => {
-        postHour(this)
-        this.handleClose()
+        postHour(this);
+        this.handleClose();
     };
 
     render() {
-        return <div>
-            <Button variant="primary" onClick={this.handleShow}>
-                Report Hours
-            </Button>
+        let category_options;
 
+        if (this.props.activity_categories && !!this.props.activity_categories.length) {
+            category_options = this.props.activity_categories.map(category => {
+                    return <option>{category.title}</option>
+                }
+            )
+        }
+
+
+        return <div>
+            <MDBBtn color="primary" onClick={this.handleShow}>
+                <MDBIcon icon="clock" className="mr-1"/> Report Hours
+            </MDBBtn>
             <Modal
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 show={this.state.show} onHide={this.handleClose} animation={true}>
+                <MDBCardHeader className="aqua-gradient">
+                    <div className="text-center white-text"><MDBIcon far icon="paper-plane"/> Hour Report</div>
+                </MDBCardHeader>
 
                 <Form className={"report-hours"}>
                     <Row>
@@ -147,6 +162,23 @@ class ReportHours extends React.Component {
                     <Row>
                         <Col>
                             <Form.Group>
+                                <Form.Label>Category</Form.Label>
+                                <Form.Control as="select" name="category"
+                                              value={this.state.activity_category}
+                                              onChange={event => {
+                                                  this.setState({
+                                                      activity_category: event.target.value
+                                                  });
+                                              }
+                                              }>
+                                    {category_options}
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group>
                                 <Form.Label>Description</Form.Label>
                                 <Form.Control placeholder="Describe responsibilities and activities" as="textarea"
                                               rows="3" name="description"
@@ -163,22 +195,34 @@ class ReportHours extends React.Component {
                     </Row>
                     <Row md={{span: 2, offset: 5}}>
                         <Col align="center">
-                            <Button className="submit-button" variant="outline-success"
-                                    onClick={this.handleSubmit}>
-                                <CheckCircleIcon/>
-                            </Button>
+                            <MDBTooltip
+                                domElement
+                                tag="span"
+                                placement="bottom">
+                                <Button className="submit-button" variant="success"
+                                        onClick={this.handleSubmit}>
+                                    <CheckCircleIcon/>
+                                </Button>
+                                <span>Submit</span>
+                            </MDBTooltip>
                         </Col>
                         <Col align="center">
-                            <Button className="cancel-button" variant="outline-danger"
+                            <MDBTooltip
+                                domElement
+                                tag="span"
+                                placement="bottom">
+                                <Button className="cancel-button" variant="danger"
                                     onClick={this.handleClose}>
-                                <CancelIcon/>
-                            </Button>
+                                    <CancelIcon/>
+                                </Button>
+                                <span>Cancel</span>
+                            </MDBTooltip>
                         </Col>
                     </Row>
                 </Form>
             </Modal>
         </div>
     }
-}
+    }
 
-export default ReportHours;
+    export default ReportHours;

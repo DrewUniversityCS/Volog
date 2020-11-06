@@ -24,7 +24,7 @@ def no_future_dates(date):
     :param date: Date Object being validated
     :return: None
     """
-    if date >= now().date():
+    if date > now().date():
         raise ValidationError("Date cannot be in the future")
 
 
@@ -36,7 +36,7 @@ def hour_instance_validator(hour):
     """
     if hour < 0:
         raise ValidationError("Hour submission cannot be negative")
-    elif hour > 10:
+    elif hour > 12:
         raise ValidationError("Your hour submission is too high. Please submit activities separately.")
 
 

@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import MentorList from './mentorList'
-import MentorOpen from './mentorOpen'
-import FloatingActionButtons from './notificationButton'
+import React, {Component} from 'react';
+import MentorList from './mentorList';
+import MentorOpen from './mentorOpen';
+import FloatingActionButtons from './notificationButton';
 
 export default class Mentor extends Component {
     state = {
