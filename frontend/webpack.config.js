@@ -18,7 +18,12 @@ module.exports = {
             },
             {
                 test: /\.(|woff|woff2|eot|ttf)$/,
-                loader: 'url-loader?limit=100000'
+                loader: 'url-loader?limit=100000',
+                options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/',
+                            publicPath: '/'
+                        }
             },
             {
                 test: /\.css$/,

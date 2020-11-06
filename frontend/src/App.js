@@ -14,6 +14,7 @@ import NavBar from "./components/elements/NavBar";
 import Admin from "./pages/FacultyPage";
 
 import {getSessionUser} from "./functions/services/api/getSessionUser";
+import Footer from "./components/elements/Footer";
 
 
 
@@ -54,6 +55,7 @@ class App extends React.Component {
                                 <StudentDashboard userData={this.state.userData}/>
                             </Route>
                         </Switch>
+                        <Footer/>
                     </div>
                 )}
             </Router>

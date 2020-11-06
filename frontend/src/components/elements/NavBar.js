@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import {Nav, NavItem} from "react-bootstrap";
 import "../../static/css/components/navbar.css";
 import {getSessionUser} from "../../functions/services/api/getSessionUser";
-import {Link} from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -30,29 +29,13 @@ class NavBar extends Component {
         }
     }
 
-    getDashboardLink(roleID){
-        if (roleID === 0) {
-            return <NavItem eventkey={1} href="/app/admin">
-                    <Nav.Link as={Link} to="/app/admin">Dashboard</Nav.Link>
-                </NavItem>
-        } else if (roleID === 1) {
-            return <NavItem eventkey={1} href="/app/student">
-                    <Nav.Link as={Link} to="/app/student">Dashboard</Nav.Link>
-                </NavItem>
-        } else if (roleID === 2) {
-            return <NavItem eventkey={1} href="/app/mentor">
-                    <Nav.Link as={Link} to="/app/mentor">Dashboard</Nav.Link>
-                </NavItem>
-        }
-    }
-
     componentDidMount() {
         getSessionUser(this);
     }
 
     render() {
         return (
-            <Navbar bg="light" expand="sm">
+            <Navbar bg="white" expand="sm">
                 <Navbar.Brand>
                     <img
                         src={"../../static/assets/volog_logo/green_on_gray.png"}
@@ -62,7 +45,6 @@ class NavBar extends Component {
                         alt="volog logo"
                     />
                 </Navbar.Brand>
-                {this.getDashboardLink(this.props.userData.role)}
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
