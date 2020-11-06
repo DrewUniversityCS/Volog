@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import Referral from "../components/Faculty/referral";
 import GroupsDashboard from "../components/Faculty/groups/groupIndex";
 import Mentor from "../components/Faculty/mentor/mentorIndex";
+import Stats from "../components/Faculty/stats/Stats";
 
 class Admin extends Component {
     constructor(props) {
@@ -23,11 +24,13 @@ class Admin extends Component {
             case 0:
                 return <Student />
             case 1:
-                return <Referral />
-            case 2:
                 return <Mentor />
-            case 3:
+            case 2:
                 return <GroupsDashboard />
+            case 3:
+                return <Stats/>
+            case 4:
+                return <Referral />
             default:
                 return "No Page"
         }
@@ -42,6 +45,9 @@ class Admin extends Component {
         }
         else if (role === 3) {
             return <Redirect to="/app/groups" push />
+        }
+        else if (role === 4) {
+            return <Redirect to="/app/stats" push />
         }
         return (
             <div>
