@@ -4,6 +4,9 @@
 {% load socialaccount %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<!--<link rel="logo" href="{% static 'assets/volog_logo/green_on_gray.png' %}">-->
+<link rel="logo" href="green_on_gray.png">
+
 
 <!--this is a library from allauth.. customized code for login<-->
 
@@ -12,14 +15,17 @@
 
 {% block content %}
 
-    <div class="h-screen p-10 text-center w-full">
+    <div class= "h-screen p-10 text-center w-full body">
         <div class="mt-48">
-            <h1 class="text-6xl font-bold text-4xl text-red-700 uppercase">{% trans "Sign In" %}</h1>
+            <div class="box">
+          <a>
+              <img src="green_on_gray.png" alt="logo"/>
+          </a>
 
             {% get_providers as socialaccount_providers %}
 
             {% if socialaccount_providers %}
-                <p class="text-2xl">Please sign in with your google account</p>
+
 
                 <div class="socialaccount_ballot">
 
@@ -31,10 +37,11 @@
                                  alt="sign in" class="hover:shadow-lg mt-6 mx-auto rounded-full shadow-md w-1/4"/>
                         </a>
                     {% endfor %}
+                </div>
+                </div>
+                </div>
+                </div>
 
-                </div>
-                </div>
-                </div>
                 {% include "socialaccount/snippets/login_extra.html" %}
 
             {% endif %}
