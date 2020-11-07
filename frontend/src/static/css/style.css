@@ -13,10 +13,19 @@ body {
     outline: none;
     width: 100%;
 }
-box{
-    background-color: black;
-    height: 30%;
-    width: 400px;
-    /*border-bottom-left-radius:10px ;*/
-    /*border-bottom-right-radius:10px ;*/
+.log-in{
+    width: 80vh;
+    margin: 20vh auto 60px;
+    padding: 20px;
+    /*position: relative; !* For the submit button positioning *!*/
+
+    /* Styles */
+    box-shadow:
+        0 0 1px rgba(0, 0, 0, 0.3),
+        0 3px 7px rgba(0, 0, 0, 0.3),
+        inset 0 1px rgba(255,255,255,1),
+        inset 0 -3px 2px rgba(0,0,0,0.25);
+    border-radius: 5px;
+    background: linear-gradient(#eeefef, #ffffff 10%);
+
 }
