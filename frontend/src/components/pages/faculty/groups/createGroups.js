@@ -133,7 +133,9 @@ export default class CreateGroups extends Component {
                               }}> X </span>
                         <div>
                             <div className="w-full p-1">
-                                Group Name: <input className={'p-1'} placeholder={'Enter Group Name'} ref={this.groupName} onChange={this.handleGroupNameChange} value={groupName}/>
+                                Group Name: <input className={'p-1'} placeholder={'Enter Group Name'}
+                                                   ref={this.groupName} onChange={this.handleGroupNameChange}
+                                                   value={groupName}/>
                             </div>
                             <div className="flex justify-around">
 
@@ -145,7 +147,8 @@ export default class CreateGroups extends Component {
                                         {/*<option value={'all'}>View All*/}
                                         {/*</option>*/}
                                     </select>
-                                    <input className={'p-1 w-full'} type="search" placeholder="search" onChange={this.mentorSearch}/>
+                                    <input className={'p-1 w-full'} type="search" placeholder="search"
+                                           onChange={this.mentorSearch}/>
                                     <ul className="overflow-auto" style={{maxHeight: "130px"}}>
                                         {
                                             Mentors.length ? Mentors.map((data, index) =>
@@ -169,7 +172,8 @@ export default class CreateGroups extends Component {
                                         <option value={'all'}>View All
                                         </option>
                                     </select>
-                                    <input className={'p-1 w-full'} type="search" placeholder="search" onChange={this.studentSearch}/>
+                                    <input className={'p-1 w-full'} type="search" placeholder="search"
+                                           onChange={this.studentSearch}/>
                                     <ul className="overflow-auto" style={{maxHeight: "130px"}}>
                                         {
                                             Students.length ? Students.map((data, index) =>
@@ -178,7 +182,9 @@ export default class CreateGroups extends Component {
                                                         <input type="checkbox" className="mx-1 my-auto"
                                                                onClick={(event) => {
                                                                    this.handleStudentList(event, data)
-                                                               }}/><label className="my-auto">{data.user.email}</label>
+                                                               }}
+                                                               checked={studentLists.map(stu => stu.user.email).indexOf(data.user.email) !== -1 ? true : false}
+                                                        /><label className="my-auto">{data.user.email}</label>
                                                     </li>
                                                 )) : 'No Data Found'
                                         }
@@ -193,7 +199,13 @@ export default class CreateGroups extends Component {
                                     {
                                         studentLists && studentLists.map((data, index) => (
                                             <p className="bg-gray-200 p-2 rounded mx-1" key={index}
-                                               style={{width: "fit-content"}}>{data.user.email}</p>
+                                               style={{width: "fit-content"}}>{data.user.email}
+                                                <span
+                                                    className={'bg-grey-100 cursor-pointer font-medium hover:shadow-md ml-1 rounded-full text-black translate-x-2'}
+                                                    onClick={(event) => {
+                                                        this.handleStudentList(event, data)
+                                                    }}>ⓧ</span>
+                                            </p>
                                         ))
                                     }
                                 </div>

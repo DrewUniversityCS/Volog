@@ -111,8 +111,6 @@ export default class CreateGroups extends Component {
     render() {
         const {show} = this.props;
         const {Students, Mentors, selectedMentor, studentLists, groupName} = this.state;
-        console.log('Students ERR', Students)
-        console.log(this.props.selectedStudents);
         return (
             <>
                 <button onClick={() => {
@@ -137,7 +135,8 @@ export default class CreateGroups extends Component {
                               }}> X </span>
                         <div>
                             <div className="w-full">
-                                Group Name: <input className={'p-1'} placeholder={'Enter Group Name'} ref={this.groupName}
+                                Group Name: <input className={'p-1'} placeholder={'Enter Group Name'}
+                                                   ref={this.groupName}
                                                    onChange={this.handleGroupNameChange} value={groupName}/>
                             </div>
                             <div className="flex justify-around">
@@ -150,7 +149,8 @@ export default class CreateGroups extends Component {
                                         {/*<option value={'all'}>View All*/}
                                         {/*</option>*/}
                                     </select>
-                                    <input className={'p-1 w-full'} type="search" placeholder="search" onChange={this.mentorSearch}/>
+                                    <input className={'p-1 w-full'} type="search" placeholder="search"
+                                           onChange={this.mentorSearch}/>
                                     <ul className="overflow-auto" style={{maxHeight: "130px"}}>
                                         {
                                             Mentors.length ? Mentors.map((data, index) =>
@@ -174,7 +174,8 @@ export default class CreateGroups extends Component {
                                         <option value={'all'}>View All
                                         </option>
                                     </select>
-                                    <input className={'p-1 w-full'} type="search" placeholder="search" onChange={this.studentSearch}/>
+                                    <input className={'p-1 w-full'} type="search" placeholder="search"
+                                           onChange={this.studentSearch}/>
                                     <ul className="overflow-auto" style={{maxHeight: "130px"}}>
                                         {
                                             Students.length ? Students.map((data, index) =>
@@ -200,7 +201,14 @@ export default class CreateGroups extends Component {
                                     {
                                         studentLists && studentLists.map((data, index) => (
                                             <p className="bg-gray-200 p-2 rounded mx-1" key={index}
-                                               style={{width: "fit-content"}}>{data.user.email}</p>
+                                               style={{width: "fit-content"}}>{data.user.email}
+                                                <span
+                                                    className={'bg-grey-100 cursor-pointer font-medium hover:shadow-md ml-1 rounded-full text-black translate-x-2'}
+                                                    onClick={(event) => {
+                                                        this.handleStudentList(event, data)
+                                                    }}>ⓧ</span>
+                                            </p>
+
                                         ))
                                     }
                                 </div>
@@ -215,7 +223,7 @@ export default class CreateGroups extends Component {
                                 <button
                                     className={`py-2 px-4 w-1/2 rounded bg-green-400 hover:bg-green-700 hover:text-white`}
                                     onClick={() => this.submitForm()}
-                                disabled={(selectedMentor && (studentLists.length && groupName.trim().length > 0)) ? false : true}
+                                    disabled={(selectedMentor && (studentLists.length && groupName.trim().length > 0)) ? false : true}
                                 >Save
                                 </button>
                             </div>

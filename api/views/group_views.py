@@ -19,7 +19,7 @@ class GroupView(rest_viewsets.ModelViewSet):
     )
     ordering_fields = ('created_at',)
     search_fields = ('name', 'mentor__user__first_name',)
-    http_method_names = ('get', 'post', 'patch',)
+    http_method_names = ('get', 'post', 'patch', 'delete',)
 
     def get_queryset(self):
         query = Group.objects.filter()

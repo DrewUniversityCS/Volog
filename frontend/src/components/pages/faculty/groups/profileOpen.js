@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import VProgressBar from '../../../display/ProgressBar';
 import CreateGroups from './createGroups'
 import EditGroup from './editGroup'
 import {getGroupStudentList} from "../../../../functions/services/api/group_requests/group_student_list";
+import DeleteGroup from "./delete_group";
 
 
 export default class ProfileOpen extends Component {
@@ -10,6 +11,7 @@ export default class ProfileOpen extends Component {
         Students: [],
         showcreateGroupModal: false,
         showEditeModal: false,
+        showDeleteModal: false
     }
 
 
@@ -18,13 +20,16 @@ export default class ProfileOpen extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.GroupData != this.props.GroupData){
+        if (prevProps.GroupData != this.props.GroupData) {
             this.StudentsList()
         }
     }
 
     createEditModal = (v) => {
-        this.setState({ showEditeModal: v })
+        this.setState({showEditeModal: v})
+    }
+    createDeleteModal = (v) => {
+        this.setState({showDeleteModal: v})
     }
 
     StudentsList = () => {
@@ -34,7 +39,7 @@ export default class ProfileOpen extends Component {
 
     render() {
         const GroupData = this.props.GroupData;
-        const { Students, showEditeModal, showcreateGroupModal } = this.state;
+        const {Students, showEditeModal, showcreateGroupModal, showDeleteModal} = this.state;
         return (
             <div>
                 {
@@ -42,7 +47,7 @@ export default class ProfileOpen extends Component {
                         <>
                             <div>
                                 <div className="p-4">
-                                    <div className="flex flex-col sm:flex-row" style={{ flexFlow: "wrap" }}>
+                                    <div className="flex flex-col sm:flex-row justify-between" style={{flexFlow: "wrap"}}>
                                         <p className="text-3xl font-medium">
                                             <span className="mx-2">
                                                 {GroupData.name}
@@ -55,7 +60,19 @@ export default class ProfileOpen extends Component {
 
                                         <div className="my-auto ml-10">
 
-                                            {(Students.length && GroupData) && <EditGroup selectedStudents={Students.map(student=>student.student)} groupAdmin={GroupData.mentor_detail} createEditModal={this.createEditModal} show={showEditeModal} groupData={GroupData} refreshGroupData={this.props.refreshGroupData} />}
+                                            {(Students.length && GroupData) && <div ><EditGroup
+                                                selectedStudents={Students.map(student => student.student)}
+                                                groupAdmin={GroupData.mentor_detail}
+                                                createEditModal={this.createEditModal} show={showEditeModal}
+                                                groupData={GroupData} refreshGroupData={this.props.refreshGroupData}/>
+                                                <DeleteGroup
+                                                    createDeleteModal={this.createDeleteModal}
+                                                    show={showDeleteModal}
+                                                    groupId={GroupData.id}
+                                                    refreshGroupData={this.props.refreshGroupData}
+                                                ></DeleteGroup>
+                                            </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -65,10 +82,19 @@ export default class ProfileOpen extends Component {
                                 </div>
                                 <div className="flex justify-center">
                                     <div className="bg-green-300 flex p-2 shadow-md w-11/12">
-                                        <ul className="overflow-auto w-full" style={{ height: "50vh" }}>
+                                        <ul className="overflow-auto w-full" style={{height: "50vh"}}>
                                             {
                                                 Students && Students.map((data, index) => (
-                                                    <li className="border-b-2 flex justify-between p-2" key={index}><span>{data.student.user.email}</span><span>{data.student.user.first_name} {data.student.user.last_name}</span> </li>
+                                                    <li className="border-b-2 flex justify-between p-2" key={index}>
+                                                        <span>
+                                                            {data.student.user.first_name} {data.student.user.last_name}, {data.student.user.email}
+                                                        </span>
+                                                        <span>
+                                                            <div className="pb-4 px-2" style={{width: '20vw'}}>
+                                                                <VProgressBar completeCount={0} pendingCount={20}></VProgressBar>
+                                                            </div>
+                                                        </span>
+                                                    </li>
                                                 ))
                                             }
                                         </ul>
@@ -78,7 +104,6 @@ export default class ProfileOpen extends Component {
                             </div>
                         </> : <p className="text-2xl text-red-400 p-10">No User Data</p>
                 }
-
 
 
             </div>

@@ -36,3 +36,17 @@ export const editGroup = (obj, data, group_id) => {
         }).catch(err => console.log(err))
 
 }
+export const deleteGroup = (obj, group_id) => {
+    let url = `/api/groups/${group_id}/`;
+    const csrftoken = Cookies.get('csrftoken');
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+             'X-CSRFToken': csrftoken,
+        },
+    }).then(data => {
+            obj.props.createDeleteModal(false)
+            obj.props.refreshGroupData()
+        }).catch(err => console.log(err))
+
+}
