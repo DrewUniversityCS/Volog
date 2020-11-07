@@ -55,7 +55,7 @@ export default class ProfileOpen extends Component {
 
                                         <div className="my-auto ml-10">
 
-                                            {/*{(Students.length && GroupData) && <EditGroup selectedStudents={Students} groupAdmin={GroupData} createEditModal={this.createEditModal} show={showEditeModal} />}*/}
+                                            {(Students.length && GroupData) && <EditGroup selectedStudents={Students.map(student=>student.student)} groupAdmin={GroupData.mentor_detail} createEditModal={this.createEditModal} show={showEditeModal} groupData={GroupData} refreshGroupData={this.props.refreshGroupData} />}
                                         </div>
                                     </div>
                                 </div>

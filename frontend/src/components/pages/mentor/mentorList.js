@@ -18,7 +18,7 @@ export default class MentorList extends Component {
                                 <ul>
                                     {
                                         mentor.map((data, index) => {
-                                            return <li key={index} className={`flex justify-between px-6 py-2 hover:bg-green-200 ${index === this.props.mentorNo && 'bg-green-300 hover:bg-green-300'}`} onClick={() => { this.props.selectedmentor(index) }}><span>{data.first_name} {data.last_name}</span><span>{data.school_id}</span></li>
+                                            return <li key={index} className={`flex justify-between px-6 py-2 hover:bg-green-200 ${index === this.props.mentorNo && 'bg-green-300 hover:bg-green-300'}`} onClick={() => { this.props.selectedmentor(index) }}><span>{data.student.user.first_name} {data.student.user.last_name}</span><span>{data.student.school_id}</span></li>
                                         })
                                     }
                                 </ul> : "Users not found"

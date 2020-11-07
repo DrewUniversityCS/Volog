@@ -29,7 +29,7 @@ export default class Mentor extends Component {
                 com.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count});
             }
         };
-        xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=student&search=${searchQuery}`);
+        xhttp.open("GET", `/api/group/students/current?page=${page}&search=${searchQuery}`);
         xhttp.send();
 
     };

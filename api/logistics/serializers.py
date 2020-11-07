@@ -39,7 +39,6 @@ class HourSerializer(serializers.ModelSerializer):
     class Meta:
         model = HourInstance
         fields = ['student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description','activity_category', 'type_of_hour', 'learning_goal', 'approved']
-                  
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -56,7 +55,6 @@ class GroupSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         students = validated_data.pop('students', [])
-        print(students)
         group = Group.objects.create(**validated_data)
         student_list = [
             StudentGroup(
@@ -66,6 +64,21 @@ class GroupSerializer(serializers.ModelSerializer):
         ]
         StudentGroup.objects.bulk_create(student_list)
         return group
+
+    def update(self, instance, validated_data):
+        StudentGroup.objects.filter(group=instance).delete()
+        students = validated_data.pop('students', [])
+        student_list = [
+            StudentGroup(
+                student=student,
+                group=instance
+            ) for student in students
+        ]
+        instance.mentor = validated_data['mentor']
+        instance.name = validated_data['name']
+        StudentGroup.objects.bulk_create(student_list)
+        instance.save()
+        return instance
 
 
 class StudentGroupSerializer(serializers.ModelSerializer):
@@ -91,4 +104,3 @@ class StudentGroupSerializer(serializers.ModelSerializer):
             instance, validated_data
         )
         return user_group_instance
-                  
