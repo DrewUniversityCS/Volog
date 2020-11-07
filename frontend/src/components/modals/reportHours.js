@@ -212,7 +212,7 @@ class ReportHours extends React.Component {
                                 tag="span"
                                 placement="bottom">
                                 <Button className="cancel-button" variant="danger"
-                                    onClick={this.handleClose}>
+                                        onClick={this.handleClose}>
                                     <CancelIcon/>
                                 </Button>
                                 <span>Cancel</span>
@@ -223,6 +223,6 @@ class ReportHours extends React.Component {
             </Modal>
         </div>
     }
-    }
+}
 
-    export default ReportHours;
+export default ReportHours;

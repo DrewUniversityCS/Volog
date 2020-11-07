@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import {Jumbotron} from "react-bootstrap";
 import "../static/css/pages/mentorPg.css";
 import {Redirect} from "react-router-dom";
-import Mentor from '../components/Mentor/mentorsIndex'
+import Mentor from '../components/pages/mentor/mentorsIndex'
 
 class MentorDashboard extends React.Component {
 
