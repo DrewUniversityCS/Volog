@@ -1,33 +1,67 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import './static/css/index.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+
+
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import NavBar from "./components/elements/NavBar";
 import Admin from "./pages/FacultyPage";
-import ReactDOM from 'react-dom';
 
-const App = () => {
+import {getSessionUser} from "./functions/services/api/getSessionUser";
+import Footer from "./components/elements/Footer";
 
-    return (
-        <Router>
-            <div className="box">
-                <NavBar/>
-                <Switch>
-                    <Route path="/app/" exact>
-                        <Admin/>
-                    </Route>
-                    <Route path="/app/mentor/">
-                        <MentorDashboard/>
-                    </Route>
-                    <Route path="/app/student/">
-                        <StudentDashboard/>
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
-    )
+
+
+
+class App extends React.Component {
+    state = {
+        userData: {
+            first_name: '',
+            last_name: '',
+            email: '',
+            role: 3,
+            is_profile_complete: '',
+            groups: []
+        },
+        isLoading: true
+    };
+
+    componentDidMount() {
+        getSessionUser(this);
+    }
+
+    render() {
+        return (
+            <Router>
+                {this.state.isLoading ? (
+                    <h1>Loading...</h1>
+                ) : (
+                    <div className="box">
+                        <NavBar userData={this.state.userData}/>
+                        <Switch>
+                            <Route path="/app/" exact>
+                                <Admin userData={this.state.userData}/>
+                            </Route>
+                            <Route path="/app/mentor/">
+                                <MentorDashboard userData={this.state.userData}/>
+                            </Route>
+                            <Route path="/app/student/">
+                                <StudentDashboard userData={this.state.userData}/>
+                            </Route>
+                        </Switch>
+                        <Footer/>
+                    </div>
+                )}
+            </Router>
+        )
+    }
+
 };
 
 export default App;

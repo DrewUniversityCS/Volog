@@ -151,7 +151,7 @@ STATICFILES_DIRS = (
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 1000
 }
 
 EMAIL_HOST = 'smtp.gmail.com'
@@ -161,3 +161,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+X_FRAME_OPTIONS = 'ALLOW-FROM https://127.0.0.1/'

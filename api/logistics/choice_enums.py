@@ -31,7 +31,7 @@ class YEAR_IN_SCHOOL_CHOICES(ChoiceEnum):
 
 class EXPERIENTIAL_LEARNING_HOURS_TYPES(ChoiceEnum):
     required = ('REQ', 'Required')
-    active = ('ACT', 'Active (Not Requiring Preapproval')
+    active = ('ACT', 'Active (Not Requiring Preapproval)')
     pre_approved = ('PRE', 'Active (Preapproval)')
     receptive = ('REC', 'Receptive')
 

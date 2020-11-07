@@ -13,6 +13,19 @@ module.exports = {
                 loaders: ["style-loader", "css-loader", "less-loader"]
             },
             {
+                test: /\.scss$/,
+                loader: 'style-loader!css-loader!sass-loader'
+            },
+            {
+                test: /\.(|woff|woff2|eot|ttf)$/,
+                loader: 'url-loader?limit=100000',
+                options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/',
+                            publicPath: '/'
+                        }
+            },
+            {
                 test: /\.css$/,
                 loaders: ["style-loader", "css-loader"]
             },

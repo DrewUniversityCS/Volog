@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import {Card, ListGroup} from 'react-bootstrap';
 
 class Notification extends Component {
     constructor(props) {
