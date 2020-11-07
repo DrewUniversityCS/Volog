@@ -21,7 +21,7 @@ class ProfileForm(forms.ModelForm):
         widgets = {
             'role': forms.Select(attrs={'class': 'user_role'})
         }
-        fields = ('first_name', 'last_name', 'role', 'student_id', 'class_standing', 'mentor', )
+        fields = ('first_name', 'last_name', 'role', 'student_id', 'class_standing')
         required = ('first_name', 'last_name', 'role', )
 
     def clean(self):
