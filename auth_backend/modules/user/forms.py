@@ -15,7 +15,6 @@ class ProfileForm(forms.ModelForm):
     referral_code = forms.CharField()
     student_id = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'student_form'}), required=False)
     class_standing = forms.ChoiceField(choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], widget=forms.Select(attrs={'class': 'student_form'}), required=False)
-    mentor = forms.ModelChoiceField(queryset=Mentor.objects.filter(user__is_profile_complete=True), widget=forms.Select(attrs={'class': 'student_form'}), required=False)
 
     class Meta:
         model = BaseVologUser
@@ -38,8 +37,7 @@ class ProfileForm(forms.ModelForm):
             elif role == 1:  # Student
                 sid = cleaned_data['student_id']
                 cl_stand = cleaned_data['class_standing']
-                mentor = cleaned_data['mentor']
-                student = Student.objects.create(student_id=sid, class_standing=cl_stand, DAS_mentor=mentor, user=self.instance)
+                student = Student.objects.create(student_id=sid, class_standing=cl_stand, user=self.instance)
                 student.save()
             elif role == 2:  # Mentor
                 mentor = Mentor.objects.create(user=self.instance)
