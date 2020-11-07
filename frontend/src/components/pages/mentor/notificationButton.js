@@ -13,9 +13,9 @@ function FloatingActionButtons() {
 
     return (
         <>
-            <button onClick={handleShow} className="-translate-y-40 absolute bg-green-900 focus:outline-none h-12 m-4 outline-none right-0 rounded-full transform w-12">
+           <button onClick={handleShow} className="-translate-y-40 absolute bg-green-900 focus:outline-none h-12 m-4 outline-none right-0 rounded-full transform w-32">
                 <Badge badgeContent={4} color="secondary">
-                 <NotificationsIcon style={{fill: "white"}}/>
+                    <div className={'text-white'}>Notifications</div>
                 </Badge>
 
             </button>
