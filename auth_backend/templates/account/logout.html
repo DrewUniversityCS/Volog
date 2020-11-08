@@ -2,26 +2,29 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="logo" href="{% static 'assets/volog_logo/green_on_gray.png' %}">
+<link rel="logo" href="green_on_gray.png">
 
 {% block content %}
 
-    <!-- same as login -->
+<!-- same as login -->
 
+<div class="log-out center-block">
+    <img src="{% static 'assets/volog_logo/green_on_gray.png' %}" alt="">
+    <p class="text-2xl text-center">{% trans 'Are you sure you want to sign out?' %}</p>
+    <form method="post" action="{% url 'account_logout' %}" class="text-center">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button type="submit"
+                class="mt-4 bg-green-900 hover:bg-lightgreen-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto">
+            {% trans 'Sign Out' %}
+        </button>
 
-    <div class="h-screen p-10 text-center w-full body">
-        <div class="mt-48">
-         <div class="box">
-            <p class="text-2xl">{% trans 'Are you sure you want to sign out?' %}</p>
-            <form method="post" action="{% url 'account_logout' %}">
-                {% csrf_token %}
-                {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                {% endif %}
-                <button type="submit"
-                        class="mt-4 bg-green-900 hover:bg-lightgreen-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{% trans 'Sign Out' %}</button>
-            </form>
-
-        </div>
-        </div>
-    </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
 {% endblock %}
