@@ -45,3 +45,12 @@ class LEARNING_GOALS_CHOICES(ChoiceEnum):
     explore =    ('EXPLORE',
                   'Explore and take action on solutions to real-world problems that fulfill the goals of social impact,'
                   ' financial viability, and environmental sustainability.')
+
+
+class NOTIFICATION_TYPES(ChoiceEnum):
+    # For Mentors
+    hour_approval_request = ('HA_REQ', 'Request to approve hours for student.')
+    # For Students
+    hour_confirmation_msg = ('HC_MSG', 'Hour was confirmed by your mentor.')
+    hour_denial_msg = ('HD_MSG', 'Hour was denied by your mentor.')
+    new_preapproval_hour = ('NP_MSG', 'You have a new pre approved activity.')

@@ -6,7 +6,8 @@ Comments:
 
 from django.db import models
 
-from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, EXPERIENTIAL_LEARNING_HOURS_TYPES
+from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, \
+    EXPERIENTIAL_LEARNING_HOURS_TYPES, NOTIFICATION_TYPES
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 from auth_backend.modules.common import models as common_models
 
@@ -47,6 +48,16 @@ class ActivityCategory(models.Model):
         return self.title
 
 
+class Notification(common_models.TimeStamp):
+    """
+    Notification model
+    """
+    title = models.CharField(max_length=250, unique=False, blank=False, null=False)
+    originator = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=True, null=True, related_name="origin")
+    receiver = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=True, related_name="destination")
+    comment = models.CharField(max_length=400, choices=[x.value for x in NOTIFICATION_TYPES], blank=False, null=True)
+
+
 class HourInstance(common_models.TimeStamp):
     """
     An instance of a single hour submission. Connected to its related student with a foreign key.
@@ -68,7 +79,6 @@ class HourInstance(common_models.TimeStamp):
 
 
 class Group(common_models.TimeStamp):
-
     """ Group Model """
 
     name = models.CharField('Group name', max_length=256)
@@ -80,7 +90,6 @@ class Group(common_models.TimeStamp):
 
 
 class StudentGroup(common_models.TimeStamp):
-
     """ StudentGroup Model to store Students and group """
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
