@@ -53,8 +53,8 @@ class Notification(common_models.TimeStamp):
     Notification model
     """
     title = models.CharField(max_length=250, unique=False, blank=False, null=False)
-    originator = models.CharField("user.BaseVologUser", on_delete=models.CASCADE, blank=True, null=True)
-    receiver = models.CharField("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=True)
+    originator = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE,  null=True, related_name="notification_originator")
+    receiver = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, null=True, related_name="notification_receiver")
     comment = models.CharField(max_length=400, choices=[x.value for x in NOTIFICATION_TYPES], blank=False, null=True)
 
 
