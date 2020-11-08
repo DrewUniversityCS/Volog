@@ -1,16 +1,17 @@
 import React from "react";
-import VProgressBar from '../components/elements/ProgressBar'
+import VProgressBar from '../components/display/ProgressBar'
 import Container from 'react-bootstrap/Container';
-import UserPic from "../components/display/cards/userPic";
+import UserPic from "../components/display/userPic";
 import "../static/css/pages/studentPg.css"
-import HoursTable from "../components/display/HoursTable";
+import HoursDataView from "../components/display/hours/HoursDataView";
 import {Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
-import ReportHours from "../components/input/ReportHours";
+import ReportHours from "../components/modals/ReportHours";
 import {Redirect} from "react-router-dom";
 import {getActivityCategories} from "../functions/services/api/getActivityCategories";
+import StudentNotifications from "../components/modals/studentNotifications";
 
 
 class StudentDashboard extends React.Component {
@@ -64,7 +65,9 @@ class StudentDashboard extends React.Component {
                             You have {Math.round(this.state.pending_hours * 100) / 100} pending hours.
                         </Row>
                         <Row>
-                            <ReportHours onChange={() => getHoursForStudent(this)} activity_categories={this.state.activity_categories}/>
+                            <ReportHours onChange={() => getHoursForStudent(this)}
+                                         activity_categories={this.state.activity_categories}/>
+                            <StudentNotifications/>
                         </Row>
                     </Col>
                 </Row>
@@ -82,7 +85,7 @@ class StudentDashboard extends React.Component {
             <div className={'pb-20'}>
                 <Col>
                     <div style={{height: "20px"}}/>
-                    <HoursTable items={this.state.hours} activity_categories={this.state.activity_categories}/>
+                    <HoursDataView items={this.state.hours} activity_categories={this.state.activity_categories}/>
                 </Col>
             </div>
 

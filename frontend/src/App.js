@@ -10,11 +10,11 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import NavBar from "./components/elements/NavBar";
-import Admin from "./pages/FacultyPage";
+import NavBar from "./components/common/NavBar";
+import Admin from "./pages/FacultyDashboard";
 
 import {getSessionUser} from "./functions/services/api/getSessionUser";
-import Footer from "./components/elements/Footer";
+import Footer from "./components/common/Footer";
 
 
 

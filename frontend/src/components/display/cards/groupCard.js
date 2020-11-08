@@ -23,7 +23,6 @@ class GroupCard extends Component {
                         Mahmoud
                         David
                     </Card.Text>
-                    <Button>View all students </Button>
                 </Card.Body>
             </Card>
         </Container>
