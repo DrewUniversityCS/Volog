@@ -145,6 +145,8 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
+STATIC_ROOT = (BASE_DIR, 'frontend', 'src', 'static')
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend', 'src', 'static'),
 )
