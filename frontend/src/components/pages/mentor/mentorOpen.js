@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import VProgressBar from '../../../components/display/ProgressBar'
 import StudentCard from "../../display/cards/studentCard";
 
 
@@ -12,7 +13,7 @@ export default class MentorOpen extends Component {
                     mentor && (
 
                             <div className="overflow-auto" style={{ height: "50vh" }}>
-                                <StudentCard mentor={mentor} />
+                                <StudentCard mentor={mentor.student.user} />
                             </div>
                     )
                 }

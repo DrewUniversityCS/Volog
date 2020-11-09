@@ -13,7 +13,8 @@ export default class CreateGroups extends Component {
         mentorSearchQuery: '',
         studentSearchQuery: '',
         mentorSearchType: 'without_group',
-        studentSearchType: 'without_group'
+        studentSearchType: 'without_group',
+        groupName: ''
     };
 
     groupName = React.createRef()
@@ -22,6 +23,19 @@ export default class CreateGroups extends Component {
         this.fetchMentorsList()
         this.fetchStudentList()
 
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props != prevProps) {
+            this.setState({
+                selectedMentor: null,
+                studentLists: [],
+                groupName: ""
+            })
+
+            this.fetchMentorsList()
+            this.fetchStudentList()
+        }
     }
 
     fetchMentorsList = () => {
@@ -85,9 +99,16 @@ export default class CreateGroups extends Component {
         })
     }
 
+    handleGroupNameChange = (event) => {
+        console.log(event.target.value);
+        this.setState({
+            groupName: event.target.value
+        })
+    }
+
     render() {
         const {show} = this.props;
-        const {Students, Mentors, selectedMentor, studentLists} = this.state;
+        const {Students, Mentors, selectedMentor, studentLists, groupName} = this.state;
         return (
             <>
                 <button onClick={() => {
@@ -96,7 +117,7 @@ export default class CreateGroups extends Component {
                         className="h-6" alt="add" onClick={() => {
                 }}/></button>
                 <Modal
-                    size="md"
+                    size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
                     show={show} onHide={() => {
@@ -111,8 +132,10 @@ export default class CreateGroups extends Component {
                                   this.props.createGroupModal(false)
                               }}> X </span>
                         <div>
-                            <div className="w-full">
-                                Group Name: <input placeholder={'Enter Group Name'} ref={this.groupName}/>
+                            <div className="w-full p-1">
+                                Group Name: <input className={'p-1'} placeholder={'Enter Group Name'}
+                                                   ref={this.groupName} onChange={this.handleGroupNameChange}
+                                                   value={groupName}/>
                             </div>
                             <div className="flex justify-around">
 
@@ -121,10 +144,11 @@ export default class CreateGroups extends Component {
                                     <select className="my-1 w-full" onChange={this.mentorSelect}>
                                         <option value={'without_group'}>Mentor with no group
                                         </option>
-                                        <option value={'all'}>View All
-                                        </option>
+                                        {/*<option value={'all'}>View All*/}
+                                        {/*</option>*/}
                                     </select>
-                                    <input type="search" placeholder="search" onChange={this.mentorSearch}/>
+                                    <input className={'p-1 w-full'} type="search" placeholder="search"
+                                           onChange={this.mentorSearch}/>
                                     <ul className="overflow-auto" style={{maxHeight: "130px"}}>
                                         {
                                             Mentors.length ? Mentors.map((data, index) =>
@@ -148,7 +172,8 @@ export default class CreateGroups extends Component {
                                         <option value={'all'}>View All
                                         </option>
                                     </select>
-                                    <input type="search" placeholder="search" onChange={this.studentSearch}/>
+                                    <input className={'p-1 w-full'} type="search" placeholder="search"
+                                           onChange={this.studentSearch}/>
                                     <ul className="overflow-auto" style={{maxHeight: "130px"}}>
                                         {
                                             Students.length ? Students.map((data, index) =>
@@ -157,7 +182,9 @@ export default class CreateGroups extends Component {
                                                         <input type="checkbox" className="mx-1 my-auto"
                                                                onClick={(event) => {
                                                                    this.handleStudentList(event, data)
-                                                               }}/><label className="my-auto">{data.user.email}</label>
+                                                               }}
+                                                               checked={studentLists.map(stu => stu.user.email).indexOf(data.user.email) !== -1 ? true : false}
+                                                        /><label className="my-auto">{data.user.email}</label>
                                                     </li>
                                                 )) : 'No Data Found'
                                         }
@@ -172,7 +199,13 @@ export default class CreateGroups extends Component {
                                     {
                                         studentLists && studentLists.map((data, index) => (
                                             <p className="bg-gray-200 p-2 rounded mx-1" key={index}
-                                               style={{width: "fit-content"}}>{data.user.email}</p>
+                                               style={{width: "fit-content"}}>{data.user.email}
+                                                <span
+                                                    className={'bg-grey-100 cursor-pointer font-medium hover:shadow-md ml-1 rounded-full text-black translate-x-2'}
+                                                    onClick={(event) => {
+                                                        this.handleStudentList(event, data)
+                                                    }}>ⓧ</span>
+                                            </p>
                                         ))
                                     }
                                 </div>
@@ -185,8 +218,10 @@ export default class CreateGroups extends Component {
 
                             <div className="flex justify-center ">
                                 <button
-                                    className={`py-2 px-4 w-1/2 rounded bg-green-400 hover:bg-green-700 hover:text-white ${(selectedMentor && studentLists.length) ? '' : 'disabled'}`}
-                                    onClick={() => this.submitForm()}>Create Group
+                                    className={`py-2 px-4 w-1/2 rounded bg-green-400 hover:bg-green-700 hover:text-white`}
+                                    onClick={() => this.submitForm()}
+                                    disabled={(selectedMentor && (studentLists.length && groupName.trim().length > 0)) ? false : true}
+                                >Create Group
                                 </button>
                             </div>
                         </div>

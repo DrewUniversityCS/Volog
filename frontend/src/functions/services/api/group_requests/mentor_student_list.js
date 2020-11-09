@@ -26,5 +26,5 @@ export const getStudentList = (obj, searchQuery, type) => {
             console.log('student')
             console.log(data);
             obj.setState({ Students: data })
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err, 'error yha se aariu hai'))
 }

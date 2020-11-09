@@ -33,7 +33,8 @@ urlpatterns = [
     path('api/users/', UserListView.as_view()),
     path('api/users/current', GetRequestUserData.as_view()),
     path('api/details/', GetRequestUserData.as_view()),
-    path('api/activity_categories/', api.views.hour_views.ActivityCategoriesView.as_view())
+    path('api/activity_categories/', api.views.hour_views.ActivityCategoriesView.as_view()),
+    path('api/group/students/current', api.views.mentor_views.GroupStudentsListView.as_view())
 ]
 
 urlpatterns += router.urls

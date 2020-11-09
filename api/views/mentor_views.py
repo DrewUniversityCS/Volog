@@ -3,8 +3,8 @@ from rest_framework import (
     filters as rest_filters
 )
 
-from api.logistics.serializers import MentorSerializer
-from api.models import Mentor
+from api.logistics.serializers import MentorSerializer, StudentGroupSerializer
+from api.models import Mentor, StudentGroup
 
 
 class MentorListView(generics.ListAPIView):
@@ -33,3 +33,17 @@ class MentorListView(generics.ListAPIView):
         if 'without_group' in self.request.query_params:
             return Mentor.objects.filter(group__isnull=True)
         return Mentor.objects.all()
+
+
+class GroupStudentsListView(generics.ListAPIView):
+    serializer_class = StudentGroupSerializer
+    filter_backends = (
+        rest_filters.OrderingFilter,
+        rest_filters.SearchFilter,
+    )
+    search_fields = ('student__user__first_name', 'student__user__last_name', 'student__user__email',)
+    ordering_fields = ('created_at',)
+
+    def get_queryset(self):
+        print(self.request.user.mentor_set.first())
+        return StudentGroup.objects.filter(group__mentor=self.request.user.mentor_set.first())
