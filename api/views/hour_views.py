@@ -55,7 +55,7 @@ class PostHourSubmissionView(generics.CreateAPIView):
             data['learning_goal'] = data['learning_goal'].upper()
 
         act_cat = data['activity_category']
-        print(act_cat)
+        # print(act_cat)
         if not act_cat.isdigit():
             data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
 

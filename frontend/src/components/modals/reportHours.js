@@ -166,7 +166,7 @@ class ReportHours extends React.Component {
                                 <Form.Control as="select" name="category"
                                               value={this.state.activity_category}
                                               onChange={event => {
-                                              console.log(event.target.value)
+//                                              console.log(event.target.value)
                                                   this.setState({
 
                                                       activity_category: event.target.value
