@@ -7,10 +7,10 @@ export const createGroup = (obj, data) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-             'X-CSRFToken': csrftoken
+            'X-CSRFToken': csrftoken
         },
         body: JSON.stringify(data)
-    }) .then(response => response.json())
+    }).then(response => response.json())
         .then(data => {
             obj.props.createGroupModal(false)
             obj.props.refreshGroupData()
@@ -25,11 +25,11 @@ export const editGroup = (obj, data, group_id) => {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-             'X-CSRFToken': csrftoken,
+            'X-CSRFToken': csrftoken,
             '_method': 'PATCH'
         },
         body: JSON.stringify(data)
-    }) .then(response => response.json())
+    }).then(response => response.json())
         .then(data => {
             obj.props.createEditModal(false)
             obj.props.refreshGroupData()
@@ -42,11 +42,11 @@ export const deleteGroup = (obj, group_id) => {
     fetch(url, {
         method: 'DELETE',
         headers: {
-             'X-CSRFToken': csrftoken,
+            'X-CSRFToken': csrftoken,
         },
     }).then(data => {
-            obj.props.createDeleteModal(false)
-            obj.props.refreshGroupData()
-        }).catch(err => console.log(err))
+        obj.props.createDeleteModal(false)
+        obj.props.refreshGroupData()
+    }).catch(err => console.log(err))
 
 }

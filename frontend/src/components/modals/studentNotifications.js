@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Modal} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 import {postHour} from "../../functions/services/api/student_requests/postHour";
 import "../../static/css/components/report-hours.css";
 import {MDBAlert, MDBBadge, MDBBtn, MDBCardHeader, MDBContainer, MDBIcon, MDBListGroup} from "mdbreact";

@@ -2,70 +2,73 @@ import React, {Component} from 'react';
 import {Modal} from "react-bootstrap";
 import {deleteHour, updateHourStatus} from "../../functions/services/api/hours_request/update_hour";
 
-class Hours extends Component {
-    state={
-        page:0,
-        approveShow:false,
-        declineShow:false,
-        deleteShow:false,
-        pendingShow:false,
-        targetID:null,
-        decTargetID:null,
-        delTargetID:null,
-        penTargetID:null,
+class HourList extends Component {
+    state = {
+        page: 0,
+        approveShow: false,
+        declineShow: false,
+        deleteShow: false,
+        pendingShow: false,
+        targetID: null,
+        decTargetID: null,
+        delTargetID: null,
+        penTargetID: null,
         mentor_comment: ""
     };
 
-    approveModalOpen = (val , targetID)=>{
-        this.setState({approveShow:val, targetID})
+    approveModalOpen = (val, targetID) => {
+        this.setState({approveShow: val, targetID})
     };
 
-    declineModalOpen = (val , decTargetID)=>{
-        this.setState({declineShow:val, decTargetID})
+    declineModalOpen = (val, decTargetID) => {
+        this.setState({declineShow: val, decTargetID})
     };
 
-    deleteModalOpen = (val , delTargetID) =>{
-        this.setState({deleteShow:val, delTargetID})
+    deleteModalOpen = (val, delTargetID) => {
+        this.setState({deleteShow: val, delTargetID})
     };
 
-    pendingModalOpen = (val , penTargetID) =>{
-        this.setState({pendingShow:val, penTargetID})
+    pendingModalOpen = (val, penTargetID) => {
+        this.setState({pendingShow: val, penTargetID})
     };
 
-    handleApprove = ()=>{
+    handleApprove = () => {
         updateHourStatus(this, this.state.targetID, {approval_status: "APPROVED"})
     };
 
-    handleDecline = ()=>{
-        updateHourStatus(this, this.state.decTargetID, {approval_status: "DECLINED", mentor_comment: this.state.mentor_comment})
+    handleDecline = () => {
+        updateHourStatus(this, this.state.decTargetID, {
+            approval_status: "DECLINED",
+            mentor_comment: this.state.mentor_comment
+        })
     };
 
-    handleDelete = ()=>{
+    handleDelete = () => {
         deleteHour(this, this.state.delTargetID)
     };
 
-    handlePending = ()=>{
+    handlePending = () => {
         updateHourStatus(this, this.state.penTargetID, {approval_status: "PENDING"})
     };
 
-    handleMentorCommentUpdate = (event)=>{
+    handleMentorCommentUpdate = (event) => {
         let val = event.target.value;
         console.log(val)
         this.setState({mentor_comment: val})
     };
 
 
-
     render() {
-        const {data, status , refreshHourData, count, page, user_role} = this.props;
+        const {data, status, refreshHourData, count, page, user_role} = this.props;
         const {approveShow, declineShow, deleteShow, pendingShow} = this.state;
         const maxCount = Math.ceil(count / 10);
         return (
-             <div className={'w-full p-2 bg-white'}>
+            <div className={'w-full p-2 bg-white'}>
                 <h1 className={'text-center text-xl font-medium p-0 m-0'}>{status} HOURS</h1>
                 <div>
-                    <div className={'w-full px-2 py-3 overflow-auto'} style={{height: user_role == 'faculty' ? '59vh': '38vh' }}>
-                        { data.length ? data.map(hour=><div className={'flex border-2 p-1'}>
+                    <div className={'w-full px-2 py-3 overflow-auto'}
+                         style={{height: user_role === 'faculty' ? '59vh' : '38vh'}}>
+                        {data.length ? data.map(hour => <div className={'flex border-2 p-1'}>
                             <div className={'w-full text-sm'}>
                                 <p className={'my-0'}>
                                     Learning Goal: {hour.learning_goal}
@@ -86,26 +89,35 @@ class Hours extends Component {
                                 </p>
                             </div>
                             <div className={'flex py-10'}>
-                                {status == 'PENDING' ?<button
+                                {status === 'PENDING' ? <button
                                     className={"mx-1 px-3 py-2 bg-green-600 text-white rounded hover:shadow-md"}
-                                    onClick={()=>{this.approveModalOpen(true, hour.id)}}
+                                    onClick={() => {
+                                        this.approveModalOpen(true, hour.id)
+                                    }}
                                 >Approve
-                                </button>:''}
-                                 {status != 'PENDING' && user_role=='faculty' ?<button
+                                </button> : ''}
+                                {status !== 'PENDING' && user_role === 'faculty' ? <button
                                     className={"mx-1 px-3 py-2 bg-green-600 text-white rounded hover:shadow-md"}
-                                    onClick={()=>{this.pendingModalOpen(true, hour.id)}}
+                                    onClick={() => {
+                                        this.pendingModalOpen(true, hour.id)
+                                    }}
                                 >Mark Pending
-                                </button>:''}
-                                {(status == 'PENDING' && user_role=='mentor' )|| user_role == 'faculty' && status !='DECLINED' ?<button
-                                    className={"mx-1 px-3 py-2 bg-red-600 text-white rounded hover:shadow-md"}
-                                    onClick={()=>{this.declineModalOpen(true, hour.id)}}
-                                >Decline
-                                </button>:''}
-                                {user_role == 'faculty'?<button
+                                </button> : ''}
+                                {(status === 'PENDING' && user_role === 'mentor') || user_role === 'faculty' && status !== 'DECLINED' ?
+                                    <button
+                                        className={"mx-1 px-3 py-2 bg-red-600 text-white rounded hover:shadow-md"}
+                                        onClick={() => {
+                                            this.declineModalOpen(true, hour.id)
+                                        }}
+                                    >Decline
+                                    </button> : ''}
+                                {user_role === 'faculty' ? <button
                                     className={"mx-1 px-3 py-2 bg-gray-600 text-white rounded hover:shadow-md"}
-                                    onClick={()=>{this.deleteModalOpen(true, hour.id)}}
+                                    onClick={() => {
+                                        this.deleteModalOpen(true, hour.id)
+                                    }}
                                 >Delete
-                                </button>:''}
+                                </button> : ''}
                             </div>
                         </div>) : <p className={'text-center font-medium p-3'}>No Data to Show</p>
                         }
@@ -115,14 +127,16 @@ class Hours extends Component {
                     <div className={'flex justify-between'}>
                         <button onClick={() => {
                             this.props.pagination(parseInt(page > 1 ? page - 1 : 1))
-                        }}>❮</button>
+                        }}>❮
+                        </button>
                         <span className={'p-1 m-0 my-auto'}>{page}</span>
                         <button onClick={() => {
                             this.props.pagination(parseInt(page >= 1 && page < maxCount ? page + 1 : 1))
-                        }}>❯</button>
+                        }}>❯
+                        </button>
                     </div>
                 </div>
-                 <Modal
+                <Modal
                     size="sm"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
@@ -133,19 +147,25 @@ class Hours extends Component {
                         <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure?</div>
                         <div className={'p-4 flex justify-around'}>
                             <button
-                                onClick={() => {this.handleApprove()}}
+                                onClick={() => {
+                                    this.handleApprove()
+                                }}
                                 className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
-                            >Yes</button>
+                            >Yes
+                            </button>
 
                             <button
-                                onClick={() => {this.approveModalOpen(false, null)}}
+                                onClick={() => {
+                                    this.approveModalOpen(false, null)
+                                }}
                                 className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
-                            >No</button>
+                            >No
+                            </button>
                         </div>
                     </div>
 
                 </Modal>
-                 <Modal
+                <Modal
                     size="sm"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
@@ -153,26 +173,33 @@ class Hours extends Component {
                     this.declineModalOpen(true)
                 }} animation={false}>
                     <div>
-                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Reason: </div>
+                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Reason:</div>
                         <div className={'flex px-3 w-full'}>
-                            <textarea className={'border-2 h-20 mx-auto w-full'} onChange={this.handleMentorCommentUpdate}>
+                            <textarea className={'border-2 h-20 mx-auto w-full'}
+                                      onChange={this.handleMentorCommentUpdate}>
                             </textarea>
                         </div>
                         <div className={'p-4 flex justify-around'}>
                             <button
-                                onClick={() => {this.handleDecline()}}
+                                onClick={() => {
+                                    this.handleDecline()
+                                }}
                                 className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
-                            >Yes</button>
+                            >Yes
+                            </button>
 
                             <button
-                                onClick={() => {this.declineModalOpen(false, null)}}
+                                onClick={() => {
+                                    this.declineModalOpen(false, null)
+                                }}
                                 className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
-                            >No</button>
+                            >No
+                            </button>
                         </div>
                     </div>
 
                 </Modal>
-                 <Modal
+                <Modal
                     size="sm"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
@@ -180,22 +207,30 @@ class Hours extends Component {
                     this.deleteModalOpen(true)
                 }} animation={false}>
                     <div>
-                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure to Delete?</div>
+                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure to
+                            Delete?
+                        </div>
                         <div className={'p-4 flex justify-around'}>
                             <button
-                                onClick={() => {this.handleDelete()}}
+                                onClick={() => {
+                                    this.handleDelete()
+                                }}
                                 className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
-                            >Yes</button>
+                            >Yes
+                            </button>
 
                             <button
-                                onClick={() => {this.deleteModalOpen(false, null)}}
+                                onClick={() => {
+                                    this.deleteModalOpen(false, null)
+                                }}
                                 className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
-                            >No</button>
+                            >No
+                            </button>
                         </div>
                     </div>
 
                 </Modal>
-                 <Modal
+                <Modal
                     size="sm"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
@@ -203,17 +238,25 @@ class Hours extends Component {
                     this.pendingModalOpen(true)
                 }} animation={false}>
                     <div>
-                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure to Delete?</div>
+                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure to
+                            Delete?
+                        </div>
                         <div className={'p-4 flex justify-around'}>
                             <button
-                                onClick={() => {this.handlePending()}}
+                                onClick={() => {
+                                    this.handlePending()
+                                }}
                                 className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
-                            >Yes</button>
+                            >Yes
+                            </button>
 
                             <button
-                                onClick={() => {this.pendingModalOpen(false, null)}}
+                                onClick={() => {
+                                    this.pendingModalOpen(false, null)
+                                }}
                                 className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
-                            >No</button>
+                            >No
+                            </button>
                         </div>
                     </div>
 
@@ -223,4 +266,4 @@ class Hours extends Component {
     }
 }
 
-export default Hours;
+export default HourList;

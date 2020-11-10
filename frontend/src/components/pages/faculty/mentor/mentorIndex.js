@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import MentorList from './mentorList'
 import ProfileOpen from './profileOpen'
-import {getStudentList} from "../../../../functions/services/api/faculty_requests/get_student_list";
 import {getMentorList} from "../../../../functions/services/api/faculty_requests/get_mentor_list";
 
 export default class Mentor extends Component {
@@ -25,9 +24,8 @@ export default class Mentor extends Component {
     };
 
 
-    pagination = (pageno) => {
-        console.log(pageno)
-        this.setState({page: pageno}, () => {
+    pagination = (page) => {
+        this.setState({page: page}, () => {
             this.getStudentData();
         });
 
@@ -48,7 +46,6 @@ export default class Mentor extends Component {
 
     render() {
         const {students, selectedStudentData, page, countData, studentNo} = this.state;
-        // console.log(students);
         return (
             <>
                 {

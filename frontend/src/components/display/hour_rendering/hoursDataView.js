@@ -9,7 +9,7 @@ import {
     MDBNavbarBrand,
     MDBNavbarNav
 } from 'mdbreact';
-import {Tabs, Tab} from "react-bootstrap";
+import {Tab, Tabs} from "react-bootstrap";
 import HoursTable from "./HoursTable";
 import HoursStats from "./HoursStats";
 
@@ -37,10 +37,12 @@ class HoursDataView extends Component {
 
     render() {
         let active_hour_view;
-        if(this.state.active_hour_view === "table"){
-            active_hour_view = <HoursTable items={this.props.items} activity_categories={this.props.activity_categories} refreshHourData={this.props.refreshHourData}/>
-        }else{
-            active_hour_view = <HoursStats items={this.props.items} activity_categories={this.props.activity_categories}/>
+        if (this.state.active_hour_view === "table") {
+            active_hour_view = <HoursTable items={this.props.items} activity_categories={this.props.activity_categories}
+                                           refreshHourData={this.props.refreshHourData}/>
+        } else {
+            active_hour_view =
+                <HoursStats items={this.props.items} activity_categories={this.props.activity_categories}/>
         }
         return (
             <MDBCard>

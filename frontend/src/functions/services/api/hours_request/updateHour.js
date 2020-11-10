@@ -3,29 +3,28 @@ import Cookies from "js-cookie";
 export const updateHourStatus = (obj, id, ApiDATA) => {
     let url = `/api/hours/${id}/`;
 
-      const csrftoken = Cookies.get('csrftoken');
+    const csrftoken = Cookies.get('csrftoken');
     fetch(url, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-             'X-CSRFToken': csrftoken,
+            'X-CSRFToken': csrftoken,
             '_method': 'PATCH'
         },
         body: JSON.stringify(ApiDATA)
-    }) .then(response => response.json())
+    }).then(response => response.json())
         .then(data => {
 
             if (ApiDATA.mentor_comment)
-                 obj.declineModalOpen(false, null);
-            else if(ApiDATA.approval_status === 'PENDING'){
+                obj.declineModalOpen(false, null);
+            else if (ApiDATA.approval_status === 'PENDING') {
                 if (obj.ReRequestModalOpen)
                     obj.ReRequestModalOpen(false, null)
                 else
                     obj.pendingModalOpen(false, null)
-            }
-            else
+            } else
                 obj.approveModalOpen(false, null)
-           obj.props.refreshHourData()
+            obj.props.refreshHourData()
         }).catch(err => console.log(err))
 };
 
@@ -36,11 +35,11 @@ export const deleteHour = (obj, hour_id) => {
     fetch(url, {
         method: 'DELETE',
         headers: {
-             'X-CSRFToken': csrftoken,
+            'X-CSRFToken': csrftoken,
         },
     }).then(data => {
-            obj.deleteModalOpen(false, null)
-             obj.props.refreshHourData()
-        }).catch(err => console.log(err))
+        obj.deleteModalOpen(false, null)
+        obj.props.refreshHourData()
+    }).catch(err => console.log(err))
 
 }

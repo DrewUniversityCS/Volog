@@ -30,9 +30,8 @@ export default class GroupsDashboard extends Component {
     };
 
 
-    pagination = (pageno) => {
-        console.log(pageno)
-        this.setState({page: pageno}, () => {
+    pagination = (page) => {
+        this.setState({page: page}, () => {
             this.getGroupData();
         });
 

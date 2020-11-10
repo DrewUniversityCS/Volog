@@ -18,7 +18,10 @@ class HoursTable extends React.Component {
     };
 
     handleReRequest = () => {
-        updateHourStatus(this, this.state.targetHourId, {approval_status: "PENDING", mentor_comment: this.state.mentor_comment})
+        updateHourStatus(this, this.state.targetHourId, {
+            approval_status: "PENDING",
+            mentor_comment: this.state.mentor_comment
+        })
     };
     handleDelete = () => {
         deleteHour(this, this.state.targetDelHourId)
@@ -86,11 +89,17 @@ class HoursTable extends React.Component {
                     approval = <CheckCircleIcon className="text-success" style={{align: "center"}}/>;
                     approval_status = "Approved by your mentor."
                 } else if (item.approval_status === 'DECLINED') {
-                    approval = <div style={{align: "center"}}><CancelIcon/> | <Redo onClick={()=>{this.ReRequestModalOpen(true, item.id)}}/> </div>;
-                    approval_status = <div> {item.mentor_comment} <Delete onClick={()=>{this.deleteModalOpen(true, item.id)}}/></div>
+                    approval = <div style={{align: "center"}}><CancelIcon/> | <Redo onClick={() => {
+                        this.ReRequestModalOpen(true, item.id)
+                    }}/></div>;
+                    approval_status = <div> {item.mentor_comment} <Delete onClick={() => {
+                        this.deleteModalOpen(true, item.id)
+                    }}/></div>
                 } else {
-                    approval = <div style={{align: "center"}}><ListAltRounded /></div>;
-                    approval_status = <div>Awaiting approval by your mentor. <Delete onClick={()=>{this.deleteModalOpen(true, item.id)}}/></div>
+                    approval = <div style={{align: "center"}}><ListAltRounded/></div>;
+                    approval_status = <div>Awaiting approval by your mentor. <Delete onClick={() => {
+                        this.deleteModalOpen(true, item.id)
+                    }}/></div>
                 }
 
 

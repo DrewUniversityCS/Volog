@@ -1,9 +1,9 @@
-export const getStudentList = (obj, searchQuery, page) => {
+export const getMentorList = (obj, searchQuery, page) => {
     let url;
-    if(searchQuery)
-        url = `/api/students/?search=${searchQuery}&page=${page}`;
+    if (searchQuery)
+        url = `/api/mentors/?search=${searchQuery}&page=${page}`;
     else
-        url = `/api/students/?page=${page}`;
+        url = `/api/mentors/?page=${page}`;
 
     fetch(url)
         .then(response => response.json())

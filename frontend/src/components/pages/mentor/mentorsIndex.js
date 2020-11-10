@@ -22,9 +22,9 @@ export default class Mentor extends Component {
 
         //api call here
         let com = this;
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 let data = JSON.parse(xhttp.responseText);
                 com.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count});
             }
@@ -34,8 +34,8 @@ export default class Mentor extends Component {
 
     };
 
-    pagination = (pageno) => {
-        this.setState({page: pageno}, () => {
+    pagination = (page) => {
+        this.setState({page: page}, () => {
             this.getMentorData();
         });
 

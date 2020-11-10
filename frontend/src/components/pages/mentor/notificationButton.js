@@ -1,8 +1,6 @@
-import Fab from '@material-ui/core/Fab';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import React, { useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import Badge from '@material-ui/core/Badge';
-import { Button, Col, Form, Modal, Row, Container } from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 
 function FloatingActionButtons() {
 

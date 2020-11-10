@@ -21,27 +21,13 @@ export default class Student extends Component {
     getStudentData = () => {
         const {page, searchQuery} = this.state;
         getStudentList(this, searchQuery, page);
-        //api call here
-        // let com = this;
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.onreadystatechange = function () {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         let data = JSON.parse(xhttp.responseText);
-        //
-        //     }
-        // };
-        // xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=student&search=${searchQuery}`);
-        // xhttp.send();
-
     };
 
 
-    pagination = (pageno) => {
-        console.log(pageno)
-        this.setState({page: pageno}, () => {
+    pagination = (page) => {
+        this.setState({page: page}, () => {
             this.getStudentData();
         });
-
     };
 
     selectedStudent = (index) => {

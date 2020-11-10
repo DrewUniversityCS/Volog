@@ -7,9 +7,9 @@ export default function calcApprovedAndPending(hours) {
     if (hours && !!arrLength) {
         for (let i = 0; i < arrLength; i++) {
             hour = hours[i];
-            if(hour.number_of_minutes !== 0){
+            if (hour.number_of_minutes !== 0) {
                 timeSubmission = hour.number_of_hours + (hour.number_of_minutes / 60)
-            }else{
+            } else {
                 timeSubmission = hour.number_of_hours
             }
 

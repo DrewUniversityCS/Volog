@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Card} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import "../../../static/css/pages/mentorPg.css"
-import Hours from "../../pages/hours";
+import HourList from "../../pages/hours";
 import {getHoursList} from "../../../functions/services/api/hours_request/get_hours_list";
 
 class StudentCard extends Component {
@@ -13,13 +13,13 @@ class StudentCard extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps != this.props) {
+        if (prevProps !== this.props) {
             this.getHours()
         }
     }
 
     getHours = () => {
-        getHoursList(this, this.state.status, this.props.id, this.state.page, this.props.type ==='mentor'? 'mentor' : 'student')
+        getHoursList(this, this.state.status, this.props.id, this.state.page, this.props.type === 'mentor' ? 'mentor' : 'student')
     };
 
     componentDidMount() {
@@ -55,7 +55,7 @@ class StudentCard extends Component {
                         <button
                             className={"mx-1 px-3 py-2 bg-blue-700 text-white rounded hover:shadow-md"}
                             onClick={() => {
-                                this.setState({status: 'PENDING', page:1}, () => {
+                                this.setState({status: 'PENDING', page: 1}, () => {
                                     this.getHours()
                                 })
                             }}
@@ -64,16 +64,16 @@ class StudentCard extends Component {
                         <button
                             className={"mx-1 px-3 py-2 bg-green-700 text-white rounded hover:shadow-md"}
                             onClick={() => {
-                                this.setState({status: 'APPROVED', page:1}, () => {
+                                this.setState({status: 'APPROVED', page: 1}, () => {
                                     this.getHours()
                                 })
                             }}
-                        >View Aprooved Hours ({this.state.data.approved_hours})
+                        >View Approved Hours ({this.state.data.approved_hours})
                         </button>
                         <button
                             className={"mx-1 px-3 py-2 bg-red-700 text-white rounded hover:shadow-md"}
                             onClick={() => {
-                                this.setState({status: 'DECLINED', page:1}, () => {
+                                this.setState({status: 'DECLINED', page: 1}, () => {
                                     this.getHours()
                                 })
                             }}
@@ -82,7 +82,8 @@ class StudentCard extends Component {
                     </div>
                 </Card.Body>
             </Card>
-            <Hours data={this.state.data.results} status={this.state.status} refreshHourData={this.refreshHourData} pagination={this.pagination} count={count} page={page} user_role={user_role}/>
+            <HourList data={this.state.data.results} status={this.state.status} refreshHourData={this.refreshHourData}
+                      pagination={this.pagination} count={count} page={page} user_role={user_role}/>
 
         </div>
     }

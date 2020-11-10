@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Modal} from "react-bootstrap";
 import {getMentorList, getStudentList} from "../../../../functions/services/api/group_requests/mentor_student_list";
-import {createGroup, editGroup} from "../../../../functions/services/api/group_requests/create_group";
+import {editGroup} from "../../../../functions/services/api/group_requests/create_group";
 
 export default class CreateGroups extends Component {
 
@@ -22,11 +22,10 @@ export default class CreateGroups extends Component {
     componentDidMount() {
         this.fetchMentorsList()
         this.fetchStudentList()
-        // this.groupName.current.value = this.props.groupName;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props != prevProps) {
+        if (this.props !== prevProps) {
             this.setState({
                 selectedMentor: this.props.groupAdmin,
                 studentLists: this.props.selectedStudents,
@@ -47,7 +46,7 @@ export default class CreateGroups extends Component {
         getStudentList(this, this.state.studentSearchQuery, this.state.studentSearchType);
     };
 
-    handleselectedMentor = (value) => {
+    handleSelectedMentor = (value) => {
         this.setState({selectedMentor: value})
     };
 
@@ -60,7 +59,7 @@ export default class CreateGroups extends Component {
         } else {
             studentLists = studentLists.filter((data) => {
                 console.log(data, value);
-                return data.id != value.id
+                return data.id !== value.id
             })
             this.setState({studentLists})
         }
@@ -158,7 +157,7 @@ export default class CreateGroups extends Component {
                                                     <li className="flex" key={index}>
                                                         <input type="radio" name="mentor" className="mx-1 my-auto"
                                                                onClick={() => {
-                                                                   this.handleselectedMentor(data)
+                                                                   this.handleSelectedMentor(data)
                                                                }}/><label className="my-auto">{data.user.email}</label>
                                                     </li>
                                                 )) : 'No Data Found'
@@ -185,7 +184,7 @@ export default class CreateGroups extends Component {
                                                                onChange={(event) => {
                                                                    this.handleStudentList(event, data)
                                                                }}
-                                                               checked={studentLists.map(stu => stu.user.email).indexOf(data.user.email) !== -1 ? true : false}/><label
+                                                               checked={studentLists.map(stu => stu.user.email).indexOf(data.user.email) !== -1}/><label
                                                         className="my-auto">{data.user.email}</label>
                                                     </li>
                                                 )) : 'No Data Found'
@@ -223,7 +222,7 @@ export default class CreateGroups extends Component {
                                 <button
                                     className={`py-2 px-4 w-1/2 rounded bg-green-400 hover:bg-green-700 hover:text-white`}
                                     onClick={() => this.submitForm()}
-                                    disabled={(selectedMentor && (studentLists.length && groupName.trim().length > 0)) ? false : true}
+                                    disabled={(!(selectedMentor && (studentLists.length && groupName.trim().length > 0)))}
                                 >Save
                                 </button>
                             </div>
