@@ -12,4 +12,4 @@ urlpatterns = [
     re_path(r'^.*$', AppView.as_view(), name='app'),
 ]
 
-app_name = 'common'
+app_name = 'app'

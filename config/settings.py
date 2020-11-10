@@ -143,7 +143,10 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'src', 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend', 'src', 'static'),
+)
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
