@@ -5,7 +5,7 @@ Comments:
 """
 
 from rest_framework import serializers
-
+from django.db.models import Sum
 from api.models import Student, Mentor, HourInstance, ActivityCategory
 from auth_backend.modules.user.serializers import UserSerializer
 from api.models import Student, Mentor, HourInstance, Group, StudentGroup
@@ -38,7 +38,7 @@ class HourSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HourInstance
-        fields = ['student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description','activity_category', 'type_of_hour', 'learning_goal', 'approved']
+        fields = ['id', 'student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description','activity_category', 'type_of_hour', 'learning_goal', 'approved', 'mentor_comment', 'approval_status']
 
 
 class GroupSerializer(serializers.ModelSerializer):
