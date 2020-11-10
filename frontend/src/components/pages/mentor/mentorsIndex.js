@@ -60,7 +60,7 @@ export default class Mentor extends Component {
             <>
                 <div className="-mb-10 -mt-16 flex justify-between">
                     <p className="m-0 my-auto p-0 text-2xl w-1/2 font-medium">Welcome
-                        Back, {user.first_name} {user.last_name},</p>
+                        Back, {user.first_name} {user.last_name}!</p>
                     <div className="mt-12 w-full">
                         <p className="m-3 ml-4 p-0 text-2xl">
                             Group cumulative progress

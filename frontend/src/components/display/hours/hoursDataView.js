@@ -38,7 +38,7 @@ class HoursDataView extends Component {
     render() {
         let active_hour_view;
         if(this.state.active_hour_view === "table"){
-            active_hour_view = <HoursTable items={this.props.items} activity_categories={this.props.activity_categories}/>
+            active_hour_view = <HoursTable items={this.props.items} activity_categories={this.props.activity_categories} refreshHourData={this.props.refreshHourData}/>
         }else{
             active_hour_view = <HoursStats items={this.props.items} activity_categories={this.props.activity_categories}/>
         }

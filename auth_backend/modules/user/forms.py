@@ -14,7 +14,8 @@ from auth_backend.modules.user.models import BaseVologUser, Referral
 class ProfileForm(forms.ModelForm):
     referral_code = forms.CharField()
     student_id = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'student_form'}), required=False)
-    class_standing = forms.ChoiceField(choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES], widget=forms.Select(attrs={'class': 'student_form'}), required=False)
+    class_standing = forms.ChoiceField(choices=[x.value for x in YEAR_IN_SCHOOL_CHOICES],
+                                       widget=forms.Select(attrs={'class': 'student_form'}), required=False)
 
     class Meta:
         model = BaseVologUser
@@ -22,7 +23,7 @@ class ProfileForm(forms.ModelForm):
             'role': forms.Select(attrs={'class': 'user_role'})
         }
         fields = ('first_name', 'last_name', 'role', 'student_id', 'class_standing')
-        required = ('first_name', 'last_name', 'role', )
+        required = ('first_name', 'last_name', 'role',)
 
     def clean(self):
         cleaned_data = super().clean()

@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 export const postHour = (obj) => {
 
     const csrftoken = Cookies.get('csrftoken');
-
     fetch("../api/students/current/hourReport/", {
         method: 'post',
         headers: {

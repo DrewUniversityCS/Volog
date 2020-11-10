@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import MentorList from './mentorList'
 import ProfileOpen from './profileOpen'
+import {getStudentList} from "../../../../functions/services/api/faculty_requests/get_student_list";
+import {getMentorList} from "../../../../functions/services/api/faculty_requests/get_mentor_list";
 
 export default class Mentor extends Component {
     state = {
@@ -19,19 +21,7 @@ export default class Mentor extends Component {
 
     getStudentData = () => {
         const {page, searchQuery} = this.state;
-
-        //api call here
-        let com = this;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                let data = JSON.parse(xhttp.responseText);
-                com.setState({students: data.results, selectedStudentData: data.results[0], countData: data.count});
-            }
-        };
-        xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=mentor&search=${searchQuery}`);
-        xhttp.send();
-
+        getMentorList(this, searchQuery, page);
     };
 
 
