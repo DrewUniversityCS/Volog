@@ -86,11 +86,11 @@ class HoursTable extends React.Component {
                     approval = <CheckCircleIcon className="text-success" style={{align: "center"}}/>;
                     approval_status = "Approved by your mentor."
                 } else if (item.approval_status === 'DECLINED') {
-                    approval = <div style={{align: "center"}}><CancelIcon/> | <Redo onClick={()=>{this.ReRequestModalOpen(true, item.id)}}/> | <Delete onClick={()=>{this.deleteModalOpen(true, item.id)}}/></div>;
-                    approval_status = item.mentor_comment
+                    approval = <div style={{align: "center"}}><CancelIcon/> | <Redo onClick={()=>{this.ReRequestModalOpen(true, item.id)}}/> </div>;
+                    approval_status = <div> {item.mentor_comment} <Delete onClick={()=>{this.deleteModalOpen(true, item.id)}}/></div>
                 } else {
-                    approval = <div style={{align: "center"}}><ListAltRounded /> | <Delete onClick={()=>{this.deleteModalOpen(true, item.id)}}/></div>;
-                    approval_status = "Awaiting approval by your mentor."
+                    approval = <div style={{align: "center"}}><ListAltRounded /></div>;
+                    approval_status = <div>Awaiting approval by your mentor. <Delete onClick={()=>{this.deleteModalOpen(true, item.id)}}/></div>
                 }
 
 

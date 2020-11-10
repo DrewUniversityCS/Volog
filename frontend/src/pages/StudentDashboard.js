@@ -35,6 +35,12 @@ class StudentDashboard extends React.Component {
         getActivityCategories(this);
     }
 
+     refreshHourData = () => {
+        getUserDataForStudent(this);
+        getHoursForStudent(this);
+        getActivityCategories(this);
+    }
+
     render() {
         //This will prevent the faculty or mentor from accessing the student page
         let role = this.props.userData.role;

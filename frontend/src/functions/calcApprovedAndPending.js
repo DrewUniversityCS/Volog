@@ -13,7 +13,7 @@ export default function calcApprovedAndPending(hours) {
                 timeSubmission = hour.number_of_hours
             }
 
-            if (hour.approved === true) {
+            if (hour.approval_status === 'APPROVED') {
                 completeCount = completeCount + timeSubmission;
             } else {
                 pendingCount = pendingCount + timeSubmission;
