@@ -1,4 +1,4 @@
-import {ProgressBar, Container} from "react-bootstrap";
+import {Container, ProgressBar} from "react-bootstrap";
 import React, {Component} from 'react';
 
 class VProgressBar extends Component {

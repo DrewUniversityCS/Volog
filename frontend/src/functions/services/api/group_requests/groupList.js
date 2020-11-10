@@ -10,7 +10,6 @@ export const getGroupList = (obj, searchQuery, page) => {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             let ind = obj.state.selectedGroupData ?
                 data.results.map(val => val.id).indexOf(obj.state.selectedGroupData.id) : 0;
             obj.setState({Groups: data.results, selectedGroupData: data && data.results[ind], countData: data.count});

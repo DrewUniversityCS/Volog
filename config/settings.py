@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     # authentication modules
     'auth_backend.modules.common',
     'auth_backend.modules.user',
-    'auth_backend.modules.dashboard',
     'auth_backend.modules.superAdmin',
 
     # allauth modules
@@ -108,7 +107,7 @@ AUTH_USER_MODEL = 'user.BaseVologUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-'''
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -123,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-'''
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -145,7 +143,9 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'src', 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend', 'src', 'static'),
+)
 
 
 REST_FRAMEWORK = {

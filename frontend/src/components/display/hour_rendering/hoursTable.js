@@ -1,9 +1,44 @@
 import {MDBBtn, MDBDataTable, MDBPopover, MDBPopoverBody, MDBPopoverHeader} from "mdbreact";
 import React from "react";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import ListAltRounded from "@material-ui/icons/ListAltRounded";
 import CancelIcon from "@material-ui/icons/Cancel";
+import Redo from "@material-ui/icons/RedoOutlined";
+import Delete from "@material-ui/icons/DeleteForeverOutlined";
+import {Modal} from "react-bootstrap";
+import {deleteHour, updateHourStatus} from "../../../functions/services/api/hours_request/updateHour";
 
 class HoursTable extends React.Component {
+
+    state = {
+        reRequestShow: false,
+        deleteShow: false,
+        targetHourId: null,
+        targetDelHourId: null
+    };
+
+    handleReRequest = () => {
+        updateHourStatus(this, this.state.targetHourId, {
+            approval_status: "PENDING",
+            mentor_comment: this.state.mentor_comment
+        })
+    };
+    handleDelete = () => {
+        deleteHour(this, this.state.targetDelHourId)
+    };
+
+    ReRequestModalOpen = (val, targetHourId) => {
+        this.setState({
+            reRequestShow: val, targetHourId
+        })
+    };
+    deleteModalOpen = (val, targetDelHourId) => {
+        this.setState({
+            deleteShow: val, targetDelHourId
+        })
+    };
+
+
     render() {
         let items;
         let index = 0;
@@ -49,12 +84,22 @@ class HoursTable extends React.Component {
                 }
 
                 let approval_status;
-                if (item.approved === true) {
+                console.log(item.approval_status);
+                if (item.approval_status === 'APPROVED') {
                     approval = <CheckCircleIcon className="text-success" style={{align: "center"}}/>;
                     approval_status = "Approved by your mentor."
+                } else if (item.approval_status === 'DECLINED') {
+                    approval = <div style={{align: "center"}}><CancelIcon/> | <Redo onClick={() => {
+                        this.ReRequestModalOpen(true, item.id)
+                    }}/></div>;
+                    approval_status = <div> {item.mentor_comment} <Delete onClick={() => {
+                        this.deleteModalOpen(true, item.id)
+                    }}/></div>
                 } else {
-                    approval = <CancelIcon style={{align: "center"}}/>;
-                    approval_status = "Awaiting approval by your mentor."
+                    approval = <div style={{align: "center"}}><ListAltRounded/></div>;
+                    approval_status = <div>Awaiting approval by your mentor. <Delete onClick={() => {
+                        this.deleteModalOpen(true, item.id)
+                    }}/></div>
                 }
 
 
@@ -147,16 +192,81 @@ class HoursTable extends React.Component {
             }
         ]
         data.rows = items
+        const {reRequestShow, deleteShow} = this.state;
+
         return (
-            <MDBDataTable
-                entriesOptions={[5, 10, 25]}
-                entries={5}
-                materialSearch
-                scrollY
-                maxHeight="400px"
-                striped
-                data={data}
-            />
+            <>
+                <MDBDataTable
+                    entriesOptions={[5, 10, 25]}
+                    entries={5}
+                    materialSearch
+                    scrollY
+                    maxHeight="400px"
+                    striped
+                    data={data}
+                />
+                <Modal
+                    size="sm"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    show={reRequestShow} onHide={() => {
+                    this.ReRequestModalOpen(true)
+                }} animation={false}>
+                    <div>
+                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Re-Request Review
+                            From Mentor
+                        </div>
+                        <div className={'p-4 flex justify-around'}>
+                            <button
+                                onClick={() => {
+                                    this.handleReRequest()
+                                }}
+                                className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
+                            >Yes
+                            </button>
+
+                            <button
+                                onClick={() => {
+                                    this.ReRequestModalOpen(false, null)
+                                }}
+                                className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
+                            >No
+                            </button>
+                        </div>
+                    </div>
+
+                </Modal>
+                <Modal
+                    size="sm"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    show={deleteShow} onHide={() => {
+                    this.deleteModalOpen(true)
+                }} animation={false}>
+                    <div>
+                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure?
+                        </div>
+                        <div className={'p-4 flex justify-around'}>
+                            <button
+                                onClick={() => {
+                                    this.handleDelete()
+                                }}
+                                className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
+                            >Yes
+                            </button>
+
+                            <button
+                                onClick={() => {
+                                    this.deleteModalOpen(false, null)
+                                }}
+                                className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
+                            >No
+                            </button>
+                        </div>
+                    </div>
+
+                </Modal>
+            </>
         )
     }
 }

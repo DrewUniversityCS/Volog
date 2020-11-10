@@ -17,14 +17,14 @@ class NavBar extends Component {
         }
     }
 
-    roleDict(roleID){
-        if(roleID === 0){
+    roleDict(roleID) {
+        if (roleID === 0) {
             return 'Faculty'
-        }else if(roleID === 1){
+        } else if (roleID === 1) {
             return 'Student'
-        }else if(roleID === 2){
+        } else if (roleID === 2) {
             return 'Mentor'
-        }else{
+        } else {
             return 'Unknown'
         }
     }
@@ -48,7 +48,8 @@ class NavBar extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                        Signed in as: {this.props.userData.first_name} {this.props.userData.last_name} | {this.roleDict(this.props.userData.role)}
+                        Signed in
+                        as: {this.props.userData.first_name} {this.props.userData.last_name} | {this.roleDict(this.props.userData.role)}
                     </Navbar.Text>
 
                     <NavItem eventkey={1} href="/accounts/logout">

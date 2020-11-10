@@ -22,9 +22,9 @@ export default class Mentor extends Component {
 
         //api call here
         let com = this;
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 let data = JSON.parse(xhttp.responseText);
                 com.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count});
             }
@@ -34,8 +34,8 @@ export default class Mentor extends Component {
 
     };
 
-    pagination = (pageno) => {
-        this.setState({page: pageno}, () => {
+    pagination = (page) => {
+        this.setState({page: page}, () => {
             this.getMentorData();
         });
 
@@ -60,7 +60,7 @@ export default class Mentor extends Component {
             <>
                 <div className="-mb-10 -mt-16 flex justify-between">
                     <p className="m-0 my-auto p-0 text-2xl w-1/2 font-medium">Welcome
-                        Back, {user.first_name} {user.last_name},</p>
+                        Back, {user.first_name} {user.last_name}!</p>
                     <div className="mt-12 w-full">
                         <p className="m-3 ml-4 p-0 text-2xl">
                             Group cumulative progress

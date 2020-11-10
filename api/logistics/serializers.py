@@ -6,10 +6,9 @@ Comments:
 
 from rest_framework import serializers
 
-from api.models import Student, Mentor, HourInstance, ActivityCategory
-from auth_backend.modules.user.serializers import UserSerializer
+from api.models import ActivityCategory
 from api.models import Student, Mentor, HourInstance, Group, StudentGroup
-
+from auth_backend.modules.user.serializers import UserSerializer
 
 
 class MentorSerializer(serializers.ModelSerializer):
@@ -35,10 +34,10 @@ class ActivityCategorySerializer(serializers.ModelSerializer):
 
 
 class HourSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = HourInstance
-        fields = ['student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description','activity_category', 'type_of_hour', 'learning_goal', 'approved']
+        fields = ['id', 'student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description',
+                  'activity_category', 'type_of_hour', 'learning_goal', 'approved', 'mentor_comment', 'approval_status']
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -51,7 +50,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
-        fields = ('id', 'name', 'mentor', 'students', 'created_at', 'mentor_detail', )
+        fields = ('id', 'name', 'mentor', 'students', 'created_at', 'mentor_detail',)
 
     def create(self, validated_data):
         students = validated_data.pop('students', [])

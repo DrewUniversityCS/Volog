@@ -27,7 +27,7 @@ export default class StudentList extends Component {
                                                        onClick={() => {
                                                            this.props.selectedStudent(index)
                                                        }}>
-                                                <span>{data.first_name + " " + data.last_name}</span><span>{data.school_id}</span>
+                                                <span>{data.user.first_name + " " + data.user.last_name}</span><span>{data.student_id}</span>
                                             </li>
                                         })
                                     }

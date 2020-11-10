@@ -1,5 +1,6 @@
-from pandas import read_csv
 from django.shortcuts import redirect, reverse
+from pandas import read_csv
+
 from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.user.models import Referral
 

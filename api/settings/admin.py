@@ -1,15 +1,7 @@
-"""
-File Name: Admin
-Purpose: Django admin file for registering api models.
-Comments:
-"""
-
 from django.contrib import admin
-from api.models import Student, Mentor, HourInstance
+from api.models import Student, Mentor, HourInstance, ActivityCategory, Group, StudentGroup
 
-# Register all of the api models here.
-
-models = [Student, Mentor, HourInstance]
+models = [Student, Mentor, HourInstance, Group, StudentGroup, ActivityCategory]
 
 for model in models:
     admin.site.register(model)

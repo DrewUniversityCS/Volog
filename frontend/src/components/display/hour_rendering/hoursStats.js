@@ -5,7 +5,6 @@ import {makeGoalsSummaryGraph} from "../graphs/goalsSummaryGraph";
 import {makeCategorySummaryGraph} from "../graphs/categorySummaryGraph";
 
 
-
 class HoursStats extends React.Component {
     state = {
         active_graph: 'category-summary'

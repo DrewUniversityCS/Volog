@@ -3,17 +3,17 @@ import CreateGroups from './createGroups'
 
 export default class GroupList extends Component {
 
-    state={
-        showcreateGroupModal: false
+    state = {
+        showCreateGroupModal: false
     }
 
     createGroupModal = (v) => {
-        this.setState({showcreateGroupModal: v})
+        this.setState({showCreateGroupModal: v})
     }
 
     render() {
         const {GroupsData: Group, countData, page} = this.props;
-        const {showcreateGroupModal} =this.state;
+        const {showCreateGroupModal} = this.state;
         const maxCount = Math.ceil(countData / 10);
         console.log('Group', Group)
         return (
@@ -24,7 +24,8 @@ export default class GroupList extends Component {
                         <div className={'flex justify-between my-auto'}>
                             <input type="search" placeholder="search" onChange={this.props.searchGroup}
                                    className="border-2 border-green-400 p-1 w-1/2 w-10/12"/>
-                            <CreateGroups createGroupModal={this.createGroupModal} show={showcreateGroupModal} refreshGroupData={this.props.refreshGroupData}/>
+                            <CreateGroups createGroupModal={this.createGroupModal} show={showCreateGroupModal}
+                                          refreshGroupData={this.props.refreshGroupData}/>
                         </div>
                     </div>
                     <div>

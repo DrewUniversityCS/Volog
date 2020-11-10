@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Modal} from "react-bootstrap";
-import {deleteGroup} from "../../../../functions/services/api/group_requests/create_group";
+import {deleteGroup} from "../../../../functions/services/api/group_requests/createGroup";
 
 
 class DeleteGroup extends Component {
-    handleConfirm = (id, val)=>{
-        if(val){
+    handleConfirm = (id, val) => {
+        if (val) {
             console.log('id', id)
             //api call here
             deleteGroup(this, id)
-        }
-        else{
+        } else {
             this.props.createDeleteModal(false)
         }
     }
+
     render() {
         const {show, groupId} = this.props;
         return (
@@ -35,14 +35,20 @@ class DeleteGroup extends Component {
                         <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Are You Sure?</div>
                         <div className={'p-4 flex justify-around'}>
                             <button
-                                onClick={() => {this.handleConfirm(groupId, true)}}
+                                onClick={() => {
+                                    this.handleConfirm(groupId, true)
+                                }}
                                 className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
-                            >Yes</button>
+                            >Yes
+                            </button>
 
                             <button
-                                onClick={() => {this.handleConfirm(groupId, false)}}
+                                onClick={() => {
+                                    this.handleConfirm(groupId, false)
+                                }}
                                 className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
-                            >No</button>
+                            >No
+                            </button>
                         </div>
                     </div>
 

@@ -1,9 +1,9 @@
-from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework import (
     filters as rest_filters
 )
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from api.logistics.serializers import StudentSerializer
 from api.models import Student

@@ -1,7 +1,7 @@
-from rest_framework import generics
 from rest_framework import (
     filters as rest_filters
 )
+from rest_framework import generics
 
 from api.logistics.serializers import MentorSerializer, StudentGroupSerializer
 from api.models import Mentor, StudentGroup
@@ -16,7 +16,7 @@ class MentorListView(generics.ListAPIView):
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter,
     )
-    search_fields = ('user__first_name', 'user__last_name', 'user__email', )
+    search_fields = ('user__first_name', 'user__last_name', 'user__email',)
     ordering_fields = ('created_at',)
 
     @property
@@ -45,5 +45,5 @@ class GroupStudentsListView(generics.ListAPIView):
     ordering_fields = ('created_at',)
 
     def get_queryset(self):
-        print(self.request.user.mentor_set.first())
+        # print(self.request.user.mentor_set.first())
         return StudentGroup.objects.filter(group__mentor=self.request.user.mentor_set.first())

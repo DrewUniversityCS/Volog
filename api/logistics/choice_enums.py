@@ -40,11 +40,11 @@ class LEARNING_GOALS_CHOICES(ChoiceEnum):
     confidence = ('CONFIDENCE',
                   'Gain confidence and skills to identify, define and tackle complex problems that impact communities '
                   'and transcend borders.')
-    empathy =    ('EMPATHY',
-                  'Value empathy, understanding and responsiveness to diverse others in their work and public roles.')
-    explore =    ('EXPLORE',
-                  'Explore and take action on solutions to real-world problems that fulfill the goals of social impact,'
-                  ' financial viability, and environmental sustainability.')
+    empathy = ('EMPATHY',
+               'Value empathy, understanding and responsiveness to diverse others in their work and public roles.')
+    explore = ('EXPLORE',
+               'Explore and take action on solutions to real-world problems that fulfill the goals of social impact,'
+               ' financial viability, and environmental sustainability.')
 
 
 class NOTIFICATION_TYPES(ChoiceEnum):
@@ -54,3 +54,9 @@ class NOTIFICATION_TYPES(ChoiceEnum):
     hour_confirmation_msg = ('HC_MSG', 'Hour was confirmed by your mentor.')
     hour_denial_msg = ('HD_MSG', 'Hour was denied by your mentor.')
     new_preapproval_hour = ('NP_MSG', 'You have a new pre approved activity.')
+
+
+class HOURS_APPROVAL_STATUS(ChoiceEnum):
+    pending = ('PENDING', 'Hours are pending for approval')
+    approved = ('APPROVED', 'Hours reported are approved')
+    declined = ('DECLINED', 'Hours reported are declined')

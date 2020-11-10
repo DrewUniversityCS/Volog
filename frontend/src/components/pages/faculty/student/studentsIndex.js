@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import StudentList from './studentList'
 import ProfileOpen from './profileOpen'
+import {getStudentList} from "../../../../functions/services/api/faculty_requests/getStudentList";
 
 export default class Student extends Component {
     state = {
@@ -19,28 +20,14 @@ export default class Student extends Component {
 
     getStudentData = () => {
         const {page, searchQuery} = this.state;
-
-        //api call here
-        let com = this;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                let data = JSON.parse(xhttp.responseText);
-                com.setState({students: data.results, selectedStudentData: data.results[0], countData: data.count});
-            }
-        };
-        xhttp.open("GET", `/superAdmin/users-details/?page=${page}&role=student&search=${searchQuery}`);
-        xhttp.send();
-
+        getStudentList(this, searchQuery, page);
     };
 
 
-    pagination = (pageno) => {
-        console.log(pageno)
-        this.setState({page: pageno}, () => {
+    pagination = (page) => {
+        this.setState({page: page}, () => {
             this.getStudentData();
         });
-
     };
 
     selectedStudent = (index) => {

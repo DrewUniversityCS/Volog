@@ -4,13 +4,13 @@ Purpose: Custom command for getting the server ready when first cloning it / aft
 Comments:
 """
 
-from django.core.management.base import BaseCommand
 from django.core import management
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
     """
-    This will register a bunch of mock models so the website behaves as it would normally.
+    Handy command for getting the server ready to do development on.
     """
 
     def handle(self, *args, **options):

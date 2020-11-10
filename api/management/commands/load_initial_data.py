@@ -4,8 +4,8 @@ Purpose: Command for loading necessary fixtures (not mock data, but staff needed
 Comments:
 """
 
-from django.core.management.base import BaseCommand
 from django.core import management
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):

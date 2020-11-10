@@ -4,9 +4,10 @@ Purpose: Django views for rendering a variety of data.
 Comments:
 """
 from django.views.generic.edit import FormView
+
 from auth_backend.modules.common.mixins import LoginRequiredMixin, AdminRequiredMixin
-from auth_backend.modules.user.models import Referral
 from auth_backend.modules.superAdmin.forms import ReferralCreateForm
+from auth_backend.modules.user.models import Referral
 
 
 class CreateReferralView(LoginRequiredMixin, AdminRequiredMixin, FormView):

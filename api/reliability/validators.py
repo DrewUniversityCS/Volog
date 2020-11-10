@@ -64,4 +64,3 @@ def student_id_validator(sid):
     """
     if len(str(sid)) != 7:
         raise ValidationError("Student ID must be 7 digits long.")
-    # TODO: validate key value or, alternatively, establish that it isn't necessary

@@ -1,9 +1,9 @@
 import React from "react";
-import VProgressBar from '../components/display/ProgressBar'
+import VProgressBar from '../components/display/cards/progressBar'
 import Container from 'react-bootstrap/Container';
-import UserPic from "../components/display/userPic";
+import UserPic from "../components/display/cards/userPic";
 import "../static/css/pages/studentPg.css"
-import HoursDataView from "../components/display/hours/HoursDataView";
+import HoursDataView from "../components/display/hour_rendering/HoursDataView";
 import {Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
@@ -30,6 +30,12 @@ class StudentDashboard extends React.Component {
     }
 
     componentDidMount() {
+        getUserDataForStudent(this);
+        getHoursForStudent(this);
+        getActivityCategories(this);
+    }
+
+    refreshHourData = () => {
         getUserDataForStudent(this);
         getHoursForStudent(this);
         getActivityCategories(this);
@@ -85,8 +91,8 @@ class StudentDashboard extends React.Component {
             <div className={'pb-20'}>
                 <Col>
                     <div style={{height: "20px"}}/>
-                    <HoursDataView items={this.state.hours} activity_categories={this.state.activity_categories}/>
-                </Col>
+                    <HoursDataView items={this.state.hours} activity_categories={this.state.activity_categories}
+                                   refreshHourData={this.refreshHourData}/> </Col>
             </div>
 
         </Container>
