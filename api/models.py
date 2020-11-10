@@ -7,7 +7,7 @@ Comments:
 from django.db import models
 
 from api.logistics.choice_enums import YEAR_IN_SCHOOL_CHOICES, LEARNING_GOALS_CHOICES, \
-    EXPERIENTIAL_LEARNING_HOURS_TYPES, NOTIFICATION_TYPES
+    EXPERIENTIAL_LEARNING_HOURS_TYPES, NOTIFICATION_TYPES, HOURS_APROOVAL_STATUS
 from api.reliability.validators import no_future_dates, hour_instance_validator, minutes_validator, student_id_validator
 from auth_backend.modules.common import models as common_models
 
@@ -76,6 +76,9 @@ class HourInstance(common_models.TimeStamp):
     activity_category = models.ForeignKey(ActivityCategory, on_delete=models.CASCADE)
     activity_description = models.TextField(blank=True, null=True)
     approved = models.BooleanField(default=False, null=False)
+    mentor_comment = models.TextField(blank=True, null=True)
+    approval_status = models.CharField(max_length=10, choices=[x.value for x in HOURS_APROOVAL_STATUS],
+                                       default='PENDING')
 
 
 class Group(common_models.TimeStamp):

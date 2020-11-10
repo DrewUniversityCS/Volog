@@ -20,8 +20,9 @@ from api.views.group_views import GroupView, StudentGroupView
 router = routers.SimpleRouter()
 router.register('api/groups', GroupView, basename='group')
 router.register(
-    'api/groups/(?P<group_id>\d+)/members', StudentGroupView, basename='group-student'
+    'api/groups/(?P<group_id>\d+)/members', StudentGroupView, basename='group_student'
 )
+router.register('api/hours', api.views.hour_views.HourInstanceViewSet, basename='hour')
 
 urlpatterns = [
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),

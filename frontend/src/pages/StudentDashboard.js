@@ -85,8 +85,7 @@ class StudentDashboard extends React.Component {
             <div className={'pb-20'}>
                 <Col>
                     <div style={{height: "20px"}}/>
-                    <HoursDataView items={this.state.hours} activity_categories={this.state.activity_categories}/>
-                </Col>
+<HoursDataView items={this.state.hours} activity_categories={this.state.activity_categories} refreshHourData={this.refreshHourData}/>                </Col>
             </div>
 
         </Container>

@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'react-bootstrap/image';
+import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 
 class UserPic extends React.Component {

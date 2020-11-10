@@ -54,3 +54,9 @@ class NOTIFICATION_TYPES(ChoiceEnum):
     hour_confirmation_msg = ('HC_MSG', 'Hour was confirmed by your mentor.')
     hour_denial_msg = ('HD_MSG', 'Hour was denied by your mentor.')
     new_preapproval_hour = ('NP_MSG', 'You have a new pre approved activity.')
+
+
+class HOURS_APROOVAL_STATUS(ChoiceEnum):
+    pending = ('PENDING', 'Hours are penfing for aprooval')
+    aprooved = ('APPROVED', 'Hours reported are aprooved')
+    declined = ('DECLINED', 'Hours reported are declined')
