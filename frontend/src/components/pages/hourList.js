@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Modal} from "react-bootstrap";
-import {deleteHour, updateHourStatus} from "../../functions/services/api/hours_request/update_hour";
+import {deleteHour, updateHourStatus} from "../../functions/services/api/hours_request/updateHour";
 
 class HourList extends Component {
     state = {

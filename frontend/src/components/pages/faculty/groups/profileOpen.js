@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import VProgressBar from '../../../display/cards/progressBar';
 import EditGroup from './editGroup'
-import {getGroupStudentList} from "../../../../functions/services/api/group_requests/group_student_list";
-import DeleteGroup from "./delete_group";
+import {getGroupStudentList} from "../../../../functions/services/api/group_requests/groupStudentList";
+import DeleteGroup from "./deleteGroup";
 
 
 export default class ProfileOpen extends Component {

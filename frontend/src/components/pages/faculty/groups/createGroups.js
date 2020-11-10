@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Modal} from "react-bootstrap";
-import {getMentorList, getStudentList} from "../../../../functions/services/api/group_requests/mentor_student_list";
-import {createGroup} from "../../../../functions/services/api/group_requests/create_group";
+import {getMentorList, getStudentList} from "../../../../functions/services/api/group_requests/mentorStudentList";
+import {createGroup} from "../../../../functions/services/api/group_requests/createGroup";
 
 export default class CreateGroups extends Component {
 

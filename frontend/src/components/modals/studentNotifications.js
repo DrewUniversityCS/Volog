@@ -35,7 +35,7 @@ class StudentNotifications extends React.Component {
 
         return <div>
             <MDBBtn className="ml-3" color="primary" onClick={this.handleShow}>
-                Notifications <MDBBadge color="danger" className="ml-2">2</MDBBadge>
+                Notifications
             </MDBBtn>
             <Modal
                 size="lg"

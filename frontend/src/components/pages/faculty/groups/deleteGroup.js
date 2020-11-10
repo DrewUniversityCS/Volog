@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Modal} from "react-bootstrap";
-import {deleteGroup} from "../../../../functions/services/api/group_requests/create_group";
+import {deleteGroup} from "../../../../functions/services/api/group_requests/createGroup";
 
 
 class DeleteGroup extends Component {

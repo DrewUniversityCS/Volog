@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import GroupList from './groupList'
 import ProfileOpen from './profileOpen'
-import {getGroupList} from "../../../../functions/services/api/group_requests/group_list";
+import {getGroupList} from "../../../../functions/services/api/group_requests/groupList";
 
 
 export default class GroupsDashboard extends Component {

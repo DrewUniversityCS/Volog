@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import "../../../static/css/pages/mentorPg.css"
-import HourList from "../../pages/hours";
-import {getHoursList} from "../../../functions/services/api/hours_request/get_hours_list";
+import HourList from "../../pages/hourList";
+import {getHoursList} from "../../../functions/services/api/hours_request/getHoursList";
 
 class StudentCard extends Component {
 
@@ -40,13 +40,10 @@ class StudentCard extends Component {
 
     render() {
         const {first_name, last_name} = this.props.mentor;
-        const {id} = this.props.id;
         const {page} = this.state;
         const {count} = this.state.data;
         const {user_role} = this.props;
-        console.log('mentor', this.props.mentor);
 
-        console.log(id)
         return <div className="px-2">
             <Card className={"shadow-md my-1"} style={{borderRadius: "7px"}}>
                 <Card.Body>
@@ -59,7 +56,7 @@ class StudentCard extends Component {
                                     this.getHours()
                                 })
                             }}
-                        >View Pending Hours ({this.state.data.pending_hours})
+                        >View Pending Hours
                         </button>
                         <button
                             className={"mx-1 px-3 py-2 bg-green-700 text-white rounded hover:shadow-md"}
@@ -68,7 +65,7 @@ class StudentCard extends Component {
                                     this.getHours()
                                 })
                             }}
-                        >View Approved Hours ({this.state.data.approved_hours})
+                        >View Approved Hours
                         </button>
                         <button
                             className={"mx-1 px-3 py-2 bg-red-700 text-white rounded hover:shadow-md"}
@@ -77,7 +74,7 @@ class StudentCard extends Component {
                                     this.getHours()
                                 })
                             }}
-                        >View Declined Hours ({this.state.data.declined_hours})
+                        >View Declined Hours
                         </button>
                     </div>
                 </Card.Body>

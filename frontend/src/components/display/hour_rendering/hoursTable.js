@@ -6,7 +6,7 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import Redo from "@material-ui/icons/RedoOutlined";
 import Delete from "@material-ui/icons/DeleteForeverOutlined";
 import {Modal} from "react-bootstrap";
-import {deleteHour, updateHourStatus} from "../../../functions/services/api/hours_request/update_hour";
+import {deleteHour, updateHourStatus} from "../../../functions/services/api/hours_request/updateHour";
 
 class HoursTable extends React.Component {
 

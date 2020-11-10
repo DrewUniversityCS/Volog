@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import StudentList from './studentList'
 import ProfileOpen from './profileOpen'
-import {getStudentList} from "../../../../functions/services/api/faculty_requests/get_student_list";
+import {getStudentList} from "../../../../functions/services/api/faculty_requests/getStudentList";
 
 export default class Student extends Component {
     state = {

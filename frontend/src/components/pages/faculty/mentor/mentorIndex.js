@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import MentorList from './mentorList'
 import ProfileOpen from './profileOpen'
-import {getMentorList} from "../../../../functions/services/api/faculty_requests/get_mentor_list";
+import {getMentorList} from "../../../../functions/services/api/faculty_requests/getMentorList";
 
 export default class Mentor extends Component {
     state = {
