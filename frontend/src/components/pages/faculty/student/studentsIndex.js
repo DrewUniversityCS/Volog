@@ -24,8 +24,9 @@ export default class Student extends Component {
     };
 
 
-    pagination = (page) => {
-        this.setState({page: page}, () => {
+    pagination = (pageno) => {
+        console.log(pageno)
+        this.setState({page: pageno}, () => {
             this.getStudentData();
         });
     };

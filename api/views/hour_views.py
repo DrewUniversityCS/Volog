@@ -1,6 +1,8 @@
+import csv
 from collections import OrderedDict
 
 from django.db.models import Sum
+from django.http import HttpResponse
 from rest_framework import generics, viewsets, pagination
 from rest_framework import status
 from rest_framework.response import Response
@@ -131,3 +133,94 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
         if request_status:
             query = query.filter(approval_status=request_status)
         return query
+
+def student_hour_report(request):
+    student = Student.objects.get(id=request.GET.get('id', ))
+    hours = HourInstance.objects.filter(student=student)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="{student}_hour_report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([
+        'Date of activity',
+        'Number of hours',
+        'Number of minutes',
+        'Type of hour',
+        'Learning goal',
+        'Activity category',
+        'Mentor comment',
+        'Approval status',
+    ])
+
+    for hour in hours:
+        row = [
+            hour.date_of_activity,
+            hour.number_of_hours,
+            hour.number_of_minutes,
+            hour.type_of_hour,
+            hour.learning_goal,
+            hour.activity_category,
+            hour.mentor_comment,
+            hour.approval_status,
+        ]
+        writer.writerow(row)
+
+    return response
+
+
+def hour_report(request):
+    students = Student.objects.all()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="hour_report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([
+        'Student',
+        'All hours',
+        'All minutes',
+        'Pending hours',
+        'Pending minutes',
+        'Approved hours',
+        'Approved minutes',
+        'Declined hours',
+        'Declined minutes',
+
+    ])
+
+    for student in students:
+        hours = HourInstance.objects.filter(student=student)
+        all = hours.aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        approved = hours.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        declined = hours.filter(approval_status='DECLINED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        pending = hours.filter(approval_status='PENDING').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+
+        all_hours = all['number_of_hours__sum'] if all['number_of_hours__sum'] else 0 + all[
+            'number_of_minutes__sum'] / 60 if all['number_of_minutes__sum'] else 0
+        all_minutes = all['number_of_minutes__sum'] % 60 if all['number_of_minutes__sum'] else 0
+
+        pending_hours = pending['number_of_hours__sum'] if pending['number_of_hours__sum'] else 0 + pending[
+            'number_of_minutes__sum'] / 60 if pending['number_of_minutes__sum'] else 0
+        pending_minutes = pending['number_of_minutes__sum'] % 60 if pending['number_of_minutes__sum'] else 0
+
+        approved_hours = approved['number_of_hours__sum'] if approved['number_of_hours__sum'] else 0 + approved[
+            'number_of_minutes__sum'] / 60 if approved['number_of_minutes__sum'] else 0
+        aprooved_minutes = approved['number_of_minutes__sum'] % 60 if approved['number_of_minutes__sum'] else 0
+
+        declined_hours = declined['number_of_hours__sum'] if declined['number_of_hours__sum'] else 0 + declined[
+            'number_of_minutes__sum'] / 60 if declined['number_of_minutes__sum'] else 0
+        declined_minutes = declined['number_of_minutes__sum'] % 60 if declined['number_of_minutes__sum'] else 0
+
+        row = [
+            student,
+            all_hours,
+            all_minutes,
+            pending_hours,
+            pending_minutes,
+            approved_hours,
+            aprooved_minutes,
+            declined_hours,
+            declined_minutes
+        ]
+        writer.writerow(row)
+
+    return response
