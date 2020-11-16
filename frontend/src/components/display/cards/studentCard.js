@@ -59,7 +59,7 @@ class StudentCard extends Component {
                                     this.getHours()
                                 })
                             }}
-                        >View Pending Hours ({this.state.data.pending_hours})
+                        >View Pending Hours
                         </button>
                         <button
                             className={"mx-1 px-3 py-2 bg-green-700 text-white rounded hover:shadow-md"}
@@ -68,7 +68,7 @@ class StudentCard extends Component {
                                     this.getHours()
                                 })
                             }}
-                        >View Aprooved Hours
+                        >View Approved Hours
                         </button>
                         <button
                             className={"mx-1 px-3 py-2 bg-red-700 text-white rounded hover:shadow-md"}
