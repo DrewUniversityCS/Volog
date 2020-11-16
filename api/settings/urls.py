@@ -35,6 +35,8 @@ urlpatterns = [
     path('api/activity_categories/', api.views.hour_views.ActivityCategoriesView.as_view()),
     path('api/group/students/current', api.views.mentor_views.GroupStudentsListView.as_view()),
     path('api/report/student/hours', api.views.hour_views.student_hour_report),
+    path('api/report/hours', api.views.hour_views.hour_report)
+
 ]
 
 urlpatterns += router.urls
