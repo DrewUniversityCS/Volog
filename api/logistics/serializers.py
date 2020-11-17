@@ -38,7 +38,7 @@ class HourSerializer(serializers.ModelSerializer):
         model = HourInstance
         fields = ['id', 'student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description',
                   'activity_category', 'type_of_hour', 'learning_goal', 'approved', 'mentor_comment', 'approval_status']
-
+        depth = 1
 
 class GroupSerializer(serializers.ModelSerializer):
     """Group Serializer"""

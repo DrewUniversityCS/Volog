@@ -77,7 +77,7 @@ class HourList extends Component {
                                     Date of Activity: {hour.date_of_activity}
                                 </p>
                                 <p className={'my-0'}>
-                                    Activity Catagory: {hour.activity_category}
+                                    Activity Catagory: {hour.activity_category.title}
                                 </p>
                                 <p className={'my-0'}>
                                     Activity Description: {hour.activity_description}
