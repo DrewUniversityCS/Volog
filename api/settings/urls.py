@@ -10,6 +10,7 @@ from rest_framework import routers
 import api.views.hour_views
 import api.views.mentor_views
 import api.views.student_views
+import api.views.common_views
 from api.views.group_views import GroupView, StudentGroupView
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -33,7 +34,9 @@ urlpatterns = [
     path('api/users/current', GetRequestUserData.as_view()),
     path('api/details/', GetRequestUserData.as_view()),
     path('api/activity_categories/', api.views.hour_views.ActivityCategoriesView.as_view()),
-    path('api/group/students/current', api.views.mentor_views.GroupStudentsListView.as_view())
+    path('api/group/students/current', api.views.mentor_views.GroupStudentsListView.as_view()),
+    path('api/bug_report/post/', api.views.common_views.PostBugReportView.as_view()),
+    path('api/bug_report/list/', api.views.common_views.BugReportListView.as_view())
 ]
 
 urlpatterns += router.urls

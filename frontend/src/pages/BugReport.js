@@ -3,8 +3,17 @@ import {Button, Container, Form} from "react-bootstrap";
 import {MDBTooltip} from "mdbreact";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import "../static/css/pages/bugReport.css";
+import {postBugReport} from "../functions/services/api/postBugReport";
 
 export class BugReport extends React.Component {
+    state = {
+        can_contact: true,
+        details: ''
+    }
+
+    handleSubmit = () => {
+        postBugReport(this);
+    };
 
     render() {
         return <Container>
@@ -21,13 +30,27 @@ export class BugReport extends React.Component {
                 <Form.Group controlId="category">
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" rows={5}
-                                  placeholder="Please describe the issue in as much details as you can."/>
+                                  placeholder="Please describe the issue in as much details as you can."
+                                  value={this.state.details}
+                                  onChange={event => {
+                                      this.setState({
+                                          details: event.target.value
+                                      });
+                                  }}/>
                 </Form.Group>
                 <Form.Group controlId="furtherContact">
                     <Form.Label>
                         Would you be okay with us reaching out in case further information is needed?
                     </Form.Label>
-                    <Form.Check type="checkbox" label="Yes"/>
+                    <Form.Check type="checkbox" label="Yes, I can be reached out to."
+                                onChange={() => {
+                                    if (this.state.can_contact === true) {
+                                        this.setState({can_contact: false})
+                                    }else{
+                                        this.setState({can_contact: true})
+                                    }
+                                }}
+                    />
                 </Form.Group>
                 <MDBTooltip
                     domElement

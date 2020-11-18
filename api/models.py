@@ -104,3 +104,13 @@ class StudentGroup(common_models.TimeStamp):
 
     def __str__(self):
         return f'{self.group} {self.student}'
+
+
+class BugReport(common_models.TimeStamp):
+    """ Model to store bug reports that user submit via the bug report page."""
+    submission_author = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
+    can_contact = models.BooleanField()
+    details = models.TextField(max_length=2500, null=False, blank=False)
+
+    def __str__(self):
+        return f'{self.created_at} {self.submission_author.email}'
