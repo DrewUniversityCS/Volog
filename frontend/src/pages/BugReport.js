@@ -4,19 +4,34 @@ import {MDBTooltip} from "mdbreact";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import "../static/css/pages/bugReport.css";
 import {postBugReport} from "../functions/services/api/postBugReport";
+import {Redirect} from "react-router-dom";
 
 export class BugReport extends React.Component {
     state = {
         can_contact: true,
-        details: ''
+        details: '',
+        redirect: false
     }
 
     handleSubmit = () => {
+        this.setState(
+            {
+                redirect: true
+            }
+        )
         postBugReport(this);
     };
 
     render() {
+        let redirect;
+        if(this.state.redirect === true){
+            redirect = <Redirect to="/app/"/>
+        }else{
+            redirect = <div/>
+        }
+
         return <Container>
+            {redirect}
             <Form className="bug-report">
                 <Form.Text className="text-center">
                     <h1>

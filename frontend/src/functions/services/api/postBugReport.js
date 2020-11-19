@@ -15,7 +15,5 @@ export const postBugReport = (obj) => {
             can_contact: obj.state.can_contact,
             details: obj.state.details
         })
-    }).then(() => {
-        // redirect
-    })
+    }).then(r => {return <Redirect to="/app/"/>})
 }
