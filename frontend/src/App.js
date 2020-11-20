@@ -16,6 +16,8 @@ import Admin from "./pages/FacultyDashboard";
 import {getSessionUser} from "./functions/services/api/getSessionUser";
 import Footer from "./components/common/Footer";
 import {BugReport} from "./pages/BugReport";
+import {FAQ} from "./pages/FAQ";
+import {ContactUs} from "./pages/ContactUs";
 
 
 class App extends React.Component {
@@ -55,6 +57,12 @@ class App extends React.Component {
                             </Route>
                             <Route path="/app/bug_report/">
                                 <BugReport userData={this.state.userData}/>
+                            </Route>
+                            <Route path="/app/FAQ/">
+                                <FAQ userData={this.state.userData}/>
+                            </Route>
+                            <Route path="/app/contact_us/">
+                                <ContactUs userData={this.state.userData}/>
                             </Route>
                         </Switch>
                         <Footer/>
