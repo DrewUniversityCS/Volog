@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Container, Form} from "react-bootstrap";
 import {MDBTooltip} from "mdbreact";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import "../static/css/pages/bugReport.css";
+import "../static/css/pages/contactForm.css";
 import {postBugReport} from "../functions/services/api/postBugReport";
 import {Redirect} from "react-router-dom";
 
@@ -32,7 +32,7 @@ export class BugReport extends React.Component {
 
         return <Container>
             {redirect}
-            <Form className="bug-report">
+            <Form className="form-bg">
                 <Form.Text className="text-center">
                     <h1>
                         We are sorry you are having issues.
@@ -42,7 +42,7 @@ export class BugReport extends React.Component {
                     </h2>
 
                 </Form.Text>
-                <Form.Group controlId="category">
+                <Form.Group controlId="description">
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" rows={5}
                                   placeholder="Please describe the issue in as much details as you can."

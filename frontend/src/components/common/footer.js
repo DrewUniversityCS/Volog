@@ -11,14 +11,14 @@ class Footer extends Component {
                 <MDBContainer fluid className="text-center mb-2">
                     <MDBCol>
                         <MDBRow>
+                            <NavItem eventkey={1} href="/app/bug_report">
+                                <Nav.Link as={Link} to="/app/bug_report">Report a Bug</Nav.Link>
+                            </NavItem>
                             <NavItem eventkey={1} href="/app/contact_us">
                                 <Nav.Link as={Link} to="/app/contact_us">Contact Us</Nav.Link>
                             </NavItem>
                             <NavItem eventkey={1} href="/app/FAQ">
                                 <Nav.Link as={Link} to="/app/FAQ">FAQ</Nav.Link>
-                            </NavItem>
-                            <NavItem eventkey={1} href="/app/bug_report">
-                                <Nav.Link as={Link} to="/app/bug_report">Report a Bug</Nav.Link>
                             </NavItem>
                         </MDBRow>
                     </MDBCol>
