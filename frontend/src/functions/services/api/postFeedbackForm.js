@@ -2,9 +2,9 @@ import Cookies from 'js-cookie';
 import React from "react";
 import {Redirect} from "react-router-dom";
 
-export const postBugReport = (obj) => {
+export const postFeedbackForm = (obj) => {
     const csrftoken = Cookies.get('csrftoken');
-    fetch("../api/bug_report/post/", {
+    fetch("../api/feedback/post/", {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -12,8 +12,9 @@ export const postBugReport = (obj) => {
         },
         credentials: 'include',
         body: JSON.stringify({
-            can_contact: obj.state.can_contact,
             message: obj.state.message
         })
-    }).then(r => {return <Redirect to="/app/"/>})
+    }).then(r => {
+        return <Redirect to="/app/"/>
+    })
 }

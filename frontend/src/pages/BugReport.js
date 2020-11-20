@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 export class BugReport extends React.Component {
     state = {
         can_contact: true,
-        details: '',
+        message: '',
         redirect: false
     }
 
@@ -46,10 +46,10 @@ export class BugReport extends React.Component {
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" rows={5}
                                   placeholder="Please describe the issue in as much details as you can."
-                                  value={this.state.details}
+                                  value={this.state.message}
                                   onChange={event => {
                                       this.setState({
-                                          details: event.target.value
+                                          message: event.target.value
                                       });
                                   }}/>
                 </Form.Group>

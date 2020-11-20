@@ -4,6 +4,7 @@ import {Button, Container, Form} from "react-bootstrap";
 import {MDBTooltip} from "mdbreact";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import "../static/css/pages/contactForm.css";
+import {postFeedbackForm} from "../functions/services/api/postFeedbackForm";
 
 export class ContactUs extends React.Component {
     state = {
@@ -16,7 +17,8 @@ export class ContactUs extends React.Component {
             {
                 redirect: true
             }
-        )
+        );
+        postFeedbackForm(this);
     };
 
 
