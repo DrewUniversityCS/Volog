@@ -6,7 +6,7 @@ Comments:
 
 from rest_framework import serializers
 
-from api.models import ActivityCategory
+from api.models import ActivityCategory, BugReport, FeedbackForm
 from api.models import Student, Mentor, HourInstance, Group, StudentGroup
 from auth_backend.modules.user.serializers import UserSerializer
 
@@ -103,3 +103,15 @@ class StudentGroupSerializer(serializers.ModelSerializer):
             instance, validated_data
         )
         return user_group_instance
+
+
+class FeedbackFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeedbackForm
+        exclude = []
+
+
+class BugReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BugReport
+        exclude = []
