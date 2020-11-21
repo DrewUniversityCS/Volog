@@ -22,7 +22,6 @@ class MentorListView(generics.ListAPIView):
     @property
     def paginator(self):
         paginator = super().paginator
-        print(self.request.query_params)
         if 'full_list' in self.request.query_params:
             paginator = None
         return paginator
