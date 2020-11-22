@@ -57,7 +57,7 @@ export default class Mentor extends Component {
     };
 
     render() {
-        const {mentors, selectedMentorData, page, countData, mentorNo} = this.state;
+        const {mentors, selectedMentorData, page, countData, mentorNo, data} = this.state;
         const {user} = this.props;
         return (
             <>
