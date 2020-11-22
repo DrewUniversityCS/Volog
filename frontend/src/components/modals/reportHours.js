@@ -75,7 +75,7 @@ class ReportHours extends React.Component {
 
     handleClose = () => {
         this.setState(this.default_state);
-    };
+    }
     handleShow = () => {
         this.setState({show: true});
     };
