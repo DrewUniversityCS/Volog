@@ -132,11 +132,10 @@ dmypy.json
 .idea/
 
 # Node Modules
-frontend/node_modules/
-/frontend/static/assets/webpack_build/
+/node_modules/
 
 # Webpack build
-frontend/public/build/
+public/build/
 
 # IDE Settings
 .DS_Store

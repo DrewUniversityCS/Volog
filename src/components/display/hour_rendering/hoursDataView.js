@@ -10,8 +10,8 @@ import {
     MDBNavbarNav
 } from 'mdbreact';
 import {Tabs, Tab} from "react-bootstrap";
-import HoursTable from "./HoursTable";
-import HoursStats from "./HoursStats";
+import HoursTable from "./hoursTable";
+import HoursStats from "./hoursStats";
 
 class HoursDataView extends Component {
 

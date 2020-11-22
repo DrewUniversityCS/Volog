@@ -10,11 +10,11 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import MentorDashboard from "./pages/MentorDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import NavBar from "./components/common/NavBar";
+import NavBar from "./components/common/navBar";
 import Admin from "./pages/FacultyDashboard";
 
 import {getSessionUser} from "./functions/services/api/getSessionUser";
-import Footer from "./components/common/Footer";
+import Footer from "./components/common/footer";
 import {BugReport} from "./pages/BugReport";
 import {FAQ} from "./pages/FAQ";
 import {ContactUs} from "./pages/ContactUs";
@@ -72,7 +72,7 @@ class App extends React.Component {
         )
     }
 
-};
+}
 
 export default App;
 

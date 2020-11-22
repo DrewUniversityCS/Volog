@@ -3,7 +3,7 @@ import {Button, Card} from 'react-bootstrap';
 import "../../../static/css/pages/mentorPg.css"
 import HourList from "../../pages/hourList";
 import {getHoursList} from "../../../functions/services/api/hours_request/getHoursList";
-import VProgressBar from "../cards/ProgressBar";
+import VProgressBar from "./progressBar";
 
 
 class StudentCard extends Component {

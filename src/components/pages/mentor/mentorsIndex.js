@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MentorList from './mentorList';
 import MentorOpen from './mentorOpen';
 import FloatingActionButtons from './notificationButton';
-import VProgressBar from "../../display/cards/ProgressBar";
+import VProgressBar from "../../display/cards/progressBar";
 
 export default class Mentor extends Component {
     state = {
