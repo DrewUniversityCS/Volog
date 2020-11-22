@@ -6,7 +6,15 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {MDBBtn, MDBCardHeader, MDBIcon, MDBTooltip} from "mdbreact";
 
+
+
+
+
+
+
+
 class ReportHours extends React.Component {
+
     default_state = {
         show: false,
         date_of_activity: '',
@@ -15,20 +23,68 @@ class ReportHours extends React.Component {
         type_of_hour: 'Required',
         learning_goal: 'Confidence',
         activity_description: '',
-        activity_category: 'Participation in Student Government'
+        activity_category: 'Participation in Student Government',
+        dateError: '',
+        hourMinError: '',
+        descriptionError: '',
     }
     state = this.default_state
 
+    validate =() => {
+        let dateError = "";
+        let hourMinError =  "";
+        let descriptionError = "";
+        // let dateAct = state.date_of_activity.split('-');
+        // let dateCurrent = .split('-');
+
+        // if ( dateAct[2] >= dateCurrent[2]){
+        //     dateError = 'Date is invalid. Be sure the date has passed.';
+        // }
+        // else if (date[1] >= dateCurrent[1] && dateAct[2] === dateCurrent[2]){
+        //     dateError = 'Date is invalid. Be sure the date has passed.';
+        // }
+        // else if (date[0] >= dateCurrent[0] && dateAct[1] === dateCurrent[1] && dateAct[2] === dateCurrent[2]){
+        //     dateError = 'Date is invalid. Be sure the date has passed.';
+        // }
+
+        // if (dateError) {
+        //     this.setState({dateError});
+        //     return false;
+        // }
+
+        if (this.state.number_of_hours === '0' && this.state.number_of_minutes === '00'){
+            hourMinError = 'Please add duration.';
+        }
+
+        if (hourMinError) {
+            this.setState({hourMinError});
+            return false;
+        }
+
+        if (this.state.activity_category === "other" && this.state.activity_description === null ){
+            descriptionError = 'Please include description.';
+        }
+
+        if (descriptionError) {
+            this.setState({descriptionError});
+            return false;
+        }
+
+        return true;
+    }
 
     handleClose = () => {
         this.setState(this.default_state);
-    }
+    };
     handleShow = () => {
         this.setState({show: true});
     };
     handleSubmit = () => {
-        postHour(this);
+        const isValid = this.validate();
+        if (isValid){
+            postHour(this);
         this.handleClose();
+        }
     };
 
     render() {
@@ -67,6 +123,9 @@ class ReportHours extends React.Component {
                                                       date_of_activity: event.target.value
                                                   });
                                               }}/>
+                                <Form.Text className={"errorStyle"} >
+                                    {this.state.dateError}
+                                </Form.Text>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -85,6 +144,7 @@ class ReportHours extends React.Component {
                                                                   number_of_hours: event.target.value
                                                               });
                                                           }}>
+                                                <option>0</option>
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -114,6 +174,9 @@ class ReportHours extends React.Component {
                                                 <option>30</option>
                                                 <option>45</option>
                                             </Form.Control>
+                                            <Form.Text className={"errorStyle"} >
+                                                {this.state.hourMinError}
+                                            </Form.Text>
                                         </Col>
                                     </Row>
                                 </Col>
@@ -190,8 +253,10 @@ class ReportHours extends React.Component {
                                                       activity_description: event.target.value
                                                   });
                                               }
-                                              }>
-                                </Form.Control>
+                                              }/>
+                                <Form.Text className={"errorStyle"} >
+                                    {this.state.descriptionError}
+                                </Form.Text>
                             </Form.Group>
                         </Col>
                     </Row>

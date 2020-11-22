@@ -2,7 +2,7 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
 
-from logistics.serializers import BugReportSerializer, FeedbackFormSerializer
+from api.logistics.serializers import BugReportSerializer, FeedbackFormSerializer
 from api.models import BugReport, FeedbackForm
 
 
