@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import MentorList from './mentorList';
 import MentorOpen from './mentorOpen';
 import FloatingActionButtons from './notificationButton';
+import VProgressBar from "../../display/cards/ProgressBar";
 
 export default class Mentor extends Component {
     state = {
         mentors: null,
+        data:{},
+
         selectedMentorData: null,
         page: 1,
         countData: 0,
@@ -26,7 +29,7 @@ export default class Mentor extends Component {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 let data = JSON.parse(xhttp.responseText);
-                com.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count});
+                com.setState({mentors: data.results, selectedMentorData: data.results[0], countData: data.count, data: data});
             }
         };
         xhttp.open("GET", `/api/group/students/current?page=${page}&search=${searchQuery}`);
@@ -66,6 +69,8 @@ export default class Mentor extends Component {
                             Group cumulative progress
                         </p>
                         <div className="h-20">
+                            {console.log(data)}
+                            {data ? <VProgressBar completeCount={data.approved_hours} pendingCount={data.pending_hours}/> : ''}
 
                         </div>
                     </div>

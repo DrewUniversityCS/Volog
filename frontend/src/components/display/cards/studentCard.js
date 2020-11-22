@@ -3,6 +3,8 @@ import {Button, Card} from 'react-bootstrap';
 import "../../../static/css/pages/mentorPg.css"
 import HourList from "../../pages/hourList";
 import {getHoursList} from "../../../functions/services/api/hours_request/getHoursList";
+import VProgressBar from "../cards/ProgressBar";
+
 
 class StudentCard extends Component {
 
@@ -40,7 +42,9 @@ class StudentCard extends Component {
 
     render() {
         console.log('PROPS', this.props);
-        const {first_name, last_name} = this.props.mentor;
+        const {first_name, last_name} = this.props.mentor.user;
+        const mentor = this.props.mentor;
+        console.log('mentor', mentor);
         const {id} = this.props.id;
         const {page} = this.state;
         const {count} = this.state.data;
@@ -51,6 +55,7 @@ class StudentCard extends Component {
             <Card className={"shadow-md my-1"} style={{borderRadius: "7px"}}>
                 <Card.Body>
                     <Card.Title> {first_name} {last_name} </Card.Title>
+                    { this.props.type !== 'mentor' ? <VProgressBar completeCount={mentor.approved_hour} pendingCount={mentor.pending_hour}/>: ''}
                     <div className={'p-2 flex'}>
                         <button
                             className={"mx-1 px-3 py-2 bg-blue-700 text-white rounded hover:shadow-md"}

@@ -5,6 +5,8 @@ import "../../static/css/components/report-hours.css";
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {MDBBtn, MDBCardHeader, MDBIcon, MDBTooltip} from "mdbreact";
+import Edit from "@material-ui/icons/Edit";
+import {editHour} from "../../functions/services/api/student_requests/editHour";
 
 class ReportHours extends React.Component {
     default_state = {
@@ -17,35 +19,66 @@ class ReportHours extends React.Component {
         activity_description: '',
         activity_category: 'Participation in Student Government'
     }
-    state = this.default_state
-
-
+    constructor(props) {
+        super(props)
+        if (props.method == 'edit') {
+            const {hour_data} = props;
+            let learning_goal = hour_data.learning_goal;
+            this.state = {
+                show: false,
+                date_of_activity: hour_data.date_of_activity,
+                number_of_hours: hour_data.number_of_hours,
+                number_of_minutes: hour_data.number_of_minutes,
+                type_of_hour: this.get_hour_type(hour_data.type_of_hour),
+                learning_goal: learning_goal.charAt(0).toUpperCase() + learning_goal.slice(1).toLowerCase(),
+                activity_description: hour_data.activity_description,
+                activity_category: hour_data.activity_category.title
+            }
+        } else {
+            this.state = this.default_state
+        }
+    }
+    get_hour_type = (oval) => {
+        if (oval == "REQ")
+            return 'Required';
+        else if (oval == "PRE")
+            return 'Pre-Approved';
+        else if (oval == "ACT")
+            return 'Active';
+        else if (oval == "REC")
+            return 'Receptive';
+    };
     handleClose = () => {
-        this.setState(this.default_state);
+        if (this.props.method == 'create')
+            this.setState(this.default_state);
+        this.setState({show: false})
     }
     handleShow = () => {
         this.setState({show: true});
     };
     handleSubmit = () => {
-        postHour(this);
+        if (this.props.method == 'create')
+            postHour(this);
+        else
+            editHour(this, this.props.hour_data.id);
         this.handleClose();
     };
-
     render() {
         let category_options;
-
+        console.log('props', this.props)
         if (this.props.activity_categories && !!this.props.activity_categories.length) {
             category_options = this.props.activity_categories.map(category => {
                     return <option>{category.title}</option>
                 }
             )
         }
-
-
-        return <div>
-            <MDBBtn color="primary" onClick={this.handleShow}>
-                <MDBIcon icon="clock" className="mr-1"/> Report Hours
-            </MDBBtn>
+        return <>
+            {this.props.method == 'create' ?
+                <MDBBtn color="primary" onClick={this.handleShow}>
+                    <MDBIcon icon="clock" className="mr-1"/> Report Hours
+                </MDBBtn> :
+                <Edit onClick={this.handleShow}/>
+            }
             <Modal
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
@@ -223,7 +256,7 @@ class ReportHours extends React.Component {
                     </Row>
                 </Form>
             </Modal>
-        </div>
+        </>
     }
 }
 

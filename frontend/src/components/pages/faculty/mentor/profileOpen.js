@@ -10,8 +10,7 @@ export default class ProfileOpen extends Component {
             <div>
                 {
                     mentor ?
-                        <StudentCard mentor={mentor.user} id={mentor.id} user_role={'faculty'}
-                                     type={'mentor'}/> : 'No user data Found'
+                        <StudentCard mentor={mentor} id={mentor.id} user_role={'faculty'} type={'mentor'}/>: 'No user data Found'
                 }
             </div>
         )

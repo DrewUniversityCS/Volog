@@ -72,7 +72,9 @@ class StudentDashboard extends React.Component {
                         </Row>
                         <Row>
                             <ReportHours onChange={() => getHoursForStudent(this)}
-                                         activity_categories={this.state.activity_categories}/>
+                                         activity_categories={this.state.activity_categories}
+                                         method = 'create'
+/>
                             <StudentNotifications/>
                         </Row>
                     </Col>

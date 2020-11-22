@@ -2,8 +2,9 @@ import csv
 from collections import OrderedDict
 
 from django.db.models import Sum
-from django.http import HttpResponse
-from rest_framework import generics, viewsets, pagination
+from django.db.models.functions import ExtractMonth
+from django.http import HttpResponse, JsonResponse
+from rest_framework import generics, viewsets, pagination, views
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -134,6 +135,47 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
             query = query.filter(approval_status=request_status)
         return query
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        # for PATCH Request
+        if partial:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            if getattr(instance, '_prefetched_objects_cache', None):
+                # If 'prefetch_related' has been applied to a queryset, we need to
+                # forcibly invalidate the prefetch cache on the instance.
+                instance._prefetched_objects_cache = {}
+            return Response(serializer.data)
+        instance = self.get_object()
+
+        def parse_hour_type(oval):
+            if oval == "Required":
+                return 'REQ'
+            elif oval == "Pre-Approved":
+                return 'PRE'
+            elif oval == "Active":
+                return 'ACT'
+            elif oval == "Receptive":
+                return 'REC'
+
+        data = request.data
+        if 'student' not in data:
+            user = self.request.user
+            student = Student.objects.filter(user=user)[0].pk
+            data['student'] = student
+            data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
+            data['learning_goal'] = data['learning_goal'].upper()
+        act_cat = data['activity_category']
+        if not act_cat.isdigit():
+            data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
+        kwargs.setdefault('context', self.get_serializer_context())
+        serializer = self.get_serializer(instance, data=data, partial=partial, **kwargs)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
 def student_hour_report(request):
     student = Student.objects.get(id=request.GET.get('id', ))
     hours = HourInstance.objects.filter(student=student)
@@ -224,3 +266,25 @@ def hour_report(request):
         writer.writerow(row)
 
     return response
+
+def hour_stats(request):
+    hours = HourInstance.objects.all().annotate(month=ExtractMonth('created_at')).values(
+        'month', 'number_of_hours', 'number_of_minutes'
+    )
+    result = {
+            'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
+            'datasets': [
+                {
+                    'label': 'Reported Hours',
+                    'data': [
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ],
+                    'backgroundColor': 'rgba(114, 190, 114, 0.6)',
+                }
+            ]
+    }
+    for hour in hours:
+        min = hour['number_of_minutes'] / 60
+        result['datasets'][0]['data'][int(hour['month']) - 1] += (hour['number_of_hours'] + min)
+    print(result)
+    return JsonResponse(result)
