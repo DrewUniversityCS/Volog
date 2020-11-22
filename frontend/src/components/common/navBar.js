@@ -36,7 +36,7 @@ class NavBar extends Component {
     render() {
         return (
             <Navbar bg="white" expand="sm">
-                <Navbar.Brand>
+                <Navbar.Brand href="/app/">
                     <img
                         src={"../../static/assets/volog_logo/green_on_gray.png"}
                         width={170}

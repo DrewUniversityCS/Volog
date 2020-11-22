@@ -104,3 +104,16 @@ class StudentGroup(common_models.TimeStamp):
 
     def __str__(self):
         return f'{self.group} {self.student}'
+
+
+class FeedbackForm(common_models.TimeStamp):
+    submission_author = models.ForeignKey("user.BaseVologUser", on_delete=models.CASCADE, blank=False, null=False)
+    message = models.TextField(max_length=4000, null=False, blank=False)
+
+    def __str__(self):
+        return f'{self.created_at} {self.submission_author.email}'
+
+
+class BugReport(FeedbackForm):
+    """ Model to store bug reports that user submit via the bug report page."""
+    can_contact = models.BooleanField()

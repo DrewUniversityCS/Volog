@@ -52,7 +52,6 @@ class Admin extends Component {
                 <div className="w-screen flex">
                     <SideNav openPage={this.openPage} page={this.state.page}/>
                     {
-
                         this.getPage(this.state.page)
                     }
                 </div>
