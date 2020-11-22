@@ -72,7 +72,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'auth_backend', 'templates'), os.path.join(BASE_DIR, 'frontend', 'public')]
+        'DIRS': [os.path.join(BASE_DIR, 'auth_backend', 'templates'), os.path.join(BASE_DIR, 'public')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -144,7 +144,7 @@ LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'frontend', 'src', 'static'),
+    os.path.join(BASE_DIR, 'src', 'static'),
 )
 
 
