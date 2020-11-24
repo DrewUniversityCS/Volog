@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ SECRET_KEY = '+c@4(^^l+%mm0x!8yskbg@01zwdv7v*m_96ym$m*^+usvjd4j_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['volog-drew.herokuapp.com', '127.0.0.1:8000']
 
 # Application definition
 
@@ -164,3 +165,6 @@ EMAIL_USE_TLS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 X_FRAME_OPTIONS = 'ALLOW-FROM https://127.0.0.1/'
+
+
+django_heroku.settings(locals())

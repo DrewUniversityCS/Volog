@@ -19,7 +19,7 @@
     },
     "DJANGO_SETTINGS_MODULE": {
       "description": "Django settings Python import path",
-      "value": "{{project_name}}.settings.production"
+      "value": "config.settings"
     },
     "SECRET_KEY": {
       "description": "Django SECRET_KEY setting",
