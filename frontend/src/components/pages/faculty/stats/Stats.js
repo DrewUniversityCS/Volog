@@ -21,7 +21,6 @@ class Stats extends Component {
     }
 
     render() {
-        console.log(this.state.chartData)
         return (
             <Container fluid="sm">
                 <Jumbotron>

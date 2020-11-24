@@ -16,6 +16,7 @@ export default class StudentList extends Component {
                         <input type="search" placeholder="search" onChange={this.props.searchStudent}
                                className="border-2 border-green-400 p-1 w-1/2 w-10/12"/>
                         <a href="/api/report/hours">
+
                             <button
                                 className="bg-green-700 font-bold hover:bg-green-800 hover:shadow-lg inline-flex items-center px-4 py-3 right-0 rounded text-sm text-white text-center" title={'Download student hour report'}>
                                 <svg className="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg"

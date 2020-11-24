@@ -8,7 +8,7 @@ import {Col, Row} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import {getUserDataForStudent} from "../functions/services/api/student_requests/getUserDataForStudent";
 import {getHoursForStudent} from "../functions/services/api/student_requests/getHoursForStudent";
-import ReportHours from "../components/modals/ReportHours";
+import ReportHours from "../components/modals/reportHours";
 import {Redirect} from "react-router-dom";
 import {getActivityCategories} from "../functions/services/api/getActivityCategories";
 import StudentNotifications from "../components/modals/studentNotifications";

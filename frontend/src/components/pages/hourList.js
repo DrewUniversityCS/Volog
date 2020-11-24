@@ -60,8 +60,6 @@ class HourList extends Component {
 
     render() {
         const {data, status, refreshHourData, count, page, user_role} = this.props;
-                console.log('Hour data', data);
-
         const {approveShow, declineShow, deleteShow, pendingShow} = this.state;
         const maxCount = Math.ceil(count / 10);
         return (

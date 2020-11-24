@@ -65,6 +65,7 @@ class HourSerializer(serializers.ModelSerializer):
                   'activity_category', 'type_of_hour', 'learning_goal', 'approved', 'mentor_comment', 'approval_status']
         depth = 1
 
+
 class GroupSerializer(serializers.ModelSerializer):
     """Group Serializer"""
 

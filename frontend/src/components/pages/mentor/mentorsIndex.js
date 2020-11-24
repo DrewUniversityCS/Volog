@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MentorList from './mentorList';
 import MentorOpen from './mentorOpen';
 import FloatingActionButtons from './notificationButton';
-import VProgressBar from "../../display/cards/ProgressBar";
+import VProgressBar from "../../display/cards/progressBar";
 
 export default class Mentor extends Component {
     state = {
@@ -69,7 +69,6 @@ export default class Mentor extends Component {
                             Group cumulative progress
                         </p>
                         <div className="h-20">
-                            {console.log(data)}
                             {data ? <VProgressBar completeCount={data.approved_hours} pendingCount={data.pending_hours}/> : ''}
 
                         </div>
