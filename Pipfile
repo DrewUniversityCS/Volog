@@ -13,6 +13,7 @@ django-crispy-forms = "*"
 django-allauth = "*"
 django-annoying = "*"
 pandas = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.8"
