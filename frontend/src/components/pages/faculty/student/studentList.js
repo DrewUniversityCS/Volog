@@ -12,9 +12,19 @@ export default class StudentList extends Component {
             <div className="relative h-full">
                 <div>
 
-                    <div className="flex justify-center p-3 w-full">
+                    <div className="flex justify-between p-3 w-full">
                         <input type="search" placeholder="search" onChange={this.props.searchStudent}
                                className="border-2 border-green-400 p-1 w-1/2 w-10/12"/>
+                        <a href="/api/report/hours">
+
+                            <button
+                                className="bg-green-700 font-bold hover:bg-green-800 hover:shadow-lg inline-flex items-center px-4 py-3 right-0 rounded text-sm text-white text-center" title={'Download student hour report'}>
+                                <svg className="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20">
+                                    <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"></path>
+                                </svg>
+                            </button>
+                        </a>
                     </div>
                     <div>
                         {

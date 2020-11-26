@@ -1,7 +1,10 @@
+import csv
 from collections import OrderedDict
 
 from django.db.models import Sum
-from rest_framework import generics, viewsets, pagination
+from django.db.models.functions import ExtractMonth
+from django.http import HttpResponse, JsonResponse
+from rest_framework import generics, viewsets, pagination, views
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -58,11 +61,12 @@ class PostHourSubmissionView(generics.CreateAPIView):
             data['learning_goal'] = data['learning_goal'].upper()
 
         act_cat = data['activity_category']
-        # print(act_cat)
+
         if not act_cat.isdigit():
             data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
+        kwargs.setdefault('context', self.get_serializer_context())
 
-        serializer = HourSerializer(data=data)
+        serializer = HourSerializer(data=data, **kwargs)
 
         if serializer.is_valid():
             serializer.save()
@@ -97,8 +101,6 @@ class HoursPaginator(pagination.PageNumberPagination):
             'number_of_minutes__sum'] / 60 if declined['number_of_minutes__sum'] else 0
         declined_minutes = declined['number_of_minutes__sum'] % 60 if declined['number_of_minutes__sum'] else 0
 
-        # print(pending_minutes)
-
         return Response(OrderedDict([
             ('count', self.page.paginator.count),
             ('pending_hours', pending_hours),
@@ -120,7 +122,6 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         query = HourInstance.objects.all()
-        # print(query)
         request_type = self.request.GET.get('type')
         request_id = self.request.GET.get('id', )
         request_status = self.request.GET.get('status')
@@ -131,3 +132,158 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
         if request_status:
             query = query.filter(approval_status=request_status)
         return query
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        # for PATCH Request
+        if partial:
+            instance = self.get_object()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            self.perform_update(serializer)
+            if getattr(instance, '_prefetched_objects_cache', None):
+                # If 'prefetch_related' has been applied to a queryset, we need to
+                # forcibly invalidate the prefetch cache on the instance.
+                instance._prefetched_objects_cache = {}
+            return Response(serializer.data)
+        instance = self.get_object()
+
+        def parse_hour_type(oval):
+            if oval == "Required":
+                return 'REQ'
+            elif oval == "Pre-Approved":
+                return 'PRE'
+            elif oval == "Active":
+                return 'ACT'
+            elif oval == "Receptive":
+                return 'REC'
+
+        data = request.data
+        if 'student' not in data:
+            user = self.request.user
+            student = Student.objects.filter(user=user)[0].pk
+            data['student'] = student
+            data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
+            data['learning_goal'] = data['learning_goal'].upper()
+        act_cat = data['activity_category']
+        if not act_cat.isdigit():
+            data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
+        kwargs.setdefault('context', self.get_serializer_context())
+        serializer = self.get_serializer(instance, data=data, partial=partial, **kwargs)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+def student_hour_report(request):
+    student = Student.objects.get(id=request.GET.get('id', ))
+    hours = HourInstance.objects.filter(student=student)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="{student}_hour_report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([
+        'Date of activity',
+        'Number of hours',
+        'Number of minutes',
+        'Type of hour',
+        'Learning goal',
+        'Activity category',
+        'Mentor comment',
+        'Approval status',
+    ])
+
+    for hour in hours:
+        row = [
+            hour.date_of_activity,
+            hour.number_of_hours,
+            hour.number_of_minutes,
+            hour.type_of_hour,
+            hour.learning_goal,
+            hour.activity_category,
+            hour.mentor_comment,
+            hour.approval_status,
+        ]
+        writer.writerow(row)
+
+    return response
+
+
+def hour_report(request):
+    students = Student.objects.all()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="hour_report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([
+        'Student',
+        'All hours',
+        'All minutes',
+        'Pending hours',
+        'Pending minutes',
+        'Approved hours',
+        'Approved minutes',
+        'Declined hours',
+        'Declined minutes',
+
+    ])
+
+    for student in students:
+        hours = HourInstance.objects.filter(student=student)
+        all = hours.aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        approved = hours.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        declined = hours.filter(approval_status='DECLINED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        pending = hours.filter(approval_status='PENDING').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+
+        all_hours = all['number_of_hours__sum'] if all['number_of_hours__sum'] else 0 + all[
+            'number_of_minutes__sum'] / 60 if all['number_of_minutes__sum'] else 0
+        all_minutes = all['number_of_minutes__sum'] % 60 if all['number_of_minutes__sum'] else 0
+
+        pending_hours = pending['number_of_hours__sum'] if pending['number_of_hours__sum'] else 0 + pending[
+            'number_of_minutes__sum'] / 60 if pending['number_of_minutes__sum'] else 0
+        pending_minutes = pending['number_of_minutes__sum'] % 60 if pending['number_of_minutes__sum'] else 0
+
+        approved_hours = approved['number_of_hours__sum'] if approved['number_of_hours__sum'] else 0 + approved[
+            'number_of_minutes__sum'] / 60 if approved['number_of_minutes__sum'] else 0
+        aprooved_minutes = approved['number_of_minutes__sum'] % 60 if approved['number_of_minutes__sum'] else 0
+
+        declined_hours = declined['number_of_hours__sum'] if declined['number_of_hours__sum'] else 0 + declined[
+            'number_of_minutes__sum'] / 60 if declined['number_of_minutes__sum'] else 0
+        declined_minutes = declined['number_of_minutes__sum'] % 60 if declined['number_of_minutes__sum'] else 0
+
+        row = [
+            student,
+            all_hours,
+            all_minutes,
+            pending_hours,
+            pending_minutes,
+            approved_hours,
+            aprooved_minutes,
+            declined_hours,
+            declined_minutes
+        ]
+        writer.writerow(row)
+
+    return response
+
+
+def hour_stats(request):
+    hours = HourInstance.objects.all().annotate(month=ExtractMonth('created_at')).values(
+        'month', 'number_of_hours', 'number_of_minutes'
+    )
+    result = {
+            'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
+            'datasets': [
+                {
+                    'label': 'Reported Hours',
+                    'data': [
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ],
+                    'backgroundColor': 'rgba(114, 190, 114, 0.6)',
+                }
+            ]
+    }
+    for hour in hours:
+        min = hour['number_of_minutes'] / 60
+        result['datasets'][0]['data'][int(hour['month']) - 1] += (hour['number_of_hours'] + min)
+    print(result)
+    return JsonResponse(result)

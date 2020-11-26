@@ -12,8 +12,7 @@ export default class MentorOpen extends Component {
                     mentor && (
 
                             <div className="overflow-auto" style={{ height: "67vh" }}>
-                                <StudentCard mentor={mentor.student.user} id={mentor.student.id} user_role={'mentor'}/>
-                            </div>
+                            <StudentCard mentor={mentor.student} id={mentor.student.id} user_role={'mentor'}/>                            </div>
                     )
                 }
 

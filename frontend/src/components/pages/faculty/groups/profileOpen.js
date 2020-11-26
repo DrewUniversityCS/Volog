@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import VProgressBar from '../../../display/cards/progressBar';
+import CreateGroups from './createGroups'
+
 import EditGroup from './editGroup'
 import {getGroupStudentList} from "../../../../functions/services/api/group_requests/groupStudentList";
 import DeleteGroup from "./deleteGroup";
@@ -19,7 +21,7 @@ export default class ProfileOpen extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.GroupData !== this.props.GroupData) {
+        if (prevProps.GroupData != this.props.GroupData) {
             this.StudentsList()
         }
     }
@@ -78,7 +80,7 @@ export default class ProfileOpen extends Component {
                                 </div>
 
                                 <div className="w-full pb-4 px-2">
-                                    <VProgressBar completeCount={0} pendingCount={20}/>
+                                     <VProgressBar completeCount={GroupData.approved_hour} pendingCount={GroupData.pending_hour}/>
                                 </div>
                                 <div className="flex justify-center">
                                     <div className="bg-green-300 flex p-2 shadow-md w-11/12">
@@ -91,8 +93,9 @@ export default class ProfileOpen extends Component {
                                                         </span>
                                                         <span>
                                                             <div className="pb-4 px-2" style={{width: '20vw'}}>
-                                                                <VProgressBar completeCount={0}
-                                                                              pendingCount={20}/>
+                                                                {console.log(data.student)}
+                                                                {console.log(data.student.approved_hours, data.student.pending_hours)}
+                                                                <VProgressBar completeCount={data.student.approved_hour} pendingCount={data.student.pending_hour}/>
                                                             </div>
                                                         </span>
                                                     </li>

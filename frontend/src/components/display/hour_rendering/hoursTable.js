@@ -7,6 +7,8 @@ import Redo from "@material-ui/icons/RedoOutlined";
 import Delete from "@material-ui/icons/DeleteForeverOutlined";
 import {Modal} from "react-bootstrap";
 import {deleteHour, updateHourStatus} from "../../../functions/services/api/hours_request/updateHour";
+import {getHoursForStudent} from "../../../functions/services/api/student_requests/getHoursForStudent";
+import ReportHours from "../../modals/reportHours";
 
 class HoursTable extends React.Component {
 
@@ -91,7 +93,12 @@ class HoursTable extends React.Component {
                 } else if (item.approval_status === 'DECLINED') {
                     approval = <div style={{align: "center"}}><CancelIcon/> | <Redo onClick={() => {
                         this.ReRequestModalOpen(true, item.id)
-                    }}/></div>;
+                    }}/> | <ReportHours onChange={() => this.props.refreshHourData()}
+                                        activity_categories={this.props.activity_categories}
+                                        hour_data={item}
+                                        method={'edit'}
+                    /></div>;
+
                     approval_status = <div> {item.mentor_comment} <Delete onClick={() => {
                         this.deleteModalOpen(true, item.id)
                     }}/></div>

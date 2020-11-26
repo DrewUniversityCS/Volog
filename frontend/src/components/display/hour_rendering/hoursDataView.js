@@ -9,7 +9,7 @@ import {
     MDBNavbarBrand,
     MDBNavbarNav
 } from 'mdbreact';
-import {Tab, Tabs} from "react-bootstrap";
+import {Tabs, Tab} from "react-bootstrap";
 import HoursTable from "./HoursTable";
 import HoursStats from "./HoursStats";
 

@@ -9,6 +9,12 @@ class LineChart extends Component {
         }
     }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+      if(prevProps != this.props){
+          this.setState({chartData:this.props.chartData})
+      }
+  }
+
     static defaultProps = {
         displayTitle: true,
         displayLegend: true,
