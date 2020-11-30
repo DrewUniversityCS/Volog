@@ -147,9 +147,7 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'src', 'static'),
 )
-STATIC_ROOT = (
-    os.path.join(BASE_DIR, 'public', 'static')
-)
+STATIC_ROOT = 'static'
 
 
 REST_FRAMEWORK = {
