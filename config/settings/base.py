@@ -3,6 +3,7 @@ import django_heroku
 import os
 ####~GENERAL SETTINGS~##################################################################################################
 SITE_ID = 1
+ALLOWED_HOSTS = ['0.0.0.0', 'volog-test.herokuapp.com']
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "5^*m8iiwt)t2&je0u05b=4_l3ys($fbiu66ez)kk)8ti60#0g'"
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -20,7 +21,7 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'src', 'static'),
 )
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #####~EMAIL SETTINGS~###################################################################################################
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'VologDrew@gmail.com'
