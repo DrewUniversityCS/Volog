@@ -1,0 +1,8 @@
+requests==*
+djangorestframework==*
+django==*
+django-crispy-forms==*
+django-allauth==*
+django-heroku==*
+gunicorn==*
+environ==*
