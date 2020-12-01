@@ -25,6 +25,5 @@ urlpatterns = [
     path('superAdmin/', include('auth_backend.modules.superAdmin.urls', namespace='superAdmin')),
     path('app/', include('auth_backend.modules.common.urls', namespace='app')),
     path('', RedirectView.as_view(url='/app')),
-
     path('', include('api.settings.urls'))
 ]

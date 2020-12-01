@@ -12,7 +12,8 @@ django = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
 django-heroku = "*"
-
+gunicorn = "*"
+environ = "*"
 
 [requires]
 python_version = "3.8"
