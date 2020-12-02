@@ -22,13 +22,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'src', 'static'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#####~EMAIL SETTINGS~###################################################################################################
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'VologDrew@gmail.com'
-EMAIL_HOST_PASSWORD = 'Volog@Drew2020'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #####~DJANGO APPS~######################################################################################################
 INSTALLED_APPS = [
     # Django Apps
