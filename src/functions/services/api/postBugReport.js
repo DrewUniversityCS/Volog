@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
-import React from "react";
 import {Redirect} from "react-router-dom";
+import React from "react";
 
 export const postBugReport = (obj) => {
     const csrftoken = Cookies.get('csrftoken');

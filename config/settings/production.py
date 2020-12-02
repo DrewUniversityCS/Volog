@@ -8,6 +8,5 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 ########################################################################################################################
-
 DEBUG = False
 X_FRAME_OPTIONS = 'ALLOW-FROM volog-test.herokuapp.com'

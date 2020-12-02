@@ -1,6 +1,7 @@
 from pathlib import Path
 import django_heroku
 import os
+
 ####~GENERAL SETTINGS~##################################################################################################
 SITE_ID = 1
 ALLOWED_HOSTS = ['0.0.0.0', 'volog-test.herokuapp.com']
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
+    'whitenoise.runserver_nostatic',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -110,6 +112,21 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 1000
 }
-
-
+####~LOGGING~###########################################################################################################
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+########################################################################################################################
 django_heroku.settings(locals())
