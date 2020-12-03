@@ -65,7 +65,8 @@ class PostHourSubmissionView(generics.CreateAPIView):
         if not act_cat.isdigit():
             data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
 
-        serializer = HourSerializer(data=data)
+        kwargs.setdefault('context', self.get_serializer_context())
+        serializer = HourSerializer(data=data, **kwargs)
 
         if serializer.is_valid():
             serializer.save()
