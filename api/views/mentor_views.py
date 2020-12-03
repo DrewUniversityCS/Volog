@@ -27,7 +27,6 @@ class MentorListView(generics.ListAPIView):
     @property
     def paginator(self):
         paginator = super().paginator
-        print(self.request.query_params)
 
         if 'full_list' in self.request.query_params:
             paginator = None
@@ -75,6 +74,4 @@ class GroupStudentsListView(generics.ListAPIView):
     ordering_fields = ('created_at',)
 
     def get_queryset(self):
-
-        print(self.request.user.mentor_set.first())
         return StudentGroup.objects.filter(group__mentor=self.request.user.mentor_set.first())
