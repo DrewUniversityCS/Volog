@@ -5,54 +5,61 @@ import "../../static/css/components/report-hours.css";
 import CancelIcon from '@material-ui/icons/Cancel';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {MDBBtn, MDBCardHeader, MDBIcon, MDBTooltip} from "mdbreact";
+import FormControl from 'react-bootstrap/FormControl'
 
 
+const  initialState ={
+    show: false,
+    date_of_activity: '',
+    number_of_hours: '1',
+    number_of_minutes: '0',
+    type_of_hour: 'Required',
+    learning_goal: 'Confidence',
+    activity_description: '',
+    activity_category: 'Participation in Student Government',
+    dateError: '',
+    hourMinError: '',
+    descriptionError: '',
+}
 
-
-
-
-
+function toInt(a) {
+    let ar = new Array ();
+    let i;
+    for(i = 0; i<3; i++) {
+        ar[i] = parseInt(a[i])
+    }
+    return ar;
+}
 
 class ReportHours extends React.Component {
 
-    default_state = {
-        show: false,
-        date_of_activity: '',
-        number_of_hours: '1',
-        number_of_minutes: '0',
-        type_of_hour: 'Required',
-        learning_goal: 'Confidence',
-        activity_description: '',
-        activity_category: 'Participation in Student Government',
-        dateError: '',
-        hourMinError: '',
-        descriptionError: '',
-    }
-    state = this.default_state
+    state = initialState;
 
     validate =() => {
         let dateError = "";
         let hourMinError =  "";
         let descriptionError = "";
-        // let dateAct = state.date_of_activity.split('-');
-        // let dateCurrent = .split('-');
+        let dateAct = toInt(this.state.date_of_activity.split('-'));
+        let dateCurrent = new Date().toLocaleDateString().split('/');
+        dateCurrent = toInt(dateCurrent);
+        console.log(dateAct[2], dateCurrent[1], dateAct[1], dateCurrent[0], dateAct[0], dateCurrent[2]);
 
-        // if ( dateAct[2] >= dateCurrent[2]){
-        //     dateError = 'Date is invalid. Be sure the date has passed.';
-        // }
-        // else if (date[1] >= dateCurrent[1] && dateAct[2] === dateCurrent[2]){
-        //     dateError = 'Date is invalid. Be sure the date has passed.';
-        // }
-        // else if (date[0] >= dateCurrent[0] && dateAct[1] === dateCurrent[1] && dateAct[2] === dateCurrent[2]){
-        //     dateError = 'Date is invalid. Be sure the date has passed.';
-        // }
+        if ( dateAct[0] > dateCurrent[2]){
+            dateError = 'Date is invalid. Date cannot be in the future.';
+        }
+        else if (dateAct[1] > dateCurrent[0] && dateAct[0] === dateCurrent[2]){
+            dateError = 'Date is invalid. Date cannot be in the future.';
+        }
+        else if (dateAct[2] > dateCurrent[1] && dateAct[1] === dateCurrent[0] && dateAct[0] === dateCurrent[2]){
+            dateError = 'Date is invalid. Date cannot be in the future.';
+        }
 
-        // if (dateError) {
-        //     this.setState({dateError});
-        //     return false;
-        // }
+        if (dateError) {
+            this.setState({dateError});
+            return false;
+        }
 
-        if (this.state.number_of_hours === '0' && this.state.number_of_minutes === '00'){
+        if (this.state.number_of_hours === '0' && this.state.number_of_minutes === '0'){
             hourMinError = 'Please add duration.';
         }
 
@@ -61,7 +68,7 @@ class ReportHours extends React.Component {
             return false;
         }
 
-        if (this.state.activity_category === "other" && this.state.activity_description === null ){
+        if (this.state.activity_category === "Other" && this.state.activity_description === '' ){
             descriptionError = 'Please include description.';
         }
 
@@ -74,7 +81,7 @@ class ReportHours extends React.Component {
     }
 
     handleClose = () => {
-        this.setState(this.default_state);
+        this.setState(initialState);
     }
     handleShow = () => {
         this.setState({show: true});
@@ -83,7 +90,8 @@ class ReportHours extends React.Component {
         const isValid = this.validate();
         if (isValid){
             postHour(this);
-        this.handleClose();
+            this.handleClose();
+            console.log(this.state);
         }
     };
 
@@ -116,16 +124,16 @@ class ReportHours extends React.Component {
                         <Col>
                             <Form.Group controlId="dob">
                                 <Form.Label>Date of Activity</Form.Label>
-                                <Form.Control type="date" name="dob" placeholder="Date of Activity"
+                                <Form.Text className='errorStyle' >
+                                    {this.state.dateError}
+                                </Form.Text>
+                                <Form.Control required type="date" name="dob" placeholder="Date of Activity"
                                               value={this.state.date_of_activity}
                                               onChange={event => {
                                                   this.setState({
                                                       date_of_activity: event.target.value
                                                   });
                                               }}/>
-                                <Form.Text className={"errorStyle"} >
-                                    {this.state.dateError}
-                                </Form.Text>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -133,10 +141,14 @@ class ReportHours extends React.Component {
                         <Col>
                             <Form.Group>
                                 <Form.Label>Hours Worked</Form.Label>
+                                <Form.Text className='errorStyle'>
+                                    {this.state.hourMinError}
+                                </Form.Text>
                                 <Col>
                                     <Row>
                                         <Col md={{span: 3}}>
                                             <Form.Label>Hours </Form.Label>
+
                                             <Form.Control as="select" name="hours"
                                                           value={this.state.number_of_hours}
                                                           onChange={event => {
@@ -174,9 +186,7 @@ class ReportHours extends React.Component {
                                                 <option>30</option>
                                                 <option>45</option>
                                             </Form.Control>
-                                            <Form.Text className={"errorStyle"} >
-                                                {this.state.hourMinError}
-                                            </Form.Text>
+
                                         </Col>
                                     </Row>
                                 </Col>
@@ -245,6 +255,9 @@ class ReportHours extends React.Component {
                         <Col>
                             <Form.Group>
                                 <Form.Label>Description</Form.Label>
+                                <Form.Text className="errorStyle"  >
+                                    {this.state.descriptionError}
+                                </Form.Text>
                                 <Form.Control placeholder="Describe responsibilities and activities" as="textarea"
                                               rows="3" name="description"
                                               value={this.state.activity_description}
@@ -254,9 +267,7 @@ class ReportHours extends React.Component {
                                                   });
                                               }
                                               }/>
-                                <Form.Text className={"errorStyle"} >
-                                    {this.state.descriptionError}
-                                </Form.Text>
+
                             </Form.Group>
                         </Col>
                     </Row>
