@@ -4,7 +4,7 @@ from collections import OrderedDict
 from django.db.models import Sum
 from django.db.models.functions import ExtractMonth
 from django.http import HttpResponse, JsonResponse
-from rest_framework import generics, viewsets, pagination, views
+from rest_framework import generics, viewsets, pagination
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -174,6 +174,7 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
         self.perform_update(serializer)
         return Response(serializer.data)
 
+
 def student_hour_report(request):
     student = Student.objects.get(id=request.GET.get('id', ))
     hours = HourInstance.objects.filter(student=student)
@@ -271,16 +272,16 @@ def hour_stats(request):
         'month', 'number_of_hours', 'number_of_minutes'
     )
     result = {
-            'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
-            'datasets': [
-                {
-                    'label': 'Reported Hours',
-                    'data': [
-                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-                    ],
-                    'backgroundColor': 'rgba(114, 190, 114, 0.6)',
-                }
-            ]
+        'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', ],
+        'datasets': [
+            {
+                'label': 'Reported Hours',
+                'data': [
+                    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                ],
+                'backgroundColor': 'rgba(114, 190, 114, 0.6)',
+            }
+        ]
     }
     for hour in hours:
         min = hour['number_of_minutes'] / 60

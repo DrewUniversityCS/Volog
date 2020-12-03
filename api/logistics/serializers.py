@@ -59,6 +59,7 @@ class HourSerializer(serializers.ModelSerializer):
             setattr(self.Meta, 'depth', 1)
         else:
             setattr(self.Meta, 'depth', 0)
+
     class Meta:
         model = HourInstance
         fields = ['id', 'student', 'date_of_activity', 'number_of_hours', 'number_of_minutes', 'activity_description',

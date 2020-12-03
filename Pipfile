@@ -11,8 +11,9 @@ djangorestframework = "*"
 django = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
-django-annoying = "*"
-pandas = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"

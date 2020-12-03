@@ -5,8 +5,8 @@
     "fields": {
       "provider": "google",
       "name": "VologTestGoogleAuth",
-      "client_id": "786237439109-181rnemsvm36f0gq4sk977er6f6dbadf.apps.googleusercontent.com",
-      "secret": "sHdnK4XnkFK8s2_vofUquvz-",
+      "client_id": "184842625421-0or0meiec4ul0vtpuplnaa5oqn8vskbl.apps.googleusercontent.com",
+      "secret": "ArEeGUUv5sz0ECBreHjlmw4p",
       "key": "",
       "sites": [
         1
