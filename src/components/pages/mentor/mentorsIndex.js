@@ -69,7 +69,6 @@ export default class Mentor extends Component {
                             Group cumulative progress
                         </p>
                         <div className="h-20">
-                            {console.log(data)}
                             {data ? <VProgressBar completeCount={data.approved_hours} pendingCount={data.pending_hours}/> : ''}
 
                         </div>

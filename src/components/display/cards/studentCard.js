@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Button, Card} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import "../../../static/css/pages/mentorPg.css"
 import HourList from "../../pages/hourList";
 import {getHoursList} from "../../../functions/services/api/hours_request/getHoursList";
-import VProgressBar from "./progressBar";
+import VProgressBar from "../cards/progressBar";
+
 
 
 class StudentCard extends Component {
@@ -15,7 +16,7 @@ class StudentCard extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps != this.props) {
+        if (prevProps !== this.props) {
             this.getHours()
         }
     }
@@ -41,7 +42,6 @@ class StudentCard extends Component {
     };
 
     render() {
-        console.log('PROPS', this.props);
         const {first_name, last_name} = this.props.mentor.user;
         const mentor = this.props.mentor;
         console.log('mentor', mentor);

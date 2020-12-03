@@ -65,7 +65,6 @@ class ReportHours extends React.Component {
     };
     render() {
         let category_options;
-        console.log('props', this.props)
         if (this.props.activity_categories && !!this.props.activity_categories.length) {
             category_options = this.props.activity_categories.map(category => {
                     return <option>{category.title}</option>
