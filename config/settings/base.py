@@ -6,7 +6,7 @@ import os
 SITE_ID = 1
 ALLOWED_HOSTS = ['0.0.0.0', 'volog-test.herokuapp.com']
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-SECRET_KEY = "5^*m8iiwt)t2&je0u05b=4_l3ys($fbiu66ez)kk)8ti60#0g'"
+SECRET_KEY = os.getenv('SECRET_KEY')
 WSGI_APPLICATION = 'config.wsgi.application'
 ROOT_URLCONF = 'config.urls'
 ####~LOCALITY & LANGUAGE~###############################################################################################
