@@ -1,1 +1,1 @@
-web: bash deploy.sh
+web: gunicorn application.wsgi
