@@ -19,5 +19,4 @@ class Command(BaseCommand):
     def vologo(self):
         management.call_command("default_migrations")
         management.call_command("register_dev_social_auth")
-        management.call_command("load_mock_data")
         management.call_command("load_initial_data")

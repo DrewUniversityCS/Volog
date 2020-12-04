@@ -11,8 +11,10 @@ djangorestframework = "*"
 django = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
-django-annoying = "*"
-pandas = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
+django-sendgrid-v5 = "*"
 
 [requires]
 python_version = "3.8"

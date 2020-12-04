@@ -1,5 +1,7 @@
+import codecs
+import csv
+
 from django.shortcuts import redirect, reverse
-from pandas import read_csv
 
 from auth_backend.modules.common import constants as common_constants
 from auth_backend.modules.user.models import Referral
@@ -7,11 +9,11 @@ from auth_backend.modules.user.models import Referral
 
 def bulk_invite(request):
     if request.method == 'POST':
-        file = request.FILES['invites']
-        reader = read_csv(file)
-        for ind, value in reader.iterrows():
-            email = value['email']
-            role = value['role']
+        param_file = request.FILES['invites']
+        read = csv.DictReader(codecs.iterdecode(param_file, 'utf-8'))
+        for row in read:
+            email = row['email']
+            role = row['role']
             if role == 'faculty':
                 user_role = common_constants.ROLE.FACULTY
             elif role == 'student':

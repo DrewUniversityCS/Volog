@@ -42,6 +42,7 @@ class MentorListView(generics.ListAPIView):
 
 class GroupStudentPaginator(pagination.PageNumberPagination):
     page_size = 10
+
     def get_paginated_response(self, data):
         query = HourInstance.objects.filter(student__studentgroup__group__mentor__user=self.request.user)
         approved = query.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
