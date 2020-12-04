@@ -12,9 +12,6 @@ import ReportHours from "../components/modals/reportHours";
 import {Redirect} from "react-router-dom";
 import {getActivityCategories} from "../functions/services/api/getActivityCategories";
 import StudentNotifications from "../components/modals/studentNotifications";
-import Badge from 'react-bootstrap/Badge'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import {faTrophy} from '@fortawesome/free-solid-svg-icons'
 
 
 class StudentDashboard extends React.Component {
@@ -87,11 +84,6 @@ class StudentDashboard extends React.Component {
                         <VProgressBar completeCount={this.state.approved_hours}
                                       pendingCount={this.state.pending_hours}
                                       className="progress-bar"/>
-
-                        <Badge variant="dark">Congrats!
-                            {/*<FontAwesomeIcon icon={faTrophy} />*/}
-                            {/*<FontAwesomeIcon icon="trophy" />*/}
-                        </Badge>
 
                     </Container>
                 </Row>
