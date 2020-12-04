@@ -2,7 +2,7 @@
 {% load static %}
 {% load account socialaccount %}
 {% load socialaccount %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/pages/loginPage.css' %}">
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <link rel="logo" href="{% static 'assets/volog_logo/green_on_gray.png' %}">
 
@@ -14,30 +14,18 @@
         <img src="{% static 'assets/volog_logo/green_on_gray.png' %}" alt="">
         <p class="text-2xl text-center">{% trans 'Drew University Civic Scholars Hour Tracking' %}
         </p>
-
         {% get_providers as socialaccount_providers %}
-
         {% if socialaccount_providers %}
-
-
             <div class="socialaccount_ballot">
-
                 {% for provider in socialaccount_providers %}
                     <a title="{{ provider.name }}" class="socialaccount_provider {{ provider.id }}"
                        href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
-                        {# {{provider.name}} #}
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_hH6hgi8q7m7yw4W-L2cNuhUf4pjUe_05sQ&usqp=CAU0"
                              alt="sign in" class="hover:shadow-lg mt-6 mx-auto rounded-full shadow-md w-2/6"/>
                     </a>
                 {% endfor %}
             </div>
             </div>
-            </div>
-            </div>
-            </div>
-
             {% include "socialaccount/snippets/login_extra.html" %}
-
         {% endif %}
-
 {% endblock %}

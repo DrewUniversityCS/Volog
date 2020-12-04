@@ -1,13 +1,13 @@
 import os
 from pathlib import Path
-
+from django.core.management import utils
 import django_heroku
 
 ####~GENERAL SETTINGS~##################################################################################################
 SITE_ID = 1
 ALLOWED_HOSTS = ['0.0.0.0', 'volog-test.herokuapp.com']
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', utils.get_random_secret_key())
 WSGI_APPLICATION = 'config.wsgi.application'
 ROOT_URLCONF = 'config.urls'
 ####~LOCALITY & LANGUAGE~###############################################################################################
