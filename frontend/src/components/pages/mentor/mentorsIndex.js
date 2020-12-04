@@ -69,14 +69,15 @@ export default class Mentor extends Component {
                             Group cumulative progress
                         </p>
                         <div className="h-20">
-                            {data ? <VProgressBar completeCount={data.approved_hours} pendingCount={data.pending_hours}/> : ''}
+                            {data ? <VProgressBar completeCount={data.approved_hours}
+                                                  pendingCount={data.pending_hours}/> : ''}
 
                         </div>
                     </div>
                 </div>
                 <div className="flex shadow-md" style={{height: "66.5vh"}}>
 
-                    <div className="relative h-full w-1/2 bg-green-100 ">
+                    <div className="relative h-full w-1/2 bg-green-100">
                         <MentorList
                             pagination={this.pagination}
                             mentorData={mentors}

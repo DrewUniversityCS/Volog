@@ -6,6 +6,9 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import './static/css/index.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { fab } from '@fortawesome/free-brands-svg-icons';
+// import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 
 import MentorDashboard from "./pages/MentorDashboard";
@@ -20,6 +23,7 @@ import {FAQ} from "./pages/FAQ";
 import {ContactUs} from "./pages/ContactUs";
 
 
+// library.add(fab, faTrophy)
 class App extends React.Component {
     state = {
         userData: {
@@ -72,7 +76,7 @@ class App extends React.Component {
         )
     }
 
-};
+}
 
 export default App;
 

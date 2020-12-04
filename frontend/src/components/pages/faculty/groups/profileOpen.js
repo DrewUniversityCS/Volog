@@ -83,7 +83,7 @@ export default class ProfileOpen extends Component {
                                      <VProgressBar completeCount={GroupData.approved_hour} pendingCount={GroupData.pending_hour}/>
                                 </div>
                                 <div className="flex justify-center">
-                                    <div className="bg-green-300 flex p-2 shadow-md w-11/12">
+                                    <div className="bg-white flex p-2 shadow-md w-11/12">
                                         <ul className="overflow-auto w-full" style={{height: "50vh"}}>
                                             {
                                                 Students && Students.map((data, index) => (
