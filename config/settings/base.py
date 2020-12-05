@@ -5,7 +5,7 @@ import django_heroku
 
 ####~GENERAL SETTINGS~##################################################################################################
 SITE_ID = 1
-ALLOWED_HOSTS = ['0.0.0.0', 'volog-test.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'volog.herokuapp.com']
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', utils.get_random_secret_key())
 WSGI_APPLICATION = 'config.wsgi.application'
