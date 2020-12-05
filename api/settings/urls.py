@@ -11,7 +11,6 @@ import api.views.hour_views
 import api.views.mentor_views
 import api.views.student_views
 from api.views.group_views import GroupView, StudentGroupView
-from api.views.group_views import GroupView, StudentGroupView
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -23,6 +22,7 @@ router.register(
     'api/groups/(?P<group_id>\d+)/members', StudentGroupView, basename='group_student'
 )
 router.register('api/hours', api.views.hour_views.HourInstanceViewSet, basename='hour')
+router.register('api/notifications', api.views.common_views.NotificationsViewSet, basename='notifications')
 
 urlpatterns = [
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),

@@ -8,7 +8,8 @@ from rest_framework import serializers
 from rest_framework.fields import empty
 
 from api.models import BugReport, FeedbackForm
-from api.models import Student, Mentor, HourInstance, Group, StudentGroup, ActivityCategory
+from api.models import Student, Mentor, HourInstance, Group, StudentGroup, ActivityCategory, Notification, \
+    StudentNotificationSeenStatus
 from auth_backend.modules.user.serializers import UserSerializer
 
 
@@ -160,3 +161,16 @@ class BugReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = BugReport
         exclude = []
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ('id', 'title', )
+
+    def create(self, validated_data):
+        instance = super().create(validated_data)
+        StudentNotificationSeenStatus.objects.bulk_create([
+            StudentNotificationSeenStatus(student=student, notification=instance)
+            for student in Student.objects.all()
+        ])
+        return instance
