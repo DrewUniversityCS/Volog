@@ -5,6 +5,8 @@ import "../../static/css/components/report-hours.css";
 import {MDBAlert, MDBBadge, MDBBtn, MDBCardHeader, MDBContainer, MDBIcon, MDBListGroup} from "mdbreact";
 import {getNotifications} from '../../functions/services/api/student_requests/fetchNotifications'
 import {deleteNotification} from '../../functions/services/api/student_requests/deleteNotification'
+import Badge from '@material-ui/core/Badge';
+
 
 class StudentNotifications extends React.Component {
     default_state = {
@@ -16,6 +18,7 @@ class StudentNotifications extends React.Component {
 
     handleClose = () => {
         this.setState({show:false});
+        getNotifications(this);
     }
     handleShow = () => {
         getNotifications(this);
@@ -26,12 +29,16 @@ class StudentNotifications extends React.Component {
         this.handleClose();
     };
 
+    componentDidMount(){
+        getNotifications(this);
+    }
+
     render() {
 
         let notificationsList;
 
         notificationsList = <MDBContainer>
-             {
+            {
                 this.state.notifications.length? this.state.notifications.map(notification=>{
                     return <MDBAlert className="m-3 text-center" color="primary" dismiss={true} onClose={()=>{deleteNotification(this, notification.id)}} >
                     {notification.title}
@@ -39,13 +46,17 @@ class StudentNotifications extends React.Component {
                 }):<MDBAlert className="m-3 text-center" color="primary" >
                 You Do Not Have Any New Notifications
             </MDBAlert>}
+
         </MDBContainer>
 
 
         return <div>
-            <MDBBtn className="ml-3" color="primary" onClick={this.handleShow}>
-                Notifications
-            </MDBBtn>
+            <Badge badgeContent={this.state.notifications.length} color="secondary">
+                <MDBBtn className="ml-3" color="primary" onClick={this.handleShow}>
+                    Notifications
+                </MDBBtn>
+            </Badge>
+
             <Modal
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
