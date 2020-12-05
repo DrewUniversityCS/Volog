@@ -12,6 +12,17 @@ from api.logistics.serializers import HourSerializer, ActivityCategorySerializer
 from api.models import Student, HourInstance, ActivityCategory
 
 
+def parse_hour_type(oval):
+    if oval == "Required":
+        return 'REQ'
+    elif oval == "Pre-Approved":
+        return 'PRE'
+    elif oval == "Active":
+        return 'ACT'
+    elif oval == "Receptive":
+        return 'REC'
+
+
 class CurrentStudentHoursView(generics.ListAPIView):
     """
     API endpoint to retrieve hours for the current (session) student.
@@ -35,6 +46,23 @@ class ActivityCategoriesView(generics.ListAPIView):
         return ActivityCategory.objects.all()
 
 
+def parse_hour_data(request):
+    data = request.data
+    if 'student' not in data:
+        user = request.user
+        student = Student.objects.filter(user=user)[0].pk
+        data['student'] = student
+        data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
+        data['learning_goal'] = data['learning_goal'].upper()
+
+    act_cat = data['activity_category']
+
+    if not act_cat.isdigit():
+        data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
+
+    return data
+
+
 class PostHourSubmissionView(generics.CreateAPIView):
     """
     API endpoint for students to post hours.
@@ -42,32 +70,11 @@ class PostHourSubmissionView(generics.CreateAPIView):
     serializer_class = HourSerializer
 
     def post(self, request, *args, **kwargs):
-        def parse_hour_type(oval):
-            if oval == "Required":
-                return 'REQ'
-            elif oval == "Pre-Approved":
-                return 'PRE'
-            elif oval == "Active":
-                return 'ACT'
-            elif oval == "Receptive":
-                return 'REC'
+        data = parse_hour_data(request)
 
-        data = request.data
-        if 'student' not in data:
-            user = self.request.user
-            student = Student.objects.filter(user=user)[0].pk
-            data['student'] = student
-            data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
-            data['learning_goal'] = data['learning_goal'].upper()
-
-        act_cat = data['activity_category']
-
-        if not act_cat.isdigit():
-            data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
-            
         # we are setting the serializer context to access the request variable in the serializers init method
         kwargs.setdefault('context', self.get_serializer_context())
-  
+
         serializer = HourSerializer(data=data, **kwargs)
 
         if serializer.is_valid():
@@ -150,26 +157,8 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         instance = self.get_object()
 
-        def parse_hour_type(oval):
-            if oval == "Required":
-                return 'REQ'
-            elif oval == "Pre-Approved":
-                return 'PRE'
-            elif oval == "Active":
-                return 'ACT'
-            elif oval == "Receptive":
-                return 'REC'
+        data = parse_hour_data(request)
 
-        data = request.data
-        if 'student' not in data:
-            user = self.request.user
-            student = Student.objects.filter(user=user)[0].pk
-            data['student'] = student
-            data['type_of_hour'] = parse_hour_type(data['type_of_hour'])
-            data['learning_goal'] = data['learning_goal'].upper()
-        act_cat = data['activity_category']
-        if not act_cat.isdigit():
-            data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
         kwargs.setdefault('context', self.get_serializer_context())
         serializer = self.get_serializer(instance, data=data, partial=partial, **kwargs)
         serializer.is_valid(raise_exception=True)

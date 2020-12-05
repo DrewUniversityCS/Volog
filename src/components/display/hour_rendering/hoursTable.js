@@ -112,14 +112,7 @@ class HoursTable extends React.Component {
 
                 let description_popup;
 
-                let activity_index = item.activity_category;
-                let activity_category;
-                if (this.props.activity_categories[activity_index] !== undefined) {
-                    activity_category = this.props.activity_categories[activity_index].title;
-                } else {
-                    activity_category = "undefined";
-                }
-
+                let activity_category = item.activity_category.title
 
                 description_popup = <MDBPopover
                     placement="left"
