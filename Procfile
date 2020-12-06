@@ -1,1 +1,1 @@
-web: bash deploy.sh
+web: gunicorn config.wsgi --log-file -

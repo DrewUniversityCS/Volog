@@ -6,5 +6,5 @@ SENDGRID_API_KEY = os.getenv('SENDGRID_KEY')
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 SENDGRID_ECHO_TO_STDOUT = True
 ########################################################################################################################
-DEBUG = False
-X_FRAME_OPTIONS = 'ALLOW-FROM volog-test.herokuapp.com'
+DEBUG = False 
+X_FRAME_OPTIONS = 'ALLOW-FROM volog.herokuapp.com'

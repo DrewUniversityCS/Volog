@@ -14,17 +14,14 @@ export const makeCategorySummaryGraph = (obj) => {
         item = obj.props.items[i];
         time = item.number_of_hours + (item.number_of_minutes / 60);
 
-        let activity_index = item.activity_category;
-        let activity_category;
+        let activity_category = item.activity_category.title
 
-        if (obj.props.activity_categories[activity_index] !== undefined) {
-            activity_category = obj.props.activity_categories[activity_index].title;
-        } else {
-            activity_category = "undefined";
+        for (let k = 0; k < dataCount.length; k++){
+            let element = dataCount[k];
+            if(element.title === activity_category){
+                element.count += time;
+            }
         }
-        dataCount.filter(obj => {
-            return obj.title === activity_category
-        })[0].count += time;
     }
 
     let nonZeroCount = dataCount.filter(obj => {

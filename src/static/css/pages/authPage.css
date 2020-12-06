@@ -1,0 +1,47 @@
+body {
+    background-color: #297600;
+    background-image: url("../../assets/spinny_bg.svg");
+    background-attachment: fixed;
+    background-size: cover;
+    /*background-image: radial-gradient(circle at 85% 1%, hsla(190, 0%, 93%, 0.05) 0%, hsla(190, 0%, 93%, 0.05) 96%, transparent 96%, transparent 100%), radial-gradient(circle at 14% 15%, hsla(190, 0%, 93%, 0.05) 0%, hsla(190, 0%, 93%, 0.05) 1%, transparent 1%, transparent 100%), radial-gradient(circle at 60% 90%, hsla(190, 0%, 93%, 0.05) 0%, hsla(190, 0%, 93%, 0.05) 20%, transparent 20%, transparent 100%), radial-gradient(circle at 79% 7%, hsla(190, 0%, 93%, 0.05) 0%, hsla(190, 0%, 93%, 0.05) 78%, transparent 78%, transparent 100%), radial-gradient(circle at 55% 65%, hsla(190, 0%, 93%, 0.05) 0%, hsla(190, 0%, 93%, 0.05) 52%, transparent 52%, transparent 100%), linear-gradient(135deg, rgb(37, 56, 222), rgb(96, 189, 244));*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+}
+
+#createdUser input, select {
+    border: transparent;
+    outline: none;
+    width: 100%;
+}
+.log-in{
+    width: 80vh;
+    margin: 20vh auto 60px;
+    padding: 20px;
+    /*position: relative; !* For the submit button positioning *!*/
+
+    /* Styles */
+    box-shadow:
+        0 0 1px rgba(0, 0, 0, 0.3),
+        0 3px 7px rgba(0, 0, 0, 0.3),
+        inset 0 1px rgba(255,255,255,1),
+        inset 0 -3px 2px rgba(0,0,0,0.25);
+    border-radius: 5px;
+    background: linear-gradient(#eeefef, #ffffff 10%);
+
+}
+.log-out{
+    width: 80vh;
+    margin: 20vh auto;
+    padding: 20px;
+
+
+    /* Styles */
+    box-shadow:
+        0 0 1px rgba(0, 0, 0, 0.3),
+        0 3px 7px rgba(0, 0, 0, 0.3),
+        inset 0 1px rgba(255,255,255,1),
+        inset 0 -3px 2px rgba(0,0,0,0.25);
+    border-radius: 5px;
+    background: linear-gradient(#eeefef, #ffffff 10%);
+
+}

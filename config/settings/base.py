@@ -1,12 +1,13 @@
-from pathlib import Path
-import django_heroku
 import os
+from pathlib import Path
+from django.core.management import utils
+import django_heroku
 
 ####~GENERAL SETTINGS~##################################################################################################
 SITE_ID = 1
-ALLOWED_HOSTS = ['0.0.0.0', 'volog-test.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'volog.herokuapp.com']
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', utils.get_random_secret_key())
 WSGI_APPLICATION = 'config.wsgi.application'
 ROOT_URLCONF = 'config.urls'
 ####~LOCALITY & LANGUAGE~###############################################################################################
@@ -21,7 +22,6 @@ LOGIN_REDIRECT_URL = '/app'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'src', 'static'),
-
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
