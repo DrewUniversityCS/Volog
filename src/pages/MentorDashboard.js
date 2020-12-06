@@ -22,7 +22,7 @@ class MentorDashboard extends React.Component {
         } else if (role === 0) {
             return <Redirect to="/app/" push/>
         }
-        return <div style={{background: "#72be72"}} className={"my-auto overflow-hidden pt-3"}>
+        return <div className={"my-auto overflow-hidden pt-3"}>
             <Container>
                 <Jumbotron className="jumbotron1 shadow-md">
                     <Mentor user={this.state.user}/>

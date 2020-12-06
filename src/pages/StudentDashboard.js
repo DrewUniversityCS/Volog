@@ -73,8 +73,8 @@ class StudentDashboard extends React.Component {
                         <Row>
                             <ReportHours onChange={() => getHoursForStudent(this)}
                                          activity_categories={this.state.activity_categories}
-                                         method = 'create'
-/>
+                                         method='create'
+                            />
                             <StudentNotifications/>
                         </Row>
                     </Col>
@@ -84,6 +84,7 @@ class StudentDashboard extends React.Component {
                         <VProgressBar completeCount={this.state.approved_hours}
                                       pendingCount={this.state.pending_hours}
                                       className="progress-bar"/>
+
                     </Container>
                 </Row>
 

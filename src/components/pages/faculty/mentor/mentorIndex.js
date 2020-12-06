@@ -51,7 +51,7 @@ export default class Mentor extends Component {
                 {
                     students &&
                     <>
-                        <div className="bg-green-100 w-1/2 p-3" id="leftSide" style={{height: '90vh'}}>
+                        <div className="bg-gray-200 w-1/2 p-3" id="leftSide" style={{height: '90vh'}}>
                             <MentorList
                                 pagination={this.pagination}
                                 studentData={students}
@@ -62,7 +62,7 @@ export default class Mentor extends Component {
                                 studentNo={studentNo}
                             />
                         </div>
-                        <div className="bg-green-200  w-full" id="rightSide" style={{height: '90vh'}}>
+                        <div className=" w-full" id="rightSide" style={{height: '90vh'}}>
                             <ProfileOpen data={selectedStudentData}/>
                         </div>
                     </>
