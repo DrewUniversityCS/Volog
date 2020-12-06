@@ -61,11 +61,13 @@ class PostHourSubmissionView(generics.CreateAPIView):
             data['learning_goal'] = data['learning_goal'].upper()
 
         act_cat = data['activity_category']
-        # print(act_cat)
+
         if not act_cat.isdigit():
             data['activity_category'] = ActivityCategory.objects.filter(title=act_cat)[0].id
-            ##we are setting the serializer context to access the request variable in the serilazers int method
+            
+        # we are setting the serializer context to access the request variable in the serializers init method
         kwargs.setdefault('context', self.get_serializer_context())
+  
         serializer = HourSerializer(data=data, **kwargs)
 
         if serializer.is_valid():
@@ -101,8 +103,6 @@ class HoursPaginator(pagination.PageNumberPagination):
             'number_of_minutes__sum'] / 60 if declined['number_of_minutes__sum'] else 0
         declined_minutes = declined['number_of_minutes__sum'] % 60 if declined['number_of_minutes__sum'] else 0
 
-        # print(pending_minutes)
-
         return Response(OrderedDict([
             ('count', self.page.paginator.count),
             ('pending_hours', pending_hours),
@@ -124,7 +124,6 @@ class HourInstanceViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         query = HourInstance.objects.all()
-        # print(query)
         request_type = self.request.GET.get('type')
         request_id = self.request.GET.get('id', )
         request_status = self.request.GET.get('status')
