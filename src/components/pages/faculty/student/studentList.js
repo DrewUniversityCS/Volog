@@ -1,10 +1,32 @@
 import React, {Component} from 'react'
+import {Modal} from "react-bootstrap";
+import Message from "@material-ui/icons/VolumeUp";
+import {postAnnouncement} from '../../../../functions/services/api/faculty_requests/makeAnnouncement'
+import FacultyNotification from '../../../modals/FacultyNotifications'
 
 export default class StudentList extends Component {
+    state={
+        title: '',
+        notificationShow: false
+    }
+
+    notificationModalOpen = (val) => {
+        this.setState({notificationShow: val})
+    };
+
+    handleNotificationPost = () => {
+        postAnnouncement(this)
+    };
+
+    handleCommentUpdate = (event) => {
+        let val = event.target.value;
+        this.setState({title: val})
+    };
 
 
     render() {
         const {studentData: student, countData, page} = this.props;
+        const {notificationShow} = this.state;
         console.log(countData)
         const maxCount = Math.ceil(countData / 10);
         console.log('max count: ' + maxCount);
@@ -25,6 +47,13 @@ export default class StudentList extends Component {
                                 </svg>
                             </button>
                         </a>
+                        <a onClick={()=>{this.notificationModalOpen(true)}}>
+                            <button
+                                className="bg-green-700 font-bold hover:bg-green-800 hover:shadow-lg inline-flex items-center px-3 py-3 h-12 right-0 rounded text-sm text-white text-center" title={'Make an announcement'}>
+                                    <Message  />
+                            </button>
+                        </a>
+                        <FacultyNotification />
                     </div>
                     <div>
                         {
@@ -66,6 +95,39 @@ export default class StudentList extends Component {
                             Next
                         </a>
                     </div>
+                     <Modal
+                    size="sm"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    show={notificationShow} onHide={() => {
+                    this.notificationModalOpen(true)
+                }} animation={false}>
+                    <div>
+                        <div className={'p-4 pd-md-0 bg-grey-800 text-xl text-center font-medium'}>Announcement:</div>
+                        <div className={'flex px-3 w-full'}>
+                            <textarea className={'border-2 h-20 mx-auto w-full'}
+                                      onChange={this.handleCommentUpdate}>
+                            </textarea>
+                        </div>
+                        <div className={'p-4 flex justify-around'}>
+                            <button
+                                onClick={() => {
+                                    this.handleNotificationPost()
+                                }}
+                                className={'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'}
+                            >Post
+                            </button>
+                            <button
+                                onClick={() => {
+                                    this.notificationModalOpen(false)
+                                }}
+                                className={'bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded '}
+                            >Close
+                            </button>
+                        </div>
+                    </div>
+                </Modal>
+
 
                 </div>
             </div>
