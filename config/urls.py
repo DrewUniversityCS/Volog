@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
-from django.urls import reverse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +25,5 @@ urlpatterns = [
     path('superAdmin/', include('auth_backend.modules.superAdmin.urls', namespace='superAdmin')),
     path('app/', include('auth_backend.modules.common.urls', namespace='app')),
     path('', RedirectView.as_view(url='/app')),
-
     path('', include('api.settings.urls'))
 ]

@@ -1,10 +1,15 @@
+from collections import OrderedDict
+from django.db.models import Sum
+from rest_framework import generics
 from rest_framework import (
     filters as rest_filters
 )
+from rest_framework import pagination
+from rest_framework.response import Response
 from rest_framework import generics
 
 from api.logistics.serializers import MentorSerializer, StudentGroupSerializer
-from api.models import Mentor, StudentGroup
+from api.models import Mentor, StudentGroup, HourInstance
 
 
 class MentorListView(generics.ListAPIView):
@@ -22,6 +27,7 @@ class MentorListView(generics.ListAPIView):
     @property
     def paginator(self):
         paginator = super().paginator
+
         if 'full_list' in self.request.query_params:
             paginator = None
         return paginator
@@ -34,8 +40,32 @@ class MentorListView(generics.ListAPIView):
         return Mentor.objects.all()
 
 
+class GroupStudentPaginator(pagination.PageNumberPagination):
+    page_size = 10
+
+    def get_paginated_response(self, data):
+        query = HourInstance.objects.filter(student__studentgroup__group__mentor__user=self.request.user)
+        approved = query.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        pending = query.filter(approval_status='PENDING').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        pending_hours = pending['number_of_hours__sum'] if pending['number_of_hours__sum'] else 0 + pending[
+            'number_of_minutes__sum'] / 60 if pending['number_of_minutes__sum'] else 0
+        approved_hours = approved['number_of_hours__sum'] if approved['number_of_hours__sum'] else 0 + approved[
+            'number_of_minutes__sum'] / 60 if approved['number_of_minutes__sum'] else 0
+        # print(pending_minutes)
+        return Response(OrderedDict([
+            ('count', self.page.paginator.count),
+            ('pending_hours', pending_hours),
+            ('approved_hours', approved_hours),
+            ('next', self.get_next_link()),
+            ('previous', self.get_previous_link()),
+            ('results', data)
+        ]))
+
+
 class GroupStudentsListView(generics.ListAPIView):
     serializer_class = StudentGroupSerializer
+    pagination_class = GroupStudentPaginator
+
     filter_backends = (
         rest_filters.OrderingFilter,
         rest_filters.SearchFilter,
@@ -44,5 +74,4 @@ class GroupStudentsListView(generics.ListAPIView):
     ordering_fields = ('created_at',)
 
     def get_queryset(self):
-        # print(self.request.user.mentor_set.first())
         return StudentGroup.objects.filter(group__mentor=self.request.user.mentor_set.first())

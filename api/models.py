@@ -60,6 +60,12 @@ class Notification(common_models.TimeStamp):
     comment = models.CharField(max_length=400, choices=[x.value for x in NOTIFICATION_TYPES], blank=False, null=True)
 
 
+class StudentNotificationSeenStatus(common_models.TimeStamp):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    notification = models.ForeignKey(Notification, on_delete=models.CASCADE, related_name='student_seen')
+    isSeen = models.BooleanField(default=False)
+
+
 class HourInstance(common_models.TimeStamp):
     """
     An instance of a single hour submission. Connected to its related student with a foreign key.
