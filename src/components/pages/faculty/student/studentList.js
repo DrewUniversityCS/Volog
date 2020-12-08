@@ -27,9 +27,7 @@ export default class StudentList extends Component {
     render() {
         const {studentData: student, countData, page} = this.props;
         const {notificationShow} = this.state;
-        console.log(countData)
         const maxCount = Math.ceil(countData / 10);
-        console.log('max count: ' + maxCount);
         return (
             <div className="relative h-full">
                 <div>
@@ -37,7 +35,7 @@ export default class StudentList extends Component {
                     <div className="flex justify-between p-3 w-full">
                         <input type="search" placeholder="search" onChange={this.props.searchStudent}
                                className="border-2 border-green-400 p-1 w-1/2 w-10/12"/>
-                        <a href="/api/report/hours">
+                        <a href="/api/hours/all_students_hour_report">
 
                             <button
                                 className="bg-green-700 font-bold hover:bg-green-800 hover:shadow-lg inline-flex items-center px-4 py-3 right-0 rounded text-sm text-white text-center" title={'Download student hour report'}>

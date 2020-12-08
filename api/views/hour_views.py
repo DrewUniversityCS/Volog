@@ -200,7 +200,7 @@ def student_hour_report(request):
     return response
 
 
-def hour_report(request):
+def all_students_hour_report(request):
     students = Student.objects.all()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = f'attachment; filename="hour_report.csv"'
