@@ -19,6 +19,18 @@ A step by step series of examples that tell you how to get a development environ
  - Finally, cd into Volog and run the server using the "manage.py runserver" command.
 ```
 
+## Screenshots
+### Log In Page
+![](https://github.com/NullDefault/Volog/blob/master/screenshots/login-page.png)
+### Student Page
+![](https://github.com/NullDefault/Volog/blob/master/screenshots/volog-student-page.png)
+![](https://github.com/NullDefault/Volog/blob/master/screenshots/hour-report.png)
+![](https://github.com/NullDefault/Volog/blob/master/screenshots/stats-view.png)
+### Admin Page
+![](https://github.com/NullDefault/Volog/blob/master/screenshots/admin-view.png)
+### Mentor Page
+![](https://github.com/NullDefault/Volog/blob/master/screenshots/mentor-view.png)
+
 ## Coding style
 
 ### Python
