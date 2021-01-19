@@ -200,7 +200,7 @@ def student_hour_report(request):
     return response
 
 
-def hour_report(request):
+def all_students_hour_report(request):
     students = Student.objects.all()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = f'attachment; filename="hour_report.csv"'
@@ -221,14 +221,14 @@ def hour_report(request):
 
     for student in students:
         hours = HourInstance.objects.filter(student=student)
-        all = hours.aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
+        all_hours = hours.aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
         approved = hours.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
         declined = hours.filter(approval_status='DECLINED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
         pending = hours.filter(approval_status='PENDING').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
 
-        all_hours = all['number_of_hours__sum'] if all['number_of_hours__sum'] else 0 + all[
-            'number_of_minutes__sum'] / 60 if all['number_of_minutes__sum'] else 0
-        all_minutes = all['number_of_minutes__sum'] % 60 if all['number_of_minutes__sum'] else 0
+        all_hours = all_hours['number_of_hours__sum'] if all_hours['number_of_hours__sum'] else 0 + all_hours[
+            'number_of_minutes__sum'] / 60 if all_hours['number_of_minutes__sum'] else 0
+        all_minutes = all_hours['number_of_minutes__sum'] % 60 if all_hours['number_of_minutes__sum'] else 0
 
         pending_hours = pending['number_of_hours__sum'] if pending['number_of_hours__sum'] else 0 + pending[
             'number_of_minutes__sum'] / 60 if pending['number_of_minutes__sum'] else 0
@@ -236,7 +236,7 @@ def hour_report(request):
 
         approved_hours = approved['number_of_hours__sum'] if approved['number_of_hours__sum'] else 0 + approved[
             'number_of_minutes__sum'] / 60 if approved['number_of_minutes__sum'] else 0
-        aprooved_minutes = approved['number_of_minutes__sum'] % 60 if approved['number_of_minutes__sum'] else 0
+        approved_minutes = approved['number_of_minutes__sum'] % 60 if approved['number_of_minutes__sum'] else 0
 
         declined_hours = declined['number_of_hours__sum'] if declined['number_of_hours__sum'] else 0 + declined[
             'number_of_minutes__sum'] / 60 if declined['number_of_minutes__sum'] else 0
@@ -249,7 +249,7 @@ def hour_report(request):
             pending_hours,
             pending_minutes,
             approved_hours,
-            aprooved_minutes,
+            approved_minutes,
             declined_hours,
             declined_minutes
         ]
@@ -275,7 +275,7 @@ def hour_stats(request):
         ]
     }
     for hour in hours:
-        min = hour['number_of_minutes'] / 60
-        result['datasets'][0]['data'][int(hour['month']) - 1] += (hour['number_of_hours'] + min)
+        minutes = hour['number_of_minutes'] / 60
+        result['datasets'][0]['data'][int(hour['month']) - 1] += (hour['number_of_hours'] + minutes)
     print(result)
     return JsonResponse(result)

@@ -3,10 +3,10 @@ File Name: Serializers
 Purpose: Serializers for translating database data before sending it over the API.
 Comments:
 """
-from django.db.models import Sum
 from rest_framework import serializers
 from rest_framework.fields import empty
 
+from api.logistics.helper_functions import calc_pending, calc_approved
 from api.models import BugReport, FeedbackForm
 from api.models import Student, Mentor, HourInstance, Group, StudentGroup, ActivityCategory, Notification, \
     StudentNotificationSeenStatus
@@ -28,19 +28,11 @@ class StudentSerializer(serializers.ModelSerializer):
 
     def get_pending_hour(self, obj):
         hours = HourInstance.objects.filter(student=obj)
-        pending = hours.filter(approval_status='PENDING').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
-        pending_hours = pending['number_of_hours__sum'] if pending['number_of_hours__sum'] else 0 + pending[
-            'number_of_minutes__sum'] / 60 if pending['number_of_minutes__sum'] else 0
-        pending_minutes = pending['number_of_minutes__sum'] % 60 if pending['number_of_minutes__sum'] else 0
-        return pending_hours + pending_minutes / 60
+        return calc_pending(hours)
 
     def get_approved_hour(self, obj):
         hours = HourInstance.objects.filter(student=obj)
-        approved = hours.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
-        approved_hours = approved['number_of_hours__sum'] if approved['number_of_hours__sum'] else 0 + approved[
-            'number_of_minutes__sum'] / 60 if approved['number_of_minutes__sum'] else 0
-        aprooved_minutes = approved['number_of_minutes__sum'] % 60 if approved['number_of_minutes__sum'] else 0
-        return approved_hours + aprooved_minutes / 60
+        return calc_approved(hours)
 
     class Meta:
         model = Student
@@ -80,19 +72,11 @@ class GroupSerializer(serializers.ModelSerializer):
 
     def get_pending_hour(self, obj):
         hours = HourInstance.objects.filter(student__in=obj.students.all())
-        pending = hours.filter(approval_status='PENDING').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
-        pending_hours = pending['number_of_hours__sum'] if pending['number_of_hours__sum'] else 0 + pending[
-            'number_of_minutes__sum'] / 60 if pending['number_of_minutes__sum'] else 0
-        pending_minutes = pending['number_of_minutes__sum'] % 60 if pending['number_of_minutes__sum'] else 0
-        return pending_hours + pending_minutes / 60
+        return calc_pending(hours)
 
     def get_approved_hour(self, obj):
         hours = HourInstance.objects.filter(student__in=obj.students.all())
-        approved = hours.filter(approval_status='APPROVED').aggregate(Sum('number_of_hours'), Sum('number_of_minutes'))
-        approved_hours = approved['number_of_hours__sum'] if approved['number_of_hours__sum'] else 0 + approved[
-            'number_of_minutes__sum'] / 60 if approved['number_of_minutes__sum'] else 0
-        aprooved_minutes = approved['number_of_minutes__sum'] % 60 if approved['number_of_minutes__sum'] else 0
-        return approved_hours + aprooved_minutes / 60
+        return calc_approved(hours)
 
     class Meta:
         model = Group
@@ -162,10 +146,11 @@ class BugReportSerializer(serializers.ModelSerializer):
         model = BugReport
         exclude = []
 
+
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
-        fields = ('id', 'title', )
+        fields = ('id', 'title',)
 
     def create(self, validated_data):
         instance = super().create(validated_data)

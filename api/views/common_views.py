@@ -6,7 +6,6 @@ from api.logistics.serializers import BugReportSerializer, FeedbackFormSerialize
 from api.models import BugReport, FeedbackForm, Notification, StudentNotificationSeenStatus
 
 
-
 class FeedbackFormListView(generics.ListAPIView):
     serializer_class = FeedbackFormSerializer
 
@@ -65,14 +64,18 @@ class PostBugReportView(generics.CreateAPIView):
 class NotificationsViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationSerializer
     pagination_class = None
+
     def get_queryset(self):
         if 'faculty' in self.request.GET:
-            return Notification.objects.order_by('-created_at')[:5]
+            return Notification.objects.order_by('-created_at')[:5]  # TODO: 5 is a magic number, needs to be
+                                                                     # documented as a constant
         return Notification.objects.filter(student_seen__student__user=self.request.user, student_seen__isSeen=False)
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         if 'student_seen' in request.GET:
-            stu_notification = StudentNotificationSeenStatus.objects.get(student__user=request.user, notification=instance)
+            stu_notification = StudentNotificationSeenStatus.objects.get(student__user=request.user,
+                                                                         notification=instance)
             stu_notification.isSeen = True
             stu_notification.save()
         else:

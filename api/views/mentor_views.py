@@ -1,6 +1,5 @@
 from collections import OrderedDict
 from django.db.models import Sum
-from rest_framework import generics
 from rest_framework import (
     filters as rest_filters
 )
